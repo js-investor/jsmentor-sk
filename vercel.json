@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/bonusy/:slug", "destination": "/bonusy-:slug.html" }
+  ]
+}

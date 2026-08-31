@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
+  <title>ETF semafor 🚦 | JS Mentor</title>
+  <meta name="description" content="15 otázok za 3 minúty. Zisti, či investuješ správne. Od stratégie až po poplatky a chyby, ktoré ťa potichu stoja peniaze." />
+  <script>
+    (function () {
+      var host = window.location.hostname;
+      var protocol = window.location.protocol;
+      var isLocal =
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "::1" ||
+        host.endsWith(".local") ||
+        host === "" ||
+        protocol === "file:";
+      if (isLocal) return;
+      var script = document.createElement("script");
+      script.id = "Cookiebot";
+      script.src = "https://consent.cookiebot.com/uc.js";
+      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
+      script.setAttribute("data-blockingmode", "auto");
+      script.type = "text/javascript";
+      document.head.appendChild(script);
+    })();
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/etf-semafor.css" />
+</head>
+<body>
+  <main>
+    <header data-js-site-header class="konzultacia-header-shell">
+      <div class="konzultacia-header-bar">
+        <a href="/bonusy" class="flex shrink-0 items-center">
+          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor logo" class="h-7 w-auto shrink-0 object-contain md:h-9 lg:h-10" />
+        </a>
+        <nav class="konzultacia-header-nav hidden min-w-0 xl:flex" aria-label="Navigácia stránky">
+          <a href="/bonusy" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem]">Všetky bonusy</a>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Kalkulačky
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <a href="/bonusy/hypo-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Hypotéka vs. investovanie</a>
+                <a href="/bonusy/investicna-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičná kalkulačka</a>
+                <a href="/bonusy/mzdova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Mzdová kalkulačka</a>
+                <a href="/bonusy/uverova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Úverová kalkulačka</a>
+                <a href="/bonusy/rentova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Rentová kalkulačka</a>
+              </div>
+            </div>
+          </div>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Nástroje
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <a href="/bonusy/investicny-byt" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičný byt</a>
+                <a href="/bonusy/etf-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">ETF semafor</a>
+                <a href="/bonusy/poplatkovy-rontgen" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Poplatkový röntgen</a>
+                <a href="/bonusy/bytovy-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Bytový semafor</a>
+              </div>
+            </div>
+          </div>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              PDF
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <span class="block px-4 py-3 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="konzultacia-header-mobile-cta xl:hidden">
+          <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary-site-header text-body shrink-0" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header">
+            <span class="sm:hidden">Rezervovať konzultáciu</span>
+            <span class="hidden sm:inline">Rezervovať konzultáciu s Ivanom</span>
+          </a>
+        </div>
+        <div class="konzultacia-header-actions">
+          <div class="hidden items-center gap-2.5 xl:flex">
+            <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary-site-header text-body shrink-0" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header">Rezervovať konzultáciu s Ivanom</a>
+          </div>
+          <button type="button" data-mobile-menu-toggle aria-label="Otvoriť menu" aria-expanded="false" class="konzultacia-header-menu-toggle xl:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" data-icon-menu aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 hidden" data-icon-close aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </button>
+        </div>
+        <div class="konzultacia-header-mobile-panel xl:hidden hidden" data-mobile-menu>
+          <nav class="flex flex-col gap-0.5" aria-label="Mobilná navigácia">
+            <a href="/bonusy" class="konzultacia-header-mobile-link">Všetky bonusy</a>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>Kalkulačky</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <a href="/bonusy/hypo-kalkulacka" class="konzultacia-header-mobile-link">Hypotéka vs. investovanie</a>
+                <a href="/bonusy/investicna-kalkulacka" class="konzultacia-header-mobile-link">Investičná kalkulačka</a>
+                <a href="/bonusy/mzdova-kalkulacka" class="konzultacia-header-mobile-link">Mzdová kalkulačka</a>
+                <a href="/bonusy/uverova-kalkulacka" class="konzultacia-header-mobile-link">Úverová kalkulačka</a>
+                <a href="/bonusy/rentova-kalkulacka" class="konzultacia-header-mobile-link">Rentová kalkulačka</a>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>Nástroje</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <a href="/bonusy/investicny-byt" class="konzultacia-header-mobile-link">Investičný byt</a>
+                <a href="/bonusy/etf-semafor" class="konzultacia-header-mobile-link">ETF semafor</a>
+                <a href="/bonusy/poplatkovy-rontgen" class="konzultacia-header-mobile-link">Poplatkový röntgen</a>
+                <a href="/bonusy/bytovy-semafor" class="konzultacia-header-mobile-link">Bytový semafor</a>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>PDF</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <span class="px-3 py-2 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-home section-white min-h-[50vh] pt-[9rem] pb-20 md:pt-[11rem] md:pb-28 lg:pt-[12rem] lg:pb-32">
+      <div class="section-container">
+        <div class="mb-6 flex justify-center md:mb-8">
+          <a href="/bonusy" class="inline-flex items-center gap-2 font-sans text-sm text-primary transition-colors hover:text-forest-hover">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0" aria-hidden="true"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+            Späť na bonusy
+          </a>
+        </div>
+        <div id="etf-semafor-root" class="w-full font-sans"></div>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/[0.08] px-4 py-3 md:px-10" style="background-color: #FFF9F5">
+      <div class="mx-auto flex max-w-[980px] flex-col items-center gap-2 text-center text-xs leading-tight text-foreground/65 md:flex-row md:justify-between md:gap-6 md:text-left md:text-sm">
+        <a href="/" class="inline-flex shrink-0 items-center">
+          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" class="h-7 w-auto md:h-8" />
+        </a>
+        <div class="flex flex-col items-center gap-1 md:flex-row md:gap-3">
+          <span class="font-sans tabular-nums">© 2026 Jashik s.r.o. Všetky práva vyhradené.</span>
+          <span class="hidden text-foreground/35 select-none md:inline" aria-hidden="true">·</span>
+          <a href="/gdpr" class="font-sans text-foreground/65 underline-offset-2 transition-colors hover:text-foreground hover:underline">Ochrana osobných údajov (GDPR)</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="/js/site.js"></script>
+  <script src="/js/calculators/etf-semafor.js"></script>
+</body>
+</html>

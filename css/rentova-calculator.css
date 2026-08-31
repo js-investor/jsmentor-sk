@@ -1,0 +1,214 @@
+/** Rentová kalkulačka — scoped pod #rentova-calc-root, tokeny zjednotené so sitom */
+
+#rentova-calc-root *,
+#rentova-calc-root *::before,
+#rentova-calc-root *::after {
+  box-sizing: border-box;
+}
+
+#rentova-calc-root {
+  font-family: var(--font-sans);
+  color: hsl(var(--foreground));
+  width: 100%;
+  max-width: 100%;
+}
+
+#rentova-calc-root .hidden {
+  display: none !important;
+}
+
+/* Pokročilé nastavenia v pätke docku — kompaktná mriežka */
+#rentova-calc-root .ml-advanced-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  #rentova-calc-root .ml-advanced-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  #rentova-calc-root .ml-advanced-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+#rentova-calc-root .ml-advanced-grid .calc-field {
+  margin-bottom: 0;
+}
+
+/* Stav cieľa môže niesť dlhší text — bunka smie byť širšia a zalomiť sa */
+#rentova-calc-root .calc-stats-inline .ml-stat-goal {
+  max-width: 22rem;
+}
+
+#rentova-calc-root .calc-stats-inline .ml-stat-goal .calc-stat-value {
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+#rentova-calc-root .mylife-btn-email {
+  padding: 12px 20px;
+  border-radius: calc(var(--radius) - 4px);
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  background: hsl(var(--cream));
+  border: 1px solid hsl(var(--charcoal));
+  color: hsl(var(--charcoal));
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+
+#rentova-calc-root .mylife-btn-email:hover {
+  background: hsl(var(--border));
+}
+
+#rentova-calc-root .ml-dropdown {
+  position: relative;
+}
+
+#rentova-calc-root .ml-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) - 4px);
+  z-index: 1000;
+  min-width: 170px;
+  padding: 4px;
+  display: none;
+}
+
+#rentova-calc-root .ml-dropdown-menu.open {
+  display: block;
+}
+
+#rentova-calc-root .ml-dropdown-item {
+  padding: 8px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  white-space: nowrap;
+}
+
+#rentova-calc-root .ml-dropdown-item:hover {
+  background: hsl(var(--cream));
+}
+
+#rentova-calc-root .ml-dropdown-item.danger {
+  color: hsl(var(--destructive));
+}
+
+#rentova-calc-root .ml-dropdown-item.danger:hover {
+  background: hsl(0 93% 94%);
+}
+
+#rentova-calc-root .ml-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2147483647;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#rentova-calc-root .ml-modal-overlay.open {
+  display: flex;
+}
+
+#rentova-calc-root .ml-modal-box {
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#rentova-calc-root .ml-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+#rentova-calc-root .ml-modal-body {
+  overflow-y: auto;
+  padding: 24px;
+  flex: 1;
+}
+
+#rentova-calc-root .ml-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+#rentova-calc-root .ml-compare-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(var(--muted-foreground));
+  font-weight: 700;
+  border-bottom: 2px solid hsl(var(--border));
+  background: hsl(var(--cream));
+  position: sticky;
+  top: 0;
+}
+
+#rentova-calc-root .ml-compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid hsl(var(--muted));
+  vertical-align: top;
+}
+
+@media (max-width: 640px) {
+  #rentova-calc-root .mylife-btn-email {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #rentova-calc-root .ml-modal-overlay.open {
+    padding: 72px 0 0;
+    align-items: stretch;
+  }
+
+  #rentova-calc-root .ml-modal-box {
+    max-width: none;
+    width: 100%;
+    height: calc(100dvh - 72px);
+    max-height: calc(100dvh - 72px);
+    border-radius: 0;
+  }
+
+  #rentova-calc-root .ml-modal-header {
+    padding: 14px 16px;
+  }
+
+  #rentova-calc-root .ml-modal-body {
+    padding: 16px;
+  }
+}

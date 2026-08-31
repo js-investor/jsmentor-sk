@@ -1,0 +1,156 @@
+/* Zdieľaný toolbar + telo kalkulačky — referenčný dizajn: /bonusy/hypo-kalkulacka */
+
+.calc-variant-toolbar {
+  max-width: 100%;
+  margin: 0 0 1.5rem;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: hsl(var(--cream));
+}
+
+/* Samostatná sekcia pod toolbarom — medzera medzi panelmi viditeľná na bielom pozadí stránky */
+.calc-body-shell {
+  background: hsl(var(--cream));
+  padding: 1rem 1rem 3rem;
+  border-color: hsl(var(--border) / 0.6);
+  border-style: solid;
+  border-width: 0 1px 1px;
+  border-radius: 0 0 0.75rem 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .calc-body-shell {
+    padding: 1rem 1.5rem 3.5rem;
+    border-width: 1px;
+    border-radius: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .calc-variant-toolbar {
+    margin-bottom: 2rem;
+  }
+}
+
+.calc-variant-toolbar-variants {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.calc-variant-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.calc-btn-compare {
+  padding: 12px 20px;
+  border-radius: calc(var(--radius) - 4px);
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: hsl(var(--forest-hover)) !important;
+  border: 1px solid hsl(var(--forest-hover)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+  font-family: var(--font-sans) !important;
+  transition: filter 0.2s;
+}
+
+.calc-btn-compare:hover {
+  filter: brightness(0.92);
+}
+
+/* Varianty — neutrálny „tab“ vzhľad, nie zelené CTA ako Porovnať */
+.ml-variant-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: calc(var(--radius) - 4px);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  border: 1.5px solid transparent;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.ml-variant-tab.active {
+  background: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--foreground) / 0.22) !important;
+}
+
+.ml-variant-tab.inactive {
+  background: hsl(var(--muted)) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  border-color: transparent !important;
+}
+
+.ml-variant-tab.inactive:hover {
+  background: hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--foreground) / 0.12) !important;
+}
+
+.ml-add-variant {
+  width: 36px;
+  height: 36px;
+  border-radius: calc(var(--radius) - 4px);
+  background: hsl(var(--card)) !important;
+  border: 1.5px dashed hsl(var(--foreground) / 0.22) !important;
+  color: hsl(var(--muted-foreground)) !important;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s,
+    border-style 0.2s;
+}
+
+.ml-add-variant:hover {
+  background: hsl(var(--muted)) !important;
+  border-style: solid !important;
+  border-color: hsl(var(--foreground) / 0.3) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+@media (max-width: 640px) {
+  .calc-variant-toolbar {
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .calc-variant-toolbar-variants {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .calc-variant-toolbar .calc-btn-compare {
+    width: 100%;
+    justify-content: center;
+  }
+}

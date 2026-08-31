@@ -1,0 +1,964 @@
+/* =========================================================================
+   Calc UI — zdieľaný dizajnový systém kalkulačiek
+   Referenčná implementácia: /bonusy/investicna-kalkulacka
+   Pozn.: globálny reset (index.css) ruší box-shadow, letter-spacing a filtre
+   — hĺbka sa robí borderami, tintami a gradientmi, nie tieňmi.
+   ========================================================================= */
+
+/* ---------------------------------- Layout -------------------------------- */
+
+.calc-page {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.calc-header {
+  max-width: 44rem;
+  margin: 0 auto 2.25rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .calc-header { margin-bottom: 3rem; }
+}
+
+.calc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3125rem 0.875rem;
+  border: 1px solid hsl(var(--primary) / 0.2);
+  border-radius: 9999px;
+  background: hsl(var(--primary) / 0.06);
+  color: hsl(var(--primary));
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.calc-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 800;
+  color: hsl(var(--foreground));
+  margin: 1rem 0 0;
+}
+
+.calc-subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: hsl(var(--muted-foreground));
+  margin: 0.875rem auto 0;
+  max-width: 38rem;
+}
+
+@media (min-width: 768px) {
+  .calc-subtitle { font-size: 1.125rem; }
+}
+
+/* Dvojstĺpcový layout: vstupy vľavo, výsledky vpravo (Wealthsimple vzor) */
+.calc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .calc-layout {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 1.5rem;
+  }
+}
+
+.calc-col { display: grid; gap: 1.25rem; align-content: start; }
+@media (min-width: 1024px) { .calc-col { gap: 1.5rem; } }
+
+/* --------------------------------- Panel ---------------------------------- */
+
+.calc-panel {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 1rem;
+  padding: 1.375rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .calc-panel { padding: 1.625rem 1.5rem; }
+}
+
+.calc-panel-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin: 0 0 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .calc-panel-title { font-size: 1.35rem; }
+}
+
+.calc-panel-sub {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: hsl(var(--muted-foreground));
+  margin: 0 0 1.25rem;
+}
+
+.calc-panel-title + .calc-field,
+.calc-panel-title + .calc-fieldrow { margin-top: 1.25rem; }
+
+/* --------------------------------- Field ---------------------------------- */
+
+.calc-field { margin-bottom: 1.125rem; }
+.calc-field:last-child { margin-bottom: 0; }
+
+.calc-fieldrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+  margin-bottom: 1.125rem;
+}
+
+.calc-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.5rem;
+}
+
+.calc-label-hint {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Hodnota pri slideri (napr. „20 rokov“) */
+.calc-label-value {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.calc-input-wrap { position: relative; }
+
+.calc-input {
+  width: 100%;
+  background: #fff;
+  border: 1.5px solid hsl(var(--border));
+  border-radius: 0.75rem;
+  padding: 0.6875rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: hsl(var(--foreground));
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.calc-input::-webkit-outer-spin-button,
+.calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.calc-input:hover { border-color: hsl(var(--primary) / 0.35); }
+
+.calc-input:focus,
+.calc-input:focus-visible {
+  outline: none;
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.03);
+}
+
+.calc-input[disabled],
+.calc-input[readonly] {
+  background: hsl(var(--cream) / 0.6);
+  color: hsl(var(--muted-foreground));
+}
+
+.calc-input--unit { padding-right: 2.75rem; }
+
+.calc-input-unit {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+}
+
+/* Kompaktný inline vstup (číslo + jednotka v riadku s labelom) */
+.calc-input-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  border: 1.5px solid hsl(var(--border));
+  border-radius: 0.625rem;
+  background: #fff;
+  padding: 0.25rem 0.625rem;
+  transition: border-color 0.2s ease;
+}
+
+.calc-input-inline:focus-within { border-color: hsl(var(--primary)); }
+
+.calc-input-inline input {
+  width: 3.5rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  font-variant-numeric: tabular-nums;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.calc-input-inline input::-webkit-outer-spin-button,
+.calc-input-inline input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.calc-input-inline input:focus { outline: none; }
+
+.calc-input-inline .calc-inline-unit {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+}
+
+/* --------------------------------- Slider --------------------------------- */
+/* Vyplnenú časť dráhy riadi CSS premenná --p (calcUi.ts helper). */
+
+.calc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.75rem;
+  margin: 0.25rem 0 0;
+  background: transparent;
+  cursor: pointer;
+  --p: 50%;
+}
+
+.calc-slider:focus:not(:focus-visible) { outline: none; }
+
+.calc-slider:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 9999px;
+}
+
+.calc-slider::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)) var(--p),
+    hsl(var(--border)) var(--p)
+  );
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: -0.5rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 0.375rem solid hsl(var(--primary));
+  transition: transform 0.15s ease;
+}
+
+.calc-slider:hover::-webkit-slider-thumb,
+.calc-slider:focus-visible::-webkit-slider-thumb { transform: scale(1.12); }
+
+.calc-slider::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: hsl(var(--border));
+}
+
+.calc-slider::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: hsl(var(--primary));
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 9999px;
+  background: #fff;
+  border: 0.375rem solid hsl(var(--primary));
+}
+
+.calc-slider:focus-visible::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    hsl(var(--forest-hover)) var(--p),
+    hsl(var(--primary) / 0.25) var(--p)
+  );
+}
+
+/* Popisky pod sliderom (min/max škála) */
+.calc-slider-scale {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+  margin-top: 0.25rem;
+}
+
+/* ------------------------------ Segmented --------------------------------- */
+
+.calc-segment {
+  display: flex;
+  gap: 0.25rem;
+  background: hsl(var(--cream));
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+}
+
+.calc-segment > button,
+.calc-segment > label {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5625rem 0.875rem;
+  border: 1px solid transparent;
+  border-radius: 0.5625rem;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  text-align: center;
+}
+
+.calc-segment > button:hover { color: hsl(var(--foreground)); }
+
+.calc-segment > button.active,
+.calc-segment > button[aria-pressed="true"],
+.calc-segment > label.active {
+  background: #fff;
+  border-color: hsl(var(--primary) / 0.3);
+  color: hsl(var(--primary));
+}
+
+/* ------------------------------ Collapse ---------------------------------- */
+
+.calc-collapse-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 0 0;
+  border: none;
+  border-top: 1px solid hsl(var(--border) / 0.7);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  cursor: pointer;
+}
+
+.calc-collapse-chevron {
+  display: inline-flex;
+  color: hsl(var(--muted-foreground));
+  transition: transform 0.3s ease;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* -------------------------- Hero výsledok --------------------------------- */
+
+.calc-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1.5rem 1.375rem;
+  background: var(--btn-primary-gradient);
+  color: #fdf8f2;
+}
+
+@media (min-width: 768px) {
+  .calc-hero { padding: 1.75rem 1.75rem; }
+}
+
+.calc-hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.calc-hero-pattern {
+  position: absolute;
+  right: -2rem;
+  bottom: -2.5rem;
+  z-index: -1;
+  height: 11rem;
+  width: auto;
+  opacity: 0.16;
+  pointer-events: none;
+  user-select: none;
+}
+
+.calc-hero-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(240, 235, 227, 0.85);
+  margin: 0;
+}
+
+.calc-hero-value {
+  font-family: var(--font-serif);
+  font-size: clamp(2.125rem, 4.5vw, 2.875rem);
+  line-height: 1.1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  margin: 0.375rem 0 0;
+}
+
+.calc-hero-sub {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: rgba(240, 235, 227, 0.8);
+  margin: 0.375rem 0 0;
+}
+
+.calc-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.calc-hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.75rem;
+  border: 1px solid rgba(253, 248, 242, 0.25);
+  border-radius: 9999px;
+  background: rgba(253, 248, 242, 0.08);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fdf8f2;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-hero-chip strong { font-weight: 700; }
+
+/* ------------------------------ Stat tiles -------------------------------- */
+
+.calc-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.calc-stat {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 0.875rem;
+  padding: 1rem 1.125rem;
+}
+
+.calc-stat--tint { background: hsl(var(--primary) / 0.05); border-color: hsl(var(--primary) / 0.15); }
+
+.calc-stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+}
+
+.calc-stat-value {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  font-variant-numeric: tabular-nums;
+  margin: 0.25rem 0 0;
+}
+
+.calc-stat-sub {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+  margin: 0.125rem 0 0;
+}
+
+/* Negatívna / pozitívna hodnota */
+.calc-stat-value.is-negative { color: hsl(var(--accent)); }
+.calc-stat-value.is-positive { color: hsl(var(--primary)); }
+
+/* ------------------------------- Chart card ------------------------------- */
+
+.calc-chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.calc-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.calc-legend-item { display: inline-flex; align-items: center; gap: 0.4375rem; }
+
+.calc-legend-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.calc-chart-body { position: relative; width: 100%; height: 17rem; }
+
+@media (min-width: 768px) {
+  .calc-chart-body { height: 20rem; }
+}
+
+/* ---------------------------- Breakdown rows ------------------------------ */
+
+.calc-rows { margin: 0; }
+
+.calc-rows-group {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: hsl(var(--primary));
+  padding: 1rem 0 0.375rem;
+  border-bottom: 1px solid hsl(var(--border) / 0.7);
+}
+
+.calc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: hsl(var(--foreground));
+}
+
+.calc-row:last-child { border-bottom: none; }
+
+.calc-row-value {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.calc-row--total {
+  font-weight: 700;
+  border-top: 2px solid hsl(var(--foreground) / 0.85);
+  border-bottom: none;
+}
+
+/* ------------------------------ Poznámka ---------------------------------- */
+
+.calc-note {
+  border: 1px dashed hsl(var(--primary) / 0.3);
+  border-radius: 0.875rem;
+  background: hsl(var(--cream) / 0.6);
+  padding: 0.875rem 1.125rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ------------------------------ Prepínač ---------------------------------- */
+/* Štýl pre existujúce .ml-toggle checkboxy (hypotekárna) — zjednotený vzhľad */
+
+.calc-ui .ml-toggle-slider,
+.calc-ui .ml-toggle input:checked + .ml-toggle-slider {
+  border-radius: 9999px;
+}
+
+/* ====================== Hero 2.0 — „výsledok svieti“ ====================== */
+/* Pozn.: box-shadow je globálne vypnutý; žiara sa robí blurovaným gradientom
+   na pozadí (filter na div-och povolený je — reset ruší len img/svg). */
+
+.calc-hero-wrap { position: relative; isolation: isolate; }
+
+.calc-hero-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -3rem -2.5rem;
+  z-index: -1;
+  background: radial-gradient(
+    58% 68% at 50% 48%,
+    rgba(10, 90, 71, 0.5) 0%,
+    rgba(10, 90, 71, 0.32) 40%,
+    rgba(16, 122, 96, 0.14) 62%,
+    transparent 80%
+  );
+  pointer-events: none;
+}
+
+.calc-hero--glow {
+  padding: 1.75rem 1.5rem 1.625rem;
+}
+
+@media (min-width: 768px) {
+  .calc-hero--glow { padding: 2rem 2rem 1.875rem; }
+}
+
+/* Vnútorný svetelný bod za číslom */
+.calc-hero--glow::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  top: -35%;
+  width: 70%;
+  height: 120%;
+  z-index: -1;
+  background: radial-gradient(
+    50% 60% at 35% 45%,
+    rgba(126, 217, 173, 0.28) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.calc-hero--glow .calc-hero-value {
+  font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+  background: linear-gradient(180deg, #ffffff 20%, #cfe9db 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #fdf8f2; /* fallback */
+  transition: transform 0.25s ease;
+  transform-origin: left center;
+  display: inline-block;
+}
+
+/* Pulz pri prepočte — výsledok „ožije“ */
+@keyframes calc-hero-pulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.035); }
+  100% { transform: scale(1); }
+}
+
+.calc-hero-value.is-updating {
+  animation: calc-hero-pulse 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calc-hero-value.is-updating { animation: none; }
+}
+
+/* =================== Stat bar — jeden pás namiesto dlaždíc =============== */
+
+.calc-statbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.calc-statbar > div {
+  padding: 1rem 1.25rem;
+  min-width: 0;
+}
+
+.calc-statbar > div + div {
+  border-left: 1px solid hsl(var(--border) / 0.6);
+}
+
+@media (max-width: 640px) {
+  .calc-statbar { grid-template-columns: 1fr; }
+  .calc-statbar > div + div {
+    border-left: none;
+    border-top: 1px solid hsl(var(--border) / 0.6);
+  }
+}
+
+/* ========================= Steppery na vstupoch ========================== */
+
+.calc-input-wrap--stepper .calc-input {
+  padding-right: 6.25rem;
+}
+
+.calc-stepper {
+  position: absolute;
+  right: 0.4375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.calc-stepper button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5625rem;
+  background: hsl(var(--cream) / 0.7);
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.calc-stepper button:hover {
+  background: hsl(var(--primary) / 0.08);
+  border-color: hsl(var(--primary) / 0.4);
+  color: hsl(var(--primary));
+}
+
+.calc-stepper button:active { background: hsl(var(--primary) / 0.15); }
+
+.calc-input-wrap--stepper .calc-input-unit { position: static; }
+
+.calc-input-wrap--stepper .calc-stepper .calc-stepper-unit {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  margin-right: 0.375rem;
+}
+
+/* ================== Hero XL — výsledok ako hviezda stránky ================= */
+
+.calc-hero-xl {
+  position: relative;
+  isolation: isolate;
+  text-align: center;
+  padding: 0.5rem 0 0.75rem;
+}
+
+/* Svetelná aura za obrím číslom (svetlá verzia, bez filtra) */
+.calc-hero-xl::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: min(48rem, 110%);
+  height: 130%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  background: radial-gradient(
+    50% 55% at 50% 50%,
+    rgba(41, 97, 74, 0.16) 0%,
+    rgba(41, 97, 74, 0.08) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+}
+
+.calc-hero-xl-label {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .calc-hero-xl-label { font-size: 1.1875rem; }
+}
+
+.calc-hero-xl-value {
+  font-family: var(--font-serif);
+  font-size: clamp(3.25rem, 10vw, 6rem);
+  line-height: 1.05;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  margin: 0.5rem 0 0;
+  background: linear-gradient(180deg, #14503c 0%, hsl(var(--primary)) 55%, #0a5a47 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: hsl(var(--primary)); /* fallback */
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+.calc-hero-xl-value.is-updating {
+  animation: calc-hero-pulse 0.4s ease;
+}
+
+.calc-hero-xl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 0.625rem;
+  margin-top: 1.125rem;
+}
+
+.calc-verdict-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 0.9375rem;
+  border: 1px solid hsl(var(--primary) / 0.22);
+  border-radius: 9999px;
+  background: hsl(var(--primary) / 0.07);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  font-variant-numeric: tabular-nums;
+}
+
+.calc-verdict-chip strong {
+  font-weight: 700;
+  color: hsl(var(--primary));
+}
+
+/* ================= Dock — vstupy v jednom kompaktnom páse ================= */
+
+.calc-dock {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.25rem 0.875rem;
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .calc-dock { padding: 1.5rem 1.75rem 1rem; margin-top: 2.25rem; }
+}
+
+.calc-dock-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .calc-dock-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .calc-dock-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+  .calc-dock-item + .calc-dock-item {
+    border-left: 1px solid hsl(var(--border) / 0.6);
+    padding-left: 1.5rem;
+  }
+}
+
+.calc-dock-item { min-width: 0; }
+
+.calc-dock-item .calc-label { margin-bottom: 0.4375rem; font-size: 0.875rem; }
+
+.calc-dock-item .calc-input { font-size: 1.0625rem; padding: 0.5625rem 0.875rem; }
+
+.calc-dock-item .calc-slider { height: 1.5rem; }
+
+/* Pätka docku — rozšírené nastavenia */
+.calc-dock-foot {
+  border-top: 1px solid hsl(var(--border) / 0.7);
+  margin-top: 1.125rem;
+}
+
+.calc-dock-foot .calc-collapse-toggle {
+  border-top: none;
+  padding-top: 0.75rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* ===================== Inline štatistiky pod hero ======================== */
+
+.calc-stats-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.75rem 0;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.calc-stats-inline > div {
+  padding: 0.25rem 1.75rem;
+  min-width: 9rem;
+}
+
+.calc-stats-inline > div + div {
+  border-left: 1px solid hsl(var(--border) / 0.8);
+}
+
+.calc-stats-inline .calc-stat-label { font-size: 0.8125rem; }
+
+.calc-stats-inline .calc-stat-value { font-size: 1.375rem; margin-top: 0.125rem; }
+
+@media (max-width: 560px) {
+  .calc-stats-inline { flex-direction: column; align-items: center; gap: 0.875rem; }
+  .calc-stats-inline > div + div { border-left: none; }
+}
+
+/* Vysoký graf pre hero layout */
+.calc-chart-body--tall { height: 19rem; }
+
+@media (min-width: 768px) {
+  .calc-chart-body--tall { height: 24rem; }
+}
+
+.calc-note--center { text-align: center; }

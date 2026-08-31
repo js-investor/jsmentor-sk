@@ -1,0 +1,213 @@
+/** Investičná kalkulačka — scoped pod #inv-calc-root, tokeny zjednotené so sitom */
+
+#inv-calc-root *,
+#inv-calc-root *::before,
+#inv-calc-root *::after {
+  box-sizing: border-box;
+}
+
+#inv-calc-root {
+  font-family: var(--font-sans);
+  color: hsl(var(--charcoal));
+  width: 100%;
+  max-width: 100%;
+}
+
+#inv-calc-root .inv-heading-serif {
+  font-family: var(--font-serif);
+}
+
+#inv-calc-root .inv-input-field {
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+  border: 1px solid hsl(var(--border));
+  width: 100%;
+}
+
+#inv-calc-root .inv-input-field:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  background-color: hsl(var(--cream));
+}
+
+#inv-calc-root #inv-advanced-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+#inv-calc-root .inv-btn-email,
+#inv-calc-root .inv-btn-pdf {
+  padding: 12px 20px;
+  border-radius: calc(var(--radius) - 4px);
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+
+#inv-calc-root .inv-btn-email {
+  background: hsl(var(--cream));
+  border: 1px solid hsl(var(--charcoal));
+  color: hsl(var(--charcoal));
+}
+
+#inv-calc-root .inv-btn-pdf {
+  background: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+#inv-calc-root .inv-btn-email:hover {
+  background: hsl(var(--border));
+}
+
+#inv-calc-root .inv-btn-pdf:hover {
+  filter: brightness(0.92);
+}
+
+#inv-calc-root .ml-dropdown {
+  position: relative;
+}
+
+#inv-calc-root .ml-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) - 4px);
+  z-index: 1000;
+  min-width: 170px;
+  padding: 4px;
+  display: none;
+}
+
+#inv-calc-root .ml-dropdown-menu.open {
+  display: block;
+}
+
+#inv-calc-root .ml-dropdown-item {
+  padding: 8px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  white-space: nowrap;
+}
+
+#inv-calc-root .ml-dropdown-item:hover {
+  background: hsl(var(--cream));
+}
+
+#inv-calc-root .ml-dropdown-item.danger {
+  color: hsl(var(--destructive));
+}
+
+#inv-calc-root .ml-dropdown-item.danger:hover {
+  background: hsl(0 93% 94%);
+}
+
+#inv-calc-root .inv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2147483647;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#inv-calc-root .inv-modal-overlay.open {
+  display: flex;
+}
+
+#inv-calc-root .inv-modal-box {
+  background: hsl(var(--card));
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#inv-calc-root .inv-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid hsl(var(--border));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+#inv-calc-root .inv-modal-body {
+  overflow-y: auto;
+  padding: 24px;
+  flex: 1;
+}
+
+#inv-calc-root .inv-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+#inv-calc-root .inv-compare-table th {
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: hsl(var(--muted-foreground));
+  font-weight: 700;
+  border-bottom: 2px solid hsl(var(--border));
+  background: hsl(var(--cream));
+  position: sticky;
+  top: 0;
+}
+
+#inv-calc-root .inv-compare-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid hsl(var(--muted));
+  vertical-align: top;
+}
+
+@media (max-width: 640px) {
+  #inv-calc-root .inv-btn-email,
+  #inv-calc-root .inv-btn-pdf {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #inv-calc-root .inv-modal-overlay.open {
+    padding: 72px 0 0;
+    align-items: stretch;
+  }
+
+  #inv-calc-root .inv-modal-box {
+    max-width: none;
+    width: 100%;
+    height: calc(100dvh - 72px);
+    max-height: calc(100dvh - 72px);
+    border-radius: 0;
+  }
+
+  #inv-calc-root .inv-modal-header {
+    padding: 14px 16px;
+  }
+
+  #inv-calc-root .inv-modal-body {
+    padding: 16px;
+  }
+}

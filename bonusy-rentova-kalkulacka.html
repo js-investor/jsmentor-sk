@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
+  <title>Rentová kalkulačka | JS Mentor</title>
+  <meta name="description" content="Zisti, aký kapitál potrebuješ na požadovanú rentu a koľko treba pravidelne investovať." />
+  <script>
+    (function () {
+      var host = window.location.hostname;
+      var protocol = window.location.protocol;
+      var isLocal =
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "::1" ||
+        host.endsWith(".local") ||
+        host === "" ||
+        protocol === "file:";
+      if (isLocal) return;
+      var script = document.createElement("script");
+      script.id = "Cookiebot";
+      script.src = "https://consent.cookiebot.com/uc.js";
+      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
+      script.setAttribute("data-blockingmode", "auto");
+      script.type = "text/javascript";
+      document.head.appendChild(script);
+    })();
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/calculator-toolbar.css" />
+  <link rel="stylesheet" href="/css/calc-ui.css" />
+  <link rel="stylesheet" href="/css/rentova-calculator.css" />
+</head>
+<body>
+  <main>
+    <header data-js-site-header class="konzultacia-header-shell">
+      <div class="konzultacia-header-bar">
+        <a href="/bonusy" class="flex shrink-0 items-center">
+          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor logo" class="h-7 w-auto shrink-0 object-contain md:h-9 lg:h-10" />
+        </a>
+
+        <nav class="konzultacia-header-nav hidden min-w-0 xl:flex" aria-label="Navigácia stránky">
+          <a href="/bonusy" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem]">Všetky bonusy</a>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Kalkulačky
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <a href="/bonusy/hypo-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Hypotéka vs. investovanie</a>
+                <a href="/bonusy/investicna-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičná kalkulačka</a>
+                <a href="/bonusy/mzdova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Mzdová kalkulačka</a>
+                <a href="/bonusy/uverova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Úverová kalkulačka</a>
+                <a href="/bonusy/rentova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Rentová kalkulačka</a>
+              </div>
+            </div>
+          </div>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              Nástroje
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <a href="/bonusy/investicny-byt" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičný byt</a>
+                <a href="/bonusy/etf-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">ETF semafor</a>
+                <a href="/bonusy/poplatkovy-rontgen" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Poplatkový röntgen</a>
+                <a href="/bonusy/bytovy-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Bytový semafor</a>
+              </div>
+            </div>
+          </div>
+          <div class="relative" data-nav-group>
+            <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
+              PDF
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-panel>
+              <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
+                <span class="block px-4 py-3 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="konzultacia-header-mobile-cta xl:hidden">
+          <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary-site-header text-body shrink-0" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header">
+            <span class="sm:hidden">Rezervovať konzultáciu</span>
+            <span class="hidden sm:inline">Rezervovať konzultáciu s Ivanom</span>
+          </a>
+        </div>
+
+        <div class="konzultacia-header-actions">
+          <div class="hidden items-center gap-2.5 xl:flex">
+            <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary-site-header text-body shrink-0" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header">Rezervovať konzultáciu s Ivanom</a>
+          </div>
+          <button type="button" data-mobile-menu-toggle aria-label="Otvoriť menu" aria-expanded="false" class="konzultacia-header-menu-toggle xl:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" data-icon-menu aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 hidden" data-icon-close aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+          </button>
+        </div>
+
+        <div class="konzultacia-header-mobile-panel xl:hidden hidden" data-mobile-menu>
+          <nav class="flex flex-col gap-0.5" aria-label="Mobilná navigácia">
+            <a href="/bonusy" class="konzultacia-header-mobile-link">Všetky bonusy</a>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>Kalkulačky</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <a href="/bonusy/hypo-kalkulacka" class="konzultacia-header-mobile-link">Hypotéka vs. investovanie</a>
+                <a href="/bonusy/investicna-kalkulacka" class="konzultacia-header-mobile-link">Investičná kalkulačka</a>
+                <a href="/bonusy/mzdova-kalkulacka" class="konzultacia-header-mobile-link">Mzdová kalkulačka</a>
+                <a href="/bonusy/uverova-kalkulacka" class="konzultacia-header-mobile-link">Úverová kalkulačka</a>
+                <a href="/bonusy/rentova-kalkulacka" class="konzultacia-header-mobile-link">Rentová kalkulačka</a>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>Nástroje</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <a href="/bonusy/investicny-byt" class="konzultacia-header-mobile-link">Investičný byt</a>
+                <a href="/bonusy/etf-semafor" class="konzultacia-header-mobile-link">ETF semafor</a>
+                <a href="/bonusy/poplatkovy-rontgen" class="konzultacia-header-mobile-link">Poplatkový röntgen</a>
+                <a href="/bonusy/bytovy-semafor" class="konzultacia-header-mobile-link">Bytový semafor</a>
+              </div>
+            </div>
+            <div>
+              <button type="button" class="konzultacia-header-mobile-link w-full justify-between" data-mobile-group aria-expanded="false">
+                <span>PDF</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+              </button>
+              <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
+                <span class="px-3 py-2 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="page-home section-white min-h-[50vh] pt-[9rem] pb-20 md:pt-[11rem] md:pb-28 lg:pt-[12rem] lg:pb-32">
+      <div class="section-container">
+        <div class="mb-6 flex justify-center md:mb-8">
+          <a href="/bonusy" class="inline-flex items-center gap-2 font-sans text-sm text-primary transition-colors hover:text-forest-hover">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0" aria-hidden="true"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg>
+            Späť na bonusy
+          </a>
+        </div>
+
+        <div id="rentova-calc-root" class="calc-ui w-full font-sans text-foreground">
+          <div class="calc-variant-toolbar ml-no-export rounded-2xl border border-border/60 mx-[-0.125rem] sm:mx-0">
+            <div class="calc-variant-toolbar-variants">
+              <div id="ml-variant-tabs" class="calc-variant-tabs"></div>
+              <button type="button" id="ml-add-variant" class="ml-add-variant" title="Pridať variant" aria-label="Pridať variant" onclick="window.mlAddVariant?.()">+</button>
+            </div>
+            <button type="button" id="ml-btn-compare" class="calc-btn-compare" data-open-comparison>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+              Porovnať
+            </button>
+          </div>
+
+          <div class="calc-body-shell">
+            <div class="calc-page">
+              <header class="calc-header" style="margin-bottom: 1.5rem">
+                <span class="calc-eyebrow">Rentová kalkulačka</span>
+              </header>
+
+              <section class="calc-hero-xl" aria-label="Výsledok">
+                <p class="calc-hero-xl-label">
+                  Na mesačnú rentu <span data-echo-of="ml-desiredRent" data-echo-suffix=" €">1500 €</span> potrebuješ
+                </p>
+                <p class="calc-hero-xl-value" id="ml-requiredCapital">0 €</p>
+                <div class="calc-hero-xl-chips">
+                  <span class="calc-verdict-chip">
+                    Mesačne treba investovať&nbsp;<strong id="ml-monthlyGap">0 €</strong>
+                  </span>
+                  <span class="calc-verdict-chip">
+                    Pri ročnom výnose&nbsp;<strong id="ml-roiDisplay">7%</strong>
+                  </span>
+                </div>
+              </section>
+
+              <div class="calc-stats-inline" role="group" aria-label="Súhrn">
+                <div>
+                  <p class="calc-stat-label">Renta po inflácii</p>
+                  <p class="calc-stat-value" id="ml-inflatedRentVal">0 €</p>
+                </div>
+                <div>
+                  <p class="calc-stat-label">Projektovaný kapitál</p>
+                  <p class="calc-stat-value" id="ml-projectedCapital">0 €</p>
+                </div>
+                <div class="ml-stat-goal">
+                  <p class="calc-stat-label">Stav cieľa</p>
+                  <p class="calc-stat-value" id="ml-goalStatus">0%</p>
+                </div>
+              </div>
+
+              <section class="calc-dock" aria-label="Tvoje parametre">
+                <div class="calc-dock-grid">
+                  <div class="calc-dock-item">
+                    <label class="calc-label" for="ml-currentAge">Súčasný vek</label>
+                    <input type="number" id="ml-currentAge" value="35" min="0" class="calc-input" />
+                  </div>
+
+                  <div class="calc-dock-item">
+                    <label class="calc-label" for="ml-retirementAge">Vek odchodu</label>
+                    <input type="number" id="ml-retirementAge" value="65" min="1" class="calc-input" />
+                  </div>
+
+                  <div class="calc-dock-item">
+                    <label class="calc-label" for="ml-desiredRent">Cieľová mesačná renta</label>
+                    <div class="calc-input-wrap calc-input-wrap--stepper">
+                      <input type="number" id="ml-desiredRent" value="1500" step="50" min="0" class="calc-input" />
+                      <span class="calc-stepper">
+                        <span class="calc-stepper-unit" aria-hidden="true">€</span>
+                        <button type="button" class="js-stepper" data-stepper-input="ml-desiredRent" data-stepper-dir="down" aria-label="Znížiť">−</button>
+                        <button type="button" class="js-stepper" data-stepper-input="ml-desiredRent" data-stepper-dir="up" aria-label="Zvýšiť">+</button>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="calc-dock-item">
+                    <div class="calc-label">
+                      <label for="ml-rentDuration">Doba poberania</label>
+                      <span id="ml-durationVal" class="calc-label-value" data-echo-of="ml-rentDuration" data-echo-suffix=" rokov">25 rokov</span>
+                    </div>
+                    <input type="range" id="ml-rentDuration" class="calc-slider" min="5" max="40" value="25" />
+                  </div>
+                </div>
+
+                <div class="calc-dock-foot">
+                  <div id="ml-advanced-toggle" class="calc-collapse-toggle" role="button" aria-expanded="false" aria-controls="ml-advanced-content" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+                    <span>Pokročilé nastavenia</span>
+                    <span id="ml-arrow-icon" class="calc-collapse-chevron" aria-hidden="true">▼</span>
+                  </div>
+                  <div id="ml-advanced-content" class="hidden pb-4 pt-1">
+                    <div class="ml-advanced-grid">
+                      <div class="calc-field">
+                        <label class="calc-label" for="ml-interestRate">Očakávaný ročný výnos</label>
+                        <div class="calc-input-wrap">
+                          <input type="number" id="ml-interestRate" value="7" step="0.1" class="calc-input calc-input--unit" />
+                          <span class="calc-input-unit" aria-hidden="true">%</span>
+                        </div>
+                      </div>
+                      <div class="calc-field">
+                        <label class="calc-label" for="ml-inflationRate">Odhadovaná inflácia</label>
+                        <div class="calc-input-wrap">
+                          <input type="number" id="ml-inflationRate" value="2.5" step="0.1" class="calc-input calc-input--unit" />
+                          <span class="calc-input-unit" aria-hidden="true">%</span>
+                        </div>
+                      </div>
+                      <div class="calc-field">
+                        <label class="calc-label" for="ml-currentSavings">Súčasné úspory</label>
+                        <div class="calc-input-wrap">
+                          <input type="number" id="ml-currentSavings" value="0" step="100" min="0" class="calc-input calc-input--unit" />
+                          <span class="calc-input-unit" aria-hidden="true">€</span>
+                        </div>
+                      </div>
+                      <div class="calc-field">
+                        <label class="calc-label" for="ml-monthlyInvestment">Mesačná investícia</label>
+                        <div class="calc-input-wrap">
+                          <input type="number" id="ml-monthlyInvestment" value="200" step="10" min="0" class="calc-input calc-input--unit" />
+                          <span class="calc-input-unit" aria-hidden="true">€</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="calc-panel mt-5 md:mt-6" aria-label="Vývoj majetku">
+                <div class="calc-chart-head">
+                  <h2 class="calc-panel-title">Vývoj majetku</h2>
+                  <div class="calc-legend">
+                    <span class="calc-legend-item">
+                      <span class="calc-legend-dot" style="background: #29614A" aria-hidden="true"></span>
+                      Majetok
+                    </span>
+                  </div>
+                </div>
+                <div class="calc-chart-body calc-chart-body--tall">
+                  <canvas id="ml-rentChart"></canvas>
+                </div>
+              </section>
+
+              <p class="calc-note calc-note--center mt-5 md:mt-6">
+                Kalkulačka je orientačná — počíta s konštantným výnosom a infláciou a nezohľadňuje
+                dane ani poplatky konkrétnych produktov.
+              </p>
+            </div>
+          </div>
+
+          <div id="ml-compare-modal" class="ml-modal-overlay">
+            <div class="ml-modal-box" role="dialog" aria-modal="true" aria-labelledby="ml-modal-title">
+              <div class="ml-modal-header">
+                <div>
+                  <h3 id="ml-modal-title" class="text-xl font-serif text-foreground m-0 font-normal">Porovnanie variantov</h3>
+                  <p class="text-[15px] text-muted-foreground mt-1 mb-0">Prehľad vstupov a výsledkov rentových scenárov.</p>
+                </div>
+                <button type="button" class="mylife-btn-email shrink-0" onclick="window.mlCloseComparison?.()">Zavrieť</button>
+              </div>
+              <div class="ml-modal-body">
+                <table class="ml-compare-table" id="ml-compare-table"></table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/[0.08] px-4 py-3 md:px-10" style="background-color: #FFF9F5">
+      <div class="mx-auto flex max-w-[980px] flex-col items-center gap-2 text-center text-xs leading-tight text-foreground/65 md:flex-row md:justify-between md:gap-6 md:text-left md:text-sm">
+        <a href="/" class="inline-flex shrink-0 items-center">
+          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" class="h-7 w-auto md:h-8" />
+        </a>
+        <div class="flex flex-col items-center gap-1 md:flex-row md:gap-3">
+          <span class="font-sans tabular-nums">© 2026 Jashik s.r.o. Všetky práva vyhradené.</span>
+          <span class="hidden text-foreground/35 select-none md:inline" aria-hidden="true">·</span>
+          <a href="/gdpr" class="font-sans text-foreground/65 underline-offset-2 transition-colors hover:text-foreground hover:underline">Ochrana osobných údajov (GDPR)</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/js/site.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js"></script>
+  <script src="/js/calculators/calc-ui.js"></script>
+  <script src="/js/calculators/rentova.js"></script>
+</body>
+</html>

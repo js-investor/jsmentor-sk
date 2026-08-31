@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
+  <title>Stránka neexistuje | JS Mentor</title>
+  <script>
+    (function () {
+      var host = window.location.hostname;
+      var isLocal =
+        !host ||
+        host === "localhost" ||
+        host === "127.0.0.1" ||
+        host === "::1" ||
+        host.endsWith(".local") ||
+        window.location.protocol === "file:";
+
+      if (isLocal) return;
+
+      var script = document.createElement("script");
+      script.id = "Cookiebot";
+      script.src = "https://consent.cookiebot.com/uc.js";
+      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
+      script.setAttribute("data-blockingmode", "auto");
+      script.type = "text/javascript";
+      document.head.appendChild(script);
+    })();
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main class="relative min-h-screen overflow-hidden" style="background-color: #FFF9F5">
+    <div class="absolute inset-0 bg-dot-grid opacity-50"></div>
+    <div class="pointer-events-none absolute right-[15%] top-24 h-[380px] w-[380px] rounded-full bg-primary/5 blur-[100px]"></div>
+    <div class="pointer-events-none absolute bottom-[10%] left-[10%] h-[280px] w-[280px] rounded-full bg-forest-glow/5 blur-[80px]"></div>
+
+    <header class="fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b border-primary/10 px-5 py-4 backdrop-blur-md md:px-10 md:py-[0.8rem] lg:px-16" style="background-color: rgba(255, 249, 245, 0.9)">
+      <a href="/" class="flex items-center">
+        <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor logo" class="h-10 w-auto md:h-12" />
+      </a>
+      <a href="/" class="btn-pill">Hlavná stránka</a>
+    </header>
+
+    <section class="relative z-10 flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-5 pb-20 pt-[7rem] text-center md:px-8">
+      <div class="mx-auto max-w-lg">
+        <p class="mb-5 font-serif text-7xl font-extrabold leading-none tracking-tight text-primary sm:text-8xl md:mb-6 md:text-9xl" aria-hidden="true">404</p>
+        <h1 class="headline-serif mb-4">
+          Táto stránka
+          <span class="text-primary font-bold">neexistuje</span>
+        </h1>
+        <p class="sub-headline mx-auto mb-10 max-w-md">
+          Skontroluj adresu v prehliadači alebo sa
+          <strong>vráť na úvodnú stránku.</strong> Tam nájdeš všetko podstatné.
+        </p>
+        <a href="/" class="btn-primary inline-flex items-center gap-2 text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Späť na hlavnú stránku
+        </a>
+      </div>
+    </section>
+
+    <footer class="border-t border-black/[0.08] px-4 py-3 md:px-10" style="background-color: #FFF9F5">
+      <div class="mx-auto flex max-w-[980px] flex-col items-center gap-2 text-center text-xs leading-tight text-foreground/65 md:flex-row md:justify-between md:gap-6 md:text-left md:text-sm">
+        <a href="/" class="inline-flex shrink-0 items-center">
+          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" class="h-7 w-auto md:h-8" />
+        </a>
+        <div class="flex flex-col items-center gap-1 md:flex-row md:gap-3">
+          <span class="font-sans tabular-nums">© 2026 Jashik s.r.o. Všetky práva vyhradené.</span>
+          <span class="hidden text-foreground/35 select-none md:inline" aria-hidden="true">·</span>
+          <a href="/gdpr" class="font-sans text-foreground/65 underline-offset-2 transition-colors hover:text-foreground hover:underline">Ochrana osobných údajov (GDPR)</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="/js/site.js"></script>
+</body>
+</html>
