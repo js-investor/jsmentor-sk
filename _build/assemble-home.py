@@ -165,14 +165,26 @@ HEAD = r"""<!DOCTYPE html>
     x-dc{display:none!important}
     #home-firstpaint{position:fixed;inset:0;z-index:90;background:#F5EDE0;color:#171310;display:flex;align-items:center;justify-content:center;padding:28px 22px;text-align:center}
     #home-firstpaint h1{font-family:Recoleta,Georgia,serif;font-weight:830;font-size:clamp(32px,6.2vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:16ch;margin:0}
-    #CybotCookiebotDialog{top:auto!important;bottom:0!important;max-height:34vh!important}
-    #CybotCookiebotDialogBodyContentText{font-size:13px!important;line-height:1.35!important;max-height:3.4em!important;overflow:hidden!important}
   </style>
   <link rel="stylesheet" href="/css/home.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="/css/home.css"></noscript>
   <script>
     window.__resources = __RESOURCES__;
   </script>
+  <script>
+    (function () {
+      var host = window.location.hostname;
+      var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local") || host === "";
+      if (isLocal) return;
+      var script = document.createElement("script");
+      script.id = "Cookiebot";
+      script.src = "https://consent.cookiebot.com/uc.js";
+      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
+      script.setAttribute("data-blockingmode", "auto");
+      document.head.appendChild(script);
+    })();
+  </script>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
   <script defer src="/js/home/bedae424.js"></script>
   <script defer src="/js/home/fd56f2ec.js"></script>
   <script defer src="/js/home/5fc5c615.js"></script>
