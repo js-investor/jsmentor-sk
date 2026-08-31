@@ -983,18 +983,18 @@
 
       <label style="display:block">
         <span style="display:block;font-size:13.5px;font-weight:600;color:#171310;margin-bottom:7px">Meno a priezvisko</span>
-        <input name="meno" type="text" placeholder="Tvoje meno" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
+        <input name="meno" type="text" placeholder="Tvoje meno" sc-camel-on-input="{{ trackFormStart }}" autocomplete="name" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
       </label>
 
       <label style="display:block;margin-top:20px">
         <span style="display:block;font-size:13.5px;font-weight:600;color:#171310;margin-bottom:7px">E-mail</span>
-        <input name="email" type="email" placeholder="tvoj@email.sk" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
+        <input name="email" type="email" placeholder="tvoj@email.sk" sc-camel-on-input="{{ trackFormStart }}" autocomplete="email" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
         <span style="display:block;font-size:12.5px;line-height:1.45;color:#9a9388;margin-top:7px">Pošlem ti naň moje kalkulačky na nehnuteľnosti, rentu, ETF a hypotéky.</span>
       </label>
 
       <label style="display:block;margin-top:20px">
         <span style="display:block;font-size:13.5px;font-weight:600;color:#171310;margin-bottom:7px">Telefón</span>
-        <input name="telefon" type="tel" placeholder="+421" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
+        <input name="telefon" type="tel" placeholder="+421" sc-camel-on-input="{{ trackFormStart }}" autocomplete="tel" style="width:100%;font-size:15px;color:#171310;background:var(--bg,#F5EDE0);border:1.5px solid rgba(22,19,16,0.12);border-radius:999px;padding:14px 16px;outline:none;transition:border-color .15s,background .15s" style-focus="border-color:var(--accent,#2B6B4A);background:#fff">
         <span style="display:block;font-size:12.5px;line-height:1.45;color:#9a9388;margin-top:7px">Ozvem sa ti na WhatsApp a dohodneme si termín hovoru.</span>
       </label>
 
@@ -1375,6 +1375,28 @@ class Component extends DCLogic {
     }
   }
 
+  trackUmami(name) {
+    try {
+      if (window.umami && typeof window.umami.track === 'function') window.umami.track(name);
+    } catch (e) {}
+  }
+  trackFormStart() {
+    if (this._formStartSent) return;
+    var key = 'jsmentor-form-start';
+    var wait = 30 * 60 * 1000;
+    try {
+      var last = parseInt(localStorage.getItem(key) || '0', 10);
+      if (last && Date.now() - last < wait) {
+        this._formStartSent = true;
+        return;
+      }
+    } catch (e) {}
+    if (!(window.umami && typeof window.umami.track === 'function')) return;
+    this._formStartSent = true;
+    try { localStorage.setItem(key, String(Date.now())); } catch (e) {}
+    this.trackUmami('FormStart');
+  }
+
   submit(e) {
     e.preventDefault();
     const fd = new FormData(this.formEl.current);
@@ -1386,6 +1408,7 @@ class Component extends DCLogic {
     if (!this.state.consent) { this.setState({ error: 'Pre odoslanie potrebujem tvoj súhlas so spracovaním údajov.' }); return; }
     if (this.state.sending) { return; }
     this.setState({ error: '', sending: true });
+    this.trackUmami('FormSubmit');
     fetch('https://formspree.io/f/xykqednp', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
@@ -1865,6 +1888,7 @@ class Component extends DCLogic {
       goHow: () => this.scrollToId('ako'),
       formEl: this.formEl,
       submit: (e) => this.submit(e),
+      trackFormStart: () => this.trackFormStart(),
       toggleConsent: () => this.toggleConsent(),
       videoPlaying: this.state.videoPlaying,
       videoIdle: !this.state.videoPlaying,
