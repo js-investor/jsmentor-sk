@@ -740,17 +740,6 @@
     .msticky button{border-radius:999px !important;font-size:15.5px !important;padding:15px 24px !important}
   }
 
-.vimeo-facade{
-  position:relative;display:block;width:100%;height:100%;border:0;padding:0;
-  cursor:pointer;background:#241C15;overflow:hidden;
-}
-.vimeo-facade img{width:100%;height:100%;object-fit:cover;display:block;opacity:.78}
-.vimeo-facade-play{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:76px;height:76px;border-radius:999px;border:0;pointer-events:none;
-  background:#2B6B4A;color:#fff;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 12px 32px rgba(0,0,0,.38);animation:playGlow 2.4s ease-in-out infinite;
-}
 #home-firstpaint{
   position:fixed;inset:0;z-index:90;background:#F5EDE0;color:#171310;
   display:flex;align-items:center;justify-content:center;padding:28px 22px;text-align:center;

@@ -25,19 +25,4 @@
       obs.disconnect();
     }, 4000);
   }
-
-  document.addEventListener("click", function (event) {
-    var btn = event.target.closest(".js-vimeo-facade");
-    if (!btn) return;
-    event.preventDefault();
-    var src = btn.getAttribute("data-vimeo-src");
-    if (!src) return;
-    var iframe = document.createElement("iframe");
-    iframe.src = src;
-    iframe.title = btn.getAttribute("aria-label") || "Video";
-    iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write");
-    iframe.setAttribute("allowfullscreen", "");
-    iframe.style.cssText = "width:100%;height:100%;border:0;display:block";
-    btn.replaceWith(iframe);
-  });
 })();
