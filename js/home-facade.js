@@ -25,4 +25,41 @@
       obs.disconnect();
     }, 4000);
   }
+
+  function isLocalHost() {
+    var host = window.location.hostname;
+    return host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local") || host === "";
+  }
+
+  function inject(src, attrs) {
+    var s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        s.setAttribute(k, attrs[k]);
+      });
+    }
+    document.head.appendChild(s);
+  }
+
+  function loadThirdParties() {
+    if (isLocalHost()) return;
+    inject("https://consent.cookiebot.com/uc.js", {
+      id: "Cookiebot",
+      "data-cbid": "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d",
+      "data-blockingmode": "auto"
+    });
+    inject("https://cloud.umami.is/script.js", {
+      "data-website-id": "c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"
+    });
+  }
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(loadThirdParties, { timeout: 4000 });
+  } else {
+    window.addEventListener("load", function () {
+      window.setTimeout(loadThirdParties, 1200);
+    });
+  }
 })();

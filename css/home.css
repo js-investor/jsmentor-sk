@@ -11,36 +11,19 @@
    Recoleta is retained as a fallback display serif in fonts/ but is no
    longer the brand heading face. */
 @font-face {
-  font-family: "Fraunces";
-  src: url("/assets/fonts/home/82042797.ttf") format("truetype");
-  font-weight: 100 900; font-style: normal; font-display: swap;
-}
-
-
-@font-face {
-  font-family: "Matter";
-  src: url("/assets/fonts/home/b90bbfc2.ttf") format("truetype");
-  font-weight: 300; font-style: normal; font-display: swap;
+  font-family: "Recoleta";
+  src: url("/assets/fonts/home/recoleta-bold.woff2") format("woff2");
+  font-weight: 500 900; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Matter";
-  src: url("/assets/fonts/home/cc01e734.ttf") format("truetype");
+  src: url("/assets/fonts/home/matter-400.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Matter";
-  src: url("/assets/fonts/home/ae8ee137.ttf") format("truetype");
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Matter";
-  src: url("/assets/fonts/home/5dc70571.ttf") format("truetype");
-  font-weight: 600; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Matter";
-  src: url("/assets/fonts/home/f2d0a1b0.ttf") format("truetype");
-  font-weight: 700; font-style: normal; font-display: swap;
+  src: url("/assets/fonts/home/matter-600.woff2") format("woff2");
+  font-weight: 500 700; font-style: normal; font-display: swap;
 }
 
 :root {
@@ -69,8 +52,8 @@
   --card-dark:    #161310;                /* raised card on black */
 
   /* ---------- TYPE FAMILIES ---------- */
-  --serif:  "Fraunces", "Recoleta", "Georgia", serif;   /* display / headings */
-  --serif-alt: "Fraunces", "Recoleta", serif;           /* (legacy alias) */
+  --serif:  "Recoleta", "Georgia", serif;   /* display / headings */
+  --serif-alt: "Recoleta", Georgia, serif;
   --sans:   "Matter", "Helvetica Neue", Arial, sans-serif; /* body / UI */
 
   /* Fraunces axes — apply per display size for warmth + optical balance */
@@ -158,9 +141,6 @@
    bold lead-in inside an otherwise regular-weight serif sentence. */
 .t-display b, .t-h1 b, .t-h2 b { font-weight: 800; }
 
-@font-face{font-family:'Recoleta';src:url("/assets/fonts/home/298f235b.otf") format('opentype');font-weight:100 350;font-style:normal;font-display:swap}
-  @font-face{font-family:'Recoleta';src:url("/assets/fonts/home/12bfe91c.otf") format('opentype');font-weight:351 499;font-style:normal;font-display:swap}
-  @font-face{font-family:'Recoleta';src:url("/assets/fonts/home/fbb1e7bb.otf") format('opentype');font-weight:500 900;font-style:normal;font-display:swap}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{overflow-x:clip}
@@ -740,12 +720,5 @@
     .msticky button{border-radius:999px !important;font-size:15.5px !important;padding:15px 24px !important}
   }
 
-#home-firstpaint{
-  position:fixed;inset:0;z-index:90;background:#F5EDE0;color:#171310;
-  display:flex;align-items:center;justify-content:center;padding:28px 22px;text-align:center;
-}
-#home-firstpaint h1{
-  font-family:'Recoleta',Georgia,serif;font-weight:830;
-  font-size:clamp(32px,6.2vw,64px);line-height:1.05;letter-spacing:-0.025em;max-width:16ch;
-}
-body:has(.page) #home-firstpaint{display:none!important}
+#CybotCookiebotDialog{top:auto!important;bottom:0!important;max-height:34vh!important}
+#CybotCookiebotDialogBodyContentText{font-size:13px!important;line-height:1.35!important;max-height:3.4em!important;overflow:hidden!important}

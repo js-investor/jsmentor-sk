@@ -13,29 +13,23 @@
   <meta property="og:image" content="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg">
   <meta property="og:url" content="https://jsmentor.sk">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" href="/assets/fonts/home/fbb1e7bb.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="/assets/fonts/home/cc01e734.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="/css/home.css">
+  <link rel="preload" href="/assets/fonts/home/recoleta-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face{font-family:Recoleta;src:url("/assets/fonts/home/recoleta-bold.woff2") format("woff2");font-weight:500 900;font-style:normal;font-display:swap}
+    html,body{margin:0;background:#F5EDE0;color:#171310}
+    x-dc{display:none!important}
+    #home-firstpaint{position:fixed;inset:0;z-index:90;background:#F5EDE0;color:#171310;display:flex;align-items:center;justify-content:center;padding:28px 22px;text-align:center}
+    #home-firstpaint h1{font-family:Recoleta,Georgia,serif;font-weight:830;font-size:clamp(32px,6.2vw,64px);line-height:1.05;letter-spacing:-.025em;max-width:16ch;margin:0}
+    #CybotCookiebotDialog{top:auto!important;bottom:0!important;max-height:34vh!important}
+    #CybotCookiebotDialogBodyContentText{font-size:13px!important;line-height:1.35!important;max-height:3.4em!important;overflow:hidden!important}
+  </style>
+  <link rel="stylesheet" href="/css/home.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/css/home.css"></noscript>
   <script>
     window.__resources = {"plan1": "/assets/images/home/f752f3b3.jpg", "plan2": "/assets/images/home/42fc3e74.jpg", "plan3": "/assets/images/home/4cd91bb3.jpg", "plan4": "/assets/images/home/72e6ebb1.jpg", "plan5": "/assets/images/home/1e0de038.jpg", "rev3": "/assets/images/home/3525f6a3.png", "rev5": "/assets/images/home/ae56c909.png", "rev2": "/assets/images/home/70ee820f.png", "rev6": "/assets/images/home/b8a20171.png", "rev1": "/assets/images/home/733553c9.png", "rev9": "/assets/images/home/54e800a1.png", "rev4": "/assets/images/home/1e6537c3.png", "rev8": "/assets/images/home/3f051a67.png", "rev7": "/assets/images/home/9adb544d.png", "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "/js/home/bedae424.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "/js/home/fd56f2ec.js"};
   </script>
-  <script>
-    (function () {
-      var host = window.location.hostname;
-      var isLocal = host === "localhost" || host === "127.0.0.1" || host === "::1" || host.endsWith(".local") || host === "";
-      if (isLocal) return;
-      var script = document.createElement("script");
-      script.id = "Cookiebot";
-      script.src = "https://consent.cookiebot.com/uc.js";
-      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
-      script.setAttribute("data-blockingmode", "auto");
-      document.head.appendChild(script);
-    })();
-  </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
-  <script src="/js/home/bedae424.js"></script>
-  <script src="/js/home/fd56f2ec.js"></script>
-  <script defer src="/js/home/2fafb5be.js"></script>
+  <script defer src="/js/home/bedae424.js"></script>
+  <script defer src="/js/home/fd56f2ec.js"></script>
   <script defer src="/js/home/5fc5c615.js"></script>
   <script defer src="/js/home-facade.js"></script>
 </head>
@@ -77,7 +71,7 @@
 <header style="position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(245,237,224,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(22,19,16,0.08)">
   <div style="max-width:1080px;margin:0 auto;height:62px;padding:0 22px;display:flex;align-items:center;justify-content:space-between">
     <div class="hlogo" style="display:flex;align-items:center;gap:10px">
-      <img src="/assets/images/home/a225a680.png" alt="JS Mentor" width="153" height="30" style="height:30px;width:auto;display:block;">
+      <img src="/assets/images/home/a225a680.webp" alt="JS Mentor" width="236" height="60" style="height:30px;width:auto;display:block;">
     </div>
     <nav class="hnav" style="display:flex;align-items:center;gap:26px">
       <a href="#proces" style="color:#171310;text-decoration:none;font-size:13.5px;font-weight:500;opacity:.72;transition:opacity .15s" style-hover="opacity:1">Ako to funguje</a>
@@ -95,13 +89,13 @@
   <div class="hero-cols" style="position:relative;z-index:1;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:52px">
     <div class="hero-text" style="max-width:760px;animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 1%">
       <span style="display:inline-flex;align-items:center;gap:8px;background:#EDE6D6;color:#171310;font-weight:600;font-size:12.5px;letter-spacing:.01em;padding:8px 16px;border-radius:999px">
-        <img src="/assets/images/home/fe90f7ed.png" alt="Ivan Jašík" width="36" height="36" style="width:36px;height:36px;border-radius:999px;object-fit:cover;border:2px solid #F5EDE0;margin:-8px 0 -8px -10px;flex:none">
-        <i data-lucide="message-circle" data-stroke="2" style="width:15px;height:15px;color:var(--accent,#2B6B4A)"></i>Osobná konzultácia s Ivanom
+        <img src="/assets/images/home/fe90f7ed.webp" alt="Ivan Jašík" width="36" height="36" style="width:36px;height:36px;border-radius:999px;object-fit:cover;border:2px solid #F5EDE0;margin:-8px 0 -8px -10px;flex:none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;color:var(--accent,#2B6B4A);flex:none"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>Osobná konzultácia s Ivanom
       </span>
       <h1 style="font-family:'Recoleta',Georgia,serif;font-weight:830;font-size:clamp(44px,6.2vw,82px);line-height:1.01;letter-spacing:-0.025em;margin:24px 0 0;text-wrap:balance"><strong><strong>Vybuduj si majetok, ktorý ti raz bude posielať výplatu.</strong></strong></h1>
       <p style="font-size:clamp(17px,2.2vw,19px);line-height:1.55;color:#3d3831;margin:26px auto 0;max-width:32em">Volá sa to renta — mesačný príjem z investícií a nehnuteľností. Na 30-minútovom hovore prejdeme tvoje čísla a do 7 dní dostaneš osobný plán, ako sa k nej dostať. Zadarmo, bez záväzkov a rozhodneš sa sám.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;justify-content:center">
-        <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:17px;padding:18px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<i data-lucide="arrow-right" data-stroke="2.2" style="width:18px;height:18px"></i></button>
+        <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:17px;padding:18px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         <button type="button" sc-camel-on-click="{{ goCalc }}" style="appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:transparent;color:#171310;font-weight:600;font-size:16px;padding:16px 26px;border-radius:999px;border:1.5px solid rgba(23,19,16,.35);transition:border-color .2s,transform .2s" style-hover="border-color:#171310;transform:translateY(-1px)">Vypočítať si moju rentu<span style="opacity:.55;font-weight:500;font-size:14px">· 3 min</span></button>
       </div>
       <div style="display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:24px">
@@ -143,7 +137,7 @@
         <sc-if value="{{ s.emblem }}" hint-placeholder-val="">
           
         </sc-if>
-        <div class="count-num" data-count="{{ s.count }}" data-decimals="{{ s.decimals }}" data-suffix="{{ s.suffix }}" style="font-family:Fraunces,Georgia,serif;font-variation-settings:'opsz' 144,'SOFT' 45,'WONK' 0;font-weight:800;font-size:clamp(30px,4vw,42px);line-height:1;color:var(--bg,#F5EDE0);font-variant-numeric:lining-nums tabular-nums">{{ s.n }}</div>
+        <div class="count-num" data-count="{{ s.count }}" data-decimals="{{ s.decimals }}" data-suffix="{{ s.suffix }}" style="font-family:Recoleta,Georgia,serif;font-variation-settings:'opsz' 144,'SOFT' 45,'WONK' 0;font-weight:800;font-size:clamp(30px,4vw,42px);line-height:1;color:var(--bg,#F5EDE0);font-variant-numeric:lining-nums tabular-nums">{{ s.n }}</div>
         <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;letter-spacing:.06em;line-height:1.4;color:rgba(245,237,224,0.6);margin-top:11px;text-transform:uppercase">{{ s.l }}</div>
       </div>
     </sc-for>
@@ -160,7 +154,7 @@
       <div class="stake">
         <h3 style="margin-top:0">Inflácia žerie tvoj účet 🫠</h3>
         <span class="sl-label">Koľko máš na bežnom účte?</span>
-        <input type="range" class="rngx" min="100" max="300000" step="100" value="{{ inflVal }}" sc-camel-on-change="{{ onInfl }}" style="background:{{ inflBg }}">
+        <input type="range" class="rngx" min="100" max="300000" step="100" value="{{ inflVal }}" sc-camel-on-change="{{ onInfl }}" aria-label="Koľko máš na bežnom účte?" style="background:{{ inflBg }}">
         <div class="inf-row">
           <div><span class="inf-k">Dnes</span><span class="inf-now">{{ inflNow }}</span></div>
           <div style="color:#686664;padding-bottom:4px">→</div>
@@ -229,17 +223,17 @@
 <section data-screen-label="Highlight" style="padding:clamp(64px,7vw,96px) 22px; overflow: hidden; background:linear-gradient(165deg,#241C15,#2A2118)">
   <div class="y2026-row">
     <div class="y2026-photo">
-      <img src="/assets/images/home/1e6a6cd6.jpg" alt="Ivan Jašík" width="530" height="395" loading="lazy" decoding="async" style="width: 530px; height: 395px">
+      <img src="/assets/images/home/1e6a6cd6.webp" alt="Ivan Jašík" width="1000" height="764" loading="lazy" decoding="async" style="width: 530px; height: 395px">
       <div class="y2026-card c1" style="left: 42px; top: 61px; position: absolute; width: 183px; height: 124px">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; border: 1px solid rgba(127,183,156,0.32); flex: none; background-color: var(--green-deep); border-color: var(--green-deep)"><i data-lucide="trending-up" data-stroke="2" style="width:16px;height:16px;color:#9FBFAC"></i></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; border: 1px solid rgba(127,183,156,0.32); flex: none; background-color: var(--green-deep); border-color: var(--green-deep)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;color:#9FBFAC;flex:none"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span>
           <div class="count-num" data-count="200" data-decimals="0" data-prefix="+" data-suffix="" style="font-family: 'Recoleta',Georgia,serif; font-weight: 830; font-size: 38px; line-height: 0.92; letter-spacing: -0.02em; color: #171310">+200<br></div>
         </div>
         <p style="font-family: Matter,sans-serif; font-size: 12px; line-height: 1.36; font-weight: 500; color: #3d3831; margin: 9px 0 0">ľuďom som pomohol nastaviť rozumnú ETF stratégiu</p>
       </div>
       <div class="y2026-card c2" style="left: 29px; top: 222px; position: absolute; width: 177px; height: 121px">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; border: 1px solid rgba(127,183,156,0.32); flex: none; background-color: var(--green-deep); border-color: var(--green-deep)"><i data-lucide="building-2" data-stroke="2" style="width:16px;height:16px;color:#9FBFAC"></i></span>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 10px; border: 1px solid rgba(127,183,156,0.32); flex: none; background-color: var(--green-deep); border-color: var(--green-deep)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;color:#9FBFAC;flex:none"><path d="M10 12h4"/><path d="M10 8h4"/><path d="M14 21v-3a2 2 0 0 0-4 0v3"/><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/></svg></span>
           <div class="count-num" data-count="20" data-decimals="0" data-prefix="+" data-suffix="" style="font-family: 'Recoleta',Georgia,serif; font-weight: 830; font-size: 38px; line-height: 0.92; letter-spacing: -0.02em; color: #171310">+20</div>
         </div>
         <p style="font-family: Matter,sans-serif; font-size: 12px; line-height: 1.36; font-weight: 500; color: #3d3831; margin: 9px 0 0">klientom som pomohol získať investičnú nehnuteľnosť</p>
@@ -278,7 +272,7 @@
     </div>
     <p class="whyfree-c"><b>Prečo to dávam zadarmo?</b> Jednoducho: viem, že keď uvidíš svoj plán, časť z vás sa rozhodne pre dlhodobú spoluprácu — a tá živí mňa. Zvyšok odíde s hotovým plánom a nástrojmi v ruke. Férový obchod pre obe strany.</p>
     <div style="text-align:center;margin-top:38px">
-      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16.5px;padding:17px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:#225A3E;transform:translateY(-1px)">Chcem plán zadarmo<i data-lucide="arrow-right" data-stroke="2.2" style="width:18px;height:18px"></i></button>
+      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16.5px;padding:17px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:#225A3E;transform:translateY(-1px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
       <div class="cap-squares" style="justify-content:center;margin-top:24px"><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i></i><i></i><i></i><i></i><i></i></div>
       <p class="cap-text" style="text-align:center">V septembri pripravujem 12 plánov. <b>Voľných ostáva 5.</b></p>
     </div>
@@ -301,15 +295,15 @@
     <p style="font-size:17px;line-height:1.55;font-weight:600;color:#171310;margin:28px auto 0;max-width:36em">100 ľudí a 100 rôznych portfólií — neexistuje dokonalá skladačka pre všetkých. Robím to na mieru.</p>
     <p style="font-size:14px;line-height:1.6;color:#686664;margin:12px auto 0;max-width:42em">Toto sú strany z reálneho klientskeho plánu. Tvoj bude vyzerať inak — každý má inú situáciu, iné čísla a inú cestu. Kompletný plán má v priemere 20 strán: od rezervy a budovania majetku cez nehnuteľnosti a daňovú optimalizáciu až po krízový plán, keď trhy padajú. Staviam ho na tvojich číslach, nie na šablóne.</p>
     <div style="margin:56px auto 0;max-width:520px;border-radius:24px;overflow:hidden;box-shadow:0 24px 56px rgba(23,19,16,.14);animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 28%">
-      <img src="/assets/images/home/3b5b4e2a.jpg" alt="Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="1200" height="800" loading="lazy" decoding="async" style="width:100%;height:auto;display:block">
+      <img src="/assets/images/home/3b5b4e2a.webp" alt="Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="800" height="772" loading="lazy" decoding="async" style="width:100%;height:auto;display:block">
     </div>
     <sc-if value="{{ showLightbox }}" hint-placeholder-val="">
       <div sc-camel-on-click="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:200;background:rgba(20,15,10,0.86);display:flex;align-items:center;justify-content:center;padding:26px 26px 96px;cursor:zoom-out">
         <img src="{{ lightboxSrc }}" alt="Strana plánu — zväčšený náhľad" style="max-width:94vw;max-height:84vh;width:auto;height:auto;display:block;border-radius:12px;filter:drop-shadow(0 30px 80px rgba(0,0,0,0.5))">
         <div style="position:fixed;left:0;right:0;bottom:calc(22px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;gap:18px">
-          <button type="button" sc-camel-on-click="{{ lbPrev }}" aria-label="Predchádzajúca strana" style="appearance:none;border:0;cursor:pointer;width:52px;height:52px;border-radius:999px;background:#F5EDE0;color:#171310;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .15s" style-hover="transform:scale(1.06)"><i data-lucide="arrow-left" data-stroke="2.2" style="width:22px;height:22px"></i></button>
+          <button type="button" sc-camel-on-click="{{ lbPrev }}" aria-label="Predchádzajúca strana" style="appearance:none;border:0;cursor:pointer;width:52px;height:52px;border-radius:999px;background:#F5EDE0;color:#171310;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .15s" style-hover="transform:scale(1.06)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:22px;height:22px;flex:none"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></button>
           <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;font-weight:600;letter-spacing:.12em;color:rgba(245,237,224,.75);min-width:44px;text-align:center">{{ lbCount }}</span>
-          <button type="button" sc-camel-on-click="{{ lbNext }}" aria-label="Ďalšia strana" style="appearance:none;border:0;cursor:pointer;width:52px;height:52px;border-radius:999px;background:#2B6B4A;color:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .15s" style-hover="transform:scale(1.06)"><i data-lucide="arrow-right" data-stroke="2.2" style="width:22px;height:22px"></i></button>
+          <button type="button" sc-camel-on-click="{{ lbNext }}" aria-label="Ďalšia strana" style="appearance:none;border:0;cursor:pointer;width:52px;height:52px;border-radius:999px;background:#2B6B4A;color:#fff;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.35);transition:transform .15s" style-hover="transform:scale(1.06)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:22px;height:22px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         </div>
       </div>
     </sc-if>
@@ -342,7 +336,7 @@
     </div>
 
     <div style="margin-top:26px;max-width:720px;margin-left:auto;margin-right:auto;background:var(--accent-tint,#E7F0EA);border:1px solid rgba(43,107,74,0.22);border-radius:18px;padding:20px 22px;display:flex;gap:15px;align-items:center;animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 32%">
-      <span style="flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent,#2B6B4A);display:inline-flex;align-items:center;justify-content:center"><i data-lucide="shield-check" data-stroke="2" style="width:22px;height:22px;color:#fff"></i></span>
+      <span style="flex:none;width:44px;height:44px;border-radius:12px;background:var(--accent,#2B6B4A);display:inline-flex;align-items:center;justify-content:center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:22px;height:22px;color:#fff;flex:none"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
       <p style="font-size:15px;line-height:1.55;color:var(--accent-deep,#0B3D2E);margin:0"><strong style="font-weight:700">Peniaze mi nikdy neposielaš.</strong> Účet aj poplatky máš vždy priamo v licencovanej investičnej spoločnosti, vedené na tvoje meno — ja som odmeňovaný spoločnosťou z týchto poplatkov. Nič navyše neplatíš.</p>
     </div>
 
@@ -483,7 +477,7 @@
       <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(43,107,74,0.20);color:#9FBFAC;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border-radius:999px"><span style="width:7px;height:7px;border-radius:999px;background:#9FBFAC;display:inline-block"></span>Bez záväzku</span>
       <h3 style="font-family: Recoleta; font-weight: 800; font-size: clamp(27px,4.6vw,36px); line-height: 1.08; letter-spacing: -0.02em; color: var(--bg,#F5EDE0); margin: 20px 0 0">Konzultácia aj tvoj plán sú zadarmo.</h3>
       <p style="font-size:16.5px;line-height:1.55;color:rgba(245,237,224,0.78);margin:14px auto 0;max-width:30em">Najprv spolu určíme smer. Do 7 dní máš plán v maile — a rozhodneš sa sám.</p>
-      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16.5px;padding:16px 30px;border-radius:999px;margin-top:26px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<i data-lucide="arrow-right" data-stroke="2.2" style="width:18px;height:18px"></i></button>
+      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16.5px;padding:16px 30px;border-radius:999px;margin-top:26px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
       <p class="mc" style="font-size:13px;line-height:1.5;color:rgba(245,237,224,0.55);margin:14px auto 0">Bezplatne a nezáväzne. Ozvem sa ti do jedného pracovného dňa.</p>
     </div>
 </section>
@@ -507,7 +501,7 @@
         <sc-for list="{{ calcFields }}" as="f" hint-placeholder-count="6">
           <div class="fieldx">
             <div class="f-headx"><label>{{ f.label }}</label><span class="f-valx">{{ f.valText }}</span></div>
-            <input type="range" class="rngx" min="{{ f.min }}" max="{{ f.max }}" step="{{ f.step }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" style="background:{{ f.bg }}">
+            <input type="range" class="rngx" min="{{ f.min }}" max="{{ f.max }}" step="{{ f.step }}" value="{{ f.value }}" sc-camel-on-change="{{ f.onChange }}" aria-label="{{ f.label }}" style="background:{{ f.bg }}">
             <sc-if value="{{ f.hint }}" hint-placeholder-val=""><p class="hintx">{{ f.hint }}</p></sc-if>
           </div>
         </sc-for>
@@ -535,7 +529,7 @@
           </sc-for>
         </div>
         <div class="verdictx"><b>{{ verdictLead }}</b> {{ verdictRest }}</div>
-        <div style="margin-top:22px"><button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="kalkulacka-cta-plan" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16px;padding:16px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s" style-hover="background:#225A3E">Chcem plán, ako medzeru zavrieť<i data-lucide="arrow-right" data-stroke="2.2" style="width:18px;height:18px"></i></button></div>
+        <div style="margin-top:22px"><button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="kalkulacka-cta-plan" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16px;padding:16px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s" style-hover="background:#225A3E">Chcem plán, ako medzeru zavrieť<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
         <p style="font-size:12.5px;color:rgba(245,237,224,.6);margin:16px 0 0;text-align:left">Ešte nie si pripravený na hovor? Pošlem ti tvoje čísla aj s postupom na e-mail:</p>
         <div class="email-visual">
           <input type="email" placeholder="tvoj@email.sk" value="{{ calcEmail }}" sc-camel-on-change="{{ onCalcEmail }}">
@@ -557,7 +551,7 @@
     <div style="flex:1 1 300px;min-width:270px;display:flex;justify-content:center;animation:revealUp both;animation-timeline:view();animation-range:entry 2% entry 30%">
       <div style="position:relative;width:100%;max-width:380px">
         <div style="aspect-ratio:4/5;border-radius:20px;overflow:hidden;box-shadow:0 24px 56px rgba(23,19,16,0.18);background:#ECE2D1">
-          <img src="/assets/images/home/fe79786e.jpg" alt="Ivan Jašík" width="900" height="1200" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
+          <img src="/assets/images/home/fe79786e.webp" alt="Ivan Jašík" width="800" height="1000" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
         </div>
         <div style="position:absolute;left:12px;right:12px;bottom:14px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center">
           <sc-for list="{{ ivanTags }}" as="t" hint-placeholder-count="6">
@@ -571,10 +565,10 @@
     <h2 style="font-family:'Recoleta',Georgia,serif;font-weight:800;font-size:clamp(29px,5vw,44px);line-height:1.08;letter-spacing:-0.02em;margin:0;color:#171310">Pomáham ľuďom rozumne investovať, aby mohli čerpať rentu.</h2>
       <p style="font-size:clamp(16.5px,2.2vw,19px);line-height:1.55;color:#3d3831;font-weight:500;margin:20px 0 0;max-width:30em">Nie som tu na to, aby som ti predával sen o rýchlom zbohatnutí. Pozerám sa na čísla, riziká a dlhodobý zmysel rozhodnutia.</p>
       <div class="ivan-proofs" style="display:flex;flex-direction:column;gap:0;margin-top:28px;max-width:34em">
-        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><i data-lucide="briefcase" data-stroke="1.9" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"></i><span style="font-size:15.5px;color:#3d3831">8 rokov praxe v investičnom svete<br></span></div>
-        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><i data-lucide="users" data-stroke="1.9" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"></i><span style="font-size:15.5px;color:#3d3831">Viac ako 900 konzultácií</span></div>
-        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><i data-lucide="trending-up" data-stroke="1.9" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"></i><span style="font-size:15.5px;color:#3d3831">3,5 mil. € klientskych aktív</span></div>
-        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12);border-bottom:1px solid rgba(23,19,16,0.12)"><i data-lucide="graduation-cap" data-stroke="1.9" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"></i><span style="font-size:15.5px;color:#3d3831">EFA vzdelávanie a pôsobenie pod dohľadom NBS</span></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg><span style="font-size:15.5px;color:#3d3831">8 rokov praxe v investičnom svete<br></span></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:15.5px;color:#3d3831">Viac ako 900 konzultácií</span></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg><span style="font-size:15.5px;color:#3d3831">3,5 mil. € klientskych aktív</span></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(23,19,16,0.12);border-bottom:1px solid rgba(23,19,16,0.12)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><span style="font-size:15.5px;color:#3d3831">EFA vzdelávanie a pôsobenie pod dohľadom NBS</span></div>
       </div>
       <div class="partner-block" style="margin-top:28px;border:1px solid rgba(43,107,74,0.22);background:var(--accent-tint,#E7F0EA);border-radius:16px;padding:20px 22px;max-width:34em">
         <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#2B6B4A)">Výber z viacerých partnerov</div>
@@ -595,13 +589,13 @@
 
       <div style="background:var(--card,#FFF9EF);border:1.5px solid rgba(43,107,74,0.30);border-radius:20px;padding:30px 28px;box-shadow:0 6px 20px rgba(43,107,74,0.08);animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 30%">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:var(--accent,#2B6B4A)"><i data-lucide="check" data-stroke="3" style="width:17px;height:17px;color:#fff"></i></span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:var(--accent,#2B6B4A)"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:17px;height:17px;color:#fff;flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
           <h3 style="font-family:'Recoleta',Georgia,serif;font-weight:790;font-size:20px;line-height:1.1;margin:0;color:var(--accent-deep,#0B3D2E)">Pre koho to je</h3>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px">
           <sc-for list="{{ fitYes }}" as="t" hint-placeholder-count="4">
             <div style="display:flex;align-items:flex-start;gap:12px">
-              <i data-lucide="check" data-stroke="2.4" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none;margin-top:2px"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:var(--accent,#2B6B4A);flex:none;margin-top:2px"><path d="M20 6 9 17l-5-5"/></svg>
               <span style="font-size:15.5px;line-height:1.5;color:#171310">{{ t }}</span>
             </div>
           </sc-for>
@@ -610,13 +604,13 @@
 
       <div style="background:transparent;border:1.5px solid #e4e2e1;border-radius:20px;padding:30px 28px;animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 30%">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:rgba(22,19,16,0.10)"><i data-lucide="x" data-stroke="3" style="width:17px;height:17px;color:#686664"></i></span>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:rgba(22,19,16,0.10)"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:17px;height:17px;color:#686664;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
           <h3 style="font-family:'Recoleta',Georgia,serif;font-weight:790;font-size:20px;line-height:1.1;margin:0;color:#686664">Pre koho to nie je</h3>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px">
           <sc-for list="{{ fitNo }}" as="t" hint-placeholder-count="4">
             <div style="display:flex;align-items:flex-start;gap:12px">
-              <i data-lucide="x" data-stroke="2.4" style="width:19px;height:19px;color:#9a9388;flex:none;margin-top:2px"></i>
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:#9a9388;flex:none;margin-top:2px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               <span style="font-size:15.5px;line-height:1.5;color:#6f685e">{{ t }}</span>
             </div>
           </sc-for>
@@ -637,7 +631,7 @@
 
       <div class="proof-quote" style="background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 16px rgba(22,19,16,0.04);animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 28%">
         <div>
-          <span style="font-family:Fraunces,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
+          <span style="font-family:Recoleta,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
           <p style="font-size:17px;line-height:1.5;color:#171310;margin:12px 0 0">Ivan mi za dva týždne ukázal plán, podľa ktorého investujem dodnes.</p>
         </div>
         <div style="display:flex;align-items:center;gap:13px;margin-top:24px">
@@ -651,7 +645,7 @@
 
       <div class="proof-quote" style="background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 16px rgba(22,19,16,0.04);animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 28%">
         <div>
-          <span style="font-family:Fraunces,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
+          <span style="font-family:Recoleta,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
           <p style="font-size:17px;line-height:1.5;color:#171310;margin:12px 0 0">Ivan je profesionál. Spolupracujeme 5 rokov. Každý rok môj majetok rastie.</p>
         </div>
         <div style="display:flex;align-items:center;gap:13px;margin-top:24px">
@@ -665,7 +659,7 @@
 
       <div class="proof-quote" style="background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:30px 28px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 4px 16px rgba(22,19,16,0.04);animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 28%">
         <div>
-          <span style="font-family:Fraunces,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
+          <span style="font-family:Recoleta,Georgia,serif;font-weight:800;font-size:44px;line-height:1;color:var(--accent,#2B6B4A);opacity:0.45;display:block;height:26px;transform:translateY(-14px)">„</span>
           <p style="font-size:17px;line-height:1.5;color:#171310;margin:12px 0 0">Ivan presne vie, ako z firemného zisku spraviť osobný majetok.</p>
         </div>
         <div style="display:flex;align-items:center;gap:13px;margin-top:24px">
@@ -679,7 +673,7 @@
 
     </div>
     <div style="margin:26px auto 0;max-width:760px;background:var(--accent-tint,#E7F0EA);border:1px solid rgba(43,107,74,0.22);border-radius:16px;padding:18px 22px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap">
-      <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;background:var(--accent,#2B6B4A)"><i data-lucide="shield-check" data-stroke="2" style="width:19px;height:19px;color:#fff"></i></span>
+      <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:999px;background:var(--accent,#2B6B4A)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:#fff;flex:none"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
       <p class="mc" style="font-size:13.5px;line-height:1.55;color:var(--accent-deep,#0B3D2E);margin:0;text-align:center;max-width:40em;flex:1 1 300px">Ľudia nikdy nedávajú peniaze mne. Investujú v regulovaných investičných spoločnostiach pod svojím menom a dohľadom Národnej banky Slovenska.</p>
     </div>
 
@@ -687,9 +681,9 @@
       <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#171310">Vyberám z viacerých licencovaných partnerov</div>
       <p style="font-size:14.5px;line-height:1.6;color:#3d3831;margin:12px auto 0;max-width:38em">Tvoje účty sú vedené na tvoje meno u regulovaných investičných spoločností — ja porovnávam dostupné možnosti a hľadám riešenie podľa tvojej situácie a cieľov.</p>
       <div style="display:flex;align-items:center;justify-content:center;gap:clamp(28px,5vw,52px);flex-wrap:wrap;margin-top:26px">
-        <img src="/assets/images/home/a2d68d48.png" alt="EIC — European Investment Centre" style="height:34px;width:auto;display:block;opacity:.82">
-        <img src="/assets/images/home/2a92a907.png" alt="Amundi" style="height:30px;width:auto;display:block;opacity:.82">
-        <img src="/assets/images/home/c91c649d.png" alt="IAD Investments" style="height:36px;width:auto;display:block;opacity:.82">
+        <img src="/assets/images/home/a2d68d48.webp" alt="EIC — European Investment Centre" width="198" height="68" loading="lazy" decoding="async" style="height:34px;width:auto;display:block;opacity:.82">
+        <img src="/assets/images/home/2a92a907.webp" alt="Amundi" width="133" height="60" loading="lazy" decoding="async" style="height:30px;width:auto;display:block;opacity:.82">
+        <img src="/assets/images/home/c91c649d.webp" alt="IAD Investments" width="125" height="72" loading="lazy" decoding="async" style="height:36px;width:auto;display:block;opacity:.82">
       </div>
       <p style="font-size:12px;line-height:1.5;color:#686664;margin:22px auto 0">Výber konkrétneho partnera závisí od situácie a cieľov klienta.</p>
     </div>
@@ -850,21 +844,21 @@
         <div class="marq-track tl">
           <sc-for list="{{ reviewsTop }}" as="r" hint-placeholder-count="5">
             <figure class="marq-card" style="margin:0;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:11px;box-shadow:0 1px 2px rgba(22,19,16,0.04),0 12px 30px rgba(22,19,16,0.08)">
-              <img src="{{ r.src }}" alt="Recenzia od klienta" loading="lazy" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
+              <img src="{{ r.src }}" alt="Recenzia od klienta" width="280" height="360" loading="lazy" decoding="async" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
               <figcaption style="display:flex;align-items:center;gap:8px;padding:11px 5px 3px;margin-top:9px;border-top:1px solid rgba(22,19,16,0.07)">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><i data-lucide="check" data-stroke="3" style="width:12px;height:12px;color:#fff"></i></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:12px;height:12px;color:#fff;flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
                 <span style="font-family:Matter,sans-serif;font-size:13px;font-weight:600;color:#171310">Overený klient</span>
-                <i data-lucide="message-circle" data-stroke="2.2" style="width:15px;height:15px;color:#25D366;margin-left:auto"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;color:#25D366;margin-left:auto;flex:none"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
               </figcaption>
             </figure>
           </sc-for>
           <sc-for list="{{ reviewsTop }}" as="r" hint-placeholder-count="5">
             <figure class="marq-card" style="margin:0;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:11px;box-shadow:0 1px 2px rgba(22,19,16,0.04),0 12px 30px rgba(22,19,16,0.08)" aria-hidden="true">
-              <img src="{{ r.src }}" alt="" loading="lazy" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
+              <img src="{{ r.src }}" alt="" width="280" height="360" loading="lazy" decoding="async" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
               <figcaption style="display:flex;align-items:center;gap:8px;padding:11px 5px 3px;margin-top:9px;border-top:1px solid rgba(22,19,16,0.07)">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><i data-lucide="check" data-stroke="3" style="width:12px;height:12px;color:#fff"></i></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:12px;height:12px;color:#fff;flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
                 <span style="font-family:Matter,sans-serif;font-size:13px;font-weight:600;color:#171310">Overený klient</span>
-                <i data-lucide="message-circle" data-stroke="2.2" style="width:15px;height:15px;color:#25D366;margin-left:auto"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;color:#25D366;margin-left:auto;flex:none"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
               </figcaption>
             </figure>
           </sc-for>
@@ -874,21 +868,21 @@
         <div class="marq-track tr">
           <sc-for list="{{ reviewsBot }}" as="r" hint-placeholder-count="4">
             <figure class="marq-card" style="margin:0;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:11px;box-shadow:0 1px 2px rgba(22,19,16,0.04),0 12px 30px rgba(22,19,16,0.08)">
-              <img src="{{ r.src }}" alt="Recenzia od klienta" loading="lazy" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
+              <img src="{{ r.src }}" alt="Recenzia od klienta" width="280" height="360" loading="lazy" decoding="async" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
               <figcaption style="display:flex;align-items:center;gap:8px;padding:11px 5px 3px;margin-top:9px;border-top:1px solid rgba(22,19,16,0.07)">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><i data-lucide="check" data-stroke="3" style="width:12px;height:12px;color:#fff"></i></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:12px;height:12px;color:#fff;flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
                 <span style="font-family:Matter,sans-serif;font-size:13px;font-weight:600;color:#171310">Overený klient</span>
-                <i data-lucide="message-circle" data-stroke="2.2" style="width:15px;height:15px;color:#25D366;margin-left:auto"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;color:#25D366;margin-left:auto;flex:none"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
               </figcaption>
             </figure>
           </sc-for>
           <sc-for list="{{ reviewsBot }}" as="r" hint-placeholder-count="4">
             <figure class="marq-card" style="margin:0;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:11px;box-shadow:0 1px 2px rgba(22,19,16,0.04),0 12px 30px rgba(22,19,16,0.08)" aria-hidden="true">
-              <img src="{{ r.src }}" alt="" loading="lazy" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
+              <img src="{{ r.src }}" alt="" width="280" height="360" loading="lazy" decoding="async" sc-camel-on-error="{{ retryImg }}" style="width:100%;height:auto;display:block;border-radius:16px;border:1px solid #e4e2e1;box-shadow:0 18px 40px rgba(0,0,0,.35)">
               <figcaption style="display:flex;align-items:center;gap:8px;padding:11px 5px 3px;margin-top:9px;border-top:1px solid rgba(22,19,16,0.07)">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><i data-lucide="check" data-stroke="3" style="width:12px;height:12px;color:#fff"></i></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent,#2B6B4A);flex:none"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:12px;height:12px;color:#fff;flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
                 <span style="font-family:Matter,sans-serif;font-size:13px;font-weight:600;color:#171310">Overený klient</span>
-                <i data-lucide="message-circle" data-stroke="2.2" style="width:15px;height:15px;color:#25D366;margin-left:auto"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:15px;height:15px;color:#25D366;margin-left:auto;flex:none"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>
               </figcaption>
             </figure>
           </sc-for>
@@ -928,8 +922,8 @@
 
 <!-- ===================== REFERENCIA TKACIK ===================== -->
 <section data-screen-label="Referencia Tkacik" style="position:relative;overflow:hidden;background:linear-gradient(165deg,#241C15,#2A2118);padding:104px 22px">
-  <span aria-hidden="true" style="position:absolute;top:-60px;left:50%;transform:translateX(-600px);font-family:Fraunces,Georgia,serif;font-weight:900;font-size:400px;line-height:1;color:rgba(159,191,172,0.08);pointer-events:none;user-select:none">„</span>
-  <span aria-hidden="true" style="position:absolute;bottom:-190px;right:50%;transform:translateX(640px) rotate(180deg);font-family:Fraunces,Georgia,serif;font-weight:900;font-size:400px;line-height:1;color:rgba(159,191,172,0.05);pointer-events:none;user-select:none">„</span>
+  <span aria-hidden="true" style="position:absolute;top:-60px;left:50%;transform:translateX(-600px);font-family:Recoleta,Georgia,serif;font-weight:900;font-size:400px;line-height:1;color:rgba(159,191,172,0.08);pointer-events:none;user-select:none">„</span>
+  <span aria-hidden="true" style="position:absolute;bottom:-190px;right:50%;transform:translateX(640px) rotate(180deg);font-family:Recoleta,Georgia,serif;font-weight:900;font-size:400px;line-height:1;color:rgba(159,191,172,0.05);pointer-events:none;user-select:none">„</span>
   <div style="position:relative;max-width:840px;margin:0 auto;text-align:center;animation:revealUp both;animation-timeline:view();animation-range:entry 0% entry 30%">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px">
       <span style="width:44px;border-top:1.5px solid rgba(159,191,172,0.4)"></span>
@@ -960,8 +954,8 @@
 
     <sc-if value="{{ submitted }}" hint-placeholder-val="">
       <div style="margin-top:36px;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:48px 30px;text-align:center;box-shadow:0 14px 40px rgba(22,19,16,0.10)">
-        <span style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:999px;background:var(--accent-tint,#E7F0EA)"><i data-lucide="check" data-stroke="2.4" style="width:32px;height:32px;color:var(--accent,#2B6B4A)"></i></span>
-        <h3 style="font-family:Fraunces,Georgia,serif;font-variation-settings:'opsz' 60,'SOFT' 45,'WONK' 0;font-weight:700;font-size:26px;margin:20px 0 0;color:#171310;letter-spacing:-0.01em">Ďakujem, formulár som prijal. 🤝</h3>
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:999px;background:var(--accent-tint,#E7F0EA)"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:32px;height:32px;color:var(--accent,#2B6B4A);flex:none"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <h3 style="font-family:Recoleta,Georgia,serif;font-variation-settings:'opsz' 60,'SOFT' 45,'WONK' 0;font-weight:700;font-size:26px;margin:20px 0 0;color:#171310;letter-spacing:-0.01em">Ďakujem, formulár som prijal. 🤝</h3>
         <p style="font-size:15.5px;line-height:1.58;color:#3d3831;margin:12px auto 0;max-width:31em">Ozvem sa ti do jedného pracovného dňa a dohodneme si termín konzultácie.</p>
       </div>
     </sc-if>
@@ -1016,7 +1010,7 @@
       </button>
 
       <sc-if value="{{ error }}" hint-placeholder-val="">
-        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:14px;color:#B23A2E;font-weight:500"><i data-lucide="alert-circle" data-stroke="2" style="width:16px;height:16px"></i>{{ error }}</div>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:14px;color:#B23A2E;font-weight:500"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:16px;height:16px;flex:none"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>{{ error }}</div>
       </sc-if>
 
       <button type="submit" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16.5px;padding:18px 26px;border-radius:999px;margin-top:24px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s;opacity:{{ sendingOpacity }}" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">{{ submitLabel }}</button>
@@ -1033,7 +1027,7 @@
   <div style="max-width:760px;margin:0 auto;text-align:center;animation:revealUp both;animation-timeline:view();animation-range:entry 4% entry 44%">
     <h2 style="font-family:'Recoleta',Georgia,serif;font-weight:820;font-size:clamp(31px,6vw,52px);line-height:1.04;letter-spacing:-0.025em;margin:0;color:var(--bg,#F5EDE0);text-wrap:balance">Ak riešiš rozhodnutie za tisíce eur, nerob ho naslepo.</h2>
     <p style="font-size:17px;line-height:1.56;color:rgba(245,237,224,0.82);margin:22px auto 0;max-width:34em">Vyplň krátky formulár. Pozriem sa, či ti viem pomôcť osobne — a ak nie, poviem ti to narovinu.</p>
-    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--bg,#F5EDE0);color:var(--accent-deep,#0B3D2E);font-weight:700;font-size:16.5px;padding:17px 32px;border-radius:999px;margin-top:30px;box-shadow:0 14px 34px rgba(0,0,0,.3);transition:transform .2s,background .2s" style-hover="transform:translateY(-2px);background:#fff">Chcem plán zadarmo<i data-lucide="arrow-right" data-stroke="2.4" style="width:18px;height:18px"></i></button>
+    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--bg,#F5EDE0);color:var(--accent-deep,#0B3D2E);font-weight:700;font-size:16.5px;padding:17px 32px;border-radius:999px;margin-top:30px;box-shadow:0 14px 34px rgba(0,0,0,.3);transition:transform .2s,background .2s" style-hover="transform:translateY(-2px);background:#fff">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
     <p class="mc" style="font-size:13.5px;color:rgba(245,237,224,0.6);margin:16px 0 0">Bezplatne a nezáväzne. Ozvem sa ti do jedného pracovného dňa.</p>
   </div>
 </section>
@@ -1044,7 +1038,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:32px 48px;justify-content:space-between">
       <div style="flex:1 1 240px">
         <div style="display:flex;align-items:center;gap:9px">
-          <img src="/assets/images/home/a225a680.png" alt="JS Mentor" style="height:30px;width:auto;display:block;filter:brightness(1.6)">
+          <img src="/assets/images/home/a225a680.webp" alt="JS Mentor" width="236" height="60" style="height:30px;width:auto;display:block;filter:brightness(1.6)">
         </div>
         <p class="mc" style="font-size:13.5px;line-height:1.6;margin:12px 0 0">Jashik s.r.o.<br>Veľká okružná 17, 010 01 Žilina<br>IČO: 54253969 · NBS reg. č. 282999</p>
         <p class="mc" style="font-size:13.5px;line-height:1.6;margin:10px 0 0">E-mail: <span style="color:var(--bg,#F5EDE0)">info@ivanjasik.sk</span><br>Telefón: <span style="color:var(--bg,#F5EDE0)">+421 902 519 328</span></p>
@@ -1068,7 +1062,7 @@
     <div sc-camel-on-click="{{ stop }}" style="position:relative;width:100%;max-width:760px;background:var(--bg,#F5EDE0);border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,0.45);overflow:hidden;margin:auto">
       <div style="position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:var(--bg,#F5EDE0);border-bottom:1px solid rgba(22,19,16,0.10)">
         <h2 style="font-family:'Recoleta',Georgia,serif;font-weight:790;font-size:clamp(19px,3vw,24px);line-height:1.1;letter-spacing:-0.02em;margin:0;color:#171310">Ochrana osobných údajov (GDPR)</h2>
-        <button type="button" sc-camel-on-click="{{ closeGdpr }}" aria-label="Zavrieť" style="appearance:none;flex:none;cursor:pointer;width:38px;height:38px;border-radius:999px;border:1px solid rgba(22,19,16,0.16);background:#fff;display:inline-flex;align-items:center;justify-content:center" style-hover="background:rgba(22,19,16,0.05)"><i data-lucide="x" data-stroke="2" style="width:19px;height:19px;color:#171310"></i></button>
+        <button type="button" sc-camel-on-click="{{ closeGdpr }}" aria-label="Zavrieť" style="appearance:none;flex:none;cursor:pointer;width:38px;height:38px;border-radius:999px;border:1px solid rgba(22,19,16,0.16);background:#fff;display:inline-flex;align-items:center;justify-content:center" style-hover="background:rgba(22,19,16,0.05)"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:19px;height:19px;color:#171310;flex:none"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
       </div>
       <div style="padding:8px 24px 32px;max-height:none">
         <p style="font-family:Matter,sans-serif;font-size:13px;line-height:1.6;color:#686664;margin:18px 0 0">Dokumentácia k posúdeniu vplyvu plánovaných spracovateľských operácií na ochranu osobných údajov obchodnej spoločnosti <strong style="color:#171310">Jashik s.r.o.</strong></p>
@@ -1141,12 +1135,12 @@
 </sc-if>
 
 <!-- BACK TO TOP -->
-<button type="button" ref="{{ topBtnEl }}" sc-camel-on-click="{{ scrollTop }}" aria-label="Späť hore" style="position:fixed;right:18px;bottom:90px;z-index:55;width:46px;height:46px;border-radius:999px;border:1px solid rgba(22,19,16,0.12);background:rgba(245,237,224,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(22,19,16,0.16);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s,transform .25s" style-hover="transform:translateY(-2px)"><i data-lucide="arrow-up" data-stroke="2.2" style="width:20px;height:20px;color:#171310"></i></button>
+<button type="button" ref="{{ topBtnEl }}" sc-camel-on-click="{{ scrollTop }}" aria-label="Späť hore" style="position:fixed;right:18px;bottom:90px;z-index:55;width:46px;height:46px;border-radius:999px;border:1px solid rgba(22,19,16,0.12);background:rgba(245,237,224,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(22,19,16,0.16);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s,transform .25s" style-hover="transform:translateY(-2px)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:20px;height:20px;color:#171310;flex:none"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button>
 
 <!-- ===================== STICKY MOBILE CTA ===================== -->
 <sc-if value="{{ showSticky }}" hint-placeholder-val="">
   <div class="msticky" style="position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(245,237,224,0.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(22,19,16,0.12);padding:12px 16px;box-shadow:0 -6px 24px rgba(22,19,16,0.10)">
-    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20)">Chcem plán zadarmo<i data-lucide="arrow-right" data-stroke="2.2" style="width:18px;height:18px"></i></button>
+    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
   </div>
 </sc-if>
 
@@ -1178,10 +1172,8 @@ class Component extends DCLogic {
       if (m !== this.state.isMobile) this.setState({ isMobile: m });
     };
     window.addEventListener('resize', this._onResize);
-    this._iconTries = 0;
     this.applyTheme();
     document.title = 'Ivan Jašík — Bezplatná 30-minútová konzultácia';
-    this.pollIcons();
     this.setupScrollFx();
     this.setupCountUp();
     this.initFeeSection();
@@ -1293,7 +1285,7 @@ class Component extends DCLogic {
   }
 
   scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-  componentDidUpdate() { this.applyTheme(); this.runIcons(); }
+  componentDidUpdate() { this.applyTheme(); }
 
   applyTheme() {
     const root = document.documentElement;
@@ -1329,26 +1321,6 @@ class Component extends DCLogic {
     root.style.setProperty('--card', p[2]);
     root.style.setProperty('--r-card', s[0]);
     root.style.setProperty('--r-btn', s[1]);
-  }
-
-  runIcons() {
-    if (window.lucide && window.lucide.createIcons) {
-      try {
-        window.lucide.createIcons();
-        document.querySelectorAll('svg.lucide').forEach(svg => {
-          const i = svg.closest('i');
-          const sw = i && i.dataset.stroke;
-          if (sw) svg.setAttribute('stroke-width', sw);
-        });
-      } catch (e) {}
-    }
-  }
-  pollIcons() {
-    this.runIcons();
-    if ((!window.lucide || !window.lucide.createIcons) && this._iconTries < 40) {
-      this._iconTries++;
-      setTimeout(() => this.pollIcons(), 120);
-    }
   }
 
   toggleMulti(group, val) {
