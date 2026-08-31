@@ -3,5 +3,15 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/bonusy/:slug", "destination": "/bonusy-:slug.html" }
+  ],
+  "headers": [
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
   ]
 }
