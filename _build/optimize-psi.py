@@ -1,17 +1,13 @@
-"""Subset fonts, compress images, replace Lucide <i> with inline SVG."""
+"""Subset fonts and replace Lucide <i> with inline SVG. Do not recompress photos."""
 from __future__ import annotations
 
 import re
-import shutil
 from pathlib import Path
-
-from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 LUCIDE = ROOT / "js" / "home" / "2fafb5be.js"
 HTML = ROOT / "index.html"
 FONT_DIR = ROOT / "assets" / "fonts" / "home"
-IMG_DIR = ROOT / "assets" / "images" / "home"
 
 UNICODES = (
     list(range(0x20, 0x7F))
@@ -73,61 +69,9 @@ def convert_fonts() -> None:
         subset_font(src, FONT_DIR / dst_name)
 
 
-def save_webp(im: Image.Image, dest: Path, quality: int = 78) -> Path:
-    dest = dest.with_suffix(".webp")
-    im.save(dest, "WEBP", quality=quality, method=6)
-    return dest
-
-
-def fit_height(im: Image.Image, height: int) -> Image.Image:
-    w, h = im.size
-    if h <= height:
-        return im
-    nw = max(1, round(w * height / h))
-    return im.resize((nw, height), Image.Resampling.LANCZOS)
-
-
-def fit_width(im: Image.Image, width: int) -> Image.Image:
-    w, h = im.size
-    if w <= width:
-        return im
-    nh = max(1, round(h * width / w))
-    return im.resize((width, nh), Image.Resampling.LANCZOS)
-
-
 def compress_images() -> dict[str, str]:
-    """Return old path -> new path rewrites for HTML/CSS."""
-    rewrites: dict[str, str] = {}
-
-    def note(old_name: str, new_path: Path) -> None:
-        old = f"/assets/images/home/{old_name}"
-        new = "/" + new_path.relative_to(ROOT).as_posix()
-        if old != new:
-            rewrites[old] = new
-        print(f"img {old_name} -> {new_path.name} {new_path.stat().st_size}")
-
-    avatar = Image.open(IMG_DIR / "fe90f7ed.png").convert("RGB")
-    avatar = avatar.resize((72, 72), Image.Resampling.LANCZOS)
-    dest = save_webp(avatar, IMG_DIR / "fe90f7ed", 72)
-    note("fe90f7ed.png", dest)
-
-    for name, height in (("a2d68d48.png", 68), ("2a92a907.png", 60), ("c91c649d.png", 72), ("a225a680.png", 60)):
-        im = Image.open(IMG_DIR / name)
-        im = fit_height(im, height)
-        if im.mode in ("RGBA", "LA"):
-            dest = save_webp(im.convert("RGBA"), IMG_DIR / name, 80)
-        else:
-            dest = save_webp(im.convert("RGB"), IMG_DIR / name, 80)
-        note(name, dest)
-
-    for name, max_w in (("1e6a6cd6.jpg", 1000), ("3b5b4e2a.jpg", 800), ("fe79786e.jpg", 800)):
-        src = IMG_DIR / name
-        im = Image.open(src).convert("RGB")
-        im = fit_width(im, max_w)
-        dest = save_webp(im, src, 76)
-        note(name, dest)
-
-    return rewrites
+    """Keep original photo files. Do not downscale or convert to WebP."""
+    return {}
 
 
 def parse_lucide_icons(src: str) -> dict[str, list]:

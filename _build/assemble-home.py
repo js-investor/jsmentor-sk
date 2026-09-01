@@ -6,8 +6,6 @@ import re
 import shutil
 from pathlib import Path
 
-from PIL import Image
-
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "_build" / "unpacked-home"
 TPL = (SRC / "template.html").read_text(encoding="utf-8")
@@ -33,8 +31,6 @@ USED_FONTS = {
     "fbb1e7bb.otf",  # Recoleta bold
 }
 
-COMPRESS_MIN = 180_000
-JPEG_QUALITY = 78
 path_rewrites: dict[str, str] = {}
 
 
@@ -49,26 +45,10 @@ def copy_js():
         shutil.copy2(src, JS_DST / src.name)
 
 
-def copy_and_compress_images():
+def copy_images():
     src_dir = SRC / "assets" / "images" / "home"
     for src in src_dir.iterdir():
-        dest = IMG_DST / src.name
-        if src.suffix.lower() == ".png" and src.stat().st_size >= COMPRESS_MIN:
-            im = Image.open(src)
-            if im.mode in ("RGBA", "LA"):
-                bg = Image.new("RGB", im.size, (245, 237, 224))
-                bg.paste(im, mask=im.split()[-1])
-                im = bg
-            else:
-                im = im.convert("RGB")
-            jpg = dest.with_suffix(".jpg")
-            im.save(jpg, "JPEG", quality=JPEG_QUALITY, optimize=True, progressive=True)
-            old = "/" + src.relative_to(SRC).as_posix()
-            new = "/" + jpg.relative_to(ROOT).as_posix()
-            path_rewrites[old] = new
-            print(f"jpeg {src.name} {src.stat().st_size} -> {jpg.stat().st_size}")
-        else:
-            shutil.copy2(src, dest)
+        shutil.copy2(src, IMG_DST / src.name)
 
 
 def extract_css(html: str) -> tuple[str, str]:
@@ -207,7 +187,7 @@ FOOT = """
 def main():
     copy_fonts()
     copy_js()
-    copy_and_compress_images()
+    copy_images()
 
     html = TPL
     for old, new in path_rewrites.items():

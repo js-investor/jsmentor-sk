@@ -2,7 +2,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/bonusy/:slug", "destination": "/bonusy-:slug.html" }
+    { "source": "/bonusy/hypo-kalkulacka", "destination": "/bonusy-hypo-kalkulacka" },
+    { "source": "/bonusy/investicna-kalkulacka", "destination": "/bonusy-investicna-kalkulacka" },
+    { "source": "/bonusy/mzdova-kalkulacka", "destination": "/bonusy-mzdova-kalkulacka" },
+    { "source": "/bonusy/uverova-kalkulacka", "destination": "/bonusy-uverova-kalkulacka" },
+    { "source": "/bonusy/rentova-kalkulacka", "destination": "/bonusy-rentova-kalkulacka" },
+    { "source": "/bonusy/investicny-byt", "destination": "/bonusy-investicny-byt" },
+    { "source": "/bonusy/etf-semafor", "destination": "/bonusy-etf-semafor" },
+    { "source": "/bonusy/poplatkovy-rontgen", "destination": "/bonusy-poplatkovy-rontgen" },
+    { "source": "/bonusy/bytovy-semafor", "destination": "/bonusy-bytovy-semafor" }
   ],
   "headers": [
     {
