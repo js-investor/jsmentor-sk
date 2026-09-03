@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lokálny server s čistými URL: /komunita, /bonusy, /bonusy/hypo-kalkulacka, …"""
+"""Lokálny server s čistými URL: /komunita (React), /bonusy, /bonusy/hypo-kalkulacka, …"""
 
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -20,6 +20,7 @@ ROUTES = {
 HTML_REDIRECTS = {
     "/index.html": "/",
     "/konzultaciajsmentor.html": "/",
+    "/konzultacia": "/",
     "/komunita.html": "/komunita",
     "/bonusy.html": "/bonusy",
     "/gdpr.html": "/gdpr",

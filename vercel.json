@@ -5,6 +5,7 @@
     { "source": "/bonusy/(.*)", "destination": "/bonusy" }
   ],
   "redirects": [
+    { "source": "/konzultacia", "destination": "/", "permanent": false },
     { "source": "/bonusy/hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
     { "source": "/bonusy-hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
     { "source": "/bonusy-investicna-kalkulacka", "destination": "/bonusy/investicna-kalkulacka", "permanent": true },
