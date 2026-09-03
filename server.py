@@ -58,9 +58,11 @@ class Handler(SimpleHTTPRequestHandler):
     def _redirect_target(self, path):
         if path in HTML_REDIRECTS:
             return HTML_REDIRECTS[path]
-        if path.startswith("/bonusy-") and path.endswith(".html"):
-            slug = path[len("/bonusy-") : -len(".html")]
-            if slug:
+        if path.startswith("/bonusy-"):
+            slug = path[len("/bonusy-") :]
+            if slug.endswith(".html"):
+                slug = slug[: -len(".html")]
+            if slug and "/" not in slug:
                 return f"/bonusy/{slug}"
         return None
 
@@ -68,11 +70,9 @@ class Handler(SimpleHTTPRequestHandler):
         if path in ROUTES:
             return ROOT / ROUTES[path], path in ("/404",)
 
-        if path.startswith("/bonusy/") and path != "/bonusy":
-            slug = path[len("/bonusy/") :]
-            candidate = ROOT / f"bonusy-{slug}.html"
-            if candidate.is_file():
-                return candidate, False
+        if path.startswith("/bonusy/"):
+            # /bonusy/* obsluhuje React aplikácia (bonusy.html) – to isté robí rewrite vo vercel.json
+            return ROOT / "bonusy.html", False
 
         rel = path.lstrip("/")
         candidate = ROOT / rel

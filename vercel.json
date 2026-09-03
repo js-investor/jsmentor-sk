@@ -2,15 +2,18 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/bonusy/hypo-kalkulacka", "destination": "/bonusy-hypo-kalkulacka" },
-    { "source": "/bonusy/investicna-kalkulacka", "destination": "/bonusy-investicna-kalkulacka" },
-    { "source": "/bonusy/mzdova-kalkulacka", "destination": "/bonusy-mzdova-kalkulacka" },
-    { "source": "/bonusy/uverova-kalkulacka", "destination": "/bonusy-uverova-kalkulacka" },
-    { "source": "/bonusy/rentova-kalkulacka", "destination": "/bonusy-rentova-kalkulacka" },
-    { "source": "/bonusy/investicny-byt", "destination": "/bonusy-investicny-byt" },
-    { "source": "/bonusy/etf-semafor", "destination": "/bonusy-etf-semafor" },
-    { "source": "/bonusy/poplatkovy-rontgen", "destination": "/bonusy-poplatkovy-rontgen" },
-    { "source": "/bonusy/bytovy-semafor", "destination": "/bonusy-bytovy-semafor" }
+    { "source": "/bonusy/(.*)", "destination": "/bonusy" }
+  ],
+  "redirects": [
+    { "source": "/bonusy-hypo-kalkulacka", "destination": "/bonusy/hypo-kalkulacka", "permanent": true },
+    { "source": "/bonusy-investicna-kalkulacka", "destination": "/bonusy/investicna-kalkulacka", "permanent": true },
+    { "source": "/bonusy-mzdova-kalkulacka", "destination": "/bonusy/mzdova-kalkulacka", "permanent": true },
+    { "source": "/bonusy-uverova-kalkulacka", "destination": "/bonusy/uverova-kalkulacka", "permanent": true },
+    { "source": "/bonusy-rentova-kalkulacka", "destination": "/bonusy/rentova-kalkulacka", "permanent": true },
+    { "source": "/bonusy-investicny-byt", "destination": "/bonusy/investicny-byt", "permanent": true },
+    { "source": "/bonusy-etf-semafor", "destination": "/bonusy/etf-semafor", "permanent": true },
+    { "source": "/bonusy-poplatkovy-rontgen", "destination": "/bonusy/poplatkovy-rontgen", "permanent": true },
+    { "source": "/bonusy-bytovy-semafor", "destination": "/bonusy/bytovy-semafor", "permanent": true }
   ],
   "headers": [
     {
@@ -19,6 +22,10 @@
     },
     {
       "source": "/assets/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/app/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]

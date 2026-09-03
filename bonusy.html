@@ -1,377 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  /bonusy = React aplikácia (repo js-investor/jsmentor.sk-stary, build: `vite build --assetsDir assets/app`).
+  Tento súbor je jej shell; bundle je v /assets/app. Všetky cesty /bonusy/* naň smerujú cez rewrite vo vercel.json.
+  Nový build: _build/build-bonusy-app.sh
+-->
 <html lang="sk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
-  <title>Bonusy | JS Mentor</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
+    <title>Bonusy | JS Mentor</title>
+    <meta name="description" content="Bezplatné finančné nástroje od JS Mentora: hypotéka vs. investovanie, investičná, mzdová, úverová a rentová kalkulačka, ETF semafor, poplatkový röntgen, bytový semafor, finančný check-up, skóring bytov a výnosnosť bytu.">
+    <meta name="author" content="Ivan Jasik — JS Mentor" />
+    <script>
+      (function () {
+        var host = window.location.hostname;
+        var isLocal =
+          host === "localhost" ||
+          host === "127.0.0.1" ||
+          host === "::1" ||
+          host.endsWith(".local");
+
+        if (isLocal) return;
+
+        var script = document.createElement("script");
+        script.id = "Cookiebot";
+        script.src = "https://consent.cookiebot.com/uc.js";
+        script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
+        script.setAttribute("data-blockingmode", "auto");
+        script.type = "text/javascript";
+        document.head.appendChild(script);
+      })();
+    </script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
+
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg">
+    <meta property="og:title" content="Bonusy | JS Mentor">
+  <meta name="twitter:title" content="Bonusy | JS Mentor">
+  <meta property="og:description" content="Bezplatné finančné nástroje od JS Mentora: hypotéka vs. investovanie, investičná, mzdová, úverová a rentová kalkulačka, ETF semafor, poplatkový röntgen, bytový semafor, finančný check-up, skóring bytov a výnosnosť bytu.">
+  <meta name="twitter:description" content="Bezplatné finančné nástroje od JS Mentora: hypotéka vs. investovanie, investičná, mzdová, úverová a rentová kalkulačka, ETF semafor, poplatkový röntgen, bytový semafor, finančný check-up, skóring bytov a výnosnosť bytu.">
+  <meta property="og:url" content="https://jsmentor.sk/bonusy">
   <script>
+    // Most medzi statickým webom a React aplikáciou /bonusy:
+    // odkazy mimo /bonusy (logo, /komunita, /gdpr …) sa načítajú ako klasické statické stránky,
+    // aby ich nezachytil React Router (ten pozná len /bonusy/*).
     (function () {
-      var host = window.location.hostname;
-      var isLocal =
-        !host ||
-        host === "localhost" ||
-        host === "127.0.0.1" ||
-        host === "::1" ||
-        host.endsWith(".local") ||
-        window.location.protocol === "file:";
-
-      if (isLocal) return;
-
-      var script = document.createElement("script");
-      script.id = "Cookiebot";
-      script.src = "https://consent.cookiebot.com/uc.js";
-      script.setAttribute("data-cbid", "a1cb1396-ebeb-4e0d-bb6c-28cfcaf6522d");
-      script.setAttribute("data-blockingmode", "auto");
-      script.type = "text/javascript";
-      document.head.appendChild(script);
+      var APP = "/bonusy";
+      function inApp(p) { return p === APP || p.indexOf(APP + "/") === 0; }
+      document.addEventListener("click", function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a) return;
+        var href = a.getAttribute("href");
+        if (!href || href.charAt(0) === "#") return;
+        if (a.target && a.target !== "_self") return;
+        var u;
+        try { u = new URL(a.href, window.location.href); } catch (err) { return; }
+        if (u.origin !== window.location.origin || inApp(u.pathname)) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        window.location.assign(u.href);
+      }, true);
+      ["pushState", "replaceState"].forEach(function (m) {
+        var orig = window.history[m];
+        window.history[m] = function (state, title, url) {
+          if (url != null) {
+            try {
+              var u = new URL(String(url), window.location.href);
+              if (u.origin === window.location.origin && !inApp(u.pathname)) { window.location.assign(u.href); return; }
+            } catch (err) {}
+          }
+          return orig.apply(this, arguments);
+        };
+      });
     })();
   </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
-  <link rel="stylesheet" href="/css/styles.css" />
+  <script type="module" crossorigin src="/assets/app/index-5fp0TwXM.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/app/index-Djoo1Wc5.css">
 </head>
-<body>
-  <main>
-    <header data-js-site-header class="konzultacia-header-shell">
-      <div class="konzultacia-header-bar">
-        <a href="/bonusy" class="flex shrink-0 items-center">
-          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor logo" class="h-7 w-auto shrink-0 object-contain md:h-9 lg:h-10" />
-        </a>
 
-        <nav class="konzultacia-header-nav hidden min-w-0 xl:flex" aria-label="Navigácia stránky">
-          <a href="/bonusy" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem]">Všetky bonusy</a>
-            <div class="relative" data-nav-group>
-              <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
-                Kalkulačky
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" data-nav-chevron><path d="m6 9 6 6 6-6"/></svg>
-              </button>
-              <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-dropdown>
-                <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
-                  <a href="/bonusy/hypo-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Hypotéka vs. investovanie</a>
-                  <a href="/bonusy/investicna-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičná kalkulačka</a>
-                  <a href="/bonusy/mzdova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Mzdová kalkulačka</a>
-                  <a href="/bonusy/uverova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Úverová kalkulačka</a>
-                  <a href="/bonusy/rentova-kalkulacka" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Rentová kalkulačka</a>
-                </div>
-              </div>
-            </div>
-            <div class="relative" data-nav-group>
-              <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
-                Nástroje
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" data-nav-chevron><path d="m6 9 6 6 6-6"/></svg>
-              </button>
-              <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-dropdown>
-                <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
-                  <a href="/bonusy/investicny-byt" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Investičný byt</a>
-                  <a href="/bonusy/etf-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">ETF semafor</a>
-                  <a href="/bonusy/poplatkovy-rontgen" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Poplatkový röntgen</a>
-                  <a href="/bonusy/bytovy-semafor" class="block px-4 py-3 text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary">Bytový semafor</a>
-                </div>
-              </div>
-            </div>
-            <div class="relative" data-nav-group>
-              <button type="button" class="rounded-full px-3.5 py-2 font-sans text-sm font-medium text-foreground/75 transition-colors hover:bg-primary/[0.07] hover:text-primary lg:px-4 lg:text-[0.9375rem] inline-flex items-center gap-1" aria-expanded="false" aria-haspopup="true">
-                PDF
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 transition-transform duration-200" data-nav-chevron><path d="m6 9 6 6 6-6"/></svg>
-              </button>
-              <div class="absolute left-0 top-full z-50 pt-2 min-w-[220px] hidden" data-nav-dropdown>
-                <div class="overflow-hidden rounded-xl border border-border/50 bg-white py-1.5 shadow-xl">
-                  <span class="block px-4 py-3 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
-                </div>
-              </div>
-            </div>
-        </nav>
-
-        <div class="konzultacia-header-mobile-cta xl:hidden">
-          <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header" class="btn-primary btn-primary-site-header text-body shrink-0">
-            <span class="sm:hidden">Rezervovať konzultáciu</span>
-            <span class="hidden sm:inline">Rezervovať konzultáciu s Ivanom</span>
-          </a>
-        </div>
-
-        <div class="konzultacia-header-actions">
-          <div class="hidden items-center gap-2.5 xl:flex">
-            <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-header" class="btn-primary btn-primary-site-header text-body shrink-0">Rezervovať konzultáciu s Ivanom</a>
-          </div>
-
-          <button type="button" aria-label="Otvoriť menu" aria-expanded="false" class="konzultacia-header-menu-toggle xl:hidden" data-mobile-menu-toggle>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" data-icon-menu><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 hidden" data-icon-close><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
-        </div>
-
-        <div class="konzultacia-header-mobile-panel xl:hidden hidden" data-mobile-menu>
-          <nav class="flex flex-col gap-0.5" aria-label="Mobilná navigácia">
-            <a href="/bonusy" class="konzultacia-header-mobile-link">Všetky bonusy</a>
-                <div data-mobile-group>
-                  <button type="button" class="konzultacia-header-mobile-link w-full justify-between" aria-expanded="false">
-                    <span>Kalkulačky</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" data-mobile-chevron><path d="m6 9 6 6 6-6"/></svg>
-                  </button>
-                  <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
-                    <a href="/bonusy/hypo-kalkulacka" class="konzultacia-header-mobile-link">Hypotéka vs. investovanie</a>
-                    <a href="/bonusy/investicna-kalkulacka" class="konzultacia-header-mobile-link">Investičná kalkulačka</a>
-                    <a href="/bonusy/mzdova-kalkulacka" class="konzultacia-header-mobile-link">Mzdová kalkulačka</a>
-                    <a href="/bonusy/uverova-kalkulacka" class="konzultacia-header-mobile-link">Úverová kalkulačka</a>
-                    <a href="/bonusy/rentova-kalkulacka" class="konzultacia-header-mobile-link">Rentová kalkulačka</a>
-                  </div>
-                </div>
-                <div data-mobile-group>
-                  <button type="button" class="konzultacia-header-mobile-link w-full justify-between" aria-expanded="false">
-                    <span>Nástroje</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" data-mobile-chevron><path d="m6 9 6 6 6-6"/></svg>
-                  </button>
-                  <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
-                    <a href="/bonusy/investicny-byt" class="konzultacia-header-mobile-link">Investičný byt</a>
-                    <a href="/bonusy/etf-semafor" class="konzultacia-header-mobile-link">ETF semafor</a>
-                    <a href="/bonusy/poplatkovy-rontgen" class="konzultacia-header-mobile-link">Poplatkový röntgen</a>
-                    <a href="/bonusy/bytovy-semafor" class="konzultacia-header-mobile-link">Bytový semafor</a>
-                  </div>
-                </div>
-                <div data-mobile-group>
-                  <button type="button" class="konzultacia-header-mobile-link w-full justify-between" aria-expanded="false">
-                    <span>PDF</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-200" data-mobile-chevron><path d="m6 9 6 6 6-6"/></svg>
-                  </button>
-                  <div class="flex flex-col gap-0.5 pb-1 pl-4 hidden" data-mobile-group-panel>
-                    <span class="px-3 py-2 text-xs font-semibold text-foreground/40">Pripravujeme…</span>
-                  </div>
-                </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-
-    <section class="page-home section-white min-h-[50vh] pt-[9rem] pb-20 md:pt-[11rem] md:pb-28 lg:pt-[12rem] lg:pb-32">
-      <div class="section-container px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-3xl text-center">
-          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-4 py-1.5 font-sans text-caption font-semibold text-primary">Bonusy · 9 nástrojov zadarmo</span>
-          <h1 class="headline-serif mt-5 md:mt-6">
-            Rozhoduj sa s istotou, <span class="text-primary">nie pocitom</span>
-          </h1>
-          <p class="mt-4 font-sans text-[18px] leading-relaxed text-muted-foreground md:text-xl">
-            Zisti presné čísla skôr, než podpíšeš, investuješ alebo zaplatíš. Každý nástroj tu
-            existuje preto, aby si videl, čo ťa rozhodnutie skutočne stojí a čo ti môže zarobiť.
-          </p>
-        </div>
-
-        <section class="mx-auto mt-10 max-w-6xl md:mt-14" aria-labelledby="bonusy-featured-heading">
-          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-            <div>
-              <h2 id="bonusy-featured-heading" class="flex items-center gap-3 [font-family:var(--font-serif)] text-[1.5rem] font-extrabold leading-[1.2] text-foreground md:text-[1.875rem]">Začni tu</h2>
-              <p class="mt-1.5 font-sans text-[1rem] leading-relaxed text-muted-foreground md:text-[1.0625rem]">Tri nástroje, ktoré ti o tvojich peniazoch prezradia najviac.</p>
-            </div>
-          </div>
-          <ul class="mt-5 grid list-none grid-cols-1 gap-5 p-0 md:mt-6 md:gap-6 lg:grid-cols-3">
-              <li class="h-full">
-                <a href="/bonusy/etf-semafor" class="group relative isolate flex h-full flex-col overflow-hidden rounded-2xl p-6 md:p-7 lg:min-h-[18rem] lg:p-8 transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="etf-semafor">
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10" style="background: var(--btn-primary-gradient)"></div>
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 opacity-[0.12] mix-blend-soft-light" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;)"></div>
-                  <img src="/assets/logo/js-brand-pattern-black.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-10 -right-8 -z-10 h-48 w-auto select-none opacity-[0.16] transition-transform duration-500 ease-out group-hover:scale-105 md:h-56" />
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="inline-flex items-center rounded-full border border-[#fdf8f2]/25 bg-[#fdf8f2]/[0.08] px-3 py-1 font-sans text-caption font-semibold text-[#fdf8f2]/85">Investovanie</span>
-                    <span aria-hidden="true" class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#fdf8f2]/20 bg-[#fdf8f2]/[0.06] text-[#fdf8f2]/80 transition-colors duration-300 group-hover:bg-[#fdf8f2] group-hover:text-[#023c2e]">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25]"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </span>
-                  </div>
-                  <span class="mt-6 block [font-family:var(--font-serif)] text-[1.55rem] font-bold leading-[1.15] text-[#fdf8f2] md:mt-7 md:text-[1.7rem] lg:text-[1.85rem]">ETF semafor 🚦</span>
-                  <span class="mt-3 block font-sans text-[1rem] leading-relaxed text-[#f0ebe3]/80 md:text-[1.0625rem]">15 otázok za 3 minúty. Zisti, či investuješ správne. Od stratégie až po poplatky a chyby, ktoré ťa potichu stoja peniaze.</span>
-                  <span class="mt-auto flex items-center gap-2 pt-6 font-sans text-[0.9375rem] font-semibold text-[#fdf8f2]">
-                    Spustiť nástroj
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25] transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/poplatkovy-rontgen" class="group relative isolate flex h-full flex-col overflow-hidden rounded-2xl p-6 md:p-7 lg:min-h-[18rem] lg:p-8 transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="poplatkovy-rontgen">
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10" style="background: var(--btn-primary-gradient)"></div>
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 opacity-[0.12] mix-blend-soft-light" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;)"></div>
-                  <img src="/assets/logo/js-brand-pattern-black.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-10 -right-8 -z-10 h-48 w-auto select-none opacity-[0.16] transition-transform duration-500 ease-out group-hover:scale-105 md:h-56" />
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="inline-flex items-center rounded-full border border-[#fdf8f2]/25 bg-[#fdf8f2]/[0.08] px-3 py-1 font-sans text-caption font-semibold text-[#fdf8f2]/85">Poplatky</span>
-                    <span aria-hidden="true" class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#fdf8f2]/20 bg-[#fdf8f2]/[0.06] text-[#fdf8f2]/80 transition-colors duration-300 group-hover:bg-[#fdf8f2] group-hover:text-[#023c2e]">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25]"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </span>
-                  </div>
-                  <span class="mt-6 block [font-family:var(--font-serif)] text-[1.55rem] font-bold leading-[1.15] text-[#fdf8f2] md:mt-7 md:text-[1.7rem] lg:text-[1.85rem]">Poplatkový röntgen 💸</span>
-                  <span class="mt-3 block font-sans text-[1rem] leading-relaxed text-[#f0ebe3]/80 md:text-[1.0625rem]">Tri kliky a uvidíš, koľko z tvojho budúceho majetku potichu zmizne v poplatkoch. V eurách, nie v percentách.</span>
-                  <span class="mt-auto flex items-center gap-2 pt-6 font-sans text-[0.9375rem] font-semibold text-[#fdf8f2]">
-                    Spustiť nástroj
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25] transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/bytovy-semafor" class="group relative isolate flex h-full flex-col overflow-hidden rounded-2xl p-6 md:p-7 lg:min-h-[18rem] lg:p-8 transition-transform duration-300 ease-out hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="bytovy-semafor">
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10" style="background: var(--btn-primary-gradient)"></div>
-                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 opacity-[0.12] mix-blend-soft-light" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;)"></div>
-                  <img src="/assets/logo/js-brand-pattern-black.svg" alt="" aria-hidden="true" class="pointer-events-none absolute -bottom-10 -right-8 -z-10 h-48 w-auto select-none opacity-[0.16] transition-transform duration-500 ease-out group-hover:scale-105 md:h-56" />
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="inline-flex items-center rounded-full border border-[#fdf8f2]/25 bg-[#fdf8f2]/[0.08] px-3 py-1 font-sans text-caption font-semibold text-[#fdf8f2]/85">Nehnuteľnosti</span>
-                    <span aria-hidden="true" class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#fdf8f2]/20 bg-[#fdf8f2]/[0.06] text-[#fdf8f2]/80 transition-colors duration-300 group-hover:bg-[#fdf8f2] group-hover:text-[#023c2e]">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25]"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                    </span>
-                  </div>
-                  <span class="mt-6 block [font-family:var(--font-serif)] text-[1.55rem] font-bold leading-[1.15] text-[#fdf8f2] md:mt-7 md:text-[1.7rem] lg:text-[1.85rem]">Bytový semafor 🚦</span>
-                  <span class="mt-3 block font-sans text-[1rem] leading-relaxed text-[#f0ebe3]/80 md:text-[1.0625rem]">Oplatí sa ti ten byt kúpiť? Lokalita, čísla, banka, dane, zmluvy. Získaš odpovede ešte pred tým, ako zaplatíš zálohu.</span>
-                  <span class="mt-auto flex items-center gap-2 pt-6 font-sans text-[0.9375rem] font-semibold text-[#fdf8f2]">
-                    Spustiť nástroj
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 stroke-[2.25] transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </span>
-                </a>
-              </li>
-          </ul>
-        </section>
-
-        <section class="mx-auto mt-12 max-w-6xl md:mt-16" aria-labelledby="bonusy-library-heading">
-          <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-            <div>
-              <h2 id="bonusy-library-heading" class="flex items-center gap-3 [font-family:var(--font-serif)] text-[1.5rem] font-extrabold leading-[1.2] text-foreground md:text-[1.875rem]">
-                Kalkulačky
-                <span class="inline-flex h-7 min-w-7 items-center justify-center rounded-full bg-primary/10 px-2 font-sans text-[0.875rem] font-semibold leading-none text-primary">6</span>
-              </h2>
-              <p class="mt-1.5 font-sans text-[1rem] leading-relaxed text-muted-foreground md:text-[1.0625rem]">Presné prepočty pre hypotéku, investície, mzdu aj rentu.</p>
-            </div>
-          </div>
-          <ul class="mt-5 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 md:mt-6 md:gap-6 lg:grid-cols-3">
-              <li class="h-full">
-                <a href="/bonusy/hypo-kalkulacka" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="hypo-kalkulacka">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Hypotéka vs. investovanie</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Porovnaj, či je pre teba výhodnejšie skoršie splácanie hypotéky alebo pravidelné investovanie.</span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/investicna-kalkulacka" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="investicna-kalkulacka">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Investičná kalkulačka</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Jednorazové a pravidelné vklady, očakávané zhodnotenie a zložené úročenie v priebehu rokov.</span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/mzdova-kalkulacka" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="mzdova-kalkulacka">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Mzdová kalkulačka</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Orientačný prepočet mzdy: hrubá vs. čistá, odvody a čo ti zostane „na ruku“ po zákonných zrážkach.</span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/uverova-kalkulacka" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="uverova-kalkulacka">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Úverová kalkulačka</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Výpočet maximálnej hypotéky podľa tvojho príjmu, záväzkov a limitov DTI/DSTI.</span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/rentova-kalkulacka" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="rentova-kalkulacka">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Rentová kalkulačka</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Zisti, aký kapitál potrebuješ na požadovanú rentu a koľko treba pravidelne investovať.</span>
-                </a>
-              </li>
-              <li class="h-full">
-                <a href="/bonusy/investicny-byt" class="group relative flex h-full flex-col rounded-2xl border border-border/70 bg-card p-6 md:p-7 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-primary/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" data-umami-event="click_bonus_tool" data-umami-event-slug="investicny-byt">
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="relative inline-flex h-11 w-11 shrink-0 items-center justify-center md:h-12 md:w-12" aria-hidden="true">
-                      <img src="/assets/logo/js-brand-pattern.svg" alt="" class="pointer-events-none absolute inset-0 h-full w-full object-contain" />
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10 h-[1.15rem] w-[1.15rem] -translate-x-[1px] stroke-[2] text-white md:h-5 md:w-5"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground/60 transition-[color,transform] duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-                  </div>
-                  <span class="mt-5 block [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">Investičný byt</span>
-                  <span class="mt-2.5 block font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Interaktívna mapa Slovenska: zisti, koľko ti zarobí investičný byt za 5–30 rokov v každom krajskom meste.</span>
-                </a>
-              </li>
-          </ul>
-        </section>
-
-        <section class="mx-auto mt-8 max-w-6xl md:mt-10" aria-labelledby="bonusy-pdf-heading">
-          <div class="flex flex-col items-start gap-5 rounded-2xl border bg-cream/60 p-6 sm:flex-row sm:items-center md:p-7 border-dashed border-primary/25">
-            <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 stroke-[2]"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
-            </span>
-            <div class="min-w-0 flex-1">
-              <h2 id="bonusy-pdf-heading" class="flex flex-wrap items-center gap-x-3 gap-y-1.5 [font-family:var(--font-serif)] text-[1.25rem] font-bold leading-[1.2] text-foreground md:text-[1.35rem]">
-                PDF materiály
-                <span class="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-1 font-sans text-caption font-semibold text-primary">Už čoskoro</span>
-              </h2>
-              <p class="mt-1.5 font-sans text-[0.9375rem] leading-relaxed text-muted-foreground md:text-[1rem]">Pripravujem prehľadné PDF materiály na stiahnutie — pribudnú medzi bonusy čoskoro.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mx-auto mt-12 max-w-5xl md:mt-16" aria-labelledby="bonusy-konzultacia-heading">
-          <div class="relative isolate overflow-hidden rounded-2xl shadow-[inset_0_1px_0_rgba(255,249,245,0.12),0_12px_40px_-12px_rgba(28,22,18,0.55)]">
-            <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(145deg, #4c3c2d 0%, #6a5746 38%, #a58c75 72%, #876d55 100%)"></div>
-            <div class="pointer-events-none absolute inset-0 rounded-2xl" style="box-shadow: inset 0 0 120px 40px rgba(28, 22, 18, 0.35), inset 0 0 48px 12px rgba(76, 60, 45, 0.25)"></div>
-            <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-[0.14] mix-blend-soft-light" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E&quot;)"></div>
-            <div class="pointer-events-none absolute inset-0 rounded-2xl bg-[#c4a882]/15 mix-blend-multiply"></div>
-
-            <div class="relative z-[1] flex min-h-[280px] flex-col gap-8 pb-0 pt-2 text-[#fdf8f2] sm:min-h-[300px] md:min-h-[320px] md:flex-row md:items-stretch md:gap-0 md:pb-0 md:pt-2">
-              <div class="flex w-full flex-col items-start justify-center gap-5 px-4 pb-8 pt-8 text-left sm:px-6 md:min-h-0 md:min-w-0 md:flex-1 md:justify-center md:gap-6 md:px-8 md:py-12 md:pr-5 md:pb-12">
-                <h2 id="bonusy-konzultacia-heading" class="w-full [font-family:var(--font-serif)] text-[1.875rem] font-bold leading-[1.12] tracking-normal text-[#fdf8f2] sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">Mám otázku k výsledku</h2>
-                <p class="w-full max-w-none font-sans text-[1.125rem] leading-relaxed text-[#f0ebe3]/90 sm:text-[1.1875rem] md:max-w-lg md:text-xl md:leading-[1.65] lg:max-w-xl">Rezervuj si konzultáciu a preberieme tvoje čísla z kalkulačky a ďalší krok.</p>
-                <a href="https://konzultacia.jsmentor.sk/" target="_blank" rel="noopener noreferrer" class="btn-primary btn-primary-site-header mt-1 inline-flex items-center gap-2 text-body" data-umami-event="click_konzultacia" data-umami-event-section="bonusy-konzultacia">Rezervovať konzultáciu s Ivanom</a>
-              </div>
-
-              <div class="relative flex w-full min-h-0 flex-1 shrink-0 flex-col items-center justify-end overflow-hidden px-4 pb-0 pt-0 md:flex-none md:w-[42%] md:items-center md:justify-end md:self-stretch md:overflow-hidden md:px-5 md:pb-0 md:pt-6 lg:w-[38%]">
-                <img src="/assets/logo/js-brand-pattern-black.svg" alt="" aria-hidden="true" class="pointer-events-none absolute right-0 top-0 z-0 h-auto max-h-[min(598px,100%)] w-auto max-w-[min(495px,100%)] origin-top-right select-none opacity-[0.1] md:max-h-[min(690px,100%)] md:max-w-[min(546px,100%)]" />
-                <div class="relative z-[1] flex w-full justify-center leading-none md:w-auto">
-                  <div class="relative mx-auto md:mx-auto">
-                    <img src="/assets/images/ivan-jasik-js-mentor-kniha.png" alt="Ivan Jašík s knihou Psychológia peňazí" class="relative z-[1] mx-auto block max-h-64 w-auto max-w-full object-contain object-bottom contrast-[1.05] saturate-[0.92] brightness-[0.97] sepia-[0.22] drop-shadow-[0_8px_22px_rgba(28,22,18,0.4)] sm:max-h-72 md:max-h-80" />
-                    <div class="pointer-events-none absolute bottom-2 left-1/2 z-[1] hidden h-16 w-12 -translate-x-1/2 rounded-full bg-gradient-to-tr from-white/10 to-transparent opacity-20 blur-md md:block"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <footer class="border-t border-black/[0.08] px-4 py-3 md:px-10" style="background-color: #FFF9F5">
-      <div class="mx-auto flex max-w-[980px] flex-col items-center gap-2 text-center text-xs leading-tight text-foreground/65 md:flex-row md:justify-between md:gap-6 md:text-left md:text-sm">
-        <a href="/" class="inline-flex shrink-0 items-center">
-          <img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" class="h-7 w-auto md:h-8" />
-        </a>
-        <div class="flex flex-col items-center gap-1 md:flex-row md:gap-3">
-          <span class="font-sans tabular-nums">© 2026 Jashik s.r.o. Všetky práva vyhradené.</span>
-          <span class="hidden text-foreground/35 select-none md:inline" aria-hidden="true">·</span>
-          <a href="/gdpr" class="font-sans text-foreground/65 underline-offset-2 transition-colors hover:text-foreground hover:underline">Ochrana osobných údajov (GDPR)</a>
-        </div>
-      </div>
-    </footer>
-  </main>
-  <script src="/js/site.js"></script>
-</body>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

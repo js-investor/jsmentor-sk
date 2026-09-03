@@ -1,15 +1,7 @@
 /komunita                         /komunita.html                      200
 /bonusy                           /bonusy.html                        200
+/bonusy/*                         /bonusy.html                        200
 /gdpr                             /gdpr.html                          200
-/bonusy/hypo-kalkulacka           /bonusy-hypo-kalkulacka.html        200
-/bonusy/investicna-kalkulacka     /bonusy-investicna-kalkulacka.html  200
-/bonusy/mzdova-kalkulacka         /bonusy-mzdova-kalkulacka.html      200
-/bonusy/uverova-kalkulacka        /bonusy-uverova-kalkulacka.html     200
-/bonusy/rentova-kalkulacka        /bonusy-rentova-kalkulacka.html     200
-/bonusy/investicny-byt            /bonusy-investicny-byt.html         200
-/bonusy/etf-semafor               /bonusy-etf-semafor.html            200
-/bonusy/poplatkovy-rontgen        /bonusy-poplatkovy-rontgen.html     200
-/bonusy/bytovy-semafor            /bonusy-bytovy-semafor.html         200
 /index.html                       /                                   301
 /konzultaciajsmentor.html         /                                   301
 /komunita.html                    /komunita                           301
