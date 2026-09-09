@@ -12,6 +12,7 @@ PORT = int(os.environ.get("PORT", "3000"))
 ROUTES = {
     "/": "index.html",
     "/komunita": "komunita.html",
+    "/komunita-klient": "komunita-klient.html",
     "/bonusy": "bonusy.html",
     "/gdpr": "gdpr.html",
     "/404": "404.html",
@@ -22,6 +23,8 @@ HTML_REDIRECTS = {
     "/konzultaciajsmentor.html": "/",
     "/konzultacia": "/",
     "/komunita.html": "/komunita",
+    "/komunita-klient.html": "/komunita-klient",
+    "/komunita-klienti": "/komunita-klient",
     "/bonusy.html": "/bonusy",
     "/gdpr.html": "/gdpr",
     "/404.html": "/404",
@@ -130,7 +133,7 @@ class Handler(SimpleHTTPRequestHandler):
 if __name__ == "__main__":
     server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     print(f"JS Mentor: http://127.0.0.1:{PORT}/")
-    print(f"  /komunita  /bonusy  /gdpr")
+    print(f"  /komunita  /komunita-klient  /bonusy  /gdpr")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

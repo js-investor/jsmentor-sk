@@ -1,16 +1,18 @@
 <!doctype html>
 <!--
-  /komunita = React aplikácia (repo js-investor/jsmentor.sk-stary, build: `vite build --assetsDir assets/app`),
-  rovnaký bundle ako /bonusy (/assets/app). Tento súbor je len jej shell (meta, Cookiebot, Umami, most pre odkazy).
-  Nový build: _build/build-bonusy-app.sh (aktualizuje hashe v bonusy.html, komunita.html a komunita-klient.html)
+  /komunita-klient = dočasná privátna kópia /komunita (rovnaký React bundle).
+  Nie je v navigácii. Texty sú v jsmentor.sk-stary: src/pages/komunita2/komunitaKlientContent.ts
+  Nový build: _build/build-bonusy-app.sh
 -->
 <html lang="sk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive" />
     <link rel="icon" type="image/png" href="/assets/js-favicon.png" />
     <title>Komunita | JS Mentor</title>
-    <meta name="description" content="V mojej komunite ti ukážem, ako robiť lepšie rozhodnutia pri investovaní, hypotéke, fondoch, ETF, nehnuteľnostiach, rente a produktoch, ktoré ťa môžu stáť tisíce eur.">
+    <meta name="description" content="Privátny odkaz do komunity JS Mentor.">
     <meta name="author" content="Ivan Jasik — JS Mentor" />
     <script>
       (function () {
@@ -42,15 +44,14 @@
     <meta name="twitter:image" content="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg">
     <meta property="og:title" content="Komunita | JS Mentor">
   <meta name="twitter:title" content="Komunita | JS Mentor">
-  <meta property="og:description" content="V mojej komunite ti ukážem, ako robiť lepšie rozhodnutia pri investovaní, hypotéke, fondoch, ETF, nehnuteľnostiach, rente a produktoch, ktoré ťa môžu stáť tisíce eur.">
-  <meta name="twitter:description" content="V mojej komunite ti ukážem, ako robiť lepšie rozhodnutia pri investovaní, hypotéke, fondoch, ETF, nehnuteľnostiach, rente a produktoch, ktoré ťa môžu stáť tisíce eur.">
-  <meta property="og:url" content="https://jsmentor.sk/komunita">
+  <meta property="og:description" content="Privátny odkaz do komunity JS Mentor.">
+  <meta name="twitter:description" content="Privátny odkaz do komunity JS Mentor.">
+  <meta property="og:url" content="https://jsmentor.sk/komunita-klient">
   <script>
-    // Most medzi statickým webom a React aplikáciou /komunita:
-    // odkazy mimo /komunita (logo, /bonusy, /gdpr, /konzultacia …) sa načítajú ako klasické stránky
-    // s vlastným shellom a meta údajmi, aby ich nezachytil React Router.
+    // Most medzi statickým webom a React aplikáciou /komunita-klient:
+    // odkazy mimo tejto cesty sa načítajú ako klasické stránky s vlastným shellom.
     (function () {
-      var APP = "/komunita";
+      var APP = "/komunita-klient";
       function inApp(p) { return p === APP || p.indexOf(APP + "/") === 0; }
       document.addEventListener("click", function (e) {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;

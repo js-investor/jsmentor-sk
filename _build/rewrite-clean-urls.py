@@ -14,6 +14,7 @@ PAGE_REPLACEMENTS = [
     ("bonusy-poplatkovy-rontgen.html", "/bonusy/poplatkovy-rontgen"),
     ("bonusy-bytovy-semafor.html", "/bonusy/bytovy-semafor"),
     ("komunita.html", "/komunita"),
+    ("komunita-klient.html", "/komunita-klient"),
     ("bonusy.html", "/bonusy"),
     ("gdpr.html", "/gdpr"),
     ("404.html", "/404"),

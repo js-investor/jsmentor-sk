@@ -2,7 +2,7 @@
 # Zostaví React aplikáciu /bonusy + /komunita (repo js-investor/jsmentor.sk-stary) a skopíruje ju do tohto webu.
 # Použitie: _build/build-bonusy-app.sh [cesta-k-react-repu]   (predvolene ../jsmentor.sk-stary)
 #
-# Výsledok: assets/app/* (JS, CSS, fonty, obrázky s hashom) + aktualizované názvy bundle súborov v bonusy.html a komunita.html.
+# Výsledok: assets/app/* (JS, CSS, fonty, obrázky s hashom) + aktualizované názvy bundle súborov v bonusy.html, komunita.html a komunita-klient.html.
 # Shelly (meta, Cookiebot, Umami, most pre odkazy mimo aplikácie) ostávajú, menia sa len hashe.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd)"
@@ -17,7 +17,7 @@ cp -R "$OUT/assets/app" "$HERE/assets/app"
 JS="$(basename "$(ls "$OUT"/assets/app/index-*.js)")"
 CSS="$(basename "$(ls "$OUT"/assets/app/index-*.css)")"
 
-for SHELL in "$HERE/bonusy.html" "$HERE/komunita.html"; do
+for SHELL in "$HERE/bonusy.html" "$HERE/komunita.html" "$HERE/komunita-klient.html"; do
 python3 - "$SHELL" "$JS" "$CSS" <<'PY'
 import re, sys
 p, js, css = sys.argv[1:]
@@ -28,4 +28,4 @@ open(p, "w", encoding="utf-8").write(s)
 PY
 done
 
-echo "Hotovo: assets/app + bonusy.html + komunita.html -> $JS, $CSS"
+echo "Hotovo: assets/app + bonusy.html + komunita.html + komunita-klient.html -> $JS, $CSS"

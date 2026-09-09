@@ -1,4 +1,6 @@
 /komunita                         /komunita.html                      200
+/komunita-klient                  /komunita-klient.html               200
+/komunita-klienti                 /komunita-klient                    301
 /bonusy                           /bonusy.html                        200
 /bonusy/*                         /bonusy.html                        200
 /gdpr                             /gdpr.html                          200
@@ -6,6 +8,7 @@
 /konzultaciajsmentor.html         /                                   301
 /konzultacia                      /                                   302
 /komunita.html                    /komunita                           301
+/komunita-klient.html             /komunita-klient                    301
 /bonusy.html                      /bonusy                             301
 /gdpr.html                        /gdpr                               301
 /bonusy-hypo-kalkulacka.html      /bonusy/hypo-kalkulacka             301
