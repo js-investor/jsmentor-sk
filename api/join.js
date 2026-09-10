@@ -47,7 +47,6 @@ module.exports = async function handler(req, res) {
 
   const firstName = String(body?.firstName || "").trim();
   const email = String(body?.email || "").trim().toLowerCase();
-  const source = String(body?.source || "komunita").trim();
 
   if (!firstName || !email || !isValidEmail(email)) {
     json(res, 400, { ok: false, error: "Invalid firstName or email" });
@@ -58,10 +57,6 @@ module.exports = async function handler(req, res) {
     subscriber_data: {
       name: firstName,
       email,
-      tags: [source],
-      custom_fields: {
-        zdroj: source,
-      },
     },
     trigger_autoresponders: true,
     update_existing: true,
