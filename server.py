@@ -13,6 +13,7 @@ ROUTES = {
     "/": "index.html",
     "/komunita": "komunita.html",
     "/komunita-klient": "komunita-klient.html",
+    "/konzultacia-clen": "konzultacia-clen.html",
     "/bonusy": "bonusy.html",
     "/gdpr": "gdpr.html",
     "/404": "404.html",

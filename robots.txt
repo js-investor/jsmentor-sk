@@ -2,3 +2,5 @@ User-agent: *
 Disallow: /komunita-klient
 Disallow: /komunita-klient.html
 Disallow: /komunita-klienti
+Disallow: /konzultacia-clen
+Disallow: /konzultacia-clen.html

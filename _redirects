@@ -1,5 +1,6 @@
 /komunita                         /komunita.html                      200
 /komunita-klient                  /komunita-klient.html               200
+/konzultacia-clen                 /konzultacia-clen.html              200
 /komunita-klienti                 /komunita-klient                    301
 /bonusy                           /bonusy.html                        200
 /bonusy/*                         /bonusy.html                        200
@@ -20,3 +21,4 @@
 /bonusy-etf-semafor.html          /bonusy/etf-semafor                 301
 /bonusy-poplatkovy-rontgen.html   /bonusy/poplatkovy-rontgen          301
 /bonusy-bytovy-semafor.html       /bonusy/bytovy-semafor              301
+/konzultacia-clen.html            /konzultacia-clen                   301
