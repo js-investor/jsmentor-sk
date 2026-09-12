@@ -51,117 +51,188 @@
         --hair: rgba(41, 36, 32, 0.1); --hair-2: rgba(41, 36, 32, 0.18);
         --serif: "Calvino", "Recoleta", Georgia, serif; --sans: "Matter", "Gilroy", system-ui, sans-serif;
         --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+        --btn-grad: linear-gradient(145deg, #023c2e 0%, #065f4a 48%, #0a5a47 100%);
+        --btn-grad-hover: linear-gradient(145deg, #012a21 0%, #054838 48%, #084f3d 100%);
+        --ink-grad: linear-gradient(160deg, #3c3733 0%, #292420 55%, #1f1b18 100%);
       }
       *, *::before, *::after { box-sizing: border-box; }
       html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
       body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
       img { max-width: 100%; display: block; }
       a { color: inherit; }
-      h1, h2, h3, p { margin: 0; }
+      h1, h2, h3, p, figure, blockquote { margin: 0; }
+      ul { margin: 0; padding: 0; list-style: none; }
       .wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
       @media (min-width: 768px) { .wrap { padding: 0 2rem; } }
 
-      /* ---------- tlačidlá ---------- */
-      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem; padding: 0.9375rem 1.5rem; border-radius: 9999px; background: var(--green); color: var(--paper); font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.2; text-decoration: none; white-space: nowrap; transition: background 0.2s var(--ease), transform 0.2s var(--ease); }
-      .btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+      /* ---------- tlačidlá (gradient + lesk ako na /bonusy) ---------- */
+      .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem; padding: 0.9375rem 1.5rem; border-radius: 9999px; background: var(--btn-grad); color: #fff; font-family: var(--sans); font-size: 1rem; font-weight: 600; line-height: 1.2; text-decoration: none; white-space: nowrap; transition: background 0.3s var(--ease), transform 0.25s var(--ease); }
+      .btn::after { content: ""; position: absolute; top: -140%; left: -30%; width: 38%; height: 280%; background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.28) 50%, rgba(255, 255, 255, 0) 100%); transform: rotate(25deg) translateX(-160%); transition: transform 0.7s var(--ease); pointer-events: none; }
+      .btn:hover { background: var(--btn-grad-hover); transform: translateY(-2px); }
+      .btn:hover::after { transform: rotate(25deg) translateX(420%); }
       .btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
       .btn svg { width: 1.125rem; height: 1.125rem; flex-shrink: 0; }
-      .btn--lg { padding: 1.0625rem 1.75rem; font-size: 1.0625rem; }
+      .btn--lg { padding: 1.0625rem 1.875rem; font-size: 1.0625rem; }
       .btn--sm { padding: 0.625rem 1.125rem; font-size: 0.9375rem; }
-      @media (max-width: 480px) { .btn--sm { padding: 0.5rem 0.875rem; font-size: 0.8125rem; gap: 0.375rem; } .btn--sm svg { display: none; } .hdr img { height: 1.5rem; } }
       .btn--light { background: var(--paper); color: var(--ink); }
       .btn--light:hover { background: #fff; }
       .btn .arr { transition: transform 0.22s var(--ease); }
       .btn:hover .arr { transform: translateX(3px); }
-      @media (max-width: 480px) { .btn--lg { width: 100%; white-space: normal; text-align: center; } }
+      @media (max-width: 480px) { .btn--lg { width: 100%; white-space: normal; text-align: center; } .btn--sm { padding: 0.5rem 0.875rem; font-size: 0.8125rem; gap: 0.375rem; } .btn--sm svg { display: none; } .hdr img { height: 1.5rem; } }
+      .cta { display: flex; flex-direction: column; align-items: center; gap: 0.625rem; }
+      .cta--left { align-items: flex-start; }
+      .cta-note { font-size: 0.8125rem; color: var(--muted); }
+      .ink .cta-note { color: rgba(243, 233, 221, 0.62); }
 
       /* ---------- hlavička ---------- */
-      .hdr { position: sticky; top: 0; z-index: 20; background: rgba(255, 252, 247, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--hair); }
+      .hdr { position: sticky; top: 0; z-index: 20; background: rgba(255, 252, 247, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--hair); }
       .hdr .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4.25rem; }
       .hdr img { height: 1.75rem; width: auto; }
       @media (min-width: 768px) { .hdr .wrap { height: 4.75rem; } .hdr img { height: 2rem; } }
 
-      /* ---------- spoločné bloky ---------- */
-      .sec { padding: 4rem 0; }
-      @media (min-width: 768px) { .sec { padding: 6rem 0; } }
-      .sec + .sec { padding-top: 0; }
-      .kicker { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--green); }
-      .kicker::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--green); }
-      .h2 { font-family: var(--serif); font-size: clamp(2rem, 4.2vw, 3.125rem); line-height: 1.08; font-weight: 700; color: var(--ink); text-wrap: balance; }
+      /* ---------- rytmus, pásy, nadpisy ---------- */
+      .sec { position: relative; padding: 3.5rem 0; }
+      @media (min-width: 768px) { .sec { padding: 5rem 0; } }
+      .band { background: var(--ivory); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+      .band::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(42, 102, 71, 0.09) 1px, transparent 1px); background-size: 28px 28px; opacity: 0.7; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.25)); mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.25)); }
+      .band > .wrap { position: relative; }
+      .kicker { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.125rem; padding: 0.4375rem 0.875rem; border-radius: 9999px; background: var(--green); color: var(--paper); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+      .kicker--gold { background: rgba(217, 177, 92, 0.16); color: var(--gold); border: 1px solid rgba(217, 177, 92, 0.45); }
+      .kicker--ghost { background: var(--ivory); color: var(--green); border: 1px solid var(--hair-2); }
+      .h2 { font-family: var(--serif); font-size: clamp(2rem, 4.2vw, 3.125rem); line-height: 1.06; font-weight: 700; color: var(--ink); text-wrap: balance; }
       .h2 em { font-style: italic; color: var(--green); }
       .lede { margin-top: 1rem; max-width: 40rem; font-size: 1.0625rem; line-height: 1.6; color: var(--muted); text-wrap: pretty; }
       @media (min-width: 768px) { .lede { font-size: 1.125rem; } }
       .head { max-width: 46rem; }
       .head--center { margin: 0 auto; text-align: center; }
       .head--center .lede { margin-left: auto; margin-right: auto; }
-      .card { background: var(--ivory); border: 1px solid var(--hair); border-radius: 1.5rem; padding: 1.5rem; }
+      .card { position: relative; overflow: hidden; background: var(--ivory); border: 1px solid var(--hair); border-radius: 1.5rem; padding: 1.5rem; transition: transform 0.3s var(--ease), border-color 0.3s var(--ease); }
       @media (min-width: 768px) { .card { padding: 1.75rem; } }
+      .card:hover { transform: translateY(-3px); border-color: var(--hair-2); }
       .note { margin-top: 1.25rem; font-size: 0.8125rem; line-height: 1.5; color: var(--muted); }
-      .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
+      .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
       @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } }
+      /* tóny kariet ako na /bonusy */
+      .tone { background: var(--tone-bg); color: var(--tone-text, var(--ink)); border-color: transparent; }
+      .tone .tone-muted { color: var(--tone-muted, var(--fg2)); }
+      .tone-sand { --tone-bg: #f0e3cf; --tone-fg: #292420; --tone-fg2: rgba(169, 157, 126, 0.55); --tone-text: #292420; --tone-muted: #4a4239; }
+      .tone-stone { --tone-bg: #e9e4dc; --tone-fg: #292420; --tone-fg2: rgba(41, 36, 32, 0.22); --tone-text: #292420; --tone-muted: #4a4239; }
+      .tone-sage { --tone-bg: #2a6647; --tone-fg: #f3e9dd; --tone-fg2: rgba(243, 233, 221, 0.44); --tone-text: #f3e9dd; --tone-muted: rgba(243, 233, 221, 0.86); }
+      .tone-forest { --tone-bg: #0b3d2e; --tone-fg: #f3e9dd; --tone-fg2: rgba(243, 233, 221, 0.42); --tone-text: #f3e9dd; --tone-muted: rgba(243, 233, 221, 0.86); }
+      .tone-rust { --tone-bg: #ab4132; --tone-fg: #f6d9c8; --tone-fg2: rgba(246, 217, 200, 0.32); --tone-text: #f8ebe0; --tone-muted: rgba(248, 235, 224, 0.88); }
+      .tone-brown { --tone-bg: #292420; --tone-fg: #d9b15c; --tone-fg2: rgba(217, 177, 92, 0.3); --tone-text: #f3e9dd; --tone-muted: rgba(243, 233, 221, 0.86); }
+      .glyph { position: absolute; right: -1.25rem; top: -1.25rem; width: 9rem; height: 9rem; pointer-events: none; transform-origin: 70% 30%; transition: transform 0.5s var(--ease); }
+      .card:hover .glyph { transform: scale(1.05) rotate(-2deg); }
+      .glyph svg { width: 100%; height: 100%; display: block; }
+      .card > :not(.glyph) { position: relative; z-index: 1; }
 
       /* ---------- hero ---------- */
-      .hero { position: relative; padding: 3rem 0 3.5rem; }
-      @media (min-width: 768px) { .hero { padding: 5rem 0 4.5rem; } }
-      .hero-center { max-width: 52rem; margin: 0 auto; text-align: center; }
-      .pill { display: inline-flex; align-items: center; gap: 0.5rem; max-width: 100%; margin: 0 0 1.5rem; padding: 0.5rem 0.875rem 0.5rem 0.75rem; border-radius: 9999px; border: 1px solid var(--hair-2); background: var(--ivory); font-size: 0.875rem; font-weight: 500; color: var(--fg2); }
-      .pill::before { content: ""; flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--green); }
-      .h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5.4vw, 4.25rem); line-height: 1.02; font-weight: 700; color: var(--ink); text-wrap: balance; }
-      .hero-lede { margin: 1.5rem auto 0; max-width: 40rem; font-size: 1.125rem; line-height: 1.6; color: var(--fg2); text-wrap: pretty; }
+      .hero { position: relative; overflow: hidden; padding: 2.75rem 0 3.5rem; }
+      @media (min-width: 768px) { .hero { padding: 4.5rem 0 4.5rem; } }
+      .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60rem 30rem at 15% -10%, rgba(42, 102, 71, 0.16), transparent 60%), radial-gradient(44rem 26rem at 90% 10%, rgba(217, 177, 92, 0.22), transparent 60%); pointer-events: none; }
+      .hero::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(42, 102, 71, 0.08) 1px, transparent 1px); background-size: 28px 28px; -webkit-mask-image: radial-gradient(60% 60% at 50% 30%, #000, transparent); mask-image: radial-gradient(60% 60% at 50% 30%, #000, transparent); pointer-events: none; }
+      .hero > .wrap { position: relative; z-index: 1; }
+      .hero-center { max-width: 54rem; margin: 0 auto; text-align: center; }
+      .pill { display: inline-flex; align-items: center; gap: 0.5rem; max-width: 100%; margin: 0 0 1.375rem; padding: 0.5rem 0.875rem 0.5rem 0.75rem; border-radius: 9999px; border: 1px solid var(--hair-2); background: var(--ivory); font-size: 0.875rem; font-weight: 500; color: var(--fg2); }
+      .pill::before { content: ""; flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--green); box-shadow: 0 0 0 0 rgba(42, 102, 71, 0.4); animation: pulse 2.4s ease-out infinite; }
+      @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(42, 102, 71, 0.45); } 70% { box-shadow: 0 0 0 0.5rem rgba(42, 102, 71, 0); } 100% { box-shadow: 0 0 0 0 rgba(42, 102, 71, 0); } }
+      .h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5.6vw, 4.5rem); line-height: 1.02; font-weight: 700; color: var(--ink); text-wrap: balance; }
+      .h1 em { font-style: italic; color: var(--green); }
+      .h1 br { display: none; }
+      @media (min-width: 640px) { .h1 br { display: inline; } }
+      .hero-lede { margin: 1.375rem auto 0; max-width: 40rem; font-size: 1.125rem; line-height: 1.6; color: var(--fg2); text-wrap: pretty; }
       @media (min-width: 768px) { .hero-lede { font-size: 1.25rem; } }
-      .hero-actions { margin-top: 2rem; }
-      .hero-proof { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.75rem 1.5rem; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--hair); max-width: 44rem; }
-      .hero-proof li { list-style: none; display: inline-flex; align-items: baseline; gap: 0.5rem; font-size: 0.9375rem; color: var(--muted); }
-      .hero-proof b { font-family: var(--serif); font-size: 1.5rem; line-height: 1; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-      .hero-proof ul { display: contents; }
+      .hero-actions { margin-top: 1.75rem; }
+      .statbar { position: relative; overflow: hidden; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.5rem; max-width: 60rem; margin: 2.25rem auto 0; padding: 1.25rem 1rem; border-radius: 1.5rem; background: var(--ink-grad); color: var(--paper); }
+      @media (min-width: 768px) { .statbar { grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 1.5rem 1.25rem; } }
+      .statbar::after { content: ""; position: absolute; right: -6rem; top: -8rem; width: 18rem; height: 18rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.22) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
+      .statbar > div { position: relative; z-index: 1; text-align: center; padding: 0 0.25rem; }
+      .statbar b { display: block; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2.125rem); line-height: 1; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+      .statbar span { display: block; margin-top: 0.375rem; font-size: 0.75rem; line-height: 1.35; color: rgba(243, 233, 221, 0.72); }
+      .statbar > div:last-child { grid-column: span 2; }
+      @media (min-width: 768px) { .statbar > div:last-child { grid-column: auto; } }
+      .hero-video { max-width: 760px; margin: 2rem auto 0; padding: 0.375rem; border-radius: 28px; background: linear-gradient(145deg, rgba(42, 102, 71, 0.35), rgba(217, 177, 92, 0.45)); }
+      .hero-video .frame { aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; background: #241c15; }
+      .hero-video iframe { width: 100%; height: 100%; border: 0; display: block; }
       .hero-me { display: inline-flex; align-items: center; gap: 0.625rem; margin-top: 1.25rem; font-size: 0.875rem; color: var(--muted); }
       .hero-me img { width: 2.25rem; height: 2.25rem; border-radius: 9999px; object-fit: cover; object-position: 50% 20%; border: 2px solid var(--ivory); }
       .hero-me b { font-weight: 600; color: var(--ink); }
 
-      /* ---------- 01 prečo teraz ---------- */
+      /* ---------- slovo pre členov ---------- */
+      .word { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; }
+      @media (min-width: 900px) { .word { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 3.5rem; } }
+      .word-photo { position: relative; padding: 0.375rem; border-radius: 1.875rem; background: linear-gradient(160deg, rgba(42, 102, 71, 0.45), rgba(217, 177, 92, 0.5)); }
+      .word-photo .ph { position: relative; border-radius: 1.5rem; overflow: hidden; background: var(--stone); }
+      .word-photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
+      .word-photo .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(41, 36, 32, 0) 55%, rgba(41, 36, 32, 0.5) 100%); pointer-events: none; }
+      .word-tags { position: absolute; left: 1.25rem; bottom: 1.25rem; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .tag-pill { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; border-radius: 9999px; background: var(--ivory); color: var(--ink); font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+      .tag-pill::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 9999px; background: var(--green); }
+      .word-quote { position: relative; margin-top: 1.25rem; padding-left: 1.25rem; border-left: 3px solid var(--gold); font-size: 1.0625rem; line-height: 1.65; color: var(--fg2); text-wrap: pretty; }
+      @media (min-width: 768px) { .word-quote { font-size: 1.125rem; } }
+      .word-sign { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.25rem; font-family: var(--serif); font-style: italic; font-size: 1.75rem; color: var(--ink); }
+      .word-sign::after { content: ""; width: 3rem; height: 2px; background: var(--gold); }
+
+      /* ---------- prečo teraz: tónované karty s tvarmi ---------- */
       .stake { display: flex; flex-direction: column; gap: 0.5rem; }
-      .stake .fig { font-family: var(--serif); font-size: clamp(2rem, 3.4vw, 2.75rem); line-height: 1; font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
-      .stake .fig small { display: block; margin-top: 0.375rem; font-family: var(--sans); font-size: 0.8125rem; font-weight: 500; color: var(--muted); }
-      .stake h3 { margin-top: 0.75rem; font-family: var(--serif); font-size: 1.375rem; line-height: 1.2; font-weight: 700; color: var(--ink); }
-      .stake p { font-size: 0.9375rem; line-height: 1.55; color: var(--fg2); }
-      .good { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 1rem; background: var(--green); color: var(--paper); font-size: 1rem; font-weight: 500; }
-      .good svg { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
+      .stake .fig { font-family: var(--serif); font-size: clamp(2rem, 3.4vw, 2.75rem); line-height: 1; font-weight: 700; color: var(--tone-fg); font-variant-numeric: tabular-nums; }
+      .stake .fig small { display: block; margin-top: 0.5rem; font-family: var(--sans); font-size: 0.8125rem; font-weight: 500; color: var(--tone-muted); }
+      .stake h3 { margin-top: 0.875rem; padding-top: 1rem; border-top: 1px solid var(--tone-fg2); font-family: var(--serif); font-size: 1.375rem; line-height: 1.2; font-weight: 700; }
+      .stake p.t { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.55; color: var(--tone-muted); }
+      .good { display: flex; align-items: center; gap: 0.875rem; margin-top: 1.25rem; padding: 1.125rem 1.375rem; border-radius: 1.125rem; background: var(--btn-grad); color: var(--paper); font-size: 1.0625rem; font-weight: 500; }
+      .good i { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2rem; height: 2rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.16); }
+      .good svg { width: 1.125rem; height: 1.125rem; }
 
-      /* ---------- 02 ako to prebieha ---------- */
-      .steps { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
-      @media (min-width: 768px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } }
-      .step { position: relative; }
-      .step .n { font-family: var(--serif); font-size: 3rem; line-height: 1; font-weight: 700; color: var(--sand); }
+      /* ---------- čo ťa brzdí ---------- */
+      .fears { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      @media (min-width: 768px) { .fears { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+      .fear::before { content: "\201C"; position: absolute; right: 1.25rem; top: 0.75rem; font-family: var(--serif); font-size: 5.5rem; line-height: 1; font-weight: 700; color: rgba(42, 102, 71, 0.13); pointer-events: none; }
+      .fear .q { padding-right: 3rem; font-family: var(--serif); font-style: italic; font-size: 1.375rem; line-height: 1.25; font-weight: 600; color: var(--ink); }
+      .fear .a { display: flex; gap: 0.75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--hair); font-size: 0.9375rem; line-height: 1.6; color: var(--fg2); }
+      .fear .a i { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.5rem; height: 1.5rem; margin-top: 0.125rem; border-radius: 9999px; background: var(--green); color: var(--paper); }
+      .fear .a svg { width: 0.875rem; height: 0.875rem; }
+      .sec-cta { margin-top: 2rem; }
+
+      /* ---------- ako to prebieha: cesta ---------- */
+      .steps { position: relative; display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
+      @media (min-width: 768px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } .steps::before { content: ""; position: absolute; left: 8%; right: 8%; top: 4.5rem; border-top: 2px dashed rgba(42, 102, 71, 0.35); } }
+      .step { padding-top: 1.5rem; }
+      .step .n { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: 9999px; background: var(--btn-grad); color: var(--paper); font-family: var(--serif); font-size: 1.375rem; font-weight: 700; box-shadow: 0 0 0 6px var(--ivory); }
       .step .tag { position: absolute; top: 1.5rem; right: 1.5rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: var(--beige); font-size: 0.75rem; font-weight: 600; color: var(--green); }
-      .step h3 { margin-top: 1rem; font-family: var(--serif); font-size: 1.375rem; line-height: 1.2; font-weight: 700; color: var(--ink); }
+      .step h3 { margin-top: 1.125rem; font-family: var(--serif); font-size: 1.375rem; line-height: 1.2; font-weight: 700; color: var(--ink); }
       .step p { margin-top: 0.5rem; font-size: 0.9375rem; line-height: 1.55; color: var(--fg2); }
-      .after { margin-top: 1.25rem; font-size: 0.9375rem; color: var(--muted); }
+      .after { display: inline-flex; align-items: center; gap: 0.625rem; margin-top: 1.25rem; padding: 0.625rem 1rem; border-radius: 9999px; background: var(--ivory); border: 1px solid var(--hair-2); font-size: 0.875rem; color: var(--fg2); }
+      .after::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--gold); }
 
-      /* ---------- 03 čo dostaneš ---------- */
-      .offer { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2.25rem; align-items: start; }
+      /* ---------- čo dostaneš ---------- */
+      .offer { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; align-items: start; }
       @media (min-width: 1024px) { .offer { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); gap: 1.5rem; } }
+      .offer .card:hover { transform: none; }
       .o-head { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--hair-2); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--muted); }
-      .o-group { margin-top: 1rem; font-size: 0.8125rem; font-weight: 600; color: var(--green); }
+      .o-group { display: inline-flex; margin-top: 1rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: var(--beige); font-size: 0.75rem; font-weight: 600; color: var(--green); }
       .o-row { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.875rem 0; border-bottom: 1px solid var(--hair); }
       .o-row b { display: block; font-size: 1rem; font-weight: 600; color: var(--ink); }
       .o-row small { display: block; margin-top: 0.125rem; font-size: 0.8125rem; line-height: 1.45; color: var(--muted); }
       .o-row .p { font-family: var(--serif); font-size: 1.125rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
-      .o-final { position: relative; overflow: hidden; padding: 1.75rem 1.5rem; border-radius: 1.5rem; background: linear-gradient(160deg, #3c3733 0%, #292420 55%, #1f1b18 100%); color: var(--paper); }
+      .o-final { position: relative; overflow: hidden; padding: 1.75rem 1.5rem; border-radius: 1.5rem; background: var(--ink-grad); color: var(--paper); }
       @media (min-width: 768px) { .o-final { padding: 2rem 1.75rem; } }
-      .o-final::after { content: ""; position: absolute; right: -6rem; top: -6rem; width: 16rem; height: 16rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.24) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
+      .o-final::after { content: ""; position: absolute; right: -6rem; top: -6rem; width: 18rem; height: 18rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.26) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
       .o-final > * { position: relative; z-index: 1; }
-      .o-sum { display: flex; flex-direction: column; gap: 0.25rem; }
-      .o-sum span { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: rgba(243, 233, 221, 0.62); }
-      .o-sum b { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: rgba(243, 233, 221, 0.66); text-decoration: line-through; text-decoration-color: rgba(217, 177, 92, 0.7); font-variant-numeric: tabular-nums; }
+      .o-sum span, .o-pay span { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: rgba(243, 233, 221, 0.62); }
+      .o-sum b { display: block; margin-top: 0.125rem; font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: rgba(243, 233, 221, 0.66); text-decoration: line-through; text-decoration-color: rgba(217, 177, 92, 0.7); font-variant-numeric: tabular-nums; }
       .o-pay { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(243, 233, 221, 0.16); }
-      .o-pay span { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: rgba(243, 233, 221, 0.62); }
       .o-pay b { display: block; margin-top: 0.125rem; font-family: var(--serif); font-size: clamp(3rem, 6vw, 4rem); line-height: 1; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
       .o-why { margin-top: 1.25rem; font-size: 0.9375rem; line-height: 1.6; color: rgba(243, 233, 221, 0.82); }
       .o-why b { font-weight: 600; color: var(--paper); }
-      .o-final .btn { margin-top: 1.5rem; }
+      .cap { display: inline-block; line-height: 1.5; margin-top: 1.25rem; padding: 0.5rem 0.875rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); border: 1px solid rgba(217, 177, 92, 0.4); font-size: 0.8125rem; font-weight: 500; color: rgba(243, 233, 221, 0.86); }
+      .cap::before { content: ""; display: inline-block; vertical-align: middle; margin-right: 0.5rem; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--gold); }
+      .cap b { color: var(--gold); font-weight: 700; }
+      .o-final .cta { margin-top: 1.5rem; }
+      @media (max-width: 480px) { .o-head span:last-child { display: none; } }
 
-      /* ---------- 04 výsledky ---------- */
-      .res { display: flex; flex-direction: column; }
+      /* ---------- výsledky ---------- */
+      .res { display: flex; flex-direction: column; padding-top: 1.875rem; }
+      .res::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 0.375rem; background: linear-gradient(90deg, var(--green), var(--gold)); }
       .res-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
       .res-head h3 { font-family: var(--serif); font-size: 1.5rem; line-height: 1.1; font-weight: 700; color: var(--ink); }
       .res-head span { font-size: 0.8125rem; color: var(--muted); text-align: right; }
@@ -175,144 +246,88 @@
       .res-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; padding-top: 0.875rem; border-top: 1px solid var(--hair); }
       .res-stats span { display: block; font-size: 0.75rem; color: var(--muted); }
       .res-stats b { display: block; font-family: var(--serif); font-size: 1.125rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-      .trust { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; padding: 1.25rem 1.5rem; border-radius: 1.25rem; background: var(--beige); }
+      .trust { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; padding: 1.375rem 1.5rem; border-radius: 1.25rem; background: var(--green-dark); color: var(--paper); }
       @media (min-width: 768px) { .trust { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2rem; } }
-      .trust p { display: flex; gap: 0.75rem; font-size: 0.9375rem; line-height: 1.55; color: var(--fg2); }
-      .trust svg { flex-shrink: 0; width: 1.25rem; height: 1.25rem; margin-top: 0.125rem; color: var(--green); }
-      .trust-marks { font-size: 0.8125rem; color: var(--muted); }
-      .trust-marks b { display: block; margin-top: 0.125rem; font-family: var(--serif); font-size: 1.125rem; font-weight: 700; color: var(--ink); }
-
-      /* ---------- 05 recenzie ---------- */
-      .quote { display: flex; flex-direction: column; gap: 1.25rem; }
-      .quote blockquote { margin: 0; font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; font-weight: 600; color: var(--ink); text-wrap: pretty; }
-      .quote blockquote::before { content: "„"; color: var(--green); }
-      .quote blockquote::after { content: "“"; color: var(--green); }
-      .quote figcaption { display: flex; align-items: center; gap: 0.75rem; margin-top: auto; }
-      .quote img { width: 2.75rem; height: 2.75rem; border-radius: 9999px; object-fit: cover; border: 2px solid var(--cream); }
-      .quote b { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
-      .quote small { display: block; font-size: 0.8125rem; color: var(--muted); }
-      .quote figure { margin: 0; display: contents; }
-
-      /* ---------- 06 pre koho ---------- */
-      .fit { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
-      @media (min-width: 768px) { .fit { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
-      .fit h3 { display: flex; align-items: center; gap: 0.625rem; font-family: var(--serif); font-size: 1.375rem; font-weight: 700; color: var(--ink); }
-      .fit h3 i { display: inline-flex; align-items: center; justify-content: center; width: 1.875rem; height: 1.875rem; border-radius: 9999px; background: var(--green); color: var(--paper); }
-      .fit h3 i svg { width: 1rem; height: 1rem; }
-      .fit ul { list-style: none; margin: 1.25rem 0 0; padding: 0; display: flex; flex-direction: column; }
-      .fit li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 0; border-top: 1px solid var(--hair); font-size: 0.9375rem; line-height: 1.5; color: var(--fg2); }
-      .fit li svg { flex-shrink: 0; width: 1.125rem; height: 1.125rem; margin-top: 0.1875rem; color: var(--green); }
-      .fit--no h3 i { background: var(--stone); color: var(--muted); }
-      .fit--no li svg { color: var(--muted); }
-      .fit--no { background: transparent; }
-
-      /* ---------- 07 záver ---------- */
-      .final { position: relative; overflow: hidden; padding: 2.5rem 1.5rem; border-radius: 1.75rem; background: linear-gradient(160deg, #3c3733 0%, #292420 55%, #1f1b18 100%); color: var(--paper); text-align: center; }
-      @media (min-width: 768px) { .final { padding: 4rem 2.5rem; } }
-      .final::after { content: ""; position: absolute; left: 50%; top: -14rem; width: 34rem; height: 34rem; transform: translateX(-50%); border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.2) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
-      .final > * { position: relative; z-index: 1; }
-      .final .kicker { color: var(--gold); }
-      .final .kicker::before { background: var(--gold); }
-      .final h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3.25rem); line-height: 1.08; font-weight: 700; color: var(--paper); text-wrap: balance; }
-      .final p { margin: 1rem auto 0; max-width: 32rem; font-size: 1.0625rem; line-height: 1.6; color: rgba(243, 233, 221, 0.82); }
-      .final .btn { margin-top: 1.75rem; }
-      .final small { display: block; margin-top: 1rem; font-size: 0.8125rem; color: rgba(243, 233, 221, 0.62); }
-
-      /* ---------- pätička ---------- */
-      .ftr { padding: 2.5rem 0 3rem; border-top: 1px solid var(--hair); }
-      .ftr .wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
-      @media (min-width: 768px) { .ftr .wrap { flex-direction: row; justify-content: space-between; text-align: left; } }
-      .ftr img { height: 1.625rem; width: auto; }
-      .ftr p { font-size: 0.8125rem; color: var(--muted); }
-      .ftr a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
-      .ftr a:hover { color: var(--ink); }
-
-
-      /* ---------- doplnky 2.0 ---------- */
-      .cta { display: flex; flex-direction: column; align-items: center; gap: 0.625rem; }
-      .cta-note { font-size: 0.8125rem; color: var(--muted); }
-      .final .cta-note, .o-final .cta-note { color: rgba(243, 233, 221, 0.62); }
-      .cta--left { align-items: flex-start; }
-      .h1 br { display: none; }
-      @media (min-width: 640px) { .h1 br { display: inline; } }
-      .hero-proof li { gap: 0.4rem; }
-      .hero-proof b { font-size: 1.375rem; }
-      .hero-video { max-width: 760px; margin: 2.5rem auto 0; }
-      .hero-video .frame { aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; background: #241c15; border: 1px solid var(--hair); }
-      .hero-video iframe { width: 100%; height: 100%; border: 0; display: block; }
-      /* slovo pre členov */
-      .word { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; }
-      @media (min-width: 900px) { .word { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3.5rem; } }
-      .word-photo { position: relative; border-radius: 1.5rem; overflow: hidden; background: var(--stone); }
-      .word-photo img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 20%; }
-      .word-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(41, 36, 32, 0) 55%, rgba(41, 36, 32, 0.45) 100%); pointer-events: none; }
-      .word-tags { position: absolute; left: 1rem; bottom: 1rem; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-      .tag-pill { display: inline-flex; align-items: center; padding: 0.5rem 0.875rem; border-radius: 9999px; background: var(--ivory); color: var(--ink); font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
-      .word-text .lede { max-width: none; color: var(--fg2); }
-      .word-quote { margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg2); text-wrap: pretty; }
-      @media (min-width: 768px) { .word-quote { font-size: 1.125rem; } }
-      .word-sign { display: block; margin-top: 1.25rem; font-family: var(--serif); font-style: italic; font-size: 1.75rem; color: var(--ink); }
-      /* čo ťa brzdí */
-      .fears { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
-      @media (min-width: 768px) { .fears { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
-      .fear .q { font-family: var(--serif); font-style: italic; font-size: 1.375rem; line-height: 1.25; font-weight: 600; color: var(--ink); }
-      .fear .a { margin-top: 0.875rem; padding-top: 0.875rem; border-top: 1px solid var(--hair); font-size: 0.9375rem; line-height: 1.6; color: var(--fg2); }
-      .sec-cta { margin-top: 2rem; }
-      /* kapacita mesiaca (ručne upravovaný blok) */
-      .cap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; padding: 0.5rem 0.875rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); border: 1px solid rgba(217, 177, 92, 0.4); font-size: 0.8125rem; font-weight: 500; color: rgba(243, 233, 221, 0.86); }
-      .cap::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--gold); }
-      .cap b { color: var(--gold); font-weight: 700; }
-      /* ukážka plánu */
-      .plan { margin-top: 3.5rem; }
-      .plan-row { display: flex; gap: 1rem; margin-top: 2rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-      .plan-row img { flex: 0 0 15.5rem; width: 15.5rem; height: auto; border-radius: 0.875rem; border: 1px solid var(--hair-2); background: #fff; scroll-snap-align: start; }
-      @media (min-width: 1024px) { .plan-row { flex-wrap: wrap; justify-content: center; overflow: visible; } .plan-row img { flex: 0 1 13.25rem; width: 13.25rem; } }
-      .swipe { display: block; margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted); text-align: center; }
-      @media (min-width: 1024px) { .swipe { display: none; } }
-      .plan-lead { margin: 1.5rem auto 0; max-width: 40rem; text-align: center; font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; font-weight: 600; color: var(--ink); text-wrap: balance; }
-      .plan-text { margin: 1rem auto 0; max-width: 44rem; text-align: center; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); }
-      /* slovo klienta */
-      .client { position: relative; overflow: hidden; margin-top: 2rem; padding: 2.5rem 1.5rem; border-radius: 1.75rem; background: linear-gradient(160deg, #3c3733 0%, #292420 55%, #1f1b18 100%); color: var(--paper); text-align: center; }
+      .trust::after { content: ""; position: absolute; right: -5rem; top: -6rem; width: 16rem; height: 16rem; border-radius: 9999px; background: radial-gradient(circle, rgba(243, 233, 221, 0.12) 0%, rgba(243, 233, 221, 0) 70%); pointer-events: none; }
+      .trust > * { position: relative; z-index: 1; }
+      .trust p { display: flex; gap: 0.875rem; font-size: 0.9375rem; line-height: 1.55; color: rgba(243, 233, 221, 0.88); }
+      .trust i { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.25rem; height: 2.25rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.14); color: var(--paper); }
+      .trust svg { width: 1.125rem; height: 1.125rem; }
+      .trust-marks { font-size: 0.8125rem; color: rgba(243, 233, 221, 0.66); }
+      .trust-marks b { display: block; margin-top: 0.125rem; font-family: var(--serif); font-size: 1.125rem; font-weight: 700; color: var(--paper); }
+      .client { position: relative; overflow: hidden; margin-top: 1.5rem; padding: 2.5rem 1.5rem; border-radius: 1.75rem; background: var(--ink-grad); color: var(--paper); text-align: center; }
       @media (min-width: 768px) { .client { padding: 3.5rem 2.5rem; } }
+      .client::before { content: "„"; position: absolute; left: 50%; top: -1rem; transform: translateX(-50%); font-family: var(--serif); font-size: 22rem; line-height: 1; font-weight: 700; color: rgba(217, 177, 92, 0.07); pointer-events: none; }
       .client::after { content: ""; position: absolute; right: -8rem; top: -8rem; width: 22rem; height: 22rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.2) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
       .client > * { position: relative; z-index: 1; }
-      .client .kicker { color: var(--gold); }
-      .client .kicker::before { background: var(--gold); }
       .client blockquote { margin: 0.5rem auto 0; max-width: 46rem; font-family: var(--serif); font-size: clamp(1.375rem, 3vw, 2rem); line-height: 1.35; font-weight: 600; color: var(--paper); text-wrap: balance; }
       .client blockquote em { font-style: normal; color: var(--gold); }
       .client figcaption { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1.5rem; }
       .client .ini { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(217, 177, 92, 0.18); border: 1px solid rgba(217, 177, 92, 0.5); font-family: var(--serif); font-weight: 700; color: var(--gold); }
       .client figcaption b { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--paper); text-align: left; }
       .client figcaption small { display: block; font-size: 0.8125rem; color: rgba(243, 233, 221, 0.62); text-align: left; }
-      /* záver: fotka vľavo, text vpravo */
-      .final { text-align: left; display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; padding: 1.25rem; }
+
+      /* ---------- recenzie: tónované ---------- */
+      .quote { display: flex; flex-direction: column; gap: 1.25rem; min-height: 13rem; }
+      .quote::before { content: "\201C"; position: absolute; right: 1.25rem; top: 0.75rem; font-family: var(--serif); font-size: 5rem; line-height: 1; font-weight: 700; color: var(--tone-fg2, rgba(42, 102, 71, 0.12)); pointer-events: none; }
+      .quote blockquote { padding-right: 2.5rem; font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; font-weight: 600; text-wrap: pretty; }
+      .quote figcaption { display: flex; align-items: center; gap: 0.75rem; margin-top: auto; }
+      .quote img { width: 2.75rem; height: 2.75rem; border-radius: 9999px; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.5); }
+      .quote b { display: block; font-size: 0.9375rem; font-weight: 600; }
+      .quote small { display: block; font-size: 0.8125rem; color: var(--tone-muted, var(--muted)); }
+
+      /* ---------- pre koho ---------- */
+      .fit { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2rem; }
+      @media (min-width: 768px) { .fit { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+      .fit h3 { display: flex; align-items: center; gap: 0.625rem; font-family: var(--serif); font-size: 1.375rem; font-weight: 700; }
+      .fit h3 i { display: inline-flex; align-items: center; justify-content: center; width: 1.875rem; height: 1.875rem; border-radius: 9999px; background: var(--gold); color: var(--ink); }
+      .fit h3 i svg { width: 1rem; height: 1rem; }
+      .fit ul { margin-top: 1.25rem; display: flex; flex-direction: column; }
+      .fit li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 0; border-top: 1px solid rgba(243, 233, 221, 0.16); font-size: 0.9375rem; line-height: 1.5; }
+      .fit li svg { flex-shrink: 0; width: 1.125rem; height: 1.125rem; margin-top: 0.1875rem; color: var(--gold); }
+      .fit--no h3 i { background: var(--stone); color: var(--muted); }
+      .fit--no li { border-top-color: var(--hair); color: var(--fg2); }
+      .fit--no li svg { color: var(--muted); }
+      .fit .glyph { width: 7.5rem; height: 7.5rem; right: -1rem; top: -1rem; opacity: 0.85; }
+
+      /* ---------- záver ---------- */
+      .final { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; padding: 1.25rem; border-radius: 1.75rem; background: var(--ink-grad); color: var(--paper); }
       @media (min-width: 900px) { .final { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3rem; padding: 1.5rem 3rem 1.5rem 1.5rem; } }
-      .final figure { margin: 0; border-radius: 1.25rem; overflow: hidden; }
+      .final::after { content: ""; position: absolute; right: -10rem; top: -10rem; width: 30rem; height: 30rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.22) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
+      .final > * { position: relative; z-index: 1; }
+      .final figure { border-radius: 1.25rem; overflow: hidden; }
       .final figure img { width: 100%; height: auto; }
       .final-copy { padding: 0.75rem 0.25rem 1rem; }
       @media (min-width: 900px) { .final-copy { padding: 1rem 0; } }
-      .final .cta { align-items: flex-start; }
-      .final p { margin-left: 0; margin-right: 0; }
-      /* plávajúce tlačidlo na mobile */
-      .fab { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; display: none; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: var(--green); color: var(--paper); box-shadow: 0 8px 24px rgba(11, 61, 46, 0.35); }
-      .fab svg { width: 1.625rem; height: 1.625rem; }
-      .fab:hover { background: var(--green-dark); }
-      @media (max-width: 768px) { .fab { display: inline-flex; } }
+      .final h2 { font-family: var(--serif); font-size: clamp(2rem, 4.6vw, 3.25rem); line-height: 1.06; font-weight: 700; color: var(--paper); text-wrap: balance; }
+      .final p { margin-top: 1rem; max-width: 32rem; font-size: 1.0625rem; line-height: 1.6; color: rgba(243, 233, 221, 0.82); }
+      .final .cta { margin-top: 1.75rem; }
 
-      /* ---------- odhalenie pri scrollovaní ---------- */
-      .rv { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+      /* ---------- pätička, plávajúce tlačidlo, odhalenie ---------- */
+      .ftr { padding: 2.5rem 0 3rem; border-top: 1px solid var(--hair); }
+      .ftr .wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; }
+      @media (min-width: 768px) { .ftr .wrap { flex-direction: row; justify-content: space-between; text-align: left; } }
+      .ftr img { height: 1.625rem; width: auto; }
+      .ftr p { font-size: 0.8125rem; color: var(--muted); }
+      .ftr a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+      .fab { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; display: none; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: var(--btn-grad); color: #fff; box-shadow: 0 8px 24px rgba(11, 61, 46, 0.35); }
+      .fab svg { width: 1.625rem; height: 1.625rem; }
+      @media (max-width: 768px) { .fab { display: inline-flex; } }
+      .rv { opacity: 0; transform: translateY(16px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
       .rv.in { opacity: 1; transform: none; }
-      @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .btn, .btn .arr { transition: none; } }
+      .grid-3 > .rv:nth-child(2), .fears > .rv:nth-child(2), .steps > .rv:nth-child(2), .fit > .rv:nth-child(2) { transition-delay: 0.08s; }
+      .grid-3 > .rv:nth-child(3), .fears > .rv:nth-child(3), .steps > .rv:nth-child(3) { transition-delay: 0.16s; }
+      .grid-3 > .rv:nth-child(4), .fears > .rv:nth-child(4) { transition-delay: 0.24s; }
+      .grid-3 > .rv:nth-child(5) { transition-delay: 0.32s; }
+      .grid-3 > .rv:nth-child(6) { transition-delay: 0.4s; }
+      @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .btn, .btn::after, .btn .arr, .card, .glyph { transition: none; } .pill::before { animation: none; } }
     </style>
   </head>
   <body>
     <header class="hdr">
       <div class="wrap">
         <a href="/" aria-label="JS Mentor – domov"><img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" width="879" height="310" /></a>
-        <a class="btn btn--sm" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="header">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-          Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span>
-        </a>
+        <a class="btn btn--sm" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="header"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </header>
 
@@ -322,18 +337,16 @@
         <div class="wrap">
           <div class="hero-center">
             <p class="pill">Pre členov komunity · 30 minút · zadarmo</p>
-            <h1 class="h1">Videl si, ako rozmýšľam. <br />Teraz poďme na tvoju situáciu.</h1>
+            <h1 class="h1">Videl si, ako rozmýšľam. <br />Teraz poďme na <br /><em>tvoju situáciu.</em></h1>
             <p class="hero-lede">30 minút online. Prejdeme, čo riešiš – hypotéku, byt, investovanie alebo rentu – a poviem ti, čo by som robil na tvojom mieste. Do 7 dní máš v maili osobný plán.</p>
-            <div class="hero-actions"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
-            <div class="hero-proof" aria-label="Dôkazy">
-              <ul>
-                <li><b>4 000+</b>účastníkov online kurzov</li>
-                <li><b>200+</b>klientov</li>
-                <li><b>EFA</b>vzdelanie</li>
-                <li><b>NBS</b>pod dohľadom</li>
-                <li><b>900+</b>konzultácií</li>
-              </ul>
-            </div>
+            <div class="hero-actions"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
+          </div>
+          <div class="statbar rv" aria-label="Dôkazy">
+            <div><b>4 000+</b><span>účastníkov online kurzov</span></div>
+            <div><b>200+</b><span>klientov</span></div>
+            <div><b>EFA</b><span>European Financial Advisor</span></div>
+            <div><b>NBS</b><span>pod dohľadom</span></div>
+            <div><b>900+</b><span>konzultácií</span></div>
           </div>
           <div class="hero-video rv">
             <div class="frame">
@@ -344,12 +357,14 @@
       </section>
 
       <!-- ═══ 2. Slovo pre členov ═══ -->
-      <section class="sec" id="slovo">
+      <section class="sec band" id="slovo">
         <div class="wrap">
           <div class="word">
             <div class="word-photo rv">
-              <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" />
-              <div class="word-tags"><span class="tag-pill">Pod dohľadom NBS</span><span class="tag-pill">EFA vzdelanie</span></div>
+              <div class="ph">
+                <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" />
+                <div class="word-tags"><span class="tag-pill">Pod dohľadom NBS</span><span class="tag-pill">EFA vzdelanie</span></div>
+              </div>
             </div>
             <div class="word-text rv">
               <span class="kicker">Slovo pre členov</span>
@@ -370,41 +385,41 @@
             <p class="lede">Kým čakáš na „lepší moment“, tieto tri veci pracujú proti tebe. Potichu, ale s presnými číslami.</p>
           </div>
           <div class="grid-3">
-            <article class="card stake rv">
+            <article class="card tone tone-sand stake rv"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="62" cy="48" r="26" fill="var(--tone-fg2)"/><path d="M8 80 H96" stroke="var(--tone-fg)" stroke-width="6" stroke-linecap="round" opacity="0.3"/><path d="M62 10 v10 M92 48 h-8 M84 26 l-6 6 M84 70 l-6 -6" stroke="var(--tone-fg)" stroke-width="5" stroke-linecap="round" opacity="0.3"/></svg></span>
               <p class="fig">−26 %<small>kúpnej sily o 10 rokov pri 3 % inflácii</small></p>
               <h3>Inflácia žerie tvoj účet 🫠</h3>
-              <p>Pri 3 % inflácii stratíš vyše štvrtiny kúpnej sily. A inflácia ti notifikáciu nepošle.</p>
+              <p class="t">Pri 3 % inflácii stratíš vyše štvrtiny kúpnej sily. A inflácia ti notifikáciu nepošle.</p>
             </article>
-            <article class="card stake rv">
+            <article class="card tone tone-rust stake rv"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="58" cy="52" r="30" fill="var(--tone-fg2)"/><path d="M58 52 L58 22 A30 30 0 0 1 88 52 Z" fill="var(--tone-fg)"/></svg></span>
               <p class="fig">−90 000 €<small>rozdiel v konečnom majetku</small></p>
               <h3>Drahý produkt žerie tvoj výnos 💸</h3>
-              <p>Poplatok 0,5 % vs. 2,5 % ročne vyzerá ako drobnosť. Pri 300 € mesačne na 30 rokov je to rozdiel zhruba 90 000 €. Poplatky sú jediná vec na trhoch, ktorú máš plne pod kontrolou.</p>
+              <p class="t">Poplatok 0,5 % vs. 2,5 % ročne vyzerá ako drobnosť. Pri 300 € mesačne na 30 rokov je to rozdiel zhruba 90 000 €. Poplatky sú jediná vec na trhoch, ktorú máš plne pod kontrolou.</p>
             </article>
-            <article class="card stake rv">
+            <article class="card tone tone-forest stake rv"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 100 100"><rect x="26" y="60" width="14" height="24" rx="4" fill="var(--tone-fg2)"/><rect x="48" y="44" width="14" height="40" rx="4" fill="var(--tone-fg2)"/><rect x="70" y="24" width="14" height="60" rx="4" fill="var(--tone-fg)"/></svg></span>
               <p class="fig">−170 000 €<small>cena 10-ročného odkladu</small></p>
               <h3>Odložený štart sa nedá dobehnúť ⏳</h3>
-              <p>300 € mesačne od tridsiatky namiesto od dvadsiatky znamená na konci o vyše 170 000 € menej. Čas je jediná vec, ktorú si v investovaní nevieš dokúpiť.</p>
+              <p class="t">300 € mesačne od tridsiatky namiesto od dvadsiatky znamená na konci o vyše 170 000 € menej. Čas je jediná vec, ktorú si v investovaní nevieš dokúpiť.</p>
             </article>
           </div>
           <p class="note rv">Ilustračné prepočty pri uvedených predpokladoch a priemernom výnose ~6,5 % ročne. Investovanie je spojené s rizikom.</p>
-          <p class="good rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dobrá správa: všetky tri veci sa dajú vyriešiť jedným plánom.</p>
+          <p class="good rv"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Dobrá správa: všetky tri veci sa dajú vyriešiť jedným plánom.</p>
         </div>
       </section>
 
       <!-- ═══ 4. Čo ťa možno brzdí ═══ -->
-      <section class="sec" id="brzdi">
+      <section class="sec band" id="brzdi">
         <div class="wrap">
           <div class="head head--center rv">
             <span class="kicker">Úprimne</span>
             <h2 class="h2">Čo ťa <em>možno brzdí.</em></h2>
           </div>
           <div class="fears">
-            <article class="card fear rv"><p class="q">„Nemám na to dosť peňazí.“</p><p class="a">Nepotrebuješ státisíce. Väčšina mojich klientov začínala so 100 až 300 € mesačne alebo s rezervou na účte, ktorá nič nezarábala. Ak si vieš odložiť 100 € mesačne, máme o čom hovoriť.</p></article>
-            <article class="card fear rv"><p class="q">„Bude mi niečo tlačiť.“</p><p class="a">Na hovore nič nepredávam. Plán ti pošlem mailom, prečítaš si ho v pokoji a rozhodneš sa sám. Bez ďalšieho telefonátu, ak ho nechceš.</p></article>
-            <article class="card fear rv"><p class="q">„Nemám čas nič pripravovať.“</p><p class="a">Nepotrebuješ žiadne podklady. Stačí 30 minút a približne vedieť, čo máš a čo splácaš. Zvyšok prejdeme spolu.</p></article>
-            <article class="card fear rv"><p class="q">„A čo keď nebudem chcieť pokračovať?“</p><p class="a">Plán ostáva tvoj. Nič nepodpisuješ, nič neplatíš, nikto ti nevolá. Fér obchod pre obe strany.</p></article>
+            <article class="card fear rv"><p class="q">„Nemám na to dosť peňazí.“</p><p class="a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span>Nepotrebuješ státisíce. Väčšina mojich klientov začínala so 100 až 300 € mesačne alebo s rezervou na účte, ktorá nič nezarábala. Ak si vieš odložiť 100 € mesačne, máme o čom hovoriť.</span></p></article>
+            <article class="card fear rv"><p class="q">„Bude mi niečo tlačiť.“</p><p class="a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span>Na hovore nič nepredávam. Plán ti pošlem mailom, prečítaš si ho v pokoji a rozhodneš sa sám. Bez ďalšieho telefonátu, ak ho nechceš.</span></p></article>
+            <article class="card fear rv"><p class="q">„Nemám čas nič pripravovať.“</p><p class="a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span>Nepotrebuješ žiadne podklady. Stačí 30 minút a približne vedieť, čo máš a čo splácaš. Zvyšok prejdeme spolu.</span></p></article>
+            <article class="card fear rv"><p class="q">„A čo keď nebudem chcieť pokračovať?“</p><p class="a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span>Plán ostáva tvoj. Nič nepodpisuješ, nič neplatíš, nikto ti nevolá. Fér obchod pre obe strany.</span></p></article>
           </div>
-          <div class="sec-cta rv"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="brzdi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
+          <div class="sec-cta rv"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="brzdi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
         </div>
       </section>
 
@@ -436,8 +451,8 @@
         </div>
       </section>
 
-      <!-- ═══ 6. Čo presne dostaneš + ukážka plánu ═══ -->
-      <section class="sec" id="dostanes">
+      <!-- ═══ 6. Čo presne dostaneš ═══ -->
+      <section class="sec band" id="dostanes">
         <div class="wrap">
           <div class="head head--center rv">
             <span class="kicker">Čo dostaneš · bez záväzku</span>
@@ -456,31 +471,14 @@
               <div class="o-row"><div><b>Krízový plán na mieru</b><small>čo robiť pri poklese trhov o 20, 35 a 50 %</small></div><span class="p">199 €</span></div>
               <div class="o-row"><div><b>Skóring investičných bytov + nástroje pre výpočet investičných nehnuteľností</b><small>dátové hodnotenie 70+ slovenských miest</small></div><span class="p">99 €</span></div>
             </div>
-            <aside class="o-final rv">
+            <aside class="o-final ink rv">
               <div class="o-sum"><span>Hodnota spolu</span><b>856 €</b></div>
               <div class="o-pay"><span>Ty platíš</span><b>0 €</b></div>
               <p class="o-why"><b>Prečo to dávam zadarmo?</b> Jednoducho: viem, že keď uvidíš svoj plán, časť z vás sa rozhodne pre dlhodobú spoluprácu — a tá živí mňa. Zvyšok odíde s hotovým plánom a nástrojmi v ruke. Férový obchod pre obe strany.</p>
               <!-- UPRAV KAŽDÝ MESIAC: čísla v hranatých zátvorkách (počet plánov a voľné miesta) -->
               <p class="cap" data-editable="kapacita-mesiaca">Tento mesiac pripravujem <b>[12]</b> plánov. Voľných ostáva <b>[X]</b>.</p>
-              <div class="cta cta--left" style="margin-top: 1.5rem;"><a class="btn btn--light btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
+              <div class="cta cta--left"><a class="btn btn--lg btn--light" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
             </aside>
-          </div>
-
-          <div class="plan" id="plan">
-            <div class="head head--center rv">
-              <span class="kicker">Ukážka plánu</span>
-              <h2 class="h2">Aj takto môže vyzerať <em>tvoj plán</em></h2>
-            </div>
-            <div class="plan-row rv">
-              <img src="/assets/images/home/f752f3b3.png" alt="Cesta k RENTE — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
-              <img src="/assets/images/home/42fc3e74.png" alt="Prečo ti investičná nehnuteľnosť zrýchli rast bohatstva — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
-              <img src="/assets/images/home/4cd91bb3.png" alt="Jedným nákupom investuješ do 7000 svetových firiem — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
-              <img src="/assets/images/home/72e6ebb1.png" alt="Strana plánu — ukážka 4" width="1920" height="1080" loading="lazy" decoding="async" />
-              <img src="/assets/images/home/1e0de038.png" alt="Strana plánu — ukážka 5" width="1920" height="1080" loading="lazy" decoding="async" />
-            </div>
-            <span class="swipe">potiahni prstom</span>
-            <p class="plan-lead rv">100 ľudí a 100 rôznych portfólií — neexistuje dokonalá skladačka pre všetkých. Robím to na mieru.</p>
-            <p class="plan-text rv">Toto sú strany z reálneho klientskeho plánu. Tvoj bude vyzerať inak — každý má inú situáciu, iné čísla a inú cestu. Kompletný plán má v priemere 20 strán: od rezervy a budovania majetku cez nehnuteľnosti a daňovú optimalizáciu až po krízový plán, keď trhy padajú. Staviam ho na tvojich číslach, nie na šablóne.</p>
           </div>
         </div>
       </section>
@@ -532,12 +530,12 @@
             </article>
           </div>
           <div class="trust rv">
-            <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span>Všetky účty sú vedené v investičných spoločnostiach pod dohľadom Národnej banky Slovenska. Každé portfólio tvorí 3 až 6 ETF fondov od najväčších svetových správcov — zložené individuálne podľa cieľov klienta.</span></p>
+            <p><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></i><span>Všetky účty sú vedené v investičných spoločnostiach pod dohľadom Národnej banky Slovenska. Každé portfólio tvorí 3 až 6 ETF fondov od najväčších svetových správcov — zložené individuálne podľa cieľov klienta.</span></p>
             <div class="trust-marks">ETF od správcov ako<b>BlackRock · Vanguard · Amundi</b></div>
           </div>
           <p class="note rv">Vybrané príklady skutočných klientov, zverejnené s ich písomným súhlasom (mená sú krstné). Hodnoty k 23. 8. 2026. Každé portfólio je zostavené individuálne podľa cieľov, horizontu a situácie klienta — vaše výsledky sa budú líšiť. Minulá výkonnosť nie je zárukou budúcich výnosov. Investovanie je spojené s rizikom.</p>
           <figure class="client rv">
-            <span class="kicker">Slovo klienta</span>
+            <span class="kicker kicker--gold">Slovo klienta</span>
             <blockquote>S Ivanom spolupracujem už skoro päť rokov. Oslovil som ho na Instagrame — a stratégia, ktorú sme spolu nastavili, mi dáva zmysel. <em>Mesačné investície postupne navyšujem.</em></blockquote>
             <figcaption><span class="ini" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b><small>Investor · klient takmer 5 rokov</small></span></figcaption>
           </figure>
@@ -545,22 +543,22 @@
       </section>
 
       <!-- ═══ 8. Recenzie ═══ -->
-      <section class="sec" id="recenzie">
+      <section class="sec band" id="recenzie">
         <div class="wrap">
           <div class="head head--center rv">
             <span class="kicker">Referencie</span>
             <h2 class="h2">Ľudia potrebujú o peniazoch počuť <em>ľudskou rečou.</em></h2>
           </div>
           <div class="grid-3">
-            <figure class="card quote rv">
+            <figure class="card tone tone-sage quote rv">
               <blockquote>Ivan mi za dva týždne ukázal plán, podľa ktorého investujem dodnes.</blockquote>
               <figcaption><img src="/assets/images/vanecko.webp" alt="" width="44" height="44" loading="lazy" /><span><b>MUDr. Martin Vanečko</b><small>Doktor pôsobiaci vo Švajčiarsku</small></span></figcaption>
             </figure>
-            <figure class="card quote rv">
+            <figure class="card tone tone-sand quote rv">
               <blockquote>Ivan je profesionál. Spolupracujeme 5 rokov. Každý rok môj majetok rastie.</blockquote>
               <figcaption><img src="/assets/images/Latkoczy.webp" alt="" width="44" height="44" loading="lazy" /><span><b>Šimon Latkoczy</b><small>Slovenský hokejový reprezentant</small></span></figcaption>
             </figure>
-            <figure class="card quote rv">
+            <figure class="card tone tone-brown quote rv">
               <blockquote>Ivan presne vie, ako z firemného zisku spraviť osobný majetok.</blockquote>
               <figcaption><img src="/assets/images/papik.webp" alt="" width="44" height="44" loading="lazy" /><span><b>Ladislav Papík</b><small>Konateľ PAPIK ENTERPRISE s.r.o.</small></span></figcaption>
             </figure>
@@ -576,7 +574,7 @@
             <h2 class="h2">Je konzultácia <em>teraz pre teba?</em></h2>
           </div>
           <div class="fit">
-            <div class="card rv">
+            <div class="card tone tone-forest rv"><span class="glyph" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="60" cy="48" r="28" fill="none" stroke="var(--tone-fg2)" stroke-width="10"/><path d="M60 20 A28 28 0 0 1 88 48" fill="none" stroke="var(--tone-fg)" stroke-width="10" stroke-linecap="round"/></svg></span>
               <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Pre koho to je</h3>
               <ul>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Riešiš hypotéku, byt, investovanie alebo rentu a chceš to prepočítať, nie tipovať</li>
@@ -586,7 +584,7 @@
               </ul>
             </div>
             <div class="card fit--no rv">
-              <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></i>Pre koho to nie je</h3>
+              <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></i>Pre koho to nie je</h3>
               <ul>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Hľadáš rýchle zbohatnutie alebo horúce tipy</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Chceš len špekulovať a obchodovať sám, hľadáš niekoho na pokec</li>
@@ -601,13 +599,13 @@
       <!-- ═══ 10. Záver ═══ -->
       <section class="sec" id="zaver">
         <div class="wrap">
-          <div class="final rv">
+          <div class="final ink rv">
             <figure><img src="/assets/images/home/3b5b4e2a.png" alt="Ivan Jašík s tabuľou: Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="1100" height="1061" loading="lazy" decoding="async" /></figure>
             <div class="final-copy">
-              <span class="kicker">Bez záväzku</span>
+              <span class="kicker kicker--gold">Bez záväzku</span>
               <h2>Napíš mi, preberieme to.</h2>
               <p>Odpisujem do 24 hodín. Dohodneme termín a do 7 dní máš plán v maili. Nič ti na hovore nepredám.</p>
-              <div class="cta"><a class="btn btn--lg btn--light" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
+              <div class="cta cta--left"><a class="btn btn--lg btn--light" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
             </div>
           </div>
         </div>
