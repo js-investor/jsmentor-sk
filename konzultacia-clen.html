@@ -68,6 +68,7 @@
       .btn svg { width: 1.125rem; height: 1.125rem; flex-shrink: 0; }
       .btn--lg { padding: 1.0625rem 1.75rem; font-size: 1.0625rem; }
       .btn--sm { padding: 0.625rem 1.125rem; font-size: 0.9375rem; }
+      @media (max-width: 480px) { .btn--sm { padding: 0.5rem 0.875rem; font-size: 0.8125rem; gap: 0.375rem; } .btn--sm svg { display: none; } .hdr img { height: 1.5rem; } }
       .btn--light { background: var(--paper); color: var(--ink); }
       .btn--light:hover { background: #fff; }
       .btn .arr { transition: transform 0.22s var(--ease); }
@@ -105,7 +106,7 @@
       .hero-center { max-width: 52rem; margin: 0 auto; text-align: center; }
       .pill { display: inline-flex; align-items: center; gap: 0.5rem; max-width: 100%; margin: 0 0 1.5rem; padding: 0.5rem 0.875rem 0.5rem 0.75rem; border-radius: 9999px; border: 1px solid var(--hair-2); background: var(--ivory); font-size: 0.875rem; font-weight: 500; color: var(--fg2); }
       .pill::before { content: ""; flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--green); }
-      .h1 { font-family: var(--serif); font-size: clamp(2.75rem, 6.4vw, 5.25rem); line-height: 1.02; font-weight: 700; color: var(--ink); text-wrap: balance; }
+      .h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5.4vw, 4.25rem); line-height: 1.02; font-weight: 700; color: var(--ink); text-wrap: balance; }
       .hero-lede { margin: 1.5rem auto 0; max-width: 40rem; font-size: 1.125rem; line-height: 1.6; color: var(--fg2); text-wrap: pretty; }
       @media (min-width: 768px) { .hero-lede { font-size: 1.25rem; } }
       .hero-actions { margin-top: 2rem; }
@@ -226,6 +227,78 @@
       .ftr a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
       .ftr a:hover { color: var(--ink); }
 
+
+      /* ---------- doplnky 2.0 ---------- */
+      .cta { display: flex; flex-direction: column; align-items: center; gap: 0.625rem; }
+      .cta-note { font-size: 0.8125rem; color: var(--muted); }
+      .final .cta-note, .o-final .cta-note { color: rgba(243, 233, 221, 0.62); }
+      .cta--left { align-items: flex-start; }
+      .h1 br { display: none; }
+      @media (min-width: 640px) { .h1 br { display: inline; } }
+      .hero-proof li { gap: 0.4rem; }
+      .hero-proof b { font-size: 1.375rem; }
+      .hero-video { max-width: 760px; margin: 2.5rem auto 0; }
+      .hero-video .frame { aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; background: #241c15; border: 1px solid var(--hair); }
+      .hero-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+      /* slovo pre členov */
+      .word { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; }
+      @media (min-width: 900px) { .word { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3.5rem; } }
+      .word-photo { position: relative; border-radius: 1.5rem; overflow: hidden; background: var(--stone); }
+      .word-photo img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 20%; }
+      .word-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(41, 36, 32, 0) 55%, rgba(41, 36, 32, 0.45) 100%); pointer-events: none; }
+      .word-tags { position: absolute; left: 1rem; bottom: 1rem; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .tag-pill { display: inline-flex; align-items: center; padding: 0.5rem 0.875rem; border-radius: 9999px; background: var(--ivory); color: var(--ink); font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+      .word-text .lede { max-width: none; color: var(--fg2); }
+      .word-quote { margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.65; color: var(--fg2); text-wrap: pretty; }
+      @media (min-width: 768px) { .word-quote { font-size: 1.125rem; } }
+      .word-sign { display: block; margin-top: 1.25rem; font-family: var(--serif); font-style: italic; font-size: 1.75rem; color: var(--ink); }
+      /* čo ťa brzdí */
+      .fears { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 2.25rem; }
+      @media (min-width: 768px) { .fears { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+      .fear .q { font-family: var(--serif); font-style: italic; font-size: 1.375rem; line-height: 1.25; font-weight: 600; color: var(--ink); }
+      .fear .a { margin-top: 0.875rem; padding-top: 0.875rem; border-top: 1px solid var(--hair); font-size: 0.9375rem; line-height: 1.6; color: var(--fg2); }
+      .sec-cta { margin-top: 2rem; }
+      /* kapacita mesiaca (ručne upravovaný blok) */
+      .cap { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem; padding: 0.5rem 0.875rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); border: 1px solid rgba(217, 177, 92, 0.4); font-size: 0.8125rem; font-weight: 500; color: rgba(243, 233, 221, 0.86); }
+      .cap::before { content: ""; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--gold); }
+      .cap b { color: var(--gold); font-weight: 700; }
+      /* ukážka plánu */
+      .plan { margin-top: 3.5rem; }
+      .plan-row { display: flex; gap: 1rem; margin-top: 2rem; overflow-x: auto; padding-bottom: 0.5rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+      .plan-row img { flex: 0 0 15.5rem; width: 15.5rem; height: auto; border-radius: 0.875rem; border: 1px solid var(--hair-2); background: #fff; scroll-snap-align: start; }
+      @media (min-width: 1024px) { .plan-row { flex-wrap: wrap; justify-content: center; overflow: visible; } .plan-row img { flex: 0 1 13.25rem; width: 13.25rem; } }
+      .swipe { display: block; margin-top: 0.5rem; font-size: 0.75rem; color: var(--muted); text-align: center; }
+      @media (min-width: 1024px) { .swipe { display: none; } }
+      .plan-lead { margin: 1.5rem auto 0; max-width: 40rem; text-align: center; font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; font-weight: 600; color: var(--ink); text-wrap: balance; }
+      .plan-text { margin: 1rem auto 0; max-width: 44rem; text-align: center; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); }
+      /* slovo klienta */
+      .client { position: relative; overflow: hidden; margin-top: 2rem; padding: 2.5rem 1.5rem; border-radius: 1.75rem; background: linear-gradient(160deg, #3c3733 0%, #292420 55%, #1f1b18 100%); color: var(--paper); text-align: center; }
+      @media (min-width: 768px) { .client { padding: 3.5rem 2.5rem; } }
+      .client::after { content: ""; position: absolute; right: -8rem; top: -8rem; width: 22rem; height: 22rem; border-radius: 9999px; background: radial-gradient(circle, rgba(217, 177, 92, 0.2) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
+      .client > * { position: relative; z-index: 1; }
+      .client .kicker { color: var(--gold); }
+      .client .kicker::before { background: var(--gold); }
+      .client blockquote { margin: 0.5rem auto 0; max-width: 46rem; font-family: var(--serif); font-size: clamp(1.375rem, 3vw, 2rem); line-height: 1.35; font-weight: 600; color: var(--paper); text-wrap: balance; }
+      .client blockquote em { font-style: normal; color: var(--gold); }
+      .client figcaption { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1.5rem; }
+      .client .ini { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: rgba(217, 177, 92, 0.18); border: 1px solid rgba(217, 177, 92, 0.5); font-family: var(--serif); font-weight: 700; color: var(--gold); }
+      .client figcaption b { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--paper); text-align: left; }
+      .client figcaption small { display: block; font-size: 0.8125rem; color: rgba(243, 233, 221, 0.62); text-align: left; }
+      /* záver: fotka vľavo, text vpravo */
+      .final { text-align: left; display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; padding: 1.25rem; }
+      @media (min-width: 900px) { .final { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 3rem; padding: 1.5rem 3rem 1.5rem 1.5rem; } }
+      .final figure { margin: 0; border-radius: 1.25rem; overflow: hidden; }
+      .final figure img { width: 100%; height: auto; }
+      .final-copy { padding: 0.75rem 0.25rem 1rem; }
+      @media (min-width: 900px) { .final-copy { padding: 1rem 0; } }
+      .final .cta { align-items: flex-start; }
+      .final p { margin-left: 0; margin-right: 0; }
+      /* plávajúce tlačidlo na mobile */
+      .fab { position: fixed; right: 1rem; bottom: 1rem; z-index: 30; display: none; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: var(--green); color: var(--paper); box-shadow: 0 8px 24px rgba(11, 61, 46, 0.35); }
+      .fab svg { width: 1.625rem; height: 1.625rem; }
+      .fab:hover { background: var(--green-dark); }
+      @media (max-width: 768px) { .fab { display: inline-flex; } }
+
       /* ---------- odhalenie pri scrollovaní ---------- */
       .rv { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
       .rv.in { opacity: 1; transform: none; }
@@ -238,7 +311,7 @@
         <a href="/" aria-label="JS Mentor – domov"><img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" width="879" height="310" /></a>
         <a class="btn btn--sm" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="header">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-          Napísať na WhatsApp
+          Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span>
         </a>
       </div>
     </header>
@@ -248,32 +321,51 @@
       <section class="hero">
         <div class="wrap">
           <div class="hero-center">
-            <p class="pill">Pre členov komunity · 30 minút zadarmo</p>
-            <h1 class="h1">Preberieme tvoju situáciu.</h1>
-            <p class="hero-lede">30 minút online, zadarmo, bez záväzku. Prejdeme, čo riešiš – hypotéku, byt, investovanie alebo rentu – a poviem ti, čo by som robil na tvojom mieste. Do 7 dní máš plán.</p>
-            <div class="hero-actions">
-              <a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-                Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span>
-              </a>
-            </div>
+            <p class="pill">Pre členov komunity · 30 minút · zadarmo</p>
+            <h1 class="h1">Videl si, ako rozmýšľam. <br />Teraz poďme na tvoju situáciu.</h1>
+            <p class="hero-lede">30 minút online. Prejdeme, čo riešiš – hypotéku, byt, investovanie alebo rentu – a poviem ti, čo by som robil na tvojom mieste. Do 7 dní máš v maili osobný plán.</p>
+            <div class="hero-actions"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
             <div class="hero-proof" aria-label="Dôkazy">
               <ul>
                 <li><b>4 000+</b>účastníkov online kurzov</li>
                 <li><b>200+</b>klientov</li>
-                <li><b>EFA</b>European Financial Advisor</li>
+                <li><b>EFA</b>vzdelanie</li>
+                <li><b>NBS</b>pod dohľadom</li>
+                <li><b>900+</b>konzultácií</li>
               </ul>
             </div>
-            <p class="hero-me"><img src="/assets/images/ivan-jasik.jpg" alt="" width="36" height="36" loading="lazy" /><span><b>Ivan Jašík</b> · pod dohľadom NBS · viac ako 900 konzultácií</span></p>
+          </div>
+          <div class="hero-video rv">
+            <div class="frame">
+              <iframe src="https://player.vimeo.com/video/1220317867?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" allowfullscreen title="Ivan Jašík — úvodné video" loading="lazy"></iframe>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ 2. Prečo konať teraz ═══ -->
+      <!-- ═══ 2. Slovo pre členov ═══ -->
+      <section class="sec" id="slovo">
+        <div class="wrap">
+          <div class="word">
+            <div class="word-photo rv">
+              <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" />
+              <div class="word-tags"><span class="tag-pill">Pod dohľadom NBS</span><span class="tag-pill">EFA vzdelanie</span></div>
+            </div>
+            <div class="word-text rv">
+              <span class="kicker">Slovo pre členov</span>
+              <h2 class="h2">Nič ti nepredám. <em>Prepočítame to.</em></h2>
+              <p class="word-quote">„Si v komunite pár týždňov. Videl si, ako rozmýšľam o hypotékach, bytoch a investovaní – a asi si si všimol, že nikdy nehovorím ‚kúp toto‘. Hovorím ‚prepočítaj si to‘. Na konzultácii to spravíme spolu, na tvojich číslach. Nič ti nepredám, nič nepodpisuješ. Odídeš s plánom a rozhodneš sa sám.“</p>
+              <span class="word-sign">Ivan</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 3. Prečo konať teraz ═══ -->
       <section class="sec" id="preco">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">01 · Prečo konať teraz</span>
+            <span class="kicker">Prečo konať teraz</span>
             <h2 class="h2">Najdrahšie rozhodnutie je <em>žiadne rozhodnutie.</em></h2>
             <p class="lede">Kým čakáš na „lepší moment“, tieto tri veci pracujú proti tebe. Potichu, ale s presnými číslami.</p>
           </div>
@@ -295,22 +387,39 @@
             </article>
           </div>
           <p class="note rv">Ilustračné prepočty pri uvedených predpokladoch a priemernom výnose ~6,5 % ročne. Investovanie je spojené s rizikom.</p>
-          <p class="good rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dobrá správa: všetky tri veci sa dajú vyriešiť jedným plánom.</p>
+          <p class="good rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dobrá správa: všetky tri veci sa dajú vyriešiť jedným plánom.</p>
         </div>
       </section>
 
-      <!-- ═══ 3. Ako to prebieha ═══ -->
+      <!-- ═══ 4. Čo ťa možno brzdí ═══ -->
+      <section class="sec" id="brzdi">
+        <div class="wrap">
+          <div class="head head--center rv">
+            <span class="kicker">Úprimne</span>
+            <h2 class="h2">Čo ťa <em>možno brzdí.</em></h2>
+          </div>
+          <div class="fears">
+            <article class="card fear rv"><p class="q">„Nemám na to dosť peňazí.“</p><p class="a">Nepotrebuješ státisíce. Väčšina mojich klientov začínala so 100 až 300 € mesačne alebo s rezervou na účte, ktorá nič nezarábala. Ak si vieš odložiť 100 € mesačne, máme o čom hovoriť.</p></article>
+            <article class="card fear rv"><p class="q">„Bude mi niečo tlačiť.“</p><p class="a">Na hovore nič nepredávam. Plán ti pošlem mailom, prečítaš si ho v pokoji a rozhodneš sa sám. Bez ďalšieho telefonátu, ak ho nechceš.</p></article>
+            <article class="card fear rv"><p class="q">„Nemám čas nič pripravovať.“</p><p class="a">Nepotrebuješ žiadne podklady. Stačí 30 minút a približne vedieť, čo máš a čo splácaš. Zvyšok prejdeme spolu.</p></article>
+            <article class="card fear rv"><p class="q">„A čo keď nebudem chcieť pokračovať?“</p><p class="a">Plán ostáva tvoj. Nič nepodpisuješ, nič neplatíš, nikto ti nevolá. Fér obchod pre obe strany.</p></article>
+          </div>
+          <div class="sec-cta rv"><div class="cta"><a class="btn btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="brzdi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div></div>
+        </div>
+      </section>
+
+      <!-- ═══ 5. Ako to prebieha ═══ -->
       <section class="sec" id="proces">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">02 · Ako to funguje</span>
+            <span class="kicker">Ako to funguje</span>
             <h2 class="h2">Ako to prebieha. <em>Tri kroky, žiadne kľučky.</em></h2>
           </div>
           <div class="steps">
             <article class="card step rv">
               <span class="n">1</span><span class="tag">zadarmo</span>
               <h3>Napíšeš mi na WhatsApp</h3>
-              <p>Prejdeme tvoje čísla, ciele a priority. Ak ti neviem pomôcť, poviem ti to na rovinu.</p>
+              <p>Dohodneme termín. Na hovore prejdeme tvoje čísla, ciele a priority. Ak ti neviem pomôcť, poviem ti to v prvých 10 minútach.</p>
             </article>
             <article class="card step rv">
               <span class="n">2</span><span class="tag">na tvoje čísla</span>
@@ -327,11 +436,11 @@
         </div>
       </section>
 
-      <!-- ═══ 4. Čo dostaneš ═══ -->
+      <!-- ═══ 6. Čo presne dostaneš + ukážka plánu ═══ -->
       <section class="sec" id="dostanes">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">03 · Čo dostaneš · bez záväzku</span>
+            <span class="kicker">Čo dostaneš · bez záväzku</span>
             <h2 class="h2">Čo presne dostaneš. <em>A koľko by to stálo inde.</em></h2>
           </div>
           <div class="offer">
@@ -351,19 +460,36 @@
               <div class="o-sum"><span>Hodnota spolu</span><b>856 €</b></div>
               <div class="o-pay"><span>Ty platíš</span><b>0 €</b></div>
               <p class="o-why"><b>Prečo to dávam zadarmo?</b> Jednoducho: viem, že keď uvidíš svoj plán, časť z vás sa rozhodne pre dlhodobú spoluprácu — a tá živí mňa. Zvyšok odíde s hotovým plánom a nástrojmi v ruke. Férový obchod pre obe strany.</p>
-              <a class="btn btn--light btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes">
-                Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span>
-              </a>
+              <!-- UPRAV KAŽDÝ MESIAC: čísla v hranatých zátvorkách (počet plánov a voľné miesta) -->
+              <p class="cap" data-editable="kapacita-mesiaca">Tento mesiac pripravujem <b>[12]</b> plánov. Voľných ostáva <b>[X]</b>.</p>
+              <div class="cta cta--left" style="margin-top: 1.5rem;"><a class="btn btn--light btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
             </aside>
+          </div>
+
+          <div class="plan" id="plan">
+            <div class="head head--center rv">
+              <span class="kicker">Ukážka plánu</span>
+              <h2 class="h2">Aj takto môže vyzerať <em>tvoj plán</em></h2>
+            </div>
+            <div class="plan-row rv">
+              <img src="/assets/images/home/f752f3b3.png" alt="Cesta k RENTE — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
+              <img src="/assets/images/home/42fc3e74.png" alt="Prečo ti investičná nehnuteľnosť zrýchli rast bohatstva — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
+              <img src="/assets/images/home/4cd91bb3.png" alt="Jedným nákupom investuješ do 7000 svetových firiem — strana plánu" width="1920" height="1080" loading="lazy" decoding="async" />
+              <img src="/assets/images/home/72e6ebb1.png" alt="Strana plánu — ukážka 4" width="1920" height="1080" loading="lazy" decoding="async" />
+              <img src="/assets/images/home/1e0de038.png" alt="Strana plánu — ukážka 5" width="1920" height="1080" loading="lazy" decoding="async" />
+            </div>
+            <span class="swipe">potiahni prstom</span>
+            <p class="plan-lead rv">100 ľudí a 100 rôznych portfólií — neexistuje dokonalá skladačka pre všetkých. Robím to na mieru.</p>
+            <p class="plan-text rv">Toto sú strany z reálneho klientskeho plánu. Tvoj bude vyzerať inak — každý má inú situáciu, iné čísla a inú cestu. Kompletný plán má v priemere 20 strán: od rezervy a budovania majetku cez nehnuteľnosti a daňovú optimalizáciu až po krízový plán, keď trhy padajú. Staviam ho na tvojich číslach, nie na šablóne.</p>
           </div>
         </div>
       </section>
 
-      <!-- ═══ 5. Výsledky ═══ -->
+      <!-- ═══ 7. Výsledky + slovo klienta ═══ -->
       <section class="sec" id="vysledky">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">04 · Výsledky</span>
+            <span class="kicker">Výsledky</span>
             <h2 class="h2">Reálne čísla <em>mojich klientov.</em></h2>
             <p class="lede">Šesť skutočných účtov: koľko vložili a akú hodnotu majú dnes — aj s poklesmi po ceste, lebo tie k investovaniu patria.</p>
           </div>
@@ -410,14 +536,19 @@
             <div class="trust-marks">ETF od správcov ako<b>BlackRock · Vanguard · Amundi</b></div>
           </div>
           <p class="note rv">Vybrané príklady skutočných klientov, zverejnené s ich písomným súhlasom (mená sú krstné). Hodnoty k 23. 8. 2026. Každé portfólio je zostavené individuálne podľa cieľov, horizontu a situácie klienta — vaše výsledky sa budú líšiť. Minulá výkonnosť nie je zárukou budúcich výnosov. Investovanie je spojené s rizikom.</p>
+          <figure class="client rv">
+            <span class="kicker">Slovo klienta</span>
+            <blockquote>S Ivanom spolupracujem už skoro päť rokov. Oslovil som ho na Instagrame — a stratégia, ktorú sme spolu nastavili, mi dáva zmysel. <em>Mesačné investície postupne navyšujem.</em></blockquote>
+            <figcaption><span class="ini" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b><small>Investor · klient takmer 5 rokov</small></span></figcaption>
+          </figure>
         </div>
       </section>
 
-      <!-- ═══ 6. Recenzie ═══ -->
+      <!-- ═══ 8. Recenzie ═══ -->
       <section class="sec" id="recenzie">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">05 · Referencie</span>
+            <span class="kicker">Referencie</span>
             <h2 class="h2">Ľudia potrebujú o peniazoch počuť <em>ľudskou rečou.</em></h2>
           </div>
           <div class="grid-3">
@@ -437,18 +568,18 @@
         </div>
       </section>
 
-      <!-- ═══ 7. Pre koho ═══ -->
+      <!-- ═══ 9. Je konzultácia teraz pre teba? ═══ -->
       <section class="sec" id="prekoho">
         <div class="wrap">
           <div class="head head--center rv">
-            <span class="kicker">06 · Pre koho to je</span>
-            <h2 class="h2">Je táto spolupráca <em>pre teba?</em></h2>
+            <span class="kicker">Pre koho to je</span>
+            <h2 class="h2">Je konzultácia <em>teraz pre teba?</em></h2>
           </div>
           <div class="fit">
             <div class="card rv">
               <h3><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Pre koho to je</h3>
               <ul>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vieš si pravidelne odložiť aspoň 100 € mesačne</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Riešiš hypotéku, byt, investovanie alebo rentu a chceš to prepočítať, nie tipovať</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Máš ochotu sa o peniazoch vzdelávať a rozumieť im</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Chápeš, že investovanie nie je o rýchlom zbohatnutí, ale o dobrej stratégii</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Chceš jasný plán a dlhodobého partnera, nie ďalší produkt</li>
@@ -467,18 +598,17 @@
         </div>
       </section>
 
-      <!-- ═══ 8. Záver ═══ -->
+      <!-- ═══ 10. Záver ═══ -->
       <section class="sec" id="zaver">
         <div class="wrap">
           <div class="final rv">
-            <span class="kicker">Bez záväzku</span>
-            <h2>Napíš mi, preberieme to.</h2>
-            <p>Odpisujem do 24 hodín. Dohodneme termín a do 7 dní máš plán v maili.</p>
-            <a class="btn btn--light btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-              Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span>
-            </a>
-            <small>Zadarmo a bez záväzku. Nič ti na hovore nepredám.</small>
+            <figure><img src="/assets/images/home/3b5b4e2a.png" alt="Ivan Jašík s tabuľou: Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="1100" height="1061" loading="lazy" decoding="async" /></figure>
+            <div class="final-copy">
+              <span class="kicker">Bez záväzku</span>
+              <h2>Napíš mi, preberieme to.</h2>
+              <p>Odpisujem do 24 hodín. Dohodneme termín a do 7 dní máš plán v maili. Nič ti na hovore nepredám.</p>
+              <div class="cta"><a class="btn btn--lg btn--light" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Napísať Ivanovi na WhatsApp <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez záväzku</small></div>
+            </div>
           </div>
         </div>
       </section>
@@ -490,6 +620,8 @@
         <p>© 2026 Jashik s.r.o. Všetky práva vyhradené. · <a href="/gdpr">Ochrana osobných údajov (GDPR)</a></p>
       </div>
     </footer>
+
+    <a class="fab" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" aria-label="Napísať Ivanovi na WhatsApp" data-umami-event="click_whatsapp" data-umami-event-section="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
 
     <script>
       (function () {
