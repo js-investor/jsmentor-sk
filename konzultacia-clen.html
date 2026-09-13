@@ -477,6 +477,20 @@
       .statbar b { display: block; font-family: var(--font-serif); font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1; font-weight: 700; color: var(--km-paper); font-variant-numeric: tabular-nums; white-space: nowrap; }
       .statbar span { display: block; margin-top: 0.625rem; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.6875rem; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(243, 233, 221, 0.68); }
       @media (min-width: 1024px) { .statbar span { white-space: nowrap; } }
+      /* ako to prebieha: tri kroky ako na hlavnej stránke */
+      .proc { background: linear-gradient(165deg, #241c15, #2a2118); }
+      .proc .km-kicker { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.12em; color: #9fbfac; }
+      .proc .km-kicker::before { background: rgba(245, 237, 224, 0.5); }
+      .proc .km-head { max-width: 60rem; margin-bottom: 0; }
+      .proc-grid { position: relative; display: grid; grid-template-columns: 1fr; gap: 2.5rem 0; margin-top: 3.25rem; }
+      @media (min-width: 768px) { .proc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; } .proc-grid::before { content: ""; position: absolute; top: 2.125rem; left: 16%; right: 16%; height: 1.5px; background: rgba(245, 237, 224, 0.35); } }
+      .proc-grid li { position: relative; padding: 0 1.625rem; text-align: center; }
+      .proc-n { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 4.25rem; height: 4.25rem; border-radius: 9999px; background: #251d16; border: 1.5px solid var(--km-paper); color: var(--km-paper); font-family: var(--font-serif); font-size: 1.875rem; font-weight: 700; }
+      .proc-grid h3 { margin: 1.625rem 0 0; font-family: var(--font-serif); font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.2; font-weight: 700; color: var(--km-paper); text-wrap: balance; }
+      .proc-grid p { margin: 0.75rem auto 0; max-width: 24em; font-size: 0.9375rem; line-height: 1.55; color: rgba(245, 237, 224, 0.72); text-wrap: pretty; }
+      .proc-tag { display: inline-block; margin-top: 0.875rem; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.6875rem; letter-spacing: 0.09em; text-transform: uppercase; color: #9fbfac; }
+      .proc-foot { max-width: 44em; margin: 2.75rem auto 0; text-align: center; font-size: 0.9375rem; line-height: 1.55; color: rgba(245, 237, 224, 0.72); }
+      .proc-foot strong { color: var(--km-paper); font-weight: 600; }
       /* karta v skratke: cena 0 € */
       .km-summary-price b.zero { color: var(--km-green); }
       .km-summary-price s { font-family: var(--font-serif); font-size: 1.125rem; color: var(--km-fg3); text-decoration-thickness: 1px; }
@@ -587,7 +601,23 @@
         </div>
       </section>
 
-      <!-- 2. Čo si odnesieš: živý zoznam + karta hovoru v skratke (Sketch 101) -->
+      <!-- 2. Ako to prebieha: tri kroky (vizuál z hlavnej stránky) -->
+      <section class="km-band km-band--ink proc" id="proces">
+        <div class="km-wrap">
+          <div class="km-head km-center rv">
+            <span class="km-kicker">02 · Ako to funguje</span>
+            <h2 class="km-h2">Ako to prebieha. Tri kroky, žiadne kľučky.</h2>
+          </div>
+          <ol class="proc-grid">
+            <li class="rv" style="--i:0"><span class="proc-n">1</span><h3>30-minútový hovor</h3><p>Prejdeme tvoje čísla, ciele a priority. Ak ti neviem pomôcť, poviem ti to na rovinu.</p><span class="proc-tag">zadarmo</span></li>
+            <li class="rv" style="--i:1"><span class="proc-n">2</span><h3>Plán do 7 dní</h3><p>Pripravím ti osobný plán: aktuálny stav, portfólio, nehnuteľnosti, poplatky a konkrétne kroky na ceste k rente.</p><span class="proc-tag">na tvoje čísla</span></li>
+            <li class="rv" style="--i:2"><span class="proc-n">3</span><h3>Prezentácia a tvoje rozhodnutie</h3><p>Plán ti odprezentujem, pošlem do mailu — a je tvoj. Rozhodneš sa sám.</p><span class="proc-tag">bez tlaku</span></li>
+          </ol>
+          <p class="proc-foot rv"><strong>A po pláne?</strong> Ak si sadneme, pokračujeme: pravidelné reporty a ročná aktualizácia plánu.</p>
+        </div>
+      </section>
+
+      <!-- 3. Čo si odnesieš: živý zoznam + karta hovoru v skratke (Sketch 101) -->
       <section class="km-section" id="odnesies">
         <div class="km-wrap">
           <div class="km-head km-head--left rv">
