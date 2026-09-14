@@ -535,7 +535,14 @@
       .get--dark li { border-top-color: rgba(243, 233, 221, 0.16); color: rgba(243, 233, 221, 0.86); }
       .get--dark li svg { color: var(--km-gold); }
       .get-foot { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; max-width: 46rem; margin: 2.5rem auto 0; }
-      .get-foot .km-guarantee { width: 100%; margin: 0; }
+      @media (min-width: 768px) { .get-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      .get-emoji { display: inline-flex; align-items: center; justify-content: center; width: 3.25rem; height: 3.25rem; border-radius: 9999px; background: var(--km-sand); font-size: 1.625rem; line-height: 1; }
+      .get--dark .get-emoji { background: rgba(243, 233, 221, 0.12); }
+      .get p { margin: 0; font-size: 1rem; line-height: 1.6; color: var(--km-fg2); text-wrap: pretty; }
+      .get--dark p { color: rgba(243, 233, 221, 0.82); }
+      .get-nbs { display: flex; gap: 0.875rem; align-items: flex-start; width: 100%; margin: 0; padding: 1.125rem 1.25rem; border-radius: 1rem; background: var(--km-sand); font-size: 0.9375rem; line-height: 1.55; color: var(--km-fg2); }
+      .get-nbs i { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.25rem; height: 2.25rem; border-radius: 9999px; background: var(--km-ivory); color: var(--km-green); font-style: normal; }
+      .get-nbs b { display: block; margin-bottom: 0.125rem; font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; color: var(--km-ink); }
       /* ponuka: položky s cenou vpravo */
       .km-offer-side .km-grp { display: inline-flex; margin: 1rem 0 0.25rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: var(--km-sand); font-size: 0.75rem; font-weight: 600; color: var(--km-green); }
       .km-offer-side .km-grp + .km-benefits li:first-child { border-top: none; padding-top: 0.5rem; }
@@ -680,33 +687,21 @@
         </div>
       </section>
 
-      <!-- 4. Čo presne dostaneš: tri karty bez cien -->
+      <!-- 4. Čo dostaneš: stratégia, vďaka ktorej budeš vedieť… -->
       <section class="km-section" id="dostanes">
         <div class="km-wrap">
           <div class="km-head km-center rv">
             <span class="km-kicker">Čo dostaneš · bez záväzku</span>
-            <h2 class="km-h2">Čo presne dostaneš.</h2>
-            <p class="km-lede">Tri veci. Všetky zadarmo, všetky ostávajú tebe – aj keď spolu ďalej nepokračujeme.</p>
+            <h2 class="km-h2">Dostaneš stratégiu, <br /><em>vďaka ktorej budeš vedieť:</em></h2>
           </div>
-          <div class="get-grid">
-            <article class="get  rv">
-              <div class="get-top"><span class="km-tile " aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="get-tag">30 minút · online</span></div>
-              <h3>Strategický hovor 1:1</h3>
-              <ul><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Prejdeme tvoje čísla, ciele a priority</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Povieme si, čo riešiť prvé a čo počká</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Audit poplatkov v produktoch, ktoré už máš</span></li></ul>
-            </article>
-            <article class="get get--dark rv">
-              <div class="get-top"><span class="km-tile km-tile--ink" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg></span><span class="get-tag">do 7 dní</span></div>
-              <h3>Cesta k rente – tvoj plán</h3>
-              <ul><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Strategický plán na ~20 strán s tvojimi číslami</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Rezerva, ETF portfólio, hypotéka, nehnuteľnosti, dane</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Poradie krokov až po rentu</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Osobná prezentácia plánu</span></li></ul>
-            </article>
-            <article class="get  rv">
-              <div class="get-top"><span class="km-tile km-tile--sand" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg></span><span class="get-tag">ostáva ti</span></div>
-              <h3>Renta výbava – nástroje k plánu</h3>
-              <ul><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Renta kalkulačka a investičné nástroje</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>RENTA kurz: základy ETF a budovania majetku</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Krízový plán na mieru pri poklese trhov</span></li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Skóring investičných bytov pre 70+ miest</span></li></ul>
-            </article>
+          <div class="get-grid get-grid--2">
+            <article class="get  rv" style="--i:0"><span class="get-emoji" aria-hidden="true">💶</span><h3>Ako tvoriť rezervu a pracovať s cashflow</h3><p>Koľko odkladať, kde držať rezervu a čo robiť s tým, čo ti každý mesiac ostáva.</p></article>
+            <article class="get  rv" style="--i:1"><span class="get-emoji" aria-hidden="true">🏠</span><h3>Či má v tvojom prípade zmysel investičný byt</h3><p>Prepočítame to na tvojich číslach. Ak áno, dostaneš presné kroky: financovanie, výnos, riziká.</p></article>
+            <article class="get  rv" style="--i:2"><span class="get-emoji" aria-hidden="true">📈</span><h3>Overenú ETF stratégiu na mieru</h3><p>Portfólio podľa tvojho horizontu a cieľov. Bez zbytočných poplatkov, bez rozprávok.</p></article>
+            <article class="get get--dark rv" style="--i:3"><span class="get-emoji" aria-hidden="true">🎯</span><h3>Presný plán k rente</h3><p>Krok za krokom od prvej rezervy po pasívny príjem: čo, kedy a v akom poradí.</p></article>
           </div>
           <div class="get-foot rv">
-            <p class="km-guarantee"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>Prečo zadarmo?</b>Lebo tí, ktorí po pláne ostanú, ma živia. Ostatní odídu s plánom – a je to fér. Mesačne stihnem 12 plánov, členovia komunity majú prednosť.</span></p>
+            <p class="get-nbs"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></i><span><b>Všetko pod dohľadom Národnej banky Slovenska.</b> Zadarmo a bez viazanosti. Mesačne stihnem 12 plánov, členovia komunity majú prednosť.</span></p>
             <div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
           </div>
         </div>
