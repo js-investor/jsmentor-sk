@@ -545,17 +545,23 @@
       .get-nbs b { display: block; margin-bottom: 0.125rem; font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; color: var(--km-ink); }
       /* ponuka: hovor + plán = 0 € */
       #dostanes .km-head { max-width: 62rem; }
-      .offer-bar { display: grid; grid-template-columns: 1fr; gap: 0.75rem; align-items: center; padding: 1.25rem; border-radius: var(--km-r); background: radial-gradient(120% 90% at 50% 0%, #145c44 0%, #0d4433 50%, #082c21 100%); color: var(--km-paper); }
-      @media (min-width: 900px) { .offer-bar { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto auto; gap: 1rem 1.25rem; padding: 1.5rem 2rem; } }
-      .offer-item { display: flex; align-items: center; gap: 0.875rem; }
-      .offer-item b { display: block; font-family: var(--font-serif); font-size: 1.25rem; line-height: 1.15; font-weight: 700; color: var(--km-paper); }
-      .offer-item small { display: block; margin-top: 0.25rem; font-size: 0.8125rem; color: rgba(243, 233, 221, 0.72); }
-      .offer-k { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.14); border: 1px solid rgba(243, 233, 221, 0.3); font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; color: var(--km-paper); }
-      .offer-op { font-family: var(--font-serif); font-size: 2rem; line-height: 1; font-weight: 600; color: #bfe0cb; text-align: center; }
-      .offer-item--price { justify-content: flex-start; }
-      @media (min-width: 900px) { .offer-item--price { justify-content: flex-end; text-align: right; padding-left: 0.5rem; } }
-      .offer-item--price b { font-size: clamp(2.5rem, 4vw, 3.25rem); line-height: 0.95; letter-spacing: -0.03em; }
-      .offer-item--price small { color: #bfe0cb; font-weight: 600; }
+      .offer-bar { position: relative; overflow: visible; padding: 2rem 1.25rem 1.25rem; border-radius: 1.5rem; background: radial-gradient(120% 90% at 50% 0%, #145c44 0%, #0d4433 50%, #082c21 100%); color: var(--km-paper); box-shadow: 0 24px 60px -30px rgba(8, 44, 33, 0.55); }
+      @media (min-width: 900px) { .offer-bar { padding: 2.25rem 2rem 2rem; } }
+      .offer-badge { position: absolute; top: -0.875rem; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 0.4375rem 1rem; border-radius: 9999px; background: var(--km-paper); color: #0b3d2e; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+      .offer-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; align-items: stretch; }
+      @media (min-width: 900px) { .offer-grid { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto auto; gap: 1rem; align-items: center; } }
+      .offer-card { display: flex; align-items: flex-start; gap: 1rem; padding: 1.25rem 1.375rem; border-radius: 1.125rem; background: rgba(243, 233, 221, 0.08); border: 1px solid rgba(243, 233, 221, 0.16); }
+      .offer-card b { display: block; font-family: var(--font-serif); font-size: 1.375rem; line-height: 1.15; font-weight: 700; color: var(--km-paper); }
+      .offer-card p { margin: 0.75rem 0 0; font-size: 0.875rem; line-height: 1.5; color: rgba(243, 233, 221, 0.78); text-wrap: pretty; }
+      .offer-meta { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.625rem; }
+      .offer-meta span { display: inline-flex; align-items: center; padding: 0.25rem 0.625rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.12); font-size: 0.75rem; font-weight: 600; color: var(--km-paper); white-space: nowrap; }
+      .offer-k { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: var(--km-paper); font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; color: #0b3d2e; }
+      .offer-op { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; margin: 0 auto; border-radius: 9999px; border: 1px solid rgba(243, 233, 221, 0.3); font-family: var(--font-serif); font-size: 1.5rem; line-height: 1; font-weight: 600; color: #bfe0cb; }
+      .offer-price { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 1.25rem; text-align: center; }
+      @media (min-width: 900px) { .offer-price { align-items: center; padding: 0 0.5rem 0 1rem; } }
+      .offer-price b { font-family: var(--font-serif); font-size: clamp(3rem, 5vw, 4.25rem); line-height: 0.95; letter-spacing: -0.03em; font-weight: 800; color: var(--km-paper); }
+      .offer-pill { display: inline-flex; padding: 0.3125rem 0.75rem; border-radius: 9999px; background: #bfe0cb; color: #0b3d2e; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; }
+      .offer-price small { font-size: 0.8125rem; color: rgba(243, 233, 221, 0.7); }
       .offer-sub { margin: 2.5rem 0 1rem; text-align: center; font-family: var(--font-serif); font-size: 1.375rem; font-weight: 700; color: var(--km-ink); }
       .risk { width: 100%; padding: 1.5rem 1.625rem; border-radius: var(--km-r); background: var(--km-sand); color: var(--km-ink); }
       @media (min-width: 768px) { .risk { padding: 1.75rem 2rem; } }
@@ -721,11 +727,32 @@
             <p class="km-lede">Nie tipy z internetu. Konkrétny plán na tvojich číslach – a ostáva ti, aj keď spolu ďalej nepokračujeme.</p>
           </div>
           <div class="offer-bar rv">
-            <div class="offer-item"><span class="offer-k" aria-hidden="true">1</span><span><b>Strategický hovor 30 min</b><small>online · 1:1 · zadarmo</small></span></div>
-            <span class="offer-op" aria-hidden="true">+</span>
-            <div class="offer-item"><span class="offer-k" aria-hidden="true">2</span><span><b>Cesta k rente – tvoj plán</b><small>~20 strán · do 7 dní · osobná prezentácia</small></span></div>
-            <span class="offer-op" aria-hidden="true">=</span>
-            <div class="offer-item offer-item--price"><span><b>0 €</b><small>bez viazanosti</small></span></div>
+            <span class="offer-badge">Ponuka pre členov komunity</span>
+            <div class="offer-grid">
+              <div class="offer-card">
+                <span class="offer-k" aria-hidden="true">1</span>
+                <div>
+                  <b>Strategický hovor 30 min</b>
+                  <div class="offer-meta"><span>💬 online 1:1</span><span>⏱ 30 minút</span><span>✅ zadarmo</span></div>
+                  <p>Tvoje čísla, ciele a priority. Ak ti neviem pomôcť, poviem ti to v prvých 10 minútach.</p>
+                </div>
+              </div>
+              <span class="offer-op" aria-hidden="true">+</span>
+              <div class="offer-card">
+                <span class="offer-k" aria-hidden="true">2</span>
+                <div>
+                  <b>Cesta k rente – tvoj plán</b>
+                  <div class="offer-meta"><span>📄 ~20 strán</span><span>📅 do 7 dní</span><span>🎤 osobná prezentácia</span></div>
+                  <p>Rezerva, ETF portfólio, hypotéka, investičný byt, dane – poradie krokov až po rentu.</p>
+                </div>
+              </div>
+              <span class="offer-op" aria-hidden="true">=</span>
+              <div class="offer-price">
+                <b>0 €</b>
+                <span class="offer-pill">bez viazanosti</span>
+                <small>plán ostáva tvoj</small>
+              </div>
+            </div>
           </div>
           <p class="offer-sub rv">Vďaka tomu budeš presne vedieť:</p>
           <div class="get-grid get-grid--2">
