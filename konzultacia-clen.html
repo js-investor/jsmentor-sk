@@ -507,6 +507,15 @@
       .proc--light .cta-note { color: var(--km-fg3); }
       .proc--light + .km-band--ink { border-top: 0; }
       .proc + .km-band--ink { border-top: 1px solid rgba(243, 233, 221, 0.12); }
+      /* čo reálne získaš: výsledky na zelenom */
+      .gain { display: grid; gap: 0.75rem; margin: 1.75rem 0 0; }
+      .gain li { display: grid; grid-template-columns: 2.5rem 1fr; gap: 0.875rem; align-items: start; padding: 0.875rem 1rem; border-radius: 1rem; background: rgba(243, 233, 221, 0.08); border: 1px solid rgba(243, 233, 221, 0.14); transition: background 0.25s; }
+      .gain li:hover { background: rgba(243, 233, 221, 0.13); }
+      .gain i { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.14); color: var(--km-paper); font-style: normal; }
+      .gain b { display: block; font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.2; font-weight: 700; color: var(--km-paper); }
+      .gain small { display: block; margin-top: 0.25rem; font-size: 0.9rem; line-height: 1.5; color: rgba(243, 233, 221, 0.78); }
+      .km-band--green .km-offer-price span { color: #bfe0cb; }
+      .km-band--green .km-offer-price { margin-top: 1.75rem; }
       /* ponuka: položky s cenou vpravo */
       .km-offer-side .km-grp { display: inline-flex; margin: 1rem 0 0.25rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: var(--km-sand); font-size: 0.75rem; font-weight: 600; color: var(--km-green); }
       .km-offer-side .km-grp + .km-benefits li:first-child { border-top: none; padding-top: 0.5rem; }
@@ -651,47 +660,24 @@
         </div>
       </section>
 
-      <!-- 4. Prečo počúvať mňa: fotka + text + fakty (ako Ivan na /komunita) -->
-      <section class="km-section" id="slovo">
-        <div class="km-wrap">
-          <div class="km-bio">
-            <div class="km-bio-photo rv">
-              <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" />
-              <span class="km-bio-tags"><span class="km-bio-tag">Pod dohľadom NBS</span><span class="km-bio-tag">EFA vzdelanie</span></span>
-            </div>
-            <div class="rv" style="--i:1">
-              <span class="km-kicker">Kto za tým stojí</span>
-              <h2 class="km-h2">Prečo počúvať <em>mňa.</em></h2>
-              <p>„Dnes na internete o peniazoch mudruje veľa ľudí. Otázka je, či počúvaš ľudí so skúsenosťami, alebo len s teóriou.</p>
-              <p>Investíciám sa venujem viac ako 8 rokov. Mám vlastné ETF stratégie v hodnote <strong>60 000 €</strong>, vlastním investičnú nehnuteľnosť a pomáham viac ako <strong>200 ľuďom</strong> robiť dôležité finančné rozhodnutia. Stratégie, ktoré som postavil klientom, majú dnes hodnotu viac ako <strong>3,5 milióna eur</strong>.</p>
-              <p>To, že mám európske finančné vzdelanie EFA, je vedľajšie. Teória je fajn, ale ja radšej hovorím o skúsenostiach. Sám investujem a hlavne pracujem s ľuďmi, ktorí investujú.“</p>
-              <ul class="km-facts">
-                <li><b>8+</b><span>rokov pomáham ľuďom rozumne investovať</span></li>
-                <li><b>NBS</b><span>pod dohľadom Národnej banky Slovenska</span></li>
-                <li><b>3,5 mil. €</b><span>klientskych aktív v starostlivosti</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. Čo presne dostaneš: hnedý plagát s cenou + karta položiek (ako ponuka na /komunita) -->
-      <section class="km-band km-band--ink" id="dostanes">
+      <!-- 4. Čo reálne získaš: výsledok + hodnota + 0 € (pod problémami) -->
+      <section class="km-band km-band--green" id="dostanes">
         <div class="km-wrap">
           <div class="km-offer">
             <div class="rv">
-              <span class="km-kicker km-kicker--paper">Čo dostaneš · bez záväzku</span>
-              <h2 class="km-h2">Čo presne dostaneš. <br /><em>A koľko by to stálo inde.</em></h2>
-              <div class="km-offer-price"><b>0 €</b><span>namiesto 856 €</span></div>
-              <p class="km-offer-line">Hodnota spolu 856 € → ty platíš 0 €.</p>
-              <p class="km-offer-line">Strategický hovor, Cesta k rente a nástroje k plánu. Všetko v jednom balíku.</p>
-              <ul class="km-checks">
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Strategický hovor 30 min 1:1 a audit poplatkov</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Cesta k rente – strategický plán na ~20 strán + prezentácia</li>
-                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Renta výbava: kalkulačka, kurz, krízový plán, skóring bytov</li>
+              <span class="km-kicker km-kicker--paper">Čo reálne získaš</span>
+              <h2 class="km-h2">Po hovore budeš vedieť, <br /><em>čo s peniazmi urobiť ako prvé.</em></h2>
+              <p class="km-lede">Nie ďalší názor z internetu. Konkrétny výsledok na tvojich číslach – a ostáva ti, aj keď spolu nepokračujeme.</p>
+              <ul class="gain">
+                <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h12M9 12h12M9 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></i><span><b>Jasné poradie krokov</b><small>Vieš, čo riešiť prvé – rezerva, hypotéka, investície alebo byt – a čo môže počkať.</small></span></li>
+                <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8M8 17h6"/></svg></i><span><b>Cesta k rente na papieri</b><small>Do 7 dní máš plán na ~20 strán s tvojimi číslami, nie so šablónou. Odprezentujem ti ho osobne.</small></span></li>
+                <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></i><span><b>Čierne na bielom, čo ťa stoja poplatky</b><small>Audit produktov, ktoré už máš. Často je to prvá vec, ktorá ti ušetrí stovky eur ročne.</small></span></li>
+                <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg></i><span><b>Nástroje, ktoré ti ostanú</b><small>Renta kalkulačka, RENTA kurz, krízový plán a skóring investičných bytov.</small></span></li>
               </ul>
+              <div class="km-offer-price"><b>0 €</b><span>namiesto 856 €</span></div>
+              <p class="km-offer-line">Hodnota spolu 856 € → ty platíš 0 €. Bez viazanosti.</p>
               <div class="km-actions"><div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
-              <div class="km-guarantee"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>Prečo zadarmo?</b>Lebo tí, ktorí po pláne ostanú, ma živia. Ostatní odídu s plánom – a je to fér.</span></div>
+              <div class="km-guarantee"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><span><b>Prečo zadarmo?</b>Lebo tí, ktorí po pláne ostanú, ma živia. Ostatní odídu s plánom – a je to fér.</span></div>
               <p class="km-offer-note">Mesačne stihnem 12 plánov. Členovia komunity majú prednosť.</p>
             </div>
             <aside class="km-offer-side rv" style="--i:1">
@@ -711,6 +697,30 @@
               </ul>
               <div class="km-total"><span>Hodnota spolu <s>856 €</s></span><span>Ty platíš <b>0 €</b></span></div>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Prečo počúvať mňa: fotka + text + fakty (ako Ivan na /komunita) -->
+      <section class="km-band km-band--sand" id="slovo">
+        <div class="km-wrap">
+          <div class="km-bio">
+            <div class="km-bio-photo rv">
+              <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" />
+              <span class="km-bio-tags"><span class="km-bio-tag">Pod dohľadom NBS</span><span class="km-bio-tag">EFA vzdelanie</span></span>
+            </div>
+            <div class="rv" style="--i:1">
+              <span class="km-kicker">Kto za tým stojí</span>
+              <h2 class="km-h2">Prečo počúvať <em>mňa.</em></h2>
+              <p>„Dnes na internete o peniazoch mudruje veľa ľudí. Otázka je, či počúvaš ľudí so skúsenosťami, alebo len s teóriou.</p>
+              <p>Investíciám sa venujem viac ako 8 rokov. Mám vlastné ETF stratégie v hodnote <strong>60 000 €</strong>, vlastním investičnú nehnuteľnosť a pomáham viac ako <strong>200 ľuďom</strong> robiť dôležité finančné rozhodnutia. Stratégie, ktoré som postavil klientom, majú dnes hodnotu viac ako <strong>3,5 milióna eur</strong>.</p>
+              <p>To, že mám európske finančné vzdelanie EFA, je vedľajšie. Teória je fajn, ale ja radšej hovorím o skúsenostiach. Sám investujem a hlavne pracujem s ľuďmi, ktorí investujú.“</p>
+              <ul class="km-facts">
+                <li><b>8+</b><span>rokov pomáham ľuďom rozumne investovať</span></li>
+                <li><b>NBS</b><span>pod dohľadom Národnej banky Slovenska</span></li>
+                <li><b>3,5 mil. €</b><span>klientskych aktív v starostlivosti</span></li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
