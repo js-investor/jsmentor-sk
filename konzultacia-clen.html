@@ -493,6 +493,19 @@
       .proc-tag { display: inline-block; margin-top: 0.875rem; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.6875rem; letter-spacing: 0.09em; text-transform: uppercase; color: #9fbfac; }
       .proc-foot { max-width: 44em; margin: 2.75rem auto 0; text-align: center; font-size: 0.9375rem; line-height: 1.55; color: rgba(245, 237, 224, 0.72); }
       .proc-foot strong { color: var(--km-paper); font-weight: 600; }
+      /* svetlý variant: krémovo-pieskový gradient */
+      .proc--light { background: radial-gradient(70rem 32rem at 50% -6rem, #fffcf7 0%, rgba(255, 252, 247, 0) 70%), linear-gradient(180deg, #f7f1e9 0%, #efe1cb 100%); color: var(--km-ink); }
+      .proc--light .km-kicker { color: var(--km-green); }
+      .proc--light .km-kicker::before { background: rgba(41, 36, 32, 0.35); }
+      .proc--light .km-h2 { color: var(--km-ink); }
+      .proc--light .km-lede { color: var(--km-fg2); }
+      .proc--light .proc-grid::before { background: rgba(41, 36, 32, 0.28); }
+      .proc--light .proc-n { background: #fffcf7; border-color: var(--km-ink); color: var(--km-ink); }
+      .proc--light .proc-grid h3 { color: var(--km-ink); }
+      .proc--light .proc-grid p { color: var(--km-fg2); }
+      .proc--light .proc-tag { color: var(--km-green); }
+      .proc--light .cta-note { color: var(--km-fg3); }
+      .proc--light + .km-band--ink { border-top: 0; }
       .proc + .km-band--ink { border-top: 1px solid rgba(243, 233, 221, 0.12); }
       /* ponuka: položky s cenou vpravo */
       .km-offer-side .km-grp { display: inline-flex; margin: 1rem 0 0.25rem; padding: 0.25rem 0.625rem; border-radius: 9999px; background: var(--km-sand); font-size: 0.75rem; font-weight: 600; color: var(--km-green); }
@@ -599,7 +612,7 @@
       </section>
 
       <!-- 2. Čo si odnesieš z 30 minút: tri kroky s kruhmi (vizuál z hlavnej stránky) -->
-      <section class="km-band km-band--ink proc" id="odnesies">
+      <section class="km-band proc proc--light" id="odnesies">
         <div class="km-wrap">
           <div class="km-head km-center rv">
             <span class="km-kicker">01 · Strategický hovor</span>
@@ -611,7 +624,7 @@
             <li class="rv" style="--i:1"><span class="proc-n">2</span><h3>Budeš presne vedieť, čo máš robiť.</h3><p>Do 7 dní dostaneš Cestu k rente – strategický plán, v ktorom bude všetko, čo potrebuješ k prvému kroku. Od základov cez rezervu a investície až po plán renty.</p><span class="proc-tag">do 7 dní</span></li>
             <li class="rv" style="--i:2"><span class="proc-n">3</span><h3>Rozhodneš sa sám.</h3><p>Ak sa ti plán bude páčiť, pracujeme na ňom spolu. Ak nie, nič sa nedeje.</p><span class="proc-tag">bez tlaku</span></li>
           </ol>
-          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="odnesies"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
+          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="odnesies"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
         </div>
       </section>
 
