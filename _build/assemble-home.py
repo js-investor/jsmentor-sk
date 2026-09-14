@@ -151,6 +151,7 @@ HEAD = r"""<!DOCTYPE html>
   <script>
     window.__resources = __RESOURCES__;
   </script>
+  <script src="/js/umami.js"></script>
   <script>
     (function () {
       var host = window.location.hostname;
@@ -164,7 +165,6 @@ HEAD = r"""<!DOCTYPE html>
       document.head.appendChild(script);
     })();
   </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
   <script defer src="/js/home/bedae424.js"></script>
   <script defer src="/js/home/fd56f2ec.js"></script>
   <script defer src="/js/home/5fc5c615.js"></script>

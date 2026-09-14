@@ -406,7 +406,7 @@
           '<div class="bys-reco bys-reco--' + result.cls + '"><div class="bys-reco-lbl">Odporúčanie</div><p>' + result.reco + "</p></div>" +
           '<div class="bys-cats">' + catsHtml + "</div>" +
           '<div class="bys-tips"><h3>Čo s tým 👇</h3>' + tipsHtml + "</div>" +
-          '<a class="bys-btn" href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="bytovy-semafor">' + BONUSY_CTA_LABEL + "</a>" +
+          '<a class="bys-btn" href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="bytovy-semafor" data-umami-event-slug="bytovy-semafor">' + BONUSY_CTA_LABEL + "</a>" +
           '<span class="bys-micro bys-micro--light">45 minút · zadarmo · online</span>' +
           '<div><button type="button" class="bys-btn bys-btn--ghost" data-bys-restart>↺ Vyhodnotiť iný byt</button></div>' +
         "</div>" +

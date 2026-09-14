@@ -364,7 +364,7 @@
               '<div class="text-[13px] font-extrabold uppercase tracking-[0.14em] text-center mb-[14px]" style="color: #5BC78A">Čo s tým 👇</div>' +
               tipsHtml +
             "</div>" +
-            '<a href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-[30px] text-body" data-umami-event="click_konzultacia" data-umami-event-section="etf-semafor">' + BONUSY_CTA_LABEL + "</a>" +
+            '<a href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-[30px] text-body" data-umami-event="click_konzultacia" data-umami-event-section="etf-semafor" data-umami-event-slug="etf-semafor">' + BONUSY_CTA_LABEL + "</a>" +
             '<span class="block mt-3 text-[13px] font-semibold" style="color: #B8B2A4">Priprav si svoje portfólio — audit dostaneš zadarmo</span>' +
             '<div class="mt-4">' +
               '<button type="button" class="inline-block rounded-xl border font-extrabold text-[14px] px-[26px] py-[14px] transition-colors cursor-pointer" style="background: transparent; color: #B8B2A4; border-color: rgba(245,237,224,.14)" data-etfs-restart' +

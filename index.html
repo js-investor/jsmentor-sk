@@ -26,6 +26,7 @@
   <script>
     window.__resources = {"plan1": "/assets/images/home/f752f3b3.png", "plan2": "/assets/images/home/42fc3e74.png", "plan3": "/assets/images/home/4cd91bb3.png", "plan4": "/assets/images/home/72e6ebb1.png", "plan5": "/assets/images/home/1e0de038.png", "rev3": "/assets/images/home/3525f6a3.png", "rev5": "/assets/images/home/ae56c909.png", "rev2": "/assets/images/home/70ee820f.png", "rev6": "/assets/images/home/b8a20171.png", "rev1": "/assets/images/home/733553c9.png", "rev9": "/assets/images/home/54e800a1.png", "rev4": "/assets/images/home/1e6537c3.png", "rev8": "/assets/images/home/3f051a67.png", "rev7": "/assets/images/home/9adb544d.png", "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "/js/home/bedae424.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "/js/home/fd56f2ec.js"};
   </script>
+  <script src="/js/umami.js"></script>
   <script>
     (function () {
       var host = window.location.hostname;
@@ -39,7 +40,6 @@
       document.head.appendChild(script);
     })();
   </script>
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="c6540d5c-dbbe-4cad-baa0-475ca9c75fc9"></script>
   <script defer src="/js/home/bedae424.js"></script>
   <script defer src="/js/home/fd56f2ec.js"></script>
   <script defer src="/js/home/5fc5c615.js"></script>
@@ -92,7 +92,7 @@
       <a href="#cennik" style="color:#171310;text-decoration:none;font-size:13.5px;font-weight:500;opacity:.72;transition:opacity .15s" style-hover="opacity:1">Cenník</a>
       <a href="#faq" style="color:#171310;text-decoration:none;font-size:13.5px;font-weight:500;opacity:.72;transition:opacity .15s" style-hover="opacity:1">FAQ</a>
     </nav>
-    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:999px;box-shadow:0 4px 14px rgba(43,107,74,.22);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-1px)">Chcem plán zadarmo</button>
+    <button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="click_konzultacia_cta" data-umami-event-section="header" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:14px;padding:10px 20px;border-radius:999px;box-shadow:0 4px 14px rgba(43,107,74,.22);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-1px)">Chcem plán zadarmo</button>
   </div>
 </header>
 
@@ -107,7 +107,7 @@
       <h1 style="font-family:'Recoleta',Georgia,serif;font-weight:830;font-size:clamp(44px,6.2vw,82px);line-height:1.01;letter-spacing:-0.025em;margin:24px 0 0;text-wrap:balance"><strong><strong>Vybuduj si majetok, ktorý ti raz bude posielať výplatu.</strong></strong></h1>
       <p style="font-size:clamp(17px,2.2vw,19px);line-height:1.55;color:#3d3831;margin:26px auto 0;max-width:32em">Volá sa to renta — mesačný príjem z investícií a nehnuteľností. Na 30-minútovom hovore prejdeme tvoje čísla a do 7 dní dostaneš osobný plán, ako sa k nej dostať. Zadarmo, bez záväzkov a rozhodneš sa sám.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;justify-content:center">
-        <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:17px;padding:18px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+        <button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="click_konzultacia_cta" data-umami-event-section="hero" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:17px;padding:18px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         <button type="button" sc-camel-on-click="{{ goCalc }}" style="appearance:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;background:transparent;color:#171310;font-weight:600;font-size:16px;padding:16px 26px;border-radius:999px;border:1.5px solid rgba(23,19,16,.35);transition:border-color .2s,transform .2s" style-hover="border-color:#171310;transform:translateY(-1px)">Vypočítať si moju rentu<span style="opacity:.55;font-weight:500;font-size:14px">· 3 min</span></button>
       </div>
       <div style="display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:12px 28px;margin-top:24px">
@@ -284,7 +284,7 @@
     </div>
     <p class="whyfree-c"><b>Prečo to dávam zadarmo?</b> Jednoducho: viem, že keď uvidíš svoj plán, časť z vás sa rozhodne pre dlhodobú spoluprácu — a tá živí mňa. Zvyšok odíde s hotovým plánom a nástrojmi v ruke. Férový obchod pre obe strany.</p>
     <div style="text-align:center;margin-top:38px">
-      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16.5px;padding:17px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:#225A3E;transform:translateY(-1px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      <button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="click_konzultacia_cta" data-umami-event-section="dostanes" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:#2B6B4A;color:#fff;font-weight:600;font-size:16.5px;padding:17px 34px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:#225A3E;transform:translateY(-1px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
       <div class="cap-squares" style="justify-content:center;margin-top:24px"><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i class="taken"></i><i></i><i></i><i></i><i></i><i></i></div>
       <p class="cap-text" style="text-align:center">V septembri pripravujem 12 plánov. <b>Voľných ostáva 5.</b></p>
     </div>
@@ -471,7 +471,7 @@
 
     <div class="cta">
       <p class="q" id="wmf11-cta-q">Toto je model. Tvoje čísla budú iné.</p>
-      <a class="btn" id="wmf11-cta-btn" href="#formular">Spočítať moje čísla na konzultácii</a>
+      <a class="btn" id="wmf11-cta-btn" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="poplatky">Spočítať moje čísla na konzultácii</a>
       <p class="micro">30 minút online · poradenstvo a plán <b>0 €</b></p>
     </div>
 
@@ -489,7 +489,7 @@
       <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(43,107,74,0.20);color:#9FBFAC;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border-radius:999px"><span style="width:7px;height:7px;border-radius:999px;background:#9FBFAC;display:inline-block"></span>Bez záväzku</span>
       <h3 style="font-family: Recoleta; font-weight: 800; font-size: clamp(27px,4.6vw,36px); line-height: 1.08; letter-spacing: -0.02em; color: var(--bg,#F5EDE0); margin: 20px 0 0">Konzultácia aj tvoj plán sú zadarmo.</h3>
       <p style="font-size:16.5px;line-height:1.55;color:rgba(245,237,224,0.78);margin:14px auto 0;max-width:30em">Najprv spolu určíme smer. Do 7 dní máš plán v maile — a rozhodneš sa sám.</p>
-      <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16.5px;padding:16px 30px;border-radius:999px;margin-top:26px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      <button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="click_konzultacia_cta" data-umami-event-section="cena" style="appearance:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16.5px;padding:16px 30px;border-radius:999px;margin-top:26px;box-shadow:0 6px 16px rgba(43,107,74,.20);transition:background .2s,transform .2s" style-hover="background:var(--accent-hover,#225A3E);transform:translateY(-2px)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
       <p class="mc" style="font-size:13px;line-height:1.5;color:rgba(245,237,224,0.55);margin:14px auto 0">Bezplatne a nezáväzne. Ozvem sa ti do jedného pracovného dňa.</p>
     </div>
 </section>
@@ -973,7 +973,7 @@
     </sc-if>
 
     <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
-    <form ref="{{ formEl }}" method="POST" sc-camel-on-submit="{{ submit }}" style="margin-top:36px;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:32px 28px;box-shadow:0 14px 40px rgba(22,19,16,0.08)">
+    <form ref="{{ formEl }}" method="POST" data-umami-form="consultation" sc-camel-on-submit="{{ submit }}" style="margin-top:36px;background:var(--card,#FFF9EF);border:1px solid #e4e2e1;border-radius:20px;padding:32px 28px;box-shadow:0 14px 40px rgba(22,19,16,0.08)">
       <p style="display:none"><label>Nevypĺňaj toto pole: <input name="bot-field"></label></p>
       <input type="hidden" name="co_riesis" value="{{ situaciaValue }}">
       <input type="hidden" name="suhlas" value="{{ consentValue }}">
@@ -1157,7 +1157,7 @@
 <!-- ===================== STICKY MOBILE CTA ===================== -->
 <sc-if value="{{ showSticky }}" hint-placeholder-val="">
   <div class="msticky" style="position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(245,237,224,0.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(22,19,16,0.12);padding:12px 16px;box-shadow:0 -6px 24px rgba(22,19,16,0.10)">
-    <button type="button" sc-camel-on-click="{{ goForm }}" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+    <button type="button" sc-camel-on-click="{{ goForm }}" data-umami-event="click_konzultacia_cta" data-umami-event-section="sticky" style="appearance:none;border:0;cursor:pointer;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--accent,#2B6B4A);color:#fff;font-weight:600;font-size:16px;padding:15px 24px;border-radius:999px;box-shadow:0 6px 16px rgba(43,107,74,.20)">Chcem plán zadarmo<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px;flex:none"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
   </div>
 </sc-if>
 
@@ -1380,26 +1380,8 @@ class Component extends DCLogic {
     }
   }
 
-  trackUmami(name) {
-    try {
-      if (window.umami && typeof window.umami.track === 'function') window.umami.track(name);
-    } catch (e) {}
-  }
   trackFormStart() {
-    if (this._formStartSent) return;
-    var key = 'jsmentor-form-start';
-    var wait = 30 * 60 * 1000;
-    try {
-      var last = parseInt(localStorage.getItem(key) || '0', 10);
-      if (last && Date.now() - last < wait) {
-        this._formStartSent = true;
-        return;
-      }
-    } catch (e) {}
-    if (!(window.umami && typeof window.umami.track === 'function')) return;
-    this._formStartSent = true;
-    try { localStorage.setItem(key, String(Date.now())); } catch (e) {}
-    this.trackUmami('FormStart');
+    if (window.JSMentorUmami) window.JSMentorUmami.formStart('consultation');
   }
 
   submit(e) {
@@ -1413,7 +1395,6 @@ class Component extends DCLogic {
     if (!this.state.consent) { this.setState({ error: 'Pre odoslanie potrebujem tvoj súhlas so spracovaním údajov.' }); return; }
     if (this.state.sending) { return; }
     this.setState({ error: '', sending: true });
-    this.trackUmami('FormSubmit');
     fetch('https://formspree.io/f/xykqednp', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
@@ -1421,6 +1402,7 @@ class Component extends DCLogic {
     })
       .then((res) => {
         if (res.ok) {
+          if (window.JSMentorUmami) window.JSMentorUmami.formSubmit('consultation');
           this.setState({ error: '', sending: false, submitted: true });
           setTimeout(() => this.scrollToId('formular'), 60);
         } else {
@@ -1537,7 +1519,10 @@ class Component extends DCLogic {
       inflNow: E(s.inflVal), inflThen: E(s.inflVal / Math.pow(1.03, 10)),
       onInfl: e => this.setState({ inflVal: Number(e.target.value) }),
       calcEmail: s.calcEmail,
-      onCalcEmail: e => this.setState({ calcEmail: e.target.value, calcSent: '' }),
+      onCalcEmail: e => {
+        this.setState({ calcEmail: e.target.value, calcSent: '' });
+        if (window.JSMentorUmami) window.JSMentorUmami.formStart('renta_email');
+      },
       calcSendLabel: s.calcSent === 'sending' ? 'Odosielam…' : s.calcSent === 'ok' ? 'Odoslané ✓' : s.calcSent === 'err' ? 'Skúsiť znova' : 'Poslať',
       calcMailMsg: s.calcSent === 'ok' ? 'Hotovo — čísla ti prídu na e-mail.' : (s.calcSent === 'invalid' ? 'Zadaj platný e-mail.' : ''),
       sendCalcEmail: () => this.sendCalcEmail()
@@ -1574,7 +1559,10 @@ class Component extends DCLogic {
       fd.append('medzera', Math.round(target - base));
     })();
     fetch('https://formspree.io/f/xykqednp', { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
-      .then(r => this.setState({ calcSent: r.ok ? 'ok' : 'err' }))
+      .then(r => {
+        if (r.ok && window.JSMentorUmami) window.JSMentorUmami.formSubmit('renta_email');
+        this.setState({ calcSent: r.ok ? 'ok' : 'err' });
+      })
       .catch(() => this.setState({ calcSent: 'err' }));
   }
   initFeeSection() {

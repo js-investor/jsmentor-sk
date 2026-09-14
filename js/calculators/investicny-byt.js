@@ -476,7 +476,7 @@
               '<tbody data-iby-tbody></tbody>' +
             "</table>" +
           "</div>" +
-          '<a href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-[30px] text-body" data-umami-event="click_konzultacia" data-umami-event-section="investicny-byt">' + BONUSY_CTA_LABEL + "</a>" +
+          '<a href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" class="btn-primary inline-block mt-[30px] text-body" data-umami-event="click_konzultacia" data-umami-event-section="investicny-byt" data-umami-event-slug="investicny-byt">' + BONUSY_CTA_LABEL + "</a>" +
           '<span class="block mt-3 text-[13px] font-semibold text-muted-foreground">45 minút · zadarmo · online</span>' +
         "</div>" +
       "</section>" +

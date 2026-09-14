@@ -296,6 +296,14 @@
       });
     }
 
+    form.addEventListener("input", function (event) {
+      var field = event.target;
+      if (!field || (field.tagName !== "INPUT" && field.tagName !== "TEXTAREA")) return;
+      var type = String(field.type || "text").toLowerCase();
+      if (type === "hidden" || type === "checkbox" || type === "radio" || type === "submit" || type === "button") return;
+      if (window.JSMentorUmami) window.JSMentorUmami.formStart("consultation");
+    });
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       showStatus(null);
@@ -334,6 +342,7 @@
             showStatus("error");
             return;
           }
+          if (window.JSMentorUmami) window.JSMentorUmami.formSubmit("consultation");
           showStatus("success");
           form.reset();
         })

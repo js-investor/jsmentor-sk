@@ -205,7 +205,7 @@
             "</div>" +
           "</div>" +
           '<div class="pr-why-box"><strong>Prečo to robí taký rozdiel?</strong> Poplatok sa strháva každý rok z <strong>celej hodnoty</strong> portfólia — nielen z toho, čo si vložil. A každé euro, ktoré odíde na poplatkoch, ti zároveň prestane zarábať. Strata sa tak úročí rovnako ako majetok — z pár percent ročne vyrastú za 20 rokov desaťtisíce eur.</div>' +
-          '<a class="pr-btn" href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="poplatkovy-rontgen">' + BONUSY_CTA_LABEL + "</a>" +
+          '<a class="pr-btn" href="' + KONZULTACIA_URL + '" target="_blank" rel="noopener noreferrer" data-umami-event="click_konzultacia" data-umami-event-section="poplatkovy-rontgen" data-umami-event-slug="poplatkovy-rontgen">' + BONUSY_CTA_LABEL + "</a>" +
           '<span class="pr-micro">Priprav si svoje portfólio — audit dostaneš zadarmo</span>' +
         "</div>" +
       "</section>" +
