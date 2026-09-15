@@ -656,6 +656,29 @@
       .km-bar .km-btn svg { width: 1rem; height: 1rem; }
       .km-wall { margin-top: 3rem; }
       @media (min-width: 768px) { .km-wall { margin-top: 3.5rem; } }
+      /* ---------- 7.4: minimalistická spodná polovica ---------- */
+      .minimal { border-top: 1px solid var(--km-hair-2); }
+      .minimal .card { border-color: var(--km-hair); }
+      .minimal .card:hover { transform: none; }
+      .minimal .res { padding-top: 1.625rem; }
+      @media (min-width: 768px) { .minimal .res { padding-top: 1.875rem; } }
+      .minimal .res::before { display: none; }
+      .minimal .res-gain i { background: var(--km-sand); color: var(--km-green); }
+      .minimal .trust { margin-top: 2rem; padding: 1.5rem 0; border-radius: 0; border-top: 1px solid var(--km-hair); border-bottom: 1px solid var(--km-hair); background: transparent; color: var(--km-ink); }
+      .minimal .trust::after { display: none; }
+      .minimal .trust p { color: var(--km-fg2); }
+      .minimal .trust i { background: var(--km-sand); color: var(--km-green); }
+      .minimal .trust-marks { color: var(--km-fg3); }
+      .minimal .trust-marks b { color: var(--km-ink); }
+      .minimal .km-carousel--single { margin-top: 2.5rem; padding: 2.5rem 0 0; border: 0; border-top: 1px solid var(--km-hair); border-radius: 0; background: transparent; }
+      .minimal .km-carousel--single blockquote { font-weight: 500; }
+      .minimal .km-carousel { border-color: var(--km-hair); }
+      .minimal .km-ledger-col--good { background: var(--km-ivory); border-color: var(--km-hair); color: var(--km-ink); }
+      .minimal .km-ledger-col--good .km-mark { background: var(--km-green); color: var(--km-paper); }
+      .minimal .km-ledger-col--good .km-ledger-item { border-top-color: var(--km-hair); }
+      .minimal .km-ledger-col--good .km-ledger-item.plain svg { color: var(--km-green); }
+      .minimal .km-ledger-col--good .km-ledger-item span { color: var(--km-fg2); }
+      .minimal .km-faq-card { border-color: var(--km-hair); }
     </style>
   </head>
   <body>
@@ -752,85 +775,8 @@
         </div>
       </section>
 
-      <!-- 4. Ponuka: hovor + plán = 0 €, nulové riziko -->
-      <section class="km-section" id="dostanes">
-        <div class="km-wrap">
-          <div class="km-head km-center rv">
-            <span class="km-kicker">Ponuka pre členov komunity</span>
-            <h2 class="km-h2">Za 30 minút a 7 dní dostaneš <br /><em>stratégiu, ako z výplaty vybudovať majetok.</em></h2>
-            <p class="km-lede">Nie tipy z internetu. Konkrétny plán na tvojich číslach – a ostáva ti, aj keď spolu ďalej nepokračujeme.</p>
-          </div>
-          <div class="offer-bar rv">
-            <span class="offer-badge">Zadarmo pre členov komunity</span>
-            <div class="offer-grid">
-              <div class="offer-card">
-                <span class="offer-k" aria-hidden="true">1</span>
-                <div>
-                  <b>Strategický hovor 30 min</b>
-                  <div class="offer-meta"><span>💬 online 1:1</span><span>⏱ 30 minút</span><span>✅ zadarmo</span></div>
-                  <p>Tvoje čísla, ciele a priority. Ak ti neviem pomôcť, poviem ti to v prvých 10 minútach.</p>
-                </div>
-              </div>
-              <span class="offer-op" aria-hidden="true">+</span>
-              <div class="offer-card">
-                <span class="offer-k" aria-hidden="true">2</span>
-                <div>
-                  <b>Cesta k rente – tvoj plán</b>
-                  <div class="offer-meta"><span>📄 ~20 strán</span><span>📅 do 7 dní</span><span>🎤 osobná prezentácia</span></div>
-                  <p>Rezerva, ETF portfólio, hypotéka, investičný byt, dane – poradie krokov až po rentu.</p>
-                </div>
-              </div>
-              <span class="offer-op" aria-hidden="true">=</span>
-              <div class="offer-price">
-                <b>0 €</b>
-                <span class="offer-pill">bez viazanosti</span>
-                <small>plán ostáva tvoj</small>
-              </div>
-            </div>
-          </div>
-          <div class="get-foot rv">
-            <div class="risk">
-              <div class="risk-head"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></i><b>Nulové riziko pre teba</b></div>
-              <ul class="risk-list">
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Zadarmo, bez viazanosti, nič nepodpisuješ</span></li>
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Plán ostáva tvoj, aj keď spolu nepokračujeme</span></li>
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Všetko pod dohľadom Národnej banky Slovenska</span></li>
-                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Mesačne stihnem 12 plánov – členovia komunity idú prednostne</span></li>
-              </ul>
-              <p class="risk-why"><b>Prečo zadarmo?</b> Lebo tí, ktorí po pláne ostanú, ma živia. Ostatní odídu s plánom – a je to fér.</p>
-            </div>
-            <div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
-            <p class="km-trust proof-row rv"><span class="km-trust-avatars" aria-hidden="true"><img src="/assets/images/vanecko.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /><img src="/assets/images/Latkoczy.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /><img src="/assets/images/papik.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /></span><span><strong>200+ klientov</strong> · <strong>900+</strong> strategických hovorov · pod dohľadom NBS</span></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. Prečo počúvať mňa: fotka + text + fakty (ako Ivan na /komunita) -->
-      <section class="km-band km-band--sand" id="slovo">
-        <div class="km-wrap">
-          <div class="km-bio">
-            <div class="km-bio-photo rv">
-              <picture><source srcset="/assets/images/komunita-ivan-kreslo.webp" type="image/webp" /><img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" /></picture>
-              <span class="km-bio-tags"><span class="km-bio-tag">Pod dohľadom NBS</span><span class="km-bio-tag">EFA vzdelanie</span></span>
-            </div>
-            <div class="rv" style="--i:1">
-              <span class="km-kicker">Kto za tým stojí</span>
-              <h2 class="km-h2">Prečo počúvať <em>mňa.</em></h2>
-              <p>„Dnes na internete o peniazoch mudruje veľa ľudí. Otázka je, či počúvaš ľudí so skúsenosťami, alebo len s teóriou.</p>
-              <p>Investíciám sa venujem viac ako 8 rokov. Mám vlastné ETF stratégie v hodnote <strong>60 000 €</strong>, vlastním investičnú nehnuteľnosť a pomáham viac ako <strong>200 ľuďom</strong> robiť dôležité finančné rozhodnutia. Stratégie, ktoré som postavil klientom, majú dnes hodnotu viac ako <strong>3,5 milióna eur</strong>.</p>
-              <p>To, že mám európske finančné vzdelanie EFA, je vedľajšie. Teória je fajn, ale ja radšej hovorím o skúsenostiach. Sám investujem a hlavne pracujem s ľuďmi, ktorí investujú.“</p>
-              <ul class="km-facts">
-                <li><b>8+</b><span>rokov pomáham ľuďom rozumne investovať</span></li>
-                <li><b>NBS</b><span>pod dohľadom Národnej banky Slovenska</span></li>
-                <li><b>3,5 mil. €</b><span>klientskych aktív v starostlivosti</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 6. Výsledky + slovo klienta -->
-      <section class="km-section" id="vysledky">
+      <section class="km-section minimal" id="vysledky">
         <div class="km-wrap">
           <div class="km-head km-center rv">
             <span class="km-kicker">Výsledky</span>
@@ -889,8 +835,32 @@
         </div>
       </section>
 
+      <!-- 4. Prečo počúvať mňa: fotka + text + fakty (ako Ivan na /komunita) -->
+      <section class="km-section minimal" id="slovo">
+        <div class="km-wrap">
+          <div class="km-bio">
+            <div class="km-bio-photo rv">
+              <picture><source srcset="/assets/images/komunita-ivan-kreslo.webp" type="image/webp" /><img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" /></picture>
+              <span class="km-bio-tags"><span class="km-bio-tag">Pod dohľadom NBS</span><span class="km-bio-tag">EFA vzdelanie</span></span>
+            </div>
+            <div class="rv" style="--i:1">
+              <span class="km-kicker">Kto za tým stojí</span>
+              <h2 class="km-h2">Prečo počúvať <em>mňa.</em></h2>
+              <p>„Dnes na internete o peniazoch mudruje veľa ľudí. Otázka je, či počúvaš ľudí so skúsenosťami, alebo len s teóriou.</p>
+              <p>Investíciám sa venujem viac ako 8 rokov. Mám vlastné ETF stratégie v hodnote <strong>60 000 €</strong>, vlastním investičnú nehnuteľnosť a pomáham viac ako <strong>200 ľuďom</strong> robiť dôležité finančné rozhodnutia. Stratégie, ktoré som postavil klientom, majú dnes hodnotu viac ako <strong>3,5 milióna eur</strong>.</p>
+              <p>To, že mám európske finančné vzdelanie EFA, je vedľajšie. Teória je fajn, ale ja radšej hovorím o skúsenostiach. Sám investujem a hlavne pracujem s ľuďmi, ktorí investujú.“</p>
+              <ul class="km-facts">
+                <li><b>8+</b><span>rokov pomáham ľuďom rozumne investovať</span></li>
+                <li><b>NBS</b><span>pod dohľadom Národnej banky Slovenska</span></li>
+                <li><b>3,5 mil. €</b><span>klientskych aktív v starostlivosti</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 7. Referencie: karusel (ako dôkazy na /komunita) -->
-      <section class="km-band km-band--sand" id="recenzie">
+      <section class="km-section minimal" id="recenzie">
         <div class="km-wrap">
           <div class="km-head km-center rv">
             <span class="km-kicker">Dôkazy, nie sľuby</span>
@@ -905,15 +875,10 @@
             <div class="km-car-dots" role="tablist" aria-label="Recenzie"><button type="button" role="tab" class="km-dot is-on" data-dot="0" aria-label="Recenzia 1"></button><button type="button" role="tab" class="km-dot" data-dot="1" aria-label="Recenzia 2"></button><button type="button" role="tab" class="km-dot" data-dot="2" aria-label="Recenzia 3"></button></div>
           </div>
         </div>
-        <div class="km-wall rv">
-          <p class="km-wall-cap">Z mojich správ s klientmi</p>
-          <div class="km-marquee"><div class="km-marquee-track"><img class="km-wall-item" src="/assets/images/recenzia-1.png" alt="Recenzia klienta 1" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-2.png" alt="Recenzia klienta 2" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-3.png" alt="Recenzia klienta 3" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-4.png" alt="Recenzia klienta 4" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-5.png" alt="Recenzia klienta 5" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-1.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-2.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-3.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-4.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-5.png" alt="" loading="lazy" decoding="async" /></div></div>
-          <div class="km-marquee is-reverse"><div class="km-marquee-track"><img class="km-wall-item" src="/assets/images/recenzia-6.png" alt="Recenzia klienta 6" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-7.png" alt="Recenzia klienta 7" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-8.png" alt="Recenzia klienta 8" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-9.png" alt="Recenzia klienta 9" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-6.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-7.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-8.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-9.png" alt="" loading="lazy" decoding="async" /></div></div>
-        </div>
       </section>
 
       <!-- 8. Pre koho: dva stĺpce (ako porovnanie na /komunita) -->
-      <section class="km-section" id="prekoho">
+      <section class="km-section minimal" id="prekoho">
         <div class="km-wrap">
           <div class="km-head km-center rv">
             <span class="km-kicker">Pre koho to je</span>
@@ -942,7 +907,7 @@
       </section>
 
       <!-- 8b. Časté otázky -->
-      <section class="km-band km-band--stone" id="faq">
+      <section class="km-section minimal" id="faq">
         <div class="km-wrap">
           <div class="km-faq-grid">
             <div class="km-faq-side rv">
