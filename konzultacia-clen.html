@@ -18,6 +18,7 @@
     <meta property="og:image" content="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg" />
     <link rel="preload" href="/assets/fonts/calvino/Calvino-Bold.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/assets/fonts/matter/Matter-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/assets/images/js-investor-ivan-kniha.webp" as="image" type="image/webp" />
     <script src="/js/umami.js"></script>
     <script>
       (function () {
@@ -635,6 +636,23 @@
       .rv { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--km-ease), transform 0.6s var(--km-ease); transition-delay: calc(var(--i, 0) * 70ms); }
       .rv.in { opacity: 1; transform: none; }
       @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
+      /* ---------- 7.2: časová os v hero, dôkaz pri ponuke, FAQ, čipy v závere, lišta ---------- */
+      .hero-steps { display: flex; flex-wrap: wrap; gap: 0.5rem 0; margin-top: 1.5rem; }
+      .hero-steps li { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 600; color: var(--km-fg2); white-space: nowrap; }
+      .hero-steps li span { display: inline-flex; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: 9999px; background: var(--km-green); color: var(--km-paper); font-family: var(--font-serif); font-size: 0.8125rem; font-weight: 700; }
+      .hero-steps li + li { margin-left: 0.5rem; padding-left: 1.375rem; }
+      .hero-steps li + li::before { content: ""; position: absolute; left: 0; top: 50%; width: 1rem; height: 2px; margin-top: -1px; background: var(--km-hair-2); }
+      .hero-steps li:last-child span { background: var(--km-ink); color: var(--km-gold); }
+      .proof-row { margin-top: 0; }
+      .proof-row strong { color: var(--km-ink); }
+      .final-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+      .final-chips span { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.375rem 0.75rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); border: 1px solid rgba(243, 233, 221, 0.18); font-size: 0.8125rem; font-weight: 600; color: var(--km-paper); }
+      .km-faq-side .cta { margin-top: 1.5rem; }
+      .km-faq summary span svg { width: 1rem; height: 1rem; }
+      .km-bar .km-btn { white-space: nowrap; }
+      .km-bar .km-btn svg { width: 1rem; height: 1rem; }
+      .km-wall { margin-top: 3rem; }
+      @media (min-width: 768px) { .km-wall { margin-top: 3.5rem; } }
     </style>
   </head>
   <body>
@@ -656,7 +674,13 @@
               <h1 class="km-h1"><span class="km-w-wrap"><span class="km-w" style="--i:1">Investovanie</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:2">je</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:3">jediná</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:4">cesta</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:5">k</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:6">slobode.</span> </span><em><span class="km-w-wrap"><span class="km-w" style="--i:7">Inak</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:8">budeš</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:9">pracovať</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:10">do</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:11">konca</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:12">života.</span> </span></em></h1>
               <p class="km-lede km-reveal" style="--i:12">Máš odo mňa strategický hovor zadarmo a do 7 dní ti pošlem plán, za ktorý by si inde zaplatil 856 €. Ak sa ti bude páčiť, môžeme pokračovať spolu. Ak nie, plán si nechaj a nič sa nedeje.</p>
               <div class="km-hero-actions km-reveal" style="--i:13"><div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
-              <ul class="hero-trust km-reveal" style="--i:14">
+              <ol class="hero-steps km-reveal" style="--i:14" aria-label="Ako to prebieha">
+                <li><span>1</span>Napíšeš mi</li>
+                <li><span>2</span>Do 24 h dva termíny</li>
+                <li><span>3</span>30-min hovor</li>
+                <li><span>4</span>Plán do 7 dní</li>
+              </ol>
+              <ul class="hero-trust km-reveal" style="--i:15">
                 <li><i class="tick"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span><b>4 000+</b> účastníkov online kurzov</span></li>
                 <li><i class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.94 6.26 6.87.86-5.06 4.73 1.31 6.8L12 17.3l-6.06 3.35 1.31-6.8-5.06-4.73 6.87-.86z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.94 6.26 6.87.86-5.06 4.73 1.31 6.8L12 17.3l-6.06 3.35 1.31-6.8-5.06-4.73 6.87-.86z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.94 6.26 6.87.86-5.06 4.73 1.31 6.8L12 17.3l-6.06 3.35 1.31-6.8-5.06-4.73 6.87-.86z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.94 6.26 6.87.86-5.06 4.73 1.31 6.8L12 17.3l-6.06 3.35 1.31-6.8-5.06-4.73 6.87-.86z"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.94 6.26 6.87.86-5.06 4.73 1.31 6.8L12 17.3l-6.06 3.35 1.31-6.8-5.06-4.73 6.87-.86z"/></svg></i><span><b>200+</b> klientov</span></li>
                 <li class="wide"><i class="cap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></i><span>Mám vzdelanie <b>EFA</b> <span class="mut">(European Financial Advisor)</span></span></li>
@@ -664,12 +688,12 @@
             </div>
             <div class="hero-photo km-reveal" style="--i:6">
               <div class="km-bio-photo">
-                <img src="/assets/images/js-investor-ivan-kniha.jpg" alt="Ivan Jašík s knihou" width="900" height="900" fetchpriority="high" />
+                <picture><source srcset="/assets/images/js-investor-ivan-kniha.webp" type="image/webp" /><img src="/assets/images/js-investor-ivan-kniha.jpg" alt="Ivan Jašík s knihou" width="900" height="900" fetchpriority="high" /></picture>
                 <span class="km-bio-tags"><span class="km-bio-tag">Ivan Jašík</span><span class="km-bio-tag">Pod dohľadom NBS</span></span>
               </div>
             </div>
           </div>
-          <div class="statbar km-reveal" style="--i:15" aria-label="Dôkazy">
+          <div class="statbar km-reveal" style="--i:16" aria-label="Dôkazy">
             <div><b data-count="8 rokov">8 rokov</b><span>praxe vo finančnom svete</span></div>
             <div><b data-count="3,5 mil. €+">3,5 mil. €+</b><span>v starostlivosti</span></div>
             <div><b data-count="200+">200+</b><span>aktívnych klientov</span></div>
@@ -773,6 +797,7 @@
               <p class="risk-why"><b>Prečo zadarmo?</b> Lebo tí, ktorí po pláne ostanú, ma živia. Ostatní odídu s plánom – a je to fér.</p>
             </div>
             <div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="dostanes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+            <p class="km-trust proof-row rv"><span class="km-trust-avatars" aria-hidden="true"><img src="/assets/images/vanecko.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /><img src="/assets/images/Latkoczy.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /><img src="/assets/images/papik.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /></span><span><strong>200+ klientov</strong> · <strong>900+</strong> strategických hovorov · pod dohľadom NBS</span></p>
           </div>
         </div>
       </section>
@@ -782,7 +807,7 @@
         <div class="km-wrap">
           <div class="km-bio">
             <div class="km-bio-photo rv">
-              <img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" />
+              <picture><source srcset="/assets/images/komunita-ivan-kreslo.webp" type="image/webp" /><img src="/assets/images/komunita-ivan-kreslo.jpg" alt="Ivan Jašík" width="1198" height="1600" loading="lazy" decoding="async" /></picture>
               <span class="km-bio-tags"><span class="km-bio-tag">Pod dohľadom NBS</span><span class="km-bio-tag">EFA vzdelanie</span></span>
             </div>
             <div class="rv" style="--i:1">
@@ -877,6 +902,11 @@
             <div class="km-car-dots" role="tablist" aria-label="Recenzie"><button type="button" role="tab" class="km-dot is-on" data-dot="0" aria-label="Recenzia 1"></button><button type="button" role="tab" class="km-dot" data-dot="1" aria-label="Recenzia 2"></button><button type="button" role="tab" class="km-dot" data-dot="2" aria-label="Recenzia 3"></button></div>
           </div>
         </div>
+        <div class="km-wall rv">
+          <p class="km-wall-cap">Z mojich správ s klientmi</p>
+          <div class="km-marquee"><div class="km-marquee-track"><img class="km-wall-item" src="/assets/images/recenzia-1.png" alt="Recenzia klienta 1" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-2.png" alt="Recenzia klienta 2" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-3.png" alt="Recenzia klienta 3" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-4.png" alt="Recenzia klienta 4" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-5.png" alt="Recenzia klienta 5" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-1.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-2.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-3.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-4.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-5.png" alt="" loading="lazy" decoding="async" /></div></div>
+          <div class="km-marquee is-reverse"><div class="km-marquee-track"><img class="km-wall-item" src="/assets/images/recenzia-6.png" alt="Recenzia klienta 6" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-7.png" alt="Recenzia klienta 7" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-8.png" alt="Recenzia klienta 8" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-9.png" alt="Recenzia klienta 9" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-6.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-7.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-8.png" alt="" loading="lazy" decoding="async" /><img class="km-wall-item" src="/assets/images/recenzia-9.png" alt="" loading="lazy" decoding="async" /></div></div>
+        </div>
       </section>
 
       <!-- 8. Pre koho: dva stĺpce (ako porovnanie na /komunita) -->
@@ -908,18 +938,45 @@
         </div>
       </section>
 
+      <!-- 8b. Časté otázky -->
+      <section class="km-band km-band--stone" id="faq">
+        <div class="km-wrap">
+          <div class="km-faq-grid">
+            <div class="km-faq-side rv">
+              <span class="km-kicker">Skôr, než napíšeš</span>
+              <h2 class="km-h2">Časté otázky</h2>
+              <p class="km-lede">Odpovede na to, čo sa členovia pýtajú najčastejšie. Ak tu tvoja otázka nie je, napíš mi ju rovno.</p>
+              <div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="faq"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+            </div>
+            <div class="rv" style="--i:1">
+              <div class="km-faq-card">
+                <div class="km-faq">
+                  <details open><summary>Koľko to stojí?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Nič. Strategický hovor aj Cesta k rente sú pre členov komunity zadarmo. Platíš len vtedy, ak sa neskôr rozhodneš pre dlhodobú spoluprácu – a tie poplatky vidíš vopred.</p></details>
+                  <details><summary>Musím niečo podpísať?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Nie. Nič nepodpisuješ, nič neplatíš. Plán ti pošlem mailom, prečítaš si ho v pokoji a rozhodneš sa sám.</p></details>
+                  <details><summary>Čo ak nebudem chcieť pokračovať?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Nič sa nedeje. Plán ostáva tvoj, nikto ti nevolá a nikto ťa nepresviedča. Fér obchod pre obe strany.</p></details>
+                  <details><summary>Nemám veľa peňazí. Má to pre mňa zmysel?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Ak si vieš odložiť aspoň 100 € mesačne alebo máš 10 000 €, ktoré ležia na účte, áno. Väčšina mojich klientov začínala presne takto.</p></details>
+                  <details><summary>Koľko času mi to zaberie?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">30 minút online. Nepotrebuješ žiadne podklady, stačí približne vedieť, čo máš a čo splácaš. Zvyšok prejdeme spolu.</p></details>
+                  <details><summary>Čo presne dostanem do 7 dní?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Cestu k rente – plán na ~20 strán s tvojimi číslami: rezerva, ETF portfólio, hypotéka, investičný byt, dane a poradie krokov až po rentu. Odprezentujem ti ho osobne.</p></details>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 9. Záver: plagát vľavo, výzva vpravo (ako záver na /komunita) -->
       <section class="km-band km-band--ink" id="zaver">
         <div class="km-wrap">
           <div class="km-final rv">
             <figure class="km-poster km-poster--sign">
-              <img src="/assets/images/home/3b5b4e2a.png" alt="Ivan Jašík s tabuľou: Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="1100" height="1061" loading="lazy" decoding="async" />
+              <picture><source srcset="/assets/images/home/3b5b4e2a.webp" type="image/webp" /><img src="/assets/images/home/3b5b4e2a.png" alt="Ivan Jašík s tabuľou: Vytvor majetok, ktorý ti zabezpečí slobodu a nie starosti." width="1100" height="1061" loading="lazy" decoding="async" /></picture>
             </figure>
             <div class="km-final-copy">
               <span class="km-kicker km-kicker--gold">Bez záväzku</span>
               <h2 class="km-h2">Napíš mi. <br /><em>Stačí jedna správa.</em></h2>
               <p>Napíš, čo riešiš, jednou vetou. Do 24 hodín ti pošlem dva termíny, do 7 dní od hovoru máš plán. A potom sa rozhodneš sám – bez tlaku.</p>
               <div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+              <div class="final-chips"><span>⏱ odpoveď do 24 hodín</span><span>📄 plán do 7 dní</span><span>🔒 bez viazanosti</span></div>
             </div>
           </div>
         </div>
@@ -933,7 +990,7 @@
       </div>
     </footer>
 
-    <a class="fab" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" aria-label="Napísať Ivanovi na WhatsApp" data-umami-event="click_whatsapp" data-umami-event-section="fab"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></a>
+    <div class="km-bar" id="bar" aria-hidden="true"><span class="km-bar-text"><b>Strategický hovor zadarmo</b>Plán do 7 dní · bez viazanosti</span><a class="km-btn" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="sticky-bar">Napísať Ivanovi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
   </div>
 
     <script>
@@ -948,6 +1005,20 @@
             entries.forEach(function (e) { if (e.isIntersecting) { mark(e.target); io.unobserve(e.target); } });
           }, { rootMargin: "0px 0px -6% 0px", threshold: 0.05 });
           els.forEach(function (el) { io.observe(el); });
+        }
+        // lepiaca lišta na mobile: ukáže sa, keď hero odíde z obrazovky, schová sa, keď je vidieť záver
+        var bar = document.getElementById("bar"), hero = document.getElementById("hero"), fin = document.getElementById("zaver");
+        if (bar && hero && fin) {
+          var ticking = false;
+          var upd = function () {
+            ticking = false;
+            var heroOut = hero.getBoundingClientRect().bottom < 0;
+            var finIn = fin.getBoundingClientRect().top < window.innerHeight * 0.8;
+            var on = heroOut && !finIn;
+            bar.classList.toggle("is-on", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); document.documentElement.classList.toggle("km-bar-on", on);
+          };
+          var onScroll = function () { if (!ticking) { ticking = true; requestAnimationFrame(upd); } };
+          window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll); upd();
         }
         // napočítavanie čísel v lište
         document.querySelectorAll("[data-count]").forEach(function (el) {
