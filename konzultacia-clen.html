@@ -697,6 +697,30 @@
       .rev--ink figcaption { border-top-color: rgba(243, 233, 221, 0.18); color: rgba(243, 233, 221, 0.72); }
       .rev--ink figcaption b { color: var(--km-paper); }
       .rev blockquote .hl { font-weight: 700; }
+      /* ---------- 8.3: tlačidlá vedú na výber „formulár alebo WhatsApp“ ---------- */
+      .km-btn--ink { background: linear-gradient(180deg, #3a322c 0%, #292420 100%); color: var(--km-paper); }
+      .km-btn--ink:hover { background: #1d1916; }
+      .lead-copy { display: flex; flex-direction: column; align-items: flex-start; }
+      .lead-copy .km-lede { max-width: 32rem; }
+      .lead-pick { order: 3; display: flex; flex-direction: column; align-items: stretch; gap: 0.75rem; width: 100%; max-width: 26rem; margin-top: 1.75rem; }
+      .lead-pick .km-btn { justify-content: center; }
+      .lead-pick .cta-note { text-align: center; }
+      .lead-or { display: flex; align-items: center; gap: 0.875rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--km-fg3); }
+      .lead-or::before, .lead-or::after { content: ""; flex: 1 1 auto; height: 1px; background: var(--km-hair-2); }
+      .lead-steps { order: 4; }
+      .km .km-btn:hover .arr--down { transform: translateY(3px); }
+      @media (max-width: 480px) { .km .lead-pick .km-btn--lg { padding-left: 1rem; padding-right: 1rem; font-size: 1rem; white-space: nowrap; } }
+      @media (max-width: 359px) { .km .lead-pick .km-btn--lg { white-space: normal; } }
+      @media (min-width: 1024px) {
+        .lead-pick { order: 5; margin-top: 2rem; }
+        .lead-pick-form, .lead-pick .lead-or { display: none; }
+        .lead-pick::before { content: "alebo bez formulára"; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--km-fg3); }
+      }
+      .lead-card { scroll-margin-top: 5.5rem; }
+      .lead-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--km-hair); }
+      .lead-title[hidden] { display: none; }
+      .lead-title b { font-family: var(--font-serif); font-size: 1.375rem; line-height: 1.15; font-weight: 700; color: var(--km-ink); }
+      .lead-title span { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--km-green); }
       @media (max-width: 374px) {
         .km-bar { justify-content: center; padding-left: 0.5rem; }
         .km-bar .km-bar-text { display: none; }
@@ -710,7 +734,7 @@
     <header class="hdr">
       <div class="km-wrap">
         <a href="/" aria-label="JS Mentor – domov"><img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" width="879" height="310" /></a>
-        <a class="km-btn" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="header"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a>
+        <a class="km-btn" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="header"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </header>
 
@@ -723,7 +747,7 @@
               <p class="km-pill km-reveal" style="--i:0">Pre členov · 30 minút · zadarmo</p>
               <h1 class="km-h1"><span class="km-w-wrap"><span class="km-w" style="--i:1">Investovanie</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:2">je</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:3">jediná</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:4">cesta</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:5">k</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:6">slobode.</span> </span><em><span class="km-w-wrap"><span class="km-w" style="--i:7">Inak</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:8">budeš</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:9">pracovať</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:10">do</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:11">konca</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:12">života.</span> </span></em></h1>
               <p class="km-lede km-reveal" style="--i:12">Máš odo mňa <span class="hl">strategický hovor zadarmo</span> a do 7 dní ti pošlem <span class="hl">plán, za ktorý by si inde zaplatil 856 €</span>. Ak sa ti bude páčiť, môžeme pokračovať spolu. Ak nie, plán si nechaj a nič sa nedeje.</p>
-              <div class="km-hero-actions km-reveal" style="--i:13"><div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small><a class="cta-alt" href="#formular">alebo vyplň krátky formulár ↓</a></div></div>
+              <div class="km-hero-actions km-reveal" style="--i:13"><div class="cta"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="hero"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
               <ol class="hero-steps km-reveal" style="--i:14" aria-label="Ako to prebieha">
                 <li><span>1</span>Napíšeš mi</li>
                 <li><span>2</span>Do 24 h dva termíny</li>
@@ -904,7 +928,7 @@
               <li class="km-mistake rv" style="--i:0"><span class="km-mistake-emoji" aria-hidden="true">😬</span><p>Dôležité finančné rozhodnutia robia emočne, nie cez čísla.</p><span class="km-mistake-n" aria-hidden="true">07</span></li>
               <li class="km-mistake km-mistake--end rv" style="--i:1"><span class="km-mistake-emoji" aria-hidden="true">👇</span><p>Ak si sa našiel aspoň v jednej, si na správnom mieste.</p></li>
           </ol>
-          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="problem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
+          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--light km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="problem"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
         </div>
       </section>
 
@@ -972,7 +996,7 @@
               <div class="get-body"><span class="get-tag">🎯 Plán k rente</span><h3>Presný plán k rente</h3><p>Krok za krokom: <span class="hl">čo urobiť tento mesiac, čo o rok a čo o päť rokov.</span> Aby majetok raz posielal výplatu tebe – nie ty jemu.</p></div>
             </article>
           </div>
-          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="odnesies"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
+          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="odnesies"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
         </div>
       </section>
 
@@ -1038,7 +1062,7 @@
                 </div>
               </div>
               <div class="ticket-foot">
-                <div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="ponuka"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+                <div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="ponuka"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
                 <p class="ticket-cap">Mesačne stihnem 12 plánov</p>
               </div>
             </aside>
@@ -1102,7 +1126,7 @@
               <div class="km-ledger-item plain"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg><span>Nechceš sa o svojich peniazoch nič dozvedieť.</span></div>
             </div>
           </div>
-          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="prekoho"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
+          <div class="km-actions km-center rv"><div class="cta cta--center"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="prekoho"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
         </div>
       </section>
 
@@ -1114,7 +1138,7 @@
               <span class="km-kicker">Skôr, než napíšeš</span>
               <h2 class="km-h2">Časté otázky</h2>
               <p class="km-lede">Odpovede na to, čo sa členovia pýtajú najčastejšie. Ak tu tvoja otázka nie je, napíš mi ju rovno.</p>
-              <div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="faq"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+              <div class="cta"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="faq"><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
             </div>
             <div class="rv" style="--i:1">
               <div class="km-faq-card">
@@ -1141,17 +1165,23 @@
         <div class="km-wrap">
           <div class="lead-grid">
             <div class="lead-copy rv">
-              <span class="km-kicker">Rezervácia</span>
-              <h2 class="km-h2">Dohodni si strategický hovor. <br /><em>Zaberie to minútu.</em></h2>
-              <p class="km-lede">Vyplň krátky formulár. Do 24 hodín sa ti ozvem a pošlem dva termíny na výber.</p>
+              <span class="km-kicker">Začni tu</span>
+              <h2 class="km-h2">Vyplň formulár <br /><em>alebo mi napíš na WhatsApp.</em></h2>
+              <p class="km-lede">Vyber si, čo ti je bližšie. V oboch prípadoch sa ti do 24 hodín ozvem a pošlem dva termíny na výber.</p>
               <ol class="lead-steps" aria-label="Čo bude nasledovať">
                 <li><span>1</span>Dohodneme si úvodný strategický hovor</li>
                 <li><span>2</span>Do 7 dní dostaneš plán</li>
                 <li><span>3</span>Ak sa rozhodneš, môžeš budovať majetok</li>
               </ol>
-              <p class="lead-alt">Radšej píšeš? <a href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="formular">Napíš mi na WhatsApp →</a></p>
+              <div class="lead-pick">
+                <a class="km-btn km-btn--lg lead-pick-form" href="#lead-card" data-umami-event="click_konzultacia_cta" data-umami-event-section="formular-vyber"><span>Vyplniť formulár</span> <span class="arr arr--down" aria-hidden="true">↓</span></a>
+                <span class="lead-or" aria-hidden="true">alebo</span>
+                <a class="km-btn km-btn--ink km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="formular"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a>
+                <small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small>
+              </div>
             </div>
-            <div class="lead-card rv" style="--i:1">
+            <div class="lead-card rv" id="lead-card" style="--i:1">
+              <p class="lead-title"><b>Krátky formulár</b><span>zaberie minútu</span></p>
               <form id="lead" method="POST" action="https://formspree.io/f/xykqednp" data-umami-form="consultation" novalidate>
                 <p class="lead-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
                 <input type="hidden" name="form_typ" value="strategicky-hovor-clen" />
@@ -1193,7 +1223,7 @@
               <span class="km-kicker km-kicker--gold">Bez záväzku</span>
               <h2 class="km-h2">Napíš mi. <br /><em>Stačí jedna správa.</em></h2>
               <p>Napíš, čo riešiš, jednou vetou. Do 24 hodín ti pošlem dva termíny, do 7 dní od hovoru máš plán. A potom sa rozhodneš sám – bez tlaku.</p>
-              <div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Chcem budovať majetok</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
+              <div class="cta"><a class="km-btn km-btn--light km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="zaver"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div>
               <div class="final-chips"><span>⏱ 30 minút online</span><span>📄 plán do 7 dní</span><span>🛡️ pod dohľadom NBS</span></div>
             </div>
           </div>
@@ -1208,7 +1238,7 @@
       </div>
     </footer>
 
-    <div class="km-bar" id="bar" aria-hidden="true"><span class="km-bar-text"><b>Zadarmo</b>hovor + plán</span><a class="km-btn" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" tabindex="-1" data-umami-event="click_whatsapp" data-umami-event-section="sticky-bar"><span>Chcem budovať majetok</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+    <div class="km-bar" id="bar" aria-hidden="true"><span class="km-bar-text"><b>Zadarmo</b>hovor + plán</span><a class="km-btn" href="#formular" tabindex="-1" data-umami-event="click_konzultacia_cta" data-umami-event-section="sticky-bar"><span>Chcem budovať majetok</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
   </div>
 
     <script>
@@ -1296,6 +1326,7 @@
           var leadBusy = function (on) { leadSending = on; leadBtn.disabled = on; leadLabel.textContent = on ? "Odosielam…" : leadText; };
           var leadOk = function () {
             lead.hidden = true; leadDone.hidden = false;
+            var leadTitle = document.querySelector(".lead-title"); if (leadTitle) leadTitle.hidden = true;
             var top = document.getElementById("formular").getBoundingClientRect().top + window.scrollY - 78;
             window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
             try { leadDone.focus({ preventScroll: true }); } catch (e) {}
