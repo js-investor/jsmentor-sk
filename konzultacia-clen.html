@@ -618,6 +618,54 @@
       @media (prefers-reduced-motion: reduce) {
         .mock-row i::after, .etf .seg, .road .road-line, .road .road-area, .ticket-old::after, .vysk .hline, .vysk .c-chart circle { transition: none; }
       }
+      /* ---------- 8.1: krátky formulár (rovnaké polia a rovnaké miesto odoslania ako na hlavnej stránke) ---------- */
+      .lead-band { background: linear-gradient(180deg, #f3eee8 0%, #f1e7d8 40%, #efe3d0 70%, #f3eee8 100%); border-top: 1px solid var(--km-hair-2); scroll-margin-top: 4.5rem; }
+      .lead-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+      @media (min-width: 1024px) {
+        .lead-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4rem; }
+        .lead-copy { position: sticky; top: 6.5rem; }
+      }
+      .lead-steps { display: grid; gap: 0.75rem; margin-top: 1.75rem; }
+      .lead-steps li { display: flex; align-items: center; gap: 0.75rem; font-size: 1rem; font-weight: 600; line-height: 1.3; color: var(--km-ink); }
+      .lead-steps li span { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.75rem; height: 1.75rem; border-radius: 9999px; background: var(--km-green); color: var(--km-paper); font-family: var(--font-serif); font-size: 0.9375rem; font-weight: 700; }
+      .lead-steps li:last-child span { background: var(--km-ink); color: var(--km-gold); }
+      .lead-alt { margin-top: 1.75rem; font-size: 0.9375rem; line-height: 1.5; color: var(--km-fg2); }
+      .lead-alt a { font-weight: 600; color: var(--km-green); text-decoration: underline; text-underline-offset: 3px; }
+      .lead-card { padding: 1.5rem 1.25rem 1.75rem; border-radius: 1.5rem; border: 1px solid var(--km-hair); background: var(--km-ivory); box-shadow: 0 26px 60px -38px rgba(41, 36, 32, 0.5); }
+      @media (min-width: 768px) { .lead-card { padding: 2.25rem 2.25rem 2rem; } }
+      .lead-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+      .lead-field { display: block; }
+      .lead-field + .lead-field { margin-top: 1.125rem; }
+      .lead-label { display: block; margin-bottom: 0.4375rem; font-size: 0.84375rem; font-weight: 600; color: var(--km-ink); }
+      .lead-input { display: block; width: 100%; padding: 0.875rem 1.125rem; border-radius: 9999px; border: 1.5px solid rgba(41, 36, 32, 0.14); background: var(--km-cream); font-family: var(--font-sans); font-size: 1rem; line-height: 1.3; color: var(--km-ink); outline: none; -webkit-appearance: none; appearance: none; transition: border-color 0.15s, background 0.15s; }
+      .lead-input::placeholder { color: #9a9388; }
+      .lead-input:focus { border-color: var(--km-green); background: #fff; }
+      .lead-hint { display: block; margin-top: 0.4375rem; font-size: 0.78125rem; line-height: 1.45; color: var(--km-fg3); }
+      .lead-sep { height: 1px; margin: 1.5rem 0; background: var(--km-hair); }
+      .lead-q { font-size: 0.9375rem; font-weight: 600; color: var(--km-ink); }
+      .lead-q small { display: block; margin-top: 0.1875rem; font-size: 0.8125rem; font-weight: 400; color: var(--km-fg3); }
+      .lead-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+      .lead-chip { -webkit-appearance: none; appearance: none; cursor: pointer; padding: 0.625rem 0.9375rem; border-radius: 0.75rem; border: 1.5px solid var(--km-hair-2); background: var(--km-cream); font-family: var(--font-sans); font-size: 0.875rem; line-height: 1.3; color: var(--km-fg2); text-align: left; transition: border-color 0.15s, background 0.15s, color 0.15s; }
+      .lead-chip:hover { border-color: rgba(42, 102, 71, 0.5); }
+      .lead-chip[aria-pressed="true"] { border-color: var(--km-green); background: #e7f0ea; font-weight: 600; color: var(--km-green-dark); }
+      .lead-chip:focus-visible, .lead-consent input:focus-visible { outline: 2px solid var(--km-green); outline-offset: 2px; }
+      .lead-consent { display: flex; align-items: flex-start; gap: 0.75rem; margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.5; color: var(--km-fg2); cursor: pointer; }
+      .lead-consent input { -webkit-appearance: none; appearance: none; flex-shrink: 0; width: 1.375rem; height: 1.375rem; margin: 0.0625rem 0 0; border-radius: 0.375rem; border: 1.5px solid rgba(41, 36, 32, 0.3); background: var(--km-cream) center / 0.875rem no-repeat; cursor: pointer; transition: border-color 0.15s, background-color 0.15s; }
+      .lead-consent input:checked { border-color: var(--km-green); background-color: var(--km-green); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+      .lead-consent a { color: var(--km-green); text-decoration: underline; text-underline-offset: 3px; }
+      .lead-error { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.45; font-weight: 500; color: #b23a2e; }
+      .lead-error[hidden], .lead-done[hidden], #lead[hidden] { display: none; }
+      .km .lead-submit { width: 100%; justify-content: center; margin-top: 1.5rem; white-space: normal; text-align: center; }
+      @media (max-width: 480px) { .km .lead-submit { padding-left: 1rem; padding-right: 1rem; font-size: 1rem; } }
+      .lead-submit[disabled] { opacity: 0.7; cursor: default; transform: none; }
+      .lead-foot { margin-top: 0.875rem; font-size: 0.8125rem; line-height: 1.5; text-align: center; color: var(--km-fg3); }
+      .lead-done { padding: 1.5rem 0.25rem; text-align: center; }
+      .lead-done-ic { display: inline-flex; align-items: center; justify-content: center; width: 4rem; height: 4rem; border-radius: 9999px; background: #e7f0ea; color: var(--km-green); }
+      .lead-done-ic svg { width: 2rem; height: 2rem; }
+      .lead-done h3 { margin-top: 1.25rem; font-family: var(--font-serif); font-size: 1.625rem; line-height: 1.15; font-weight: 700; color: var(--km-ink); }
+      .lead-done p { max-width: 31em; margin: 0.75rem auto 0; font-size: 1rem; line-height: 1.6; color: var(--km-fg2); }
+      .cta-alt { font-size: 0.875rem; font-weight: 600; color: var(--km-green); text-decoration: underline; text-underline-offset: 3px; }
+      .km-band--ink .cta-alt { color: var(--km-gold); }
     </style>
   </head>
   <body>
@@ -639,7 +687,7 @@
               <p class="km-pill km-reveal" style="--i:0">Pre členov · 30 minút · zadarmo</p>
               <h1 class="km-h1"><span class="km-w-wrap"><span class="km-w" style="--i:1">Investovanie</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:2">je</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:3">jediná</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:4">cesta</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:5">k</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:6">slobode.</span> </span><em><span class="km-w-wrap"><span class="km-w" style="--i:7">Inak</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:8">budeš</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:9">pracovať</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:10">do</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:11">konca</span> </span><span class="km-w-wrap"><span class="km-w" style="--i:12">života.</span> </span></em></h1>
               <p class="km-lede km-reveal" style="--i:12">Máš odo mňa <span class="hl">strategický hovor zadarmo</span> a do 7 dní ti pošlem <span class="hl">plán, za ktorý by si inde zaplatil 856 €</span>. Ak sa ti bude páčiť, môžeme pokračovať spolu. Ak nie, plán si nechaj a nič sa nedeje.</p>
-              <div class="km-hero-actions km-reveal" style="--i:13"><div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small></div></div>
+              <div class="km-hero-actions km-reveal" style="--i:13"><div class="cta"><a class="km-btn km-btn--lg" href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="hero"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Napísať Ivanovi na WhatsApp</span> <span class="arr" aria-hidden="true">→</span></a><small class="cta-note">Odpisujem do 24 hodín · zadarmo · bez viazanosti</small><a class="cta-alt" href="#formular">alebo vyplň krátky formulár ↓</a></div></div>
               <ol class="hero-steps km-reveal" style="--i:14" aria-label="Ako to prebieha">
                 <li><span>1</span>Napíšeš mi</li>
                 <li><span>2</span>Do 24 h dva termíny</li>
@@ -1052,6 +1100,53 @@
         </div>
       </section>
 
+      <!-- 8c. Krátky formulár (polia a odoslanie ako formulár na hlavnej stránke) -->
+      <section class="km-band lead-band" id="formular">
+        <div class="km-wrap">
+          <div class="lead-grid">
+            <div class="lead-copy rv">
+              <span class="km-kicker">Rezervácia</span>
+              <h2 class="km-h2">Dohodni si strategický hovor. <br /><em>Zaberie to minútu.</em></h2>
+              <p class="km-lede">Vyplň krátky formulár. Do 24 hodín sa ti ozvem a pošlem dva termíny na výber.</p>
+              <ol class="lead-steps" aria-label="Čo bude nasledovať">
+                <li><span>1</span>Vyplníš formulár</li>
+                <li><span>2</span>Do 24 hodín ti pošlem dva termíny</li>
+                <li><span>3</span>30 minút online</li>
+                <li><span>4</span>Do 7 dní máš plán</li>
+              </ol>
+              <p class="lead-alt">Radšej píšeš? <a href="https://wa.me/421902519328?text=Ahoj%20Ivan%2C%20som%20v%20komunite%20a%20chcem%20s%20tebou%20prebra%C5%A5%20svoju%20situ%C3%A1ciu.%20Rie%C5%A1im%20___." target="_blank" rel="noopener noreferrer" data-umami-event="click_whatsapp" data-umami-event-section="formular">Napíš mi na WhatsApp →</a></p>
+            </div>
+            <div class="lead-card rv" style="--i:1">
+              <form id="lead" method="POST" action="https://formspree.io/f/xykqednp" data-umami-form="consultation" novalidate>
+                <p class="lead-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+                <input type="hidden" name="form_typ" value="strategicky-hovor-clen" />
+                <input type="hidden" name="stranka" value="/konzultacia-clen" />
+                <input type="hidden" name="co_riesis" value="" />
+                <input type="hidden" name="suhlas" value="nie" />
+                <input type="hidden" name="utm_source" value="" />
+                <input type="hidden" name="utm_medium" value="" />
+                <input type="hidden" name="utm_campaign" value="" />
+                <label class="lead-field"><span class="lead-label">Meno a priezvisko</span><input class="lead-input" name="meno" type="text" placeholder="Tvoje meno" autocomplete="name" /></label>
+                <label class="lead-field"><span class="lead-label">E-mail</span><input class="lead-input" name="email" type="email" placeholder="tvoj@email.sk" autocomplete="email" inputmode="email" /><span class="lead-hint">Pošlem ti naň tvoj plán Cesta k rente.</span></label>
+                <label class="lead-field"><span class="lead-label">Telefón</span><input class="lead-input" name="telefon" type="tel" placeholder="+421" autocomplete="tel" inputmode="tel" /><span class="lead-hint">Ozvem sa ti na WhatsApp a dohodneme si termín hovoru.</span></label>
+                <div class="lead-sep"></div>
+                <div class="lead-q" id="lead-q">Čo riešiš?<small>Môžeš vybrať viac možností</small></div>
+                <div class="lead-chips" role="group" aria-labelledby="lead-q"><button type="button" class="lead-chip" data-chip aria-pressed="false">Chcem začať investovať</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Skontrolovať portfólio</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Vytvoriť finančnú rezervu</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Kúpiť investičný byt</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Budovať rentu</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Chcem čerpať rentu</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Investovať pre dieťa</button><button type="button" class="lead-chip" data-chip aria-pressed="false">Iné</button></div>
+                <label class="lead-consent"><input type="checkbox" name="suhlas_box" /><span>Súhlasím so spracovaním údajov za účelom kontaktovania a zaslania materiálov k mojej požiadavke. <a href="/gdpr" target="_blank" rel="noopener">Ochrana osobných údajov</a></span></label>
+                <p class="lead-error" role="alert" hidden></p>
+                <button type="submit" class="km-btn km-btn--lg lead-submit"><span data-label>Chcem hovor a plán zadarmo</span> <span class="arr" aria-hidden="true">→</span></button>
+                <p class="lead-foot">Odoslanie formulára je bezplatné a nezáväzné.</p>
+              </form>
+              <div class="lead-done" id="lead-done" tabindex="-1" hidden>
+                <span class="lead-done-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                <h3>Ďakujem, formulár som prijal. 🤝</h3>
+                <p>Ozvem sa ti do 24 hodín a dohodneme si termín hovoru.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 9. Záver: plagát vľavo, výzva vpravo (ako záver na /komunita) -->
       <section class="km-band km-band--ink" id="zaver">
         <div class="km-wrap">
@@ -1095,7 +1190,7 @@
           els.forEach(function (el) { io.observe(el); });
         }
         // lepiaca lišta na mobile: ukáže sa, keď hero odíde z obrazovky, schová sa, keď je vidieť záver
-        var bar = document.getElementById("bar"), hero = document.getElementById("hero"), fin = document.getElementById("zaver");
+        var bar = document.getElementById("bar"), hero = document.getElementById("hero"), fin = document.getElementById("formular") || document.getElementById("zaver");
         if (bar && hero && fin) {
           var ticking = false;
           var upd = function () {
@@ -1147,6 +1242,54 @@
           car.addEventListener("mouseenter", function () { hover = true; });
           car.addEventListener("mouseleave", function () { hover = false; });
           show(0); start();
+        }
+        // krátky formulár: rovnaké polia a rovnaká adresa odoslania ako formulár na hlavnej stránke
+        var lead = document.getElementById("lead");
+        if (lead) {
+          var leadDone = document.getElementById("lead-done"), leadErr = lead.querySelector(".lead-error"), leadBtn = lead.querySelector('button[type="submit"]'), leadLabel = leadBtn.querySelector("[data-label]"), leadChips = [].slice.call(lead.querySelectorAll("[data-chip]")), leadSending = false, leadText = leadLabel.textContent;
+          leadChips.forEach(function (b) {
+            b.addEventListener("click", function () {
+              b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+              lead.elements.co_riesis.value = leadChips.filter(function (c) { return c.getAttribute("aria-pressed") === "true"; }).map(function (c) { return c.textContent.trim(); }).join(", ");
+            });
+          });
+          try {
+            var qs = new URLSearchParams(window.location.search);
+            ["utm_source", "utm_medium", "utm_campaign"].forEach(function (k) { lead.elements[k].value = qs.get(k) || ""; });
+          } catch (e) {}
+          var leadFail = function (msg, field) { leadErr.textContent = msg; leadErr.hidden = false; if (field && field.focus) field.focus(); };
+          var leadBusy = function (on) { leadSending = on; leadBtn.disabled = on; leadLabel.textContent = on ? "Odosielam…" : leadText; };
+          var leadOk = function () {
+            lead.hidden = true; leadDone.hidden = false;
+            var top = document.getElementById("formular").getBoundingClientRect().top + window.scrollY - 78;
+            window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
+            try { leadDone.focus({ preventScroll: true }); } catch (e) {}
+          };
+          lead.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (leadSending) return;
+            var meno = lead.elements.meno.value.trim(), email = lead.elements.email.value.trim();
+            if (!meno) { leadFail("Prosím, vyplň meno a priezvisko.", lead.elements.meno); return; }
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { leadFail("Prosím, zadaj platný e-mail.", lead.elements.email); return; }
+            if (!lead.elements.suhlas_box.checked) { leadFail("Pre odoslanie potrebujem tvoj súhlas so spracovaním údajov.", lead.elements.suhlas_box); return; }
+            leadErr.hidden = true;
+            if (lead.elements["bot-field"].value) { leadOk(); return; }
+            lead.elements.suhlas.value = "áno";
+            var fd = new FormData(lead);
+            fd.delete("suhlas_box");
+            leadBusy(true);
+            fetch(lead.action, { method: "POST", headers: { Accept: "application/json" }, body: fd })
+              .then(function (res) {
+                leadBusy(false);
+                if (res.ok) {
+                  if (window.JSMentorUmami) window.JSMentorUmami.formSubmit("consultation");
+                  leadOk();
+                } else {
+                  leadFail("Odoslanie sa nepodarilo. Skús to prosím znova, alebo mi napíš na WhatsApp.");
+                }
+              })
+              .catch(function () { leadBusy(false); leadFail("Odoslanie sa nepodarilo. Skontroluj pripojenie a skús to prosím znova."); });
+          });
         }
       })();
     </script>
