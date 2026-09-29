@@ -1214,26 +1214,30 @@
       .fc-chart { grid-area: chart; min-width: 0; }
       .fc-sum { grid-area: sum; min-width: 0; }
       .fc-side { grid-area: diff; min-width: 0; }
+      .fc-hero { margin-top: 0.875rem; }
+      .fc-hero span { display: block; font-size: 0.9375rem; line-height: 1.4; color: rgba(243, 233, 221, 0.74); }
+      .fc-hero b { display: block; margin: 0.125rem 0 0.1875rem; font-family: var(--font-serif); font-size: clamp(2.75rem, 11vw, 4rem); line-height: 1; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--km-gold); }
+      .fc-hero span span { display: inline; }
       .fc-in-sum { margin-top: 0.375rem; font-size: 0.8125rem; line-height: 1.4; color: rgba(243, 233, 221, 0.62); }
-      .fc-plot { position: relative; height: 18rem; margin-top: 0.625rem; touch-action: pan-y; cursor: crosshair; border-radius: 0.5rem; -webkit-tap-highlight-color: transparent; }
-      @media (min-width: 600px) { .fc-plot { height: 22rem; } }
-      @media (min-width: 900px) { .fc-plot { height: 26rem; } }
+      .fc-plot { position: relative; height: 20rem; margin-top: 1rem; touch-action: pan-y; cursor: crosshair; border-radius: 0.5rem; -webkit-tap-highlight-color: transparent; }
+      @media (min-width: 600px) { .fc-plot { height: 24rem; } }
+      @media (min-width: 900px) { .fc-plot { height: 27rem; } }
       .fc-plot:focus-visible { outline: 2px solid var(--km-gold); outline-offset: 6px; }
       .fc-plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
       .fc-grid line { stroke: rgba(243, 233, 221, 0.1); stroke-width: 1; shape-rendering: crispEdges; }
       .fc-grid .fc-v { stroke: rgba(243, 233, 221, 0.055); }
       .fc-grid .fc-base { stroke: rgba(243, 233, 221, 0.28); }
       .fc-grid text, .fc-x text { fill: rgba(243, 233, 221, 0.5); font-family: var(--font-sans); font-size: 11px; }
-      .fc-line { fill: none; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
-      .fc-line--bank { stroke: #cbbda6; }
+      .fc-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .fc-line--bank { stroke: #b5a892; }
       .fc-line--agent { stroke: #a99b86; stroke-dasharray: 2 7; }
-      .fc-line--me { stroke: var(--km-gold); stroke-width: 3.5; }
+      .fc-line--me { stroke: #e6c06a; stroke-width: 4.5; }
       .fc-gap { fill: url(#fc-gap-grad); }
-      .fc-glow { fill: none; stroke: var(--km-gold); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; opacity: 0.14; }
+      .fc-glow { fill: none; stroke: var(--km-gold); stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; opacity: 0.16; }
       .fc-end { stroke: #2b2521; stroke-width: 2.5; }
-      .fc-end--bank { fill: #cbbda6; }
+      .fc-end--bank { fill: #b5a892; }
       .fc-end--agent { fill: #a99b86; }
-      .fc-end--me { fill: var(--km-gold); }
+      .fc-end--me { fill: #e6c06a; }
       .fc-lead { stroke: rgba(243, 233, 221, 0.3); stroke-width: 1; }
       .fc-lead--me { stroke: rgba(217, 177, 92, 0.7); }
       .fc-mark line { stroke: rgba(217, 177, 92, 0.55); stroke-width: 1; stroke-dasharray: 3 4; }
@@ -1244,43 +1248,57 @@
       .fc-cur line { stroke: rgba(243, 233, 221, 0.4); stroke-width: 1; }
       /* štítky pri koncoch kriviek */
       .fc-tag { position: absolute; display: inline-flex; flex-direction: column; align-items: flex-start; padding: 0.3125rem 0.625rem; border-radius: 0.625rem; border: 1px solid rgba(243, 233, 221, 0.2); background: rgba(243, 233, 221, 0.08); font-size: 0.75rem; font-weight: 600; line-height: 1.25; color: rgba(243, 233, 221, 0.82); white-space: nowrap; pointer-events: none; }
-      .fc-tag--me { padding: 0.375rem 0.6875rem 0.4375rem; border-color: transparent; background: var(--km-gold); color: #2a2118; }
-      .fc-tag--me b { font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.02em; opacity: 0.85; }
-      .fc-tag--me i { font-style: normal; font-family: var(--font-serif); font-size: 0.9375rem; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+      .fc-tag b { font-weight: 600; font-size: 0.6875rem; letter-spacing: 0.02em; opacity: 0.85; }
+      .fc-tag i { font-style: normal; font-family: var(--font-serif); font-size: 0.875rem; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+      .fc-tag--me { padding: 0.4375rem 0.75rem 0.5rem; border-color: transparent; background: var(--km-gold); color: #2a2118; }
+      .fc-tag--me i { font-size: 1.0625rem; font-weight: 800; }
       /* na mobile sú štítky menšie, aby krivkám ostalo viac miesta */
       @media (max-width: 479px) {
         .fc-tag { padding: 0.25rem 0.5rem; font-size: 0.6875rem; border-radius: 0.5rem; }
+        .fc-tag b { font-size: 0.625rem; }
+        .fc-tag i { font-size: 0.75rem; }
         .fc-tag--me { padding: 0.3125rem 0.5rem 0.375rem; }
-        .fc-tag--me b { font-size: 0.625rem; }
-        .fc-tag--me i { font-size: 0.8125rem; }
+        .fc-tag--me i { font-size: 0.875rem; }
+      }
+      @media (max-width: 359px) {
+        .fc-tag { padding: 0.1875rem 0.375rem; }
+        .fc-tag i { font-size: 0.6875rem; }
+        .fc-tag--me { padding: 0.25rem 0.4375rem 0.3125rem; }
+        .fc-tag--me i { font-size: 0.78125rem; }
       }
       .fc-pill { position: absolute; padding: 0.3125rem 0.6875rem; border-radius: 9999px; border: 1px solid rgba(217, 177, 92, 0.5); background: rgba(36, 31, 27, 0.92); font-size: 0.71875rem; font-weight: 600; line-height: 1.3; color: var(--km-gold); white-space: nowrap; pointer-events: none; }
       .fc-tip { position: absolute; top: 1.75rem; z-index: 2; display: grid; gap: 0.3125rem; min-width: 11rem; padding: 0.6875rem 0.8125rem 0.75rem; border-radius: 0.875rem; border: 1px solid rgba(243, 233, 221, 0.18); background: rgba(27, 23, 20, 0.96); font-size: 0.78125rem; line-height: 1.3; color: rgba(243, 233, 221, 0.78); pointer-events: none; }
       .fc-tip[hidden], .fc-pill[hidden] { display: none; }
       .fc-tip-y { margin-bottom: 0.125rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(243, 233, 221, 0.55); }
       .fc-tip-row { display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
-      .fc-tip-row i { flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #cbbda6; }
+      .fc-tip-row i { flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #b5a892; }
       .fc-tip-row--agent i { background: #a99b86; }
       .fc-tip-row--me i { background: var(--km-gold); }
       .fc-tip-row b { margin-left: auto; padding-left: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--km-paper); }
       .fc-tip-row--me b { color: var(--km-gold); }
       .fc-tap { margin-top: 0.625rem; font-size: 0.75rem; line-height: 1.4; color: rgba(243, 233, 221, 0.5); }
       .fc-rows { display: grid; margin-top: 0.5rem; }
-      .fc-row { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "key name" ". sum" ". desc"; align-items: center; gap: 0.3125rem 0.875rem; padding: 1rem 0; border-bottom: 1px solid rgba(243, 233, 221, 0.14); }
+      .fc-row { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "key name" ". sum" ". desc" ". bar"; align-items: center; gap: 0.3125rem 0.875rem; padding: 1rem 0; border-bottom: 1px solid rgba(243, 233, 221, 0.14); }
       .fc-row:first-child { border-top: 1px solid rgba(243, 233, 221, 0.14); }
-      @media (min-width: 480px) { .fc-row { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "key name sum" ". desc desc"; gap: 0.25rem 0.875rem; } }
-      .fc-row i { grid-area: key; width: 1.375rem; height: 0; border-top: 2.5px solid #cbbda6; border-radius: 2px; }
+      @media (min-width: 480px) { .fc-row { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "key name sum" ". desc desc" ". bar bar"; gap: 0.25rem 0.875rem; } }
+      .fc-row i { grid-area: key; width: 1.375rem; height: 0; border-top: 2.5px solid #b5a892; border-radius: 2px; }
       .fc-row b { grid-area: name; }
       .fc-row > span { grid-area: sum; }
       .fc-row small { grid-area: desc; }
+      .fc-bar { grid-area: bar; height: 0.5rem; margin-top: 0.5rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); overflow: hidden; }
+      .fc-bar div { width: var(--w, 100%); height: 100%; border-radius: inherit; background: #b5a892; transition: width 0.5s var(--km-ease); }
+      .fc-row--agent .fc-bar div { background: #a99b86; }
+      .fc-row--me .fc-bar div { background: linear-gradient(90deg, #c4933f 0%, #ecd08a 100%); }
       .fc-row--agent i { border-top: 2.5px dotted #a99b86; }
-      .fc-row--me i { border-top: 3.5px solid var(--km-gold); }
+      .fc-row--me i { border-top: 4px solid #e6c06a; }
       .fc-row b { display: block; font-size: 1rem; line-height: 1.3; font-weight: 600; color: var(--km-paper); }
       .fc-row small { display: block; font-size: 0.78125rem; line-height: 1.4; color: rgba(243, 233, 221, 0.6); }
       .fc-row > span { font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: rgba(243, 233, 221, 0.82); }
       @media (min-width: 900px) { .fc-row > span { font-size: 1.375rem; } }
       @media (min-width: 1200px) { .fc-row > span { font-size: 1.625rem; } }
       .fc-row--me > span { color: var(--km-gold); }
+      @media (min-width: 480px) { .fc-row--me > span { font-size: 1.875rem; } }
+      @media (min-width: 900px) and (max-width: 1199px) { .fc-row--me > span { font-size: 1.625rem; } }
       .pc-diff { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; padding: 1rem 1.125rem; border-radius: 1rem; border: 1px solid rgba(159, 191, 172, 0.35); background: rgba(42, 102, 71, 0.3); }
       .pc-diff span { font-size: 0.9375rem; color: rgba(243, 233, 221, 0.86); }
       .pc-diff b { font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: #c5d9cb; }
@@ -1324,7 +1342,7 @@
       .lead-pack .lead-chips { margin-top: 0.625rem; }
       .km .km-bar .km-btn { white-space: nowrap; }
       @media (prefers-reduced-motion: reduce) {
-        .pr-card, .pr-opt, .pr-dots button, .fc-ends, .fc-mark, .fc-pill, .fc-tag { transition: none; }
+        .pr-card, .pr-opt, .pr-dots button, .fc-ends, .fc-mark, .fc-pill, .fc-tag, .fc-bar div { transition: none; }
         .pr-card:hover, .pr-opt:hover { transform: none; }
       }
       /* užší počítač: texty v kartách sa lámu na viac riadkov, riadky kariet ostávajú zarovnané */
@@ -1499,7 +1517,7 @@
           <div class="km-head km-center rv">
             <span class="km-kicker">Čo spravia poplatky</span>
             <h2 class="km-h2">Rovnaký výnos, <em>iný výsledok.</em></h2>
-            <p class="km-lede">Keby tvoje portfólio zarobilo všade rovnako, 10&nbsp;% ročne, na účte ti aj tak ostane iná suma. Rozdiel robia len poplatky.</p>
+            <p class="km-lede">Keby tvoje portfólio zarobilo všade rovnako, 10&nbsp;% ročne, na účte ti aj tak ostane iná suma. Rozdiel robí len ročný poplatok.</p>
           </div>
           <div class="fc rv">
             <div class="fc-in">
@@ -1513,17 +1531,18 @@
               <div class="fc-field">
                 <span class="fc-label" id="fc-years-label">Ako dlho investuješ</span>
                 <div class="pc-quick fc-years" role="group" aria-labelledby="fc-years-label"><button type="button" data-years="10" aria-pressed="false">10&nbsp;rokov</button><button type="button" data-years="20" aria-pressed="false">20&nbsp;rokov</button><button type="button" data-years="30" aria-pressed="true">30&nbsp;rokov</button></div>
-                <p class="fc-hint"><i aria-hidden="true">🎯</i><span id="fc-hint">Hranicu 100&nbsp;000&nbsp;€ prekročíš v&nbsp;15.&nbsp;roku. Odvtedy platíš len <b>0,35&nbsp;% ročne</b>.</span></p>
+                <p class="fc-hint"><i aria-hidden="true">🎯</i><span id="fc-hint">Hranicu 100&nbsp;000&nbsp;€ prekročíš v&nbsp;14.&nbsp;roku. Odvtedy platíš len <b>0,35&nbsp;% ročne</b>.</span></p>
               </div>
             </div>
             <div class="fc-out">
               <div class="fc-chart">
                 <p class="pc-cap">Hodnota účtu rok po roku</p>
+                <p class="fc-hero" aria-live="polite"><span>So mnou máš navyše</span><b id="fc-hero" data-value="201000">201&nbsp;000&nbsp;€</b><span>oproti banke po <span id="fc-hero-years">30&nbsp;rokoch</span>, pri rovnakom výnose</span></p>
                 <div class="fc-plot" id="fc-plot" tabindex="0" role="slider" aria-label="Hodnota účtu v jednotlivých rokoch" aria-valuemin="0" aria-valuemax="30" aria-valuenow="30" aria-valuetext="">
                   <svg id="fc-svg" aria-hidden="true" focusable="false"></svg>
-                  <span class="fc-tag fc-tag--me" id="fc-tag-me" aria-hidden="true"><b>So mnou</b><i id="fc-tag-me-v">545&nbsp;000&nbsp;€</i></span>
-                  <span class="fc-tag fc-tag--agent" id="fc-tag-agent" aria-hidden="true">Finančník</span>
-                  <span class="fc-tag fc-tag--bank" id="fc-tag-bank" aria-hidden="true">Banka</span>
+                  <span class="fc-tag fc-tag--me" id="fc-tag-me" aria-hidden="true"><b>So mnou</b><i id="fc-tag-me-v">573&nbsp;000&nbsp;€</i></span>
+                  <span class="fc-tag fc-tag--agent" id="fc-tag-agent" aria-hidden="true"><b>Finančník</b><i id="fc-tag-agent-v">484&nbsp;000&nbsp;€</i></span>
+                  <span class="fc-tag fc-tag--bank" id="fc-tag-bank" aria-hidden="true"><b>Banka</b><i id="fc-tag-bank-v">372&nbsp;000&nbsp;€</i></span>
                   <span class="fc-pill" id="fc-pill" aria-hidden="true" hidden>od 100&nbsp;000&nbsp;€ len 0,35&nbsp;%</span>
                   <div class="fc-tip" id="fc-tip" aria-hidden="true" hidden></div>
                 </div>
@@ -1533,20 +1552,19 @@
                 <p class="pc-cap">Po <span id="fc-cap-years">30&nbsp;rokoch</span> máš na účte</p>
                 <p class="fc-in-sum" id="fc-in-sum">Vložíš spolu 108&nbsp;000&nbsp;€.</p>
                 <ul class="fc-rows">
-                  <li class="fc-row fc-row--me"><i aria-hidden="true"></i><b>So mnou</b><span id="fc-me">545&nbsp;000&nbsp;€</span><small id="fc-me-desc">balík 1&nbsp;980&nbsp;€ · 0,50&nbsp;%, od&nbsp;100&nbsp;000&nbsp;€&nbsp;0,35&nbsp;%</small></li>
-                  <li class="fc-row fc-row--agent"><i aria-hidden="true"></i><b>Finančník</b><span id="fc-agent">495&nbsp;000&nbsp;€</span><small>vstup 2&nbsp;% · ~1&nbsp;% ročne</small></li>
-                  <li class="fc-row fc-row--bank"><i aria-hidden="true"></i><b>Banka</b><span id="fc-bank">403&nbsp;000&nbsp;€</span><small>vstup 2&nbsp;% · ~2&nbsp;% ročne</small></li>
+                  <li class="fc-row fc-row--me"><i aria-hidden="true"></i><b>So mnou</b><span id="fc-me">573&nbsp;000&nbsp;€</span><small>0,50&nbsp;% ročne, od&nbsp;100&nbsp;000&nbsp;€&nbsp;0,35&nbsp;%</small><div class="fc-bar" aria-hidden="true"><div id="fc-bar-me" style="--w:100%"></div></div></li>
+                  <li class="fc-row fc-row--agent"><i aria-hidden="true"></i><b>Finančník</b><span id="fc-agent">484&nbsp;000&nbsp;€</span><small>~1,2&nbsp;% ročne</small><div class="fc-bar" aria-hidden="true"><div id="fc-bar-agent" style="--w:84.5%"></div></div></li>
+                  <li class="fc-row fc-row--bank"><i aria-hidden="true"></i><b>Banka</b><span id="fc-bank">372&nbsp;000&nbsp;€</span><small>~2,5&nbsp;% ročne</small><div class="fc-bar" aria-hidden="true"><div id="fc-bar-bank" style="--w:64.8%"></div></div></li>
                 </ul>
               </div>
               <div class="fc-side">
-                <div class="pc-diff" aria-live="polite"><span>Oproti banke navyše</span><b id="fc-diff">142&nbsp;000&nbsp;€</b></div>
-                <p id="fc-more">Oproti finančníkovi máš navyše 50&nbsp;000&nbsp;€.</p>
-                <p id="fc-break">Prvé roky máš so mnou na účte menej, lebo na začiatku platíš cenu balíka. Banku predbehneš v&nbsp;9.&nbsp;roku, finančníka v&nbsp;15.&nbsp;roku.</p>
+                <div class="pc-diff" aria-live="polite"><span>Oproti banke máš</span><b id="fc-diff">o&nbsp;54&nbsp;% viac</b></div>
+                <p id="fc-more">Oproti finančníkovi máš navyše 89&nbsp;000&nbsp;€, teda o&nbsp;18&nbsp;% viac.</p>
                 <a class="fc-link" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="cennik-poplatky">Spočítať moje čísla na úvodnom hovore&nbsp;<span class="arr" aria-hidden="true">→</span></a>
               </div>
             </div>
           </div>
-          <p class="pc-note">Ilustračný model, nie sľub výnosu. Vo všetkých troch prípadoch rátam s rovnakým hrubým výnosom trhu 10&nbsp;% ročne pred poplatkami, vkladom každý mesiac a mesačným úročením. Skutočný výnos bude iný a môže byť aj záporný. Banka: vstupný poplatok 2&nbsp;% z vkladu a ~2&nbsp;% ročne. Finančník (finančný sprostredkovateľ): vstupný poplatok 2&nbsp;% z vkladu a ~1&nbsp;% ročne. So mnou: cena balíka Renta Partner rozložená na prvých 24&nbsp;mesiacov a ročný poplatok 0,50&nbsp;%, od hodnoty 100&nbsp;000&nbsp;€ 0,35&nbsp;%. Výstupné poplatky nepočítam na žiadnej strane. Poplatky banky a finančníka sú typické trhové hodnoty, nie ponuka konkrétnej inštitúcie. Presné a úplné náklady vidíš vždy pred podpisom. Investovanie je spojené s rizikom.</p>
+          <p class="pc-note">Ilustračný model, nie sľub výnosu. Vo všetkých troch prípadoch rátam s rovnakým hrubým výnosom trhu 10&nbsp;% ročne pred poplatkami, vkladom každý mesiac a mesačným úročením. Skutočný výnos bude iný a môže byť aj záporný. Graf porovnáva len ročný poplatok: banka ~2,5&nbsp;%, finančník (finančný sprostredkovateľ alebo poradca) ~1,2&nbsp;%, so mnou 0,50&nbsp;% a od hodnoty 100&nbsp;000&nbsp;€ 0,35&nbsp;%. Jednorazové náklady v ňom nie sú: vstupné a výstupné poplatky banky a finančníka ani cena môjho balíka. Poplatky banky a finančníka sú typické trhové hodnoty, nie ponuka konkrétnej inštitúcie. Presné a úplné náklady vidíš vždy pred podpisom. Investovanie je spojené s rizikom.</p>
         </div>
       </section>
 
@@ -1757,28 +1775,23 @@
         };
         opts.forEach(function (o) { o.addEventListener("click", function () { pick(o.getAttribute("data-pick"), true); }); });
 
-        // rovnaký výnos, iný výsledok: hodnota účtu v banke, u finančníka a so mnou (ilustračný model, predpoklady sú v poznámke pod grafom)
+        // rovnaký výnos, iný výsledok: hodnota účtu v banke, u finančníka a so mnou; líši sa len ročný poplatok (predpoklady sú v poznámke pod grafom)
         var FEES = {
           growth: 0.1, // rovnaký hrubý výnos trhu ročne pre všetkých, pred poplatkami
-          bank: { entry: 0.02, rate: 0.02 }, // vstupný poplatok z každého vkladu, ročný poplatok z hodnoty
-          agent: { entry: 0.02, rate: 0.01 },
-          me: { base: 900, part: 0.01, months: 24, rate: 0.005, rateOver: 0.0035, limit: 100000 } // balík Partner: 900 € + 1 % zo súčtu plánovaných vkladov; ročný poplatok
+          bank: 0.025, // ročný poplatok z hodnoty
+          agent: 0.012,
+          me: { rate: 0.005, rateOver: 0.0035, limit: 100000 } // od 100 000 € nižší ročný poplatok
         };
-        var fcPrice = function (dep, years) { return FEES.me.base + FEES.me.part * dep * 12 * years; };
         var fcRun = function (dep, years, kind) {
-          var r = Math.pow(1 + FEES.growth, 1 / 12) - 1, value = 0, fees = 0, cross = 0, out = [0];
-          var price = kind === "me" ? fcPrice(dep, years) : 0;
+          var r = Math.pow(1 + FEES.growth, 1 / 12) - 1, value = 0, cross = 0, out = [0];
           for (var m = 1; m <= years * 12; m++) {
-            var cut = kind === "me" ? (m <= FEES.me.months ? price / FEES.me.months : 0) : dep * FEES[kind].entry;
-            fees += cut;
-            value = (value + dep - cut) * (1 + r);
-            var rate = kind === "me" ? (value >= FEES.me.limit ? FEES.me.rateOver : FEES.me.rate) : FEES[kind].rate;
+            value = (value + dep) * (1 + r);
+            var rate = kind === "me" ? (value >= FEES.me.limit ? FEES.me.rateOver : FEES.me.rate) : FEES[kind];
             if (kind === "me" && !cross && value >= FEES.me.limit) cross = m;
-            var f = value * rate / 12;
-            value -= f; fees += f;
+            value -= value * rate / 12;
             out.push(value);
           }
-          return { vals: out, total: value, fees: fees, cross: cross, price: price };
+          return { vals: out, total: value, cross: cross };
         };
         // model je ilustračný, preto sumy zaokrúhľujem
         var fcRound = function (n) { var s = Math.abs(n) < 10000 ? 100 : 1000; return Math.round(n / s) * s; };
@@ -1793,9 +1806,8 @@
           for (var i = 0; i < steps.length; i++) { if (Math.ceil(max / (steps[i] * pow)) <= 5) return steps[i] * pow; }
           return 20 * pow;
         };
-        var first = function (a, b) { for (var m = 1; m < a.length; m++) { if (a[m] > b[m]) return m; } return 0; };
         var track = function (v, min, max) { var p = ((v - min) / (max - min)) * 100; return "linear-gradient(90deg,#2B6B4A " + p + "%,rgba(23,19,16,.15) " + p + "%)"; };
-        var fcAmt = $("fc-amount"), fcPlot = $("fc-plot"), fcSvg = $("fc-svg"), fcTip = $("fc-tip"), fcPill = $("fc-pill");
+        var fcAmt = $("fc-amount"), fcPlot = $("fc-plot"), fcSvg = $("fc-svg"), fcTip = $("fc-tip"), fcPill = $("fc-pill"), fcHero = $("fc-hero");
         var fcDeps = [].slice.call(document.querySelectorAll("[data-deposit]")), fcYearBtns = [].slice.call(document.querySelectorAll("[data-years]"));
         var fcYears = 30, fcData = null, fcGeo = null, fcAt = -1, fcShown = reduce ? 1 : 0;
         var KEYS = [["me", "So mnou"], ["agent", "Finančník"], ["bank", "Banka"]];
@@ -1804,12 +1816,12 @@
           if (!fcData) return;
           var W = fcPlot.clientWidth, H = fcPlot.clientHeight;
           if (!W || !H) return;
-          // štítky s názvami sú vpravo od grafu, aby ich krivky nepretínali
-          $("fc-tag-me-v").textContent = fcShort(fcData.me.total);
+          // štítky s názvom a sumou sú vpravo od grafu, aby ich krivky nepretínali
+          KEYS.forEach(function (key) { $("fc-tag-" + key[0] + "-v").textContent = fcShort(fcData[key[0]].total); });
           var tags = KEYS.map(function (key) { var el = $("fc-tag-" + key[0]); return { key: key[0], el: el, w: el.offsetWidth, h: el.offsetHeight }; });
           var gutter = Math.max.apply(null, tags.map(function (t) { return t.w; })) + (W < 340 ? 15 : 18);
           var pad = { t: 30, r: gutter, b: 26, l: 2 }, n = fcData.years * 12, pw = W - pad.l - pad.r, ph = H - pad.t - pad.b;
-          var max = Math.max(fcData.me.total, fcData.agent.total, fcData.bank.total) * 1.04, step = fcStep(max), top = Math.ceil(max / step) * step;
+          var max = fcData.me.total * 1.04, step = fcStep(max), top = Math.ceil(max / step) * step;
           var X = function (m) { return pad.l + pw * m / n; };
           var Y = function (v) { return pad.t + ph * (1 - v / top); };
           var path = function (arr) { var d = ""; for (var m = 0; m <= n; m++) d += (m ? "L" : "M") + X(m).toFixed(1) + " " + Y(arr[m]).toFixed(1); return d; };
@@ -1832,7 +1844,7 @@
             fcPill.style.left = left.toFixed(1) + "px"; fcPill.style.top = mark.top.toFixed(1) + "px";
           } else fcPill.hidden = true;
 
-          var h = '<defs><linearGradient id="fc-gap-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9b15c" stop-opacity=".26"/><stop offset="100%" stop-color="#d9b15c" stop-opacity=".03"/></linearGradient>' +
+          var h = '<defs><linearGradient id="fc-gap-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9b15c" stop-opacity=".42"/><stop offset="100%" stop-color="#d9b15c" stop-opacity=".05"/></linearGradient>' +
             '<clipPath id="fc-clip"><rect id="fc-clip-rect" x="0" y="0" width="' + (pad.l + (pw + 8) * fcShown).toFixed(1) + '" height="' + H + '"/></clipPath></defs>';
           h += '<g class="fc-grid">';
           // popisy rokov tak husto, aby sa neprekrývali
@@ -1848,6 +1860,7 @@
           h += '</g><g class="fc-x">';
           for (k = ys; k <= fcData.years; k += ys) h += '<text x="' + X(k * 12).toFixed(1) + '" y="' + (H - 7) + '" text-anchor="' + (k === fcData.years ? "end" : "middle") + '">' + k + " r.</text>";
           h += "</g>";
+          // zlatá plocha medzi mojou krivkou a bankou je to, čo ti ostane navyše
           var gap = path(fcData.me.vals);
           for (var m = n; m >= 0; m--) gap += "L" + X(m).toFixed(1) + " " + Y(fcData.bank.vals[m]).toFixed(1);
           h += '<g clip-path="url(#fc-clip)"><path class="fc-gap" d="' + gap + 'Z"/>' +
@@ -1871,7 +1884,7 @@
             h += '<line class="fc-lead fc-lead--' + t.key + '" x1="' + ex.toFixed(1) + '" y1="' + t.y.toFixed(1) + '" x2="' + (ex + 13).toFixed(1) + '" y2="' + t.c.toFixed(1) + '"/>';
             t.el.style.left = (ex + 14).toFixed(1) + "px"; t.el.style.top = (t.c - t.h / 2).toFixed(1) + "px";
           });
-          KEYS.forEach(function (key) { h += '<circle class="fc-end fc-end--' + key[0] + '" cx="' + ex.toFixed(1) + '" cy="' + Y(fcData[key[0]].total).toFixed(1) + '" r="4.5"/>'; });
+          KEYS.forEach(function (key) { h += '<circle class="fc-end fc-end--' + key[0] + '" cx="' + ex.toFixed(1) + '" cy="' + Y(fcData[key[0]].total).toFixed(1) + '" r="' + (key[0] === "me" ? 5.5 : 4.5) + '"/>'; });
           h += '</g><g class="fc-cur" id="fc-cur" visibility="hidden"><line id="fc-cur-line" y1="' + (pad.t - 8) + '" y2="' + (H - pad.b) + '"/>';
           KEYS.forEach(function (key) { h += '<circle class="fc-end fc-end--' + key[0] + '" id="fc-cur-' + key[0] + '" r="5"/>'; });
           fcSvg.innerHTML = h + "</g>";
@@ -1934,19 +1947,19 @@
           fcAmt.style.background = track(dep, Number(fcAmt.min), Number(fcAmt.max));
           $("fc-value").textContent = fmt(dep) + " €";
           $("fc-cap-years").textContent = years + " rokoch";
+          $("fc-hero-years").textContent = years + " rokoch";
           $("fc-in-sum").textContent = "Vložíš spolu " + fmt(dep * 12 * years) + " €.";
           $("fc-me").textContent = fcShow(me.total);
           $("fc-agent").textContent = fcShow(a.total);
           $("fc-bank").textContent = fcShow(b.total);
-          $("fc-me-desc").textContent = "balík " + fmt(me.price) + " € · 0,50 %, od 100 000 € 0,35 %";
+          // pruhy v riadkoch: dĺžka podľa sumy, môj je celý
+          $("fc-bar-agent").style.setProperty("--w", (a.total / me.total * 100).toFixed(1) + "%");
+          $("fc-bar-bank").style.setProperty("--w", (b.total / me.total * 100).toFixed(1) + "%");
           // rozdiely sa počítajú zo zaokrúhlených súm, aby sedeli s tým, čo je vidno v riadkoch
-          $("fc-diff").textContent = fmt(Math.max(0, fcRound(me.total) - fcRound(b.total))) + " €";
-          var dA = me.total - a.total;
-          $("fc-more").textContent = dA >= 1000 ? "Oproti finančníkovi máš navyše " + fmt(Math.max(1000, fcRound(me.total) - fcRound(a.total))) + " €."
-            : dA > -1000 ? "S finančníkom vychádzaš pri takomto vklade a dĺžke približne rovnako. Cena balíka sa vráti pri dlhšom investovaní."
-            : "Pri takomto vklade a dĺžke vychádza finančník o " + fmt(fcRound(-dA)) + " € lepšie. Cena balíka sa vráti pri dlhšom investovaní.";
-          var eb = first(me.vals, b.vals), ea = first(me.vals, a.vals);
-          $("fc-break").textContent = eb > 1 ? "Prvé roky máš so mnou na účte menej, lebo na začiatku platíš cenu balíka. Banku predbehneš v " + Math.ceil(eb / 12) + ". roku" + (ea ? ", finančníka v " + Math.ceil(ea / 12) + ". roku." : ".") : "";
+          fcHero.setAttribute("data-value", String(fcRound(me.total) - fcRound(b.total)));
+          if (fcShown >= 1) fcHero.textContent = fmt(fcRound(me.total) - fcRound(b.total)) + " €";
+          $("fc-diff").textContent = "o " + Math.round((me.total / b.total - 1) * 100) + " % viac";
+          $("fc-more").textContent = "Oproti finančníkovi máš navyše " + fmt(fcRound(me.total) - fcRound(a.total)) + " €, teda o " + Math.round((me.total / a.total - 1) * 100) + " % viac.";
           $("fc-hint").innerHTML = me.cross
             ? "Hranicu 100 000 € prekročíš v " + Math.ceil(me.cross / 12) + ". roku. Odvtedy platíš len <b>0,35 % ročne</b>."
             : "Do 100 000 € platíš 0,50 % ročne. Keď hranicu prekročíš, poplatok klesne na <b>0,35 %</b>.";
@@ -1961,22 +1974,24 @@
         fcDeps.forEach(function (x) { x.addEventListener("click", function () { fcAmt.value = x.getAttribute("data-deposit"); fcPaint(); }); });
         fcYearBtns.forEach(function (x) { x.addEventListener("click", function () { fcYears = Number(x.getAttribute("data-years")); fcPaint(); }); });
         fcPaint();
+        if (fcShown < 1) fcHero.textContent = "0 €";
         window.addEventListener("resize", fcDraw);
         if ("ResizeObserver" in window) new ResizeObserver(fcDraw).observe(fcPlot);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(fcDraw);
 
-        // krivky sa nakreslia, keď graf príde na obrazovku
+        // krivky sa nakreslia a suma navyše sa dopočíta, keď graf príde na obrazovku
         var fcReveal = function () {
           if (fcShown >= 1) { fcPlot.classList.add("is-ready"); return; }
-          var t0 = null, dur = 1600;
+          var t0 = null, dur = 1700;
           var tick = function (ts) {
             if (t0 === null) t0 = ts;
-            var p = Math.min(1, (ts - t0) / dur);
-            fcShown = 1 - Math.pow(1 - p, 3);
+            var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            fcShown = p < 1 ? e : 1;
             var rect = $("fc-clip-rect");
-            if (rect && fcGeo) rect.setAttribute("width", (fcGeo.pad.l + (fcGeo.W - fcGeo.pad.l - fcGeo.pad.r + 8) * fcShown).toFixed(1));
+            if (rect && fcGeo) rect.setAttribute("width", (fcGeo.pad.l + (fcGeo.W - fcGeo.pad.l - fcGeo.pad.r + 8) * e).toFixed(1));
+            fcHero.textContent = fmt(fcRound(Number(fcHero.getAttribute("data-value")) * (p < 1 ? e * e : 1))) + " €";
             if (p < 1) requestAnimationFrame(tick);
-            else { fcShown = 1; fcPlot.classList.add("is-ready"); }
+            else fcPlot.classList.add("is-ready");
           };
           requestAnimationFrame(tick);
         };
