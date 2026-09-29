@@ -1102,7 +1102,7 @@
       .pr-opt i { flex-shrink: 0; font-style: normal; font-size: 1.25rem; line-height: 1; }
       .pr-opt .o-long { display: none; }
       .pr-opt[aria-pressed="true"] { border-color: var(--km-green); background: #e7f0ea; color: var(--km-green-dark); }
-      .pr-opt:focus-visible, .pr-dots button:focus-visible, .pc-in input:focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; }
+      .pr-opt:focus-visible, .pr-dots button:focus-visible, .fc-in input:focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; }
       @media (min-width: 768px) {
         .pr-pick-row { display: flex; justify-content: center; gap: 0.625rem; margin-top: 0.875rem; }
         .pr-opt { flex-direction: row; align-items: center; gap: 0.625rem; padding: 0.8125rem 1.25rem; border-radius: 9999px; font-size: 0.9375rem; line-height: 1.25; }
@@ -1178,42 +1178,103 @@
       .pr-trust li { display: inline-flex; align-items: center; gap: 0.4375rem; padding: 0.4375rem 0.875rem; border-radius: 9999px; border: 1px solid var(--km-hair-2); background: rgba(255, 252, 247, 0.7); font-size: 0.8125rem; font-weight: 600; color: var(--km-fg2); }
       .pr-help { margin-top: 1.5rem; font-size: 0.9375rem; line-height: 1.5; text-align: center; color: var(--km-fg2); }
       .pr-help a { font-weight: 600; color: var(--km-green); text-decoration: underline; text-underline-offset: 3px; }
-      /* ročný poplatok v eurách */
+      /* poplatky v čase: vstupy hore, tmavý panel s grafom a súčtami pod nimi */
       .pc-band { scroll-margin-top: 4.5rem; }
-      .pc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; max-width: 64rem; margin: 0 auto; }
-      @media (min-width: 900px) { .pc { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; align-items: stretch; } }
-      .pc-in { display: flex; flex-direction: column; padding: 1.75rem 1.5rem; border-radius: 1.5rem; border: 1px solid var(--km-hair); background: var(--km-ivory); }
-      @media (min-width: 768px) { .pc-in { padding: 2.25rem 2.25rem 2rem; } }
-      .pc-in label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--km-fg3); }
-      .pc-value { display: block; margin: 0.375rem 0 1.25rem; font-family: var(--font-serif); font-size: clamp(2.5rem, 9vw, 3.5rem); line-height: 1; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--km-ink); white-space: nowrap; }
+      .fc { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; max-width: 64rem; margin: 0 auto; }
+      .fc-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem; padding: 1.75rem 1.5rem; border-radius: 1.5rem; border: 1px solid var(--km-hair); background: var(--km-ivory); }
+      @media (min-width: 768px) { .fc-in { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 3rem; padding: 2rem 2.5rem 2.25rem; } }
+      .fc-field { display: flex; flex-direction: column; min-width: 0; }
+      .fc-label { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--km-fg3); }
+      .fc-value { display: flex; align-items: baseline; gap: 0.5rem; margin: 0.375rem 0 1.125rem; font-family: var(--font-serif); font-size: clamp(2.5rem, 9vw, 3.25rem); line-height: 1; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; color: var(--km-ink); white-space: nowrap; }
+      .fc-value small { font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0; color: var(--km-fg3); }
       .pc-scale { display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.75rem; color: var(--km-fg3); }
-      .pc-quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+      .pc-quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+      .fc-field .fc-label + .pc-quick { margin-top: 0.75rem; }
       .pc-quick button { padding: 0.4375rem 0.875rem; border-radius: 9999px; border: 1.5px solid var(--km-hair-2); background: var(--km-cream); font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; color: var(--km-fg2); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
       .pc-quick button:hover { border-color: rgba(42, 102, 71, 0.55); }
       .pc-quick button[aria-pressed="true"] { border-color: var(--km-green); background: #e7f0ea; color: var(--km-green-dark); }
-      .pc-fit { margin-top: auto; padding-top: 1.5rem; }
-      .pc-fit p { display: flex; align-items: center; gap: 0.75rem; padding: 0.9375rem 1.125rem; border-radius: 1rem; background: var(--km-sand); font-size: 0.9375rem; line-height: 1.4; color: var(--km-fg2); }
-      .pc-fit i { flex-shrink: 0; font-style: normal; font-size: 1.375rem; line-height: 1; }
-      .pc-fit b { font-weight: 700; color: var(--km-ink); }
-      .pc-fit a { font-weight: 600; color: var(--km-green); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
-      .pc-out { padding: 1.75rem 1.5rem; border-radius: 1.5rem; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); color: var(--km-paper); }
-      @media (min-width: 768px) { .pc-out { padding: 2.25rem 2.25rem 2rem; } }
+      .pc-quick button:focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; }
+      .fc-years button { padding: 0.625rem 1.125rem; font-size: 0.9375rem; }
+      /* na mobile sú tlačidlá v jednom rade */
+      .fc-in .fc-years { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 26rem; }
+      .fc-in .fc-years button { padding-left: 0.25rem; padding-right: 0.25rem; text-align: center; white-space: nowrap; }
+      @media (max-width: 767px) {
+        .fc-in .pc-quick { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .fc-in .fc-years { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+        .fc-in .pc-quick button { padding-left: 0.125rem; padding-right: 0.125rem; text-align: center; white-space: nowrap; }
+      }
+      @media (max-width: 359px) { .fc-in .pc-quick button { font-size: 0.75rem; } .fc-in .fc-years button { font-size: 0.8125rem; } }
+      .fc-hint { display: flex; align-items: flex-start; gap: 0.75rem; margin-top: 1.25rem; padding: 0.9375rem 1.125rem; border-radius: 1rem; background: var(--km-sand); font-size: 0.9375rem; line-height: 1.45; color: var(--km-fg2); }
+      @media (min-width: 768px) { .fc-hint { margin-top: auto; } .fc-years { margin-bottom: 1.5rem; } }
+      .fc-hint i { flex-shrink: 0; font-style: normal; font-size: 1.25rem; line-height: 1.15; }
+      .fc-hint b { font-weight: 700; color: var(--km-ink); }
+      .fc-out { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "sum" "chart" "diff"; gap: 1.75rem; padding: 1.75rem 1.5rem 2rem; border-radius: 1.5rem; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); color: var(--km-paper); }
+      @media (min-width: 900px) { .fc-out { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); grid-template-areas: "chart sum" "chart diff"; grid-template-rows: auto 1fr; gap: 1.5rem 3rem; padding: 2.25rem 2.5rem 2.5rem; } }
       .pc-cap { font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(243, 233, 221, 0.55); }
-      .pc-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 0.5rem 1rem; padding: 1.125rem 0; border-bottom: 1px solid rgba(243, 233, 221, 0.16); }
-      .pc-row .k { font-size: 0.9375rem; line-height: 1.35; color: rgba(243, 233, 221, 0.86); }
-      .pc-row .k small { display: block; font-size: 0.78125rem; color: rgba(243, 233, 221, 0.58); }
-      .pc-row .v { font-family: var(--font-serif); font-size: clamp(1.375rem, 5vw, 1.75rem); line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--km-paper); }
-      .pc-row .v small { margin-left: 0.25rem; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 500; color: rgba(243, 233, 221, 0.58); }
-      .pc-bar { grid-column: 1 / -1; height: 0.5rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.12); overflow: hidden; }
-      .pc-bar i { display: block; width: var(--w, 0%); height: 100%; border-radius: inherit; background: var(--km-gold); transform-origin: left center; transition: width 0.6s var(--km-ease); }
-      .pc-row--bank .pc-bar i { background: #c2b49c; }
-      .pc-row--bank .v { color: rgba(243, 233, 221, 0.78); }
-      .pc-diff { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; margin-top: 1.25rem; padding: 1rem 1.125rem; border-radius: 1rem; border: 1px solid rgba(159, 191, 172, 0.35); background: rgba(42, 102, 71, 0.3); }
+      .fc-chart { grid-area: chart; min-width: 0; }
+      .fc-sum { grid-area: sum; min-width: 0; }
+      .fc-side { grid-area: diff; min-width: 0; }
+      .fc-plot { position: relative; height: 17rem; margin-top: 0.625rem; touch-action: pan-y; cursor: crosshair; border-radius: 0.5rem; -webkit-tap-highlight-color: transparent; }
+      @media (min-width: 600px) { .fc-plot { height: 21rem; } }
+      @media (min-width: 900px) { .fc-plot { height: 26rem; } }
+      .fc-plot:focus-visible { outline: 2px solid var(--km-gold); outline-offset: 6px; }
+      .fc-plot svg { display: block; width: 100%; height: 100%; overflow: visible; }
+      .fc-grid line { stroke: rgba(243, 233, 221, 0.1); stroke-width: 1; shape-rendering: crispEdges; }
+      .fc-grid .fc-base { stroke: rgba(243, 233, 221, 0.28); }
+      .fc-grid text, .fc-x text { fill: rgba(243, 233, 221, 0.5); font-family: var(--font-sans); font-size: 11px; font-variant-numeric: tabular-nums; }
+      .fc-line { fill: none; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+      .fc-line--bank { stroke: #dccfb9; }
+      .fc-line--agent { stroke: #a99b86; stroke-dasharray: 2 7; }
+      .fc-line--me { stroke: var(--km-gold); stroke-width: 3.25; }
+      .fc-gap { fill: url(#fc-gap-grad); }
+      .fc-glow { fill: none; stroke: var(--km-gold); stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; opacity: 0.13; }
+      .fc-end { stroke: #2b2521; stroke-width: 2.5; }
+      .fc-end--bank { fill: #dccfb9; }
+      .fc-end--agent { fill: #a99b86; }
+      .fc-end--me { fill: var(--km-gold); }
+      .fc-mark line { stroke: rgba(217, 177, 92, 0.55); stroke-width: 1; stroke-dasharray: 3 4; }
+      .fc-mark circle { fill: #2b2521; stroke: var(--km-gold); stroke-width: 2; }
+      .fc-ends, .fc-mark, .fc-pill { opacity: 0; transition: opacity 0.5s ease; }
+      .fc-plot.is-ready .fc-ends, .fc-plot.is-ready .fc-mark, .fc-plot.is-ready .fc-pill { opacity: 1; }
+      .fc-plot.is-scrub .fc-pill, .fc-plot.is-scrub .fc-mark { opacity: 0.3; }
+      .fc-cur line { stroke: rgba(243, 233, 221, 0.4); stroke-width: 1; }
+      .fc-pill { position: absolute; top: 0; transform: translateX(-50%); padding: 0.3125rem 0.6875rem; border-radius: 9999px; border: 1px solid rgba(217, 177, 92, 0.5); background: rgba(36, 31, 27, 0.9); font-size: 0.71875rem; font-weight: 600; line-height: 1.3; color: var(--km-gold); white-space: nowrap; pointer-events: none; }
+      .fc-tip { position: absolute; top: 2.25rem; z-index: 2; display: grid; gap: 0.3125rem; min-width: 11.5rem; padding: 0.6875rem 0.8125rem 0.75rem; border-radius: 0.875rem; border: 1px solid rgba(243, 233, 221, 0.18); background: rgba(27, 23, 20, 0.96); font-size: 0.78125rem; line-height: 1.3; color: rgba(243, 233, 221, 0.78); pointer-events: none; }
+      .fc-tip[hidden], .fc-pill[hidden] { display: none; }
+      .fc-tip-y { margin-bottom: 0.125rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(243, 233, 221, 0.55); }
+      .fc-tip-row { display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+      .fc-tip-row i { flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: #dccfb9; }
+      .fc-tip-row--agent i { background: #a99b86; }
+      .fc-tip-row--me i { background: var(--km-gold); }
+      .fc-tip-row b { margin-left: auto; padding-left: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--km-paper); }
+      .fc-tip-row--me b { color: var(--km-gold); }
+      .fc-tap { margin-top: 0.625rem; font-size: 0.75rem; line-height: 1.4; color: rgba(243, 233, 221, 0.5); }
+      .fc-rows { display: grid; margin-top: 0.375rem; }
+      .fc-row { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "key name" ". sum" ". desc"; align-items: center; gap: 0.3125rem 0.875rem; padding: 1rem 0; border-bottom: 1px solid rgba(243, 233, 221, 0.14); }
+      @media (min-width: 480px) { .fc-row { grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "key name sum" ". desc desc"; gap: 0.25rem 0.875rem; } }
+      .fc-row i { grid-area: key; }
+      .fc-row b { grid-area: name; }
+      .fc-row > span { grid-area: sum; }
+      .fc-row small { grid-area: desc; }
+      .fc-row i { width: 1.375rem; height: 0; border-top: 2.5px solid #dccfb9; border-radius: 2px; }
+      .fc-row--agent i { border-top: 2.5px dotted #a99b86; }
+      .fc-row--me i { border-top: 3.5px solid var(--km-gold); }
+      .fc-row b { display: block; font-size: 1rem; line-height: 1.3; font-weight: 600; color: var(--km-paper); }
+      .fc-row small { display: block; font-size: 0.78125rem; line-height: 1.4; color: rgba(243, 233, 221, 0.6); }
+      .fc-row > span { font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: rgba(243, 233, 221, 0.82); }
+      @media (min-width: 900px) { .fc-row > span { font-size: 1.375rem; } }
+      @media (min-width: 1200px) { .fc-row > span { font-size: 1.625rem; } }
+      .fc-row--me > span { color: var(--km-gold); }
+      .pc-diff { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; padding: 1rem 1.125rem; border-radius: 1rem; border: 1px solid rgba(159, 191, 172, 0.35); background: rgba(42, 102, 71, 0.3); }
       .pc-diff span { font-size: 0.9375rem; color: rgba(243, 233, 221, 0.86); }
-      .pc-diff b { font-family: var(--font-serif); font-size: 1.5rem; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: #c5d9cb; }
-      .pc-once { margin-top: 1rem; font-size: 0.8125rem; line-height: 1.5; color: rgba(243, 233, 221, 0.66); }
-      .pc-once b { font-weight: 600; color: var(--km-paper); }
-      .pc-note { max-width: 46rem; margin: 1.25rem auto 0; font-size: 0.78125rem; line-height: 1.55; text-align: center; color: var(--km-fg3); }
+      .pc-diff b { font-family: var(--font-serif); font-size: 1.625rem; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: #c5d9cb; }
+      .fc-side p { margin-top: 0.875rem; font-size: 0.875rem; line-height: 1.5; color: rgba(243, 233, 221, 0.74); text-wrap: pretty; }
+      .fc-side p:empty { display: none; }
+      .fc-side p + p { margin-top: 0.5rem; }
+      .fc-link { display: inline-block; margin-top: 1.25rem; font-size: 0.9375rem; line-height: 1.5; font-weight: 600; color: var(--km-gold); text-decoration: underline; text-decoration-color: rgba(217, 177, 92, 0.45); text-underline-offset: 4px; }
+      .fc-link:hover { text-decoration-color: var(--km-gold); }
+      .fc-link:focus-visible { outline: 2px solid var(--km-gold); outline-offset: 4px; border-radius: 0.25rem; }
+      .pc-note { max-width: 52rem; margin: 1.25rem auto 0; font-size: 0.78125rem; line-height: 1.55; text-align: center; color: var(--km-fg3); text-wrap: pretty; }
       /* porovnanie balíkov */
       .cmp { max-width: 64rem; margin: 0 auto; }
       .cmp > summary { display: flex; align-items: center; justify-content: center; gap: 0.625rem; width: max-content; max-width: 100%; margin: 0 auto; padding: 0.8125rem 1.375rem; border-radius: 9999px; border: 1.5px solid var(--km-hair-2); background: var(--km-ivory); font-size: 0.9375rem; font-weight: 600; color: var(--km-ink); list-style: none; cursor: pointer; transition: border-color 0.2s; }
@@ -1247,7 +1308,7 @@
       .lead-pack .lead-chips { margin-top: 0.625rem; }
       .km .km-bar .km-btn { white-space: nowrap; }
       @media (prefers-reduced-motion: reduce) {
-        .pr-card, .pr-opt, .pc-bar i, .pr-dots button { transition: none; }
+        .pr-card, .pr-opt, .pr-dots button, .fc-ends, .fc-mark, .fc-pill { transition: none; }
         .pr-card:hover, .pr-opt:hover { transform: none; }
       }
       /* užší počítač: texty v kartách sa lámu na viac riadkov, riadky kariet ostávajú zarovnané */
@@ -1313,7 +1374,7 @@
     <header class="hdr">
       <div class="km-wrap">
         <a href="/" aria-label="JS Mentor – domov"><img src="/assets/images/js-mentor-logo.png" alt="JS Mentor" width="879" height="310" /></a>
-        <nav class="hdr-nav" aria-label="Navigácia cenníka"><a href="#cennik">Balíky</a><a href="#poplatok">Ročný poplatok</a><a href="#porovnanie">Porovnanie</a><a href="#otazky">Otázky</a></nav>
+        <nav class="hdr-nav" aria-label="Navigácia cenníka"><a href="#cennik">Balíky</a><a href="#poplatok">Poplatky</a><a href="#porovnanie">Porovnanie</a><a href="#otazky">Otázky</a></nav>
         <a class="km-btn" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="cennik-header"><span>Úvodný hovor zadarmo</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </header>
@@ -1411,37 +1472,61 @@
             <h2 class="km-h2">Časté <em>otázky</em></h2>
           </div>
           <div class="pr-faq rv">
-            <div class="km-faq-card"><div class="km-faq"><details open><summary>Prečo nie si zadarmo ako banka?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">V banke ti poradia zadarmo. Lenže to zaplatíš v poplatku fondu každý rok, kým tam máš peniaze. U mňa vidíš cenu hneď a vieš, za čo platíš.</p></details><details><summary>Prečo je pri cene „od“?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Lebo cena rastie s tým, koľko mesačne investuješ. Pri Partnerovi je to najmenej 900&nbsp;€. Pri 300&nbsp;€ mesačne na 20&nbsp;rokov vychádza okolo 1&nbsp;000&nbsp;€, pri 1&nbsp;000&nbsp;€ mesačne 2&nbsp;700&nbsp;€. Pri Private sa cena odvíja od veľkosti majetku. Presnú sumu ti vždy poviem na úvodnom hovore, ešte kým začnem robiť plán.</p></details><details><summary>Ako a kedy platím?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Úvodný hovor je zadarmo. Renta Plán zaplatíš raz, až keď ti ho odprezentujem a páči sa ti. Partner a Private sa hradia z tvojich vkladov, Partner môžeš rozložiť až na 24&nbsp;mesiacov. Všetky náklady v eurách uvidíš v pláne ešte pred podpisom.</p></details><details><summary>Na čom zarábaš?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Na tom, čo sa hradí z tvojich vkladov, a na ročnom poplatku. Všetko ti rozpíšem v eurách v pláne ešte pred podpisom. Ak cez mňa riešiš poistenie alebo hypotéku, tam ma platí poisťovňa alebo banka a vopred ti poviem, koľko.</p></details><details><summary>Môžem si plán zobrať a investovať sám?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Áno, presne na to je Renta Plán. Investuješ sám, kde chceš.</p></details><details><summary>Prečo Renta Plán nemá ročný poplatok?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Lebo po odovzdaní plánu ideš sám. Nechcem ti účtovať servis, ktorý nedostávaš.</p></details><details><summary>Čo ak prestanem posielať vklady?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Peniaze sú vždy na tvojom účte a na tvoje meno. Vklady môžeš zastaviť kedykoľvek a vopred ti ukážem, čo to spraví s poplatkom.</p></details><details><summary>Čo ak sa mi zmení život?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Pri Partnerovi a Private plán každý rok aktualizujeme. A keď príde dieťa alebo nová práca, napíšeš mi a upravíme ho hneď.</p></details><details><summary>Čo majú členovia komunity?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Plán zadarmo. Ak sa im nepáči, ostáva im a neplatia nič. Ak ho spolu zrealizujeme, platia len náklady investície, ktoré uvidia v pláne vopred. A majú prednosť, píšu mi rovno na WhatsApp. Komunita stojí 5&nbsp;€ mesačne.</p></details></div></div>
+            <div class="km-faq-card"><div class="km-faq"><details open><summary>Prečo nie si zadarmo ako banka?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">V banke ti poradia zadarmo. Lenže to zaplatíš v poplatku fondu každý rok, kým tam máš peniaze. U mňa vidíš cenu hneď a vieš, za čo platíš.</p></details><details><summary>Prečo je pri cene „od“?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Lebo cena rastie s tým, koľko mesačne investuješ. Pri Partnerovi je to najmenej 900&nbsp;€. Pri 300&nbsp;€ mesačne na 20&nbsp;rokov vychádza 1&nbsp;620&nbsp;€, pri 1&nbsp;000&nbsp;€ mesačne 3&nbsp;300&nbsp;€. Pri Private sa cena odvíja od veľkosti majetku. Presnú sumu ti vždy poviem na úvodnom hovore, ešte kým začnem robiť plán.</p></details><details><summary>Ako a kedy platím?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Úvodný hovor je zadarmo. Renta Plán zaplatíš raz, až keď ti ho odprezentujem a páči sa ti. Partner a Private sa hradia z tvojich vkladov, Partner môžeš rozložiť až na 24&nbsp;mesiacov. Všetky náklady v eurách uvidíš v pláne ešte pred podpisom.</p></details><details><summary>Na čom zarábaš?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Na tom, čo sa hradí z tvojich vkladov, a na ročnom poplatku. Všetko ti rozpíšem v eurách v pláne ešte pred podpisom. Ak cez mňa riešiš poistenie alebo hypotéku, tam ma platí poisťovňa alebo banka a vopred ti poviem, koľko.</p></details><details><summary>Môžem si plán zobrať a investovať sám?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Áno, presne na to je Renta Plán. Investuješ sám, kde chceš.</p></details><details><summary>Prečo Renta Plán nemá ročný poplatok?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Lebo po odovzdaní plánu ideš sám. Nechcem ti účtovať servis, ktorý nedostávaš.</p></details><details><summary>Čo ak prestanem posielať vklady?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Peniaze sú vždy na tvojom účte a na tvoje meno. Vklady môžeš zastaviť kedykoľvek a vopred ti ukážem, čo to spraví s poplatkom.</p></details><details><summary>Čo ak sa mi zmení život?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Pri Partnerovi a Private plán každý rok aktualizujeme. A keď príde dieťa alebo nová práca, napíšeš mi a upravíme ho hneď.</p></details><details><summary>Čo majú členovia komunity?<span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span></summary><p class="km-faq-a">Plán zadarmo. Ak sa im nepáči, ostáva im a neplatia nič. Ak ho spolu zrealizujeme, platia len náklady investície, ktoré uvidia v pláne vopred. A majú prednosť, píšu mi rovno na WhatsApp. Komunita stojí 5&nbsp;€ mesačne.</p></details></div></div>
           </div>
         </div>
       </section>
 
-      <!-- 2. Ročný poplatok v eurách -->
+      <!-- 2. Poplatky v čase -->
       <section class="km-section minimal pc-band" id="poplatok">
         <div class="km-wrap">
           <div class="km-head km-center rv">
-            <span class="km-kicker">Ročný poplatok v eurách</span>
-            <h2 class="km-h2">Koľko je 0,35&nbsp;–&nbsp;0,50&nbsp;% <br /><em>v skutočných peniazoch?</em></h2>
-            <p class="km-lede">Posuň si sumu. Uvidíš, koľko zaplatíš za rok a koľko by to bolo vo fonde v banke.</p>
+            <span class="km-kicker">Poplatky v čase</span>
+            <h2 class="km-h2">Koľko zaplatíš na poplatkoch <br /><em>za <span id="fc-h-years">30&nbsp;rokov</span>?</em></h2>
+            <p class="km-lede">Nastav si mesačný vklad a dĺžku investovania. Graf ukáže, koľko zaplatíš v banke, u sprostredkovateľa a so mnou.</p>
           </div>
-          <div class="pc rv">
-            <div class="pc-in">
-              <label for="pc-amount">Hodnota tvojej investície</label>
-              <output class="pc-value" id="pc-value" for="pc-amount">10&nbsp;000 €</output>
-              <input type="range" class="rngx" id="pc-amount" min="1000" max="300000" step="1000" value="10000" />
-              <div class="pc-scale" aria-hidden="true"><span>1&nbsp;000&nbsp;€</span><span>300&nbsp;000&nbsp;€</span></div>
-              <div class="pc-quick" role="group" aria-label="Rýchly výber sumy"><button type="button" data-amount="5000" aria-pressed="false">5&nbsp;000&nbsp;€</button><button type="button" data-amount="10000" aria-pressed="true">10&nbsp;000&nbsp;€</button><button type="button" data-amount="50000" aria-pressed="false">50&nbsp;000&nbsp;€</button><button type="button" data-amount="100000" aria-pressed="false">100&nbsp;000&nbsp;€</button><button type="button" data-amount="250000" aria-pressed="false">250&nbsp;000&nbsp;€</button></div>
-              <div class="pc-fit"><p><i id="pc-fit-ico" aria-hidden="true">🤝</i><span>Pri tejto sume ti sedí <b id="pc-fit-name">Renta Partner</b>. <a href="#cennik" id="pc-fit-link" data-go="partner">Pozrieť balík</a></span></p></div>
+          <div class="fc rv">
+            <div class="fc-in">
+              <div class="fc-field">
+                <label class="fc-label" for="fc-amount">Mesačný vklad</label>
+                <output class="fc-value" for="fc-amount"><span id="fc-value">300&nbsp;€</span><small>mesačne</small></output>
+                <input type="range" class="rngx" id="fc-amount" min="200" max="2000" step="50" value="300" />
+                <div class="pc-scale" aria-hidden="true"><span>200&nbsp;€</span><span>2&nbsp;000&nbsp;€</span></div>
+                <div class="pc-quick" role="group" aria-label="Rýchly výber vkladu"><button type="button" data-deposit="200" aria-pressed="false">200&nbsp;€</button><button type="button" data-deposit="300" aria-pressed="true">300&nbsp;€</button><button type="button" data-deposit="500" aria-pressed="false">500&nbsp;€</button><button type="button" data-deposit="1000" aria-pressed="false">1&nbsp;000&nbsp;€</button></div>
+              </div>
+              <div class="fc-field">
+                <span class="fc-label" id="fc-years-label">Ako dlho investuješ</span>
+                <div class="pc-quick fc-years" role="group" aria-labelledby="fc-years-label"><button type="button" data-years="10" aria-pressed="false">10&nbsp;rokov</button><button type="button" data-years="20" aria-pressed="false">20&nbsp;rokov</button><button type="button" data-years="30" aria-pressed="true">30&nbsp;rokov</button></div>
+                <p class="fc-hint"><i aria-hidden="true">🎯</i><span id="fc-hint">Hranicu 100&nbsp;000&nbsp;€ prekročíš v&nbsp;16.&nbsp;roku. Odvtedy platíš len <b>0,35&nbsp;% ročne</b>.</span></p>
+              </div>
             </div>
-            <div class="pc-out" aria-live="polite">
-              <div class="pc-cap">Koľko zaplatíš za rok</div>
-              <div class="pc-row"><span class="k"><span id="pc-mine-k">Renta Partner</span><small id="pc-mine-rate">0,35 – 0,50 % ročne</small></span><span class="v" id="pc-mine">35 – 50 €</span><span class="pc-bar" aria-hidden="true"><i id="pc-mine-bar" style="--w:25%"></i></span></div>
-              <div class="pc-row pc-row--bank"><span class="k">Fond v banke<small>~2 % ročne</small></span><span class="v" id="pc-bank">200 €</span><span class="pc-bar" aria-hidden="true"><i style="--w:100%"></i></span></div>
-              <div class="pc-diff"><span>Rozdiel každý rok</span><b id="pc-diff">až 165 €</b></div>
-              <p class="pc-once">K tomu cena balíka: <b id="pc-once">od 900 €</b>. Ročný poplatok platíš investičnej spoločnosti, v ktorej máš účet na svoje meno.</p>
+            <div class="fc-out">
+              <div class="fc-sum">
+                <p class="pc-cap">Na poplatkoch zaplatíš za <span id="fc-cap-years">30&nbsp;rokov</span></p>
+                <ul class="fc-rows">
+                  <li class="fc-row fc-row--bank"><i aria-hidden="true"></i><b>Banka</b><span id="fc-bank">63&nbsp;800&nbsp;€</span><small>vstup 2&nbsp;% · ~2&nbsp;% ročne</small></li>
+                  <li class="fc-row fc-row--agent"><i aria-hidden="true"></i><b>Sprostredkovateľ</b><span id="fc-agent">37&nbsp;400&nbsp;€</span><small>vstup 2&nbsp;% · ~1&nbsp;% ročne</small></li>
+                  <li class="fc-row fc-row--me"><i aria-hidden="true"></i><b>So mnou</b><span id="fc-me">15&nbsp;900&nbsp;€</span><small id="fc-me-desc">balík 1&nbsp;980&nbsp;€ · 0,50&nbsp;%, od&nbsp;100&nbsp;000&nbsp;€&nbsp;0,35&nbsp;%</small></li>
+                </ul>
+              </div>
+              <div class="fc-chart">
+                <p class="pc-cap">Zaplatené poplatky rok po roku</p>
+                <div class="fc-plot" id="fc-plot" tabindex="0" role="slider" aria-label="Poplatky v jednotlivých rokoch" aria-valuemin="0" aria-valuemax="30" aria-valuenow="30" aria-valuetext="">
+                  <svg id="fc-svg" aria-hidden="true" focusable="false"></svg>
+                  <span class="fc-pill" id="fc-pill" aria-hidden="true" hidden>od 100&nbsp;000&nbsp;€ len 0,35&nbsp;%</span>
+                  <div class="fc-tip" id="fc-tip" aria-hidden="true" hidden></div>
+                </div>
+                <p class="fc-tap">Prejdi po grafe a uvidíš čísla v každom roku.</p>
+              </div>
+              <div class="fc-side">
+                <div class="pc-diff" aria-live="polite"><span>Rozdiel oproti banke</span><b id="fc-diff">48&nbsp;000&nbsp;€</b></div>
+                <p id="fc-more">Na účte ti v tomto modeli ostane o 95&nbsp;000&nbsp;€ viac ako v banke.</p>
+                <p id="fc-break">Prvé roky platíš so mnou viac, lebo na začiatku platíš cenu balíka. Od 7.&nbsp;roku platíš menej ako v banke.</p>
+                <a class="fc-link" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="cennik-poplatky">Spočítať moje čísla na úvodnom hovore&nbsp;<span class="arr" aria-hidden="true">→</span></a>
+              </div>
             </div>
           </div>
-          <p class="pc-note">Ilustračný prepočet z hodnoty investície. Poplatok ~2&nbsp;% je ilustračný, nie ponuka konkrétnej inštitúcie. Presné a úplné náklady vidíš vždy pred podpisom. Investovanie je spojené s rizikom.</p>
+          <p class="pc-note">Ilustračný model, nie sľub výnosu. Predpoklady: vklad každý mesiac, hrubý výnos trhu 8&nbsp;% ročne pred poplatkami, mesačné úročenie. Banka: vstupný poplatok 2&nbsp;% z vkladu a ~2&nbsp;% ročne. Sprostredkovateľ: vstupný poplatok 2&nbsp;% z vkladu a ~1&nbsp;% ročne. So mnou: cena balíka Renta Partner rozložená na prvých 24&nbsp;mesiacov a ročný poplatok 0,50&nbsp;%, od hodnoty 100&nbsp;000&nbsp;€ 0,35&nbsp;%. Výstupné poplatky nepočítam na žiadnej strane. Poplatky banky a sprostredkovateľa sú typické trhové hodnoty, nie ponuka konkrétnej inštitúcie. Presné a úplné náklady vidíš vždy pred podpisom. Investovanie je spojené s rizikom.</p>
         </div>
       </section>
 
@@ -1652,30 +1737,189 @@
         };
         opts.forEach(function (o) { o.addEventListener("click", function () { pick(o.getAttribute("data-pick"), true); }); });
 
-        // ročný poplatok v eurách
-        var amt = $("pc-amount"), quick = [].slice.call(document.querySelectorAll("[data-amount]"));
-        var track = function (v, min, max) { var p = ((v - min) / (max - min)) * 100; return "linear-gradient(90deg,#2B6B4A " + p + "%,rgba(23,19,16,.15) " + p + "%)"; };
-        var paintCalc = function () {
-          var v = Number(amt.value), priv = v >= 100000;
-          var lo = v * 0.0035, hi = v * 0.005, bank = v * 0.02;
-          amt.style.background = track(v, Number(amt.min), Number(amt.max));
-          $("pc-value").textContent = fmt(v) + " €";
-          $("pc-mine-k").textContent = priv ? "Renta Private" : "Renta Partner";
-          $("pc-mine-rate").textContent = priv ? "od 0,35 % ročne" : "0,35 – 0,50 % ročne";
-          $("pc-mine").textContent = priv ? "od " + fmt(lo) + " €" : fmt(lo) + " – " + fmt(hi) + " €";
-          $("pc-mine-bar").style.setProperty("--w", (priv ? 17.5 : 25) + "%");
-          $("pc-bank").textContent = fmt(bank) + " €";
-          $("pc-diff").textContent = "až " + fmt(bank - lo) + " €";
-          $("pc-once").textContent = priv ? "od 3 000 €" : "od 900 €";
-          $("pc-fit-name").textContent = priv ? "Renta Private" : "Renta Partner";
-          $("pc-fit-ico").textContent = priv ? "🏛️" : "🤝";
-          $("pc-fit-link").setAttribute("data-go", priv ? "private" : "partner");
-          quick.forEach(function (b) { b.setAttribute("aria-pressed", Number(b.getAttribute("data-amount")) === v ? "true" : "false"); });
+        // poplatky v čase: banka, sprostredkovateľ a so mnou (ilustračný model, predpoklady sú v poznámke pod grafom)
+        var FEES = {
+          growth: 0.08, // hrubý výnos trhu ročne, pred poplatkami
+          bank: { entry: 0.02, rate: 0.02 }, // vstupný poplatok z každého vkladu, ročný poplatok z hodnoty
+          agent: { entry: 0.02, rate: 0.01 },
+          me: { base: 900, part: 0.01, min: 900, months: 24, rate: 0.005, rateOver: 0.0035, limit: 100000 } // balík Partner: 900 € + 1 % zo súčtu plánovaných vkladov; ročný poplatok
         };
-        amt.addEventListener("input", paintCalc);
-        quick.forEach(function (b) { b.addEventListener("click", function () { amt.value = b.getAttribute("data-amount"); paintCalc(); }); });
-        paintCalc();
-        $("pc-fit-link").addEventListener("click", function () { pick(this.getAttribute("data-go"), false); var c = $("balik-" + this.getAttribute("data-go")); window.setTimeout(function () { centerOn(c, false); }, 0); });
+        var fcPrice = function (dep, years) { return Math.max(FEES.me.min, FEES.me.base + FEES.me.part * dep * 12 * years); };
+        var fcRun = function (dep, years, kind) {
+          var r = Math.pow(1 + FEES.growth, 1 / 12) - 1, value = 0, fees = 0, cross = 0, out = [0];
+          var price = kind === "me" ? fcPrice(dep, years) : 0;
+          for (var m = 1; m <= years * 12; m++) {
+            var cut = kind === "me" ? (m <= FEES.me.months ? price / FEES.me.months : 0) : dep * FEES[kind].entry;
+            fees += cut;
+            value = (value + dep - cut) * (1 + r);
+            var rate = kind === "me" ? (value >= FEES.me.limit ? FEES.me.rateOver : FEES.me.rate) : FEES[kind].rate;
+            if (kind === "me" && !cross && value >= FEES.me.limit) cross = m;
+            var f = value * rate / 12;
+            value -= f; fees += f;
+            out.push(fees);
+          }
+          return { fees: out, total: fees, value: value, cross: cross, price: price };
+        };
+        // model je ilustračný, preto sumy zaokrúhľujem
+        var fcShow = function (n) { var s = n < 10000 ? 10 : 100; return fmt(Math.round(n / s) * s) + " €"; };
+        var fcShowBig = function (n) { var s = n < 10000 ? 100 : 1000; return fmt(Math.round(n / s) * s) + " €"; };
+        var fcStep = function (max) {
+          var pow = Math.pow(10, Math.floor(Math.log(max / 5) / Math.LN10)), steps = [1, 2, 2.5, 5, 10, 20];
+          for (var i = 0; i < steps.length; i++) { if (Math.ceil(max / (steps[i] * pow)) <= 5) return steps[i] * pow; }
+          return 20 * pow;
+        };
+        var track = function (v, min, max) { var p = ((v - min) / (max - min)) * 100; return "linear-gradient(90deg,#2B6B4A " + p + "%,rgba(23,19,16,.15) " + p + "%)"; };
+        var fcAmt = $("fc-amount"), fcPlot = $("fc-plot"), fcSvg = $("fc-svg"), fcTip = $("fc-tip"), fcPill = $("fc-pill");
+        var fcDeps = [].slice.call(document.querySelectorAll("[data-deposit]")), fcYearBtns = [].slice.call(document.querySelectorAll("[data-years]"));
+        var fcYears = 30, fcData = null, fcGeo = null, fcAt = -1, fcShown = reduce ? 1 : 0;
+        var KEYS = [["bank", "Banka"], ["agent", "Sprostredkovateľ"], ["me", "So mnou"]];
+
+        var fcDraw = function () {
+          if (!fcData) return;
+          var W = fcPlot.clientWidth, H = fcPlot.clientHeight;
+          if (!W || !H) return;
+          var pad = { t: 44, r: 12, b: 26, l: 2 }, n = fcData.years * 12, pw = W - pad.l - pad.r, ph = H - pad.t - pad.b;
+          var step = fcStep(fcData.bank.total * 1.04), top = Math.ceil((fcData.bank.total * 1.04) / step) * step;
+          var X = function (m) { return pad.l + pw * m / n; };
+          var Y = function (v) { return pad.t + ph * (1 - v / top); };
+          var path = function (arr) { var d = ""; for (var m = 0; m <= n; m++) d += (m ? "L" : "M") + X(m).toFixed(1) + " " + Y(arr[m]).toFixed(1); return d; };
+          fcGeo = { W: W, H: H, pad: pad, n: n, X: X, Y: Y };
+          fcSvg.setAttribute("viewBox", "0 0 " + W + " " + H);
+          var h = '<defs><linearGradient id="fc-gap-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9b15c" stop-opacity=".22"/><stop offset="100%" stop-color="#d9b15c" stop-opacity=".03"/></linearGradient>' +
+            '<clipPath id="fc-clip"><rect id="fc-clip-rect" x="0" y="0" width="' + (pad.l + (pw + pad.r) * fcShown).toFixed(1) + '" height="' + H + '"/></clipPath></defs>';
+          h += '<g class="fc-grid">';
+          for (var v = 0; v <= top + 1; v += step) {
+            var gy = Y(v).toFixed(1);
+            h += '<line x1="' + pad.l + '" x2="' + (W - pad.r) + '" y1="' + gy + '" y2="' + gy + '"' + (v === 0 ? ' class="fc-base"' : "") + "/>";
+            if (v > 0) h += '<text x="' + (pad.l + 2) + '" y="' + (Y(v) - 6).toFixed(1) + '">' + fmt(v) + " €</text>";
+          }
+          h += '</g><g class="fc-x">';
+          // popisy rokov tak husto, aby sa neprekrývali
+          var ys = [1, 2, 5, 10].filter(function (q) { return pw * q / fcData.years >= 52; })[0] || 10;
+          for (var k = ys; k <= fcData.years; k += ys) h += '<text x="' + X(k * 12).toFixed(1) + '" y="' + (H - 7) + '" text-anchor="' + (k === fcData.years ? "end" : "middle") + '">' + k + " r.</text>";
+          h += "</g>";
+          var gap = path(fcData.bank.fees);
+          for (var m = n; m >= 0; m--) gap += "L" + X(m).toFixed(1) + " " + Y(fcData.me.fees[m]).toFixed(1);
+          h += '<g clip-path="url(#fc-clip)"><path class="fc-gap" d="' + gap + 'Z"/>' +
+            '<path class="fc-line fc-line--bank" d="' + path(fcData.bank.fees) + '"/>' +
+            '<path class="fc-line fc-line--agent" d="' + path(fcData.agent.fees) + '"/>' +
+            '<path class="fc-glow" d="' + path(fcData.me.fees) + '"/><path class="fc-line fc-line--me" d="' + path(fcData.me.fees) + '"/></g>';
+          var cross = fcData.me.cross;
+          if (cross) h += '<g class="fc-mark"><line x1="' + X(cross).toFixed(1) + '" x2="' + X(cross).toFixed(1) + '" y1="30" y2="' + (Y(fcData.me.fees[cross]) - 7).toFixed(1) + '"/><circle cx="' + X(cross).toFixed(1) + '" cy="' + Y(fcData.me.fees[cross]).toFixed(1) + '" r="4.5"/></g>';
+          h += '<g class="fc-ends">';
+          KEYS.forEach(function (key) { h += '<circle class="fc-end fc-end--' + key[0] + '" cx="' + X(n).toFixed(1) + '" cy="' + Y(fcData[key[0]].total).toFixed(1) + '" r="4.5"/>'; });
+          h += '</g><g class="fc-cur" id="fc-cur" visibility="hidden"><line id="fc-cur-line" y1="' + (pad.t - 8) + '" y2="' + (H - pad.b) + '"/>';
+          KEYS.forEach(function (key) { h += '<circle class="fc-end fc-end--' + key[0] + '" id="fc-cur-' + key[0] + '" r="5"/>'; });
+          fcSvg.innerHTML = h + "</g>";
+          if (cross) {
+            fcPill.hidden = false;
+            var half = fcPill.offsetWidth / 2;
+            fcPill.style.left = Math.min(Math.max(X(cross), half + 2), W - half - 2).toFixed(1) + "px";
+          } else fcPill.hidden = true;
+          if (fcAt >= 0) fcMove(Math.min(fcAt, fcData.years));
+        };
+
+        // čísla v konkrétnom roku: prechod myšou, prstom alebo šípkami
+        var fcMove = function (year) {
+          if (!fcGeo) return;
+          fcAt = year;
+          var m = year * 12, x = fcGeo.X(m), rows = "";
+          $("fc-cur").setAttribute("visibility", "visible");
+          $("fc-cur-line").setAttribute("x1", x.toFixed(1)); $("fc-cur-line").setAttribute("x2", x.toFixed(1));
+          KEYS.forEach(function (key) {
+            var dot = $("fc-cur-" + key[0]);
+            dot.setAttribute("cx", x.toFixed(1)); dot.setAttribute("cy", fcGeo.Y(fcData[key[0]].fees[m]).toFixed(1));
+            rows += '<span class="fc-tip-row fc-tip-row--' + key[0] + '"><i></i>' + key[1] + "<b>" + fcShow(fcData[key[0]].fees[m]) + "</b></span>";
+          });
+          fcTip.innerHTML = '<span class="fc-tip-y">' + (year ? year + ". rok" : "Začiatok") + "</span>" + rows;
+          fcTip.hidden = false;
+          var tw = fcTip.offsetWidth, left = x + 14 + tw > fcGeo.W ? x - 14 - tw : x + 14;
+          fcTip.style.left = Math.max(0, left).toFixed(1) + "px";
+          fcPlot.classList.add("is-scrub");
+          fcPlot.setAttribute("aria-valuenow", String(year));
+          fcPlot.setAttribute("aria-valuetext", (year ? year + ". rok" : "začiatok") + ": banka " + fcShow(fcData.bank.fees[m]) + ", sprostredkovateľ " + fcShow(fcData.agent.fees[m]) + ", so mnou " + fcShow(fcData.me.fees[m]));
+        };
+        var fcLeave = function () {
+          fcAt = -1; fcTip.hidden = true; fcPlot.classList.remove("is-scrub");
+          var cur = $("fc-cur"); if (cur) cur.setAttribute("visibility", "hidden");
+        };
+        var fcFrom = function (e) {
+          var box = fcPlot.getBoundingClientRect(), p = (e.clientX - box.left - fcGeo.pad.l) / (fcGeo.W - fcGeo.pad.l - fcGeo.pad.r);
+          fcMove(Math.round(Math.min(1, Math.max(0, p)) * fcData.years));
+        };
+        fcPlot.addEventListener("pointermove", function (e) { if (fcGeo) fcFrom(e); });
+        fcPlot.addEventListener("pointerdown", function (e) { if (fcGeo) fcFrom(e); });
+        fcPlot.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") fcLeave(); });
+        fcPlot.addEventListener("blur", fcLeave);
+        document.addEventListener("pointerdown", function (e) { if (fcAt >= 0 && !fcPlot.contains(e.target)) fcLeave(); });
+        fcPlot.addEventListener("keydown", function (e) {
+          var at = fcAt < 0 ? fcData.years : fcAt, to = null;
+          if (e.key === "ArrowLeft" || e.key === "ArrowDown") to = Math.max(0, at - 1);
+          else if (e.key === "ArrowRight" || e.key === "ArrowUp") to = Math.min(fcData.years, fcAt < 0 ? at : at + 1);
+          else if (e.key === "Home") to = 0;
+          else if (e.key === "End") to = fcData.years;
+          else if (e.key === "Escape") { fcLeave(); return; }
+          if (to === null) return;
+          e.preventDefault(); fcMove(to);
+        });
+
+        var fcPaint = function () {
+          var dep = Number(fcAmt.value), years = fcYears;
+          var b = fcRun(dep, years, "bank"), a = fcRun(dep, years, "agent"), me = fcRun(dep, years, "me");
+          fcData = { dep: dep, years: years, bank: b, agent: a, me: me };
+          fcAmt.style.background = track(dep, Number(fcAmt.min), Number(fcAmt.max));
+          $("fc-value").textContent = fmt(dep) + " €";
+          $("fc-h-years").textContent = years + " rokov";
+          $("fc-cap-years").textContent = years + " rokov";
+          $("fc-bank").textContent = fcShow(b.total);
+          $("fc-agent").textContent = fcShow(a.total);
+          $("fc-me").textContent = fcShow(me.total);
+          $("fc-me-desc").textContent = "balík " + fmt(me.price) + " € · 0,50 %, od 100 000 € 0,35 %";
+          $("fc-diff").textContent = fcShow(Math.max(0, b.total - me.total));
+          $("fc-more").textContent = me.value > b.value ? "Na účte ti v tomto modeli ostane o " + fcShowBig(me.value - b.value) + " viac ako v banke." : "";
+          var even = 0;
+          for (var m = 1; m < me.fees.length; m++) { if (me.fees[m] < b.fees[m]) { even = m; break; } }
+          $("fc-break").textContent = even > 1 ? "Prvé roky platíš so mnou viac, lebo na začiatku platíš cenu balíka. Od " + Math.ceil(even / 12) + ". roku platíš menej ako v banke." : "";
+          $("fc-hint").innerHTML = me.cross
+            ? "Hranicu 100 000 € prekročíš v " + Math.ceil(me.cross / 12) + ". roku. Odvtedy platíš len <b>0,35 % ročne</b>."
+            : "Do 100 000 € platíš 0,50 % ročne. Keď hranicu prekročíš, poplatok klesne na <b>0,35 %</b>.";
+          fcDeps.forEach(function (x) { x.setAttribute("aria-pressed", Number(x.getAttribute("data-deposit")) === dep ? "true" : "false"); });
+          fcYearBtns.forEach(function (x) { x.setAttribute("aria-pressed", Number(x.getAttribute("data-years")) === years ? "true" : "false"); });
+          fcPlot.setAttribute("aria-valuemax", String(years));
+          fcPlot.setAttribute("aria-valuenow", String(years));
+          fcPlot.setAttribute("aria-valuetext", "po " + years + " rokoch: banka " + fcShow(b.total) + ", sprostredkovateľ " + fcShow(a.total) + ", so mnou " + fcShow(me.total));
+          if (fcAt > years) fcAt = years;
+          fcDraw();
+        };
+        fcAmt.addEventListener("input", fcPaint);
+        fcDeps.forEach(function (x) { x.addEventListener("click", function () { fcAmt.value = x.getAttribute("data-deposit"); fcPaint(); }); });
+        fcYearBtns.forEach(function (x) { x.addEventListener("click", function () { fcYears = Number(x.getAttribute("data-years")); fcPaint(); }); });
+        fcPaint();
+        window.addEventListener("resize", fcDraw);
+        if ("ResizeObserver" in window) new ResizeObserver(fcDraw).observe(fcPlot);
+
+        // krivky sa nakreslia, keď graf príde na obrazovku
+        var fcReveal = function () {
+          if (fcShown >= 1) { fcPlot.classList.add("is-ready"); return; }
+          var t0 = null, dur = 1500;
+          var tick = function (ts) {
+            if (t0 === null) t0 = ts;
+            var p = Math.min(1, (ts - t0) / dur);
+            fcShown = 1 - Math.pow(1 - p, 3);
+            var rect = $("fc-clip-rect");
+            if (rect && fcGeo) rect.setAttribute("width", (fcGeo.pad.l + (fcGeo.W - fcGeo.pad.l) * fcShown).toFixed(1));
+            if (p < 1) requestAnimationFrame(tick);
+            else { fcShown = 1; fcPlot.classList.add("is-ready"); }
+          };
+          requestAnimationFrame(tick);
+        };
+        if (!("IntersectionObserver" in window) || reduce) fcReveal();
+        else {
+          var fcIo = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (e.isIntersecting) { fcIo.disconnect(); fcReveal(); } });
+          }, { threshold: 0.3 });
+          fcIo.observe(fcPlot);
+        }
 
         // porovnanie je na širších obrazovkách rovno otvorené
         var cmp = $("cmp");
