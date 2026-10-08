@@ -521,7 +521,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .f-title[hidden] { display: none; }
 .f-prog { position: relative; height: 3px; margin: 1rem 0 1.5rem; border-radius: 3px; background: var(--hair); overflow: hidden; }
 .f-prog i { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--fp, 0) * 100%); border-radius: inherit; background: var(--gold); transition: width 0.45s var(--ease); }
-.f-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.f-hp { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; clip: rect(0 0 0 0); clip-path: inset(50%); }
 .f-field { display: block; }
 .f-field + .f-field { margin-top: 1.125rem; }
 .f-label { display: block; margin-bottom: 0.4375rem; font-size: 0.84375rem; font-weight: 600; color: var(--paper); }
@@ -1041,6 +1041,14 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
 /* dohoda: emoji v krúžkoch namiesto číslic (Ivan 2026-10-08: „toto oživ napr. emojis“) */
 .dohoda-n--e { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; font-size: 1.25rem; line-height: 1; }
 
+/* úvodný štítok s dlhšou vetou: na mobile sa môže zalomiť, bodka ostáva pri prvom riadku */
+.kick--wrap { max-width: 100%; white-space: normal; text-align: left; line-height: 1.5; align-items: flex-start; text-wrap: balance; }
+.kick--wrap::before { margin-top: 0.3em; }
+@media (max-width: 480px) { .kick--wrap { padding: 0.5rem 0.875rem 0.5rem 0.75rem; letter-spacing: 0.1em; } }
+
+/* text pod kartami klientov: malé písmo, na stred (Ivan 2026-10-08) */
+.vysk .disclaimv { max-width: 52rem !important; margin: 1.25rem auto 0 !important; font-size: 0.8125rem !important; line-height: 1.55 !important; text-align: center !important; text-wrap: pretty; }
+
 :root { --font-serif: var(--serif); --font-sans: var(--sans); }
 /* karty výsledkov klientov – prevzaté */
 /* ---------- výsledky klientov: karty ako na hlavnej stránke ---------- */
@@ -1120,7 +1128,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec hero" id="hero">
         <div class="wrap">
           <div class="hero-head">
-            <p class="kick ra" style="--i:0">Úvodný hovor s Ivanom · 30&nbsp;minút · zadarmo</p>
+            <p class="kick kick--wrap ra" style="--i:0">Každý ti hovorí investuj. Nikto nepovie ako začať.</p>
             <h1 class="h1"><span class="w-wrap"><span class="w" style="--i:1">Vybuduj</span> </span><span class="w-wrap"><span class="w" style="--i:2">si</span> </span><span class="w-wrap"><span class="w" style="--i:3">majetok,</span> </span><span class="w-wrap"><span class="w" style="--i:4">ktorý</span> </span><span class="w-wrap"><span class="w" style="--i:5">ti</span> </span><span class="w-wrap"><span class="w" style="--i:6">raz</span> </span><span class="w-wrap"><span class="w" style="--i:7">bude</span> </span><em><span class="w-wrap"><span class="w" style="--i:8">posielať</span> </span><span class="w-wrap"><span class="w" style="--i:9">výplatu.</span></span></em></h1>
             <p class="lede ra" style="--i:3">Volá sa to renta. Som Ivan a budem tvoj parťák na ceste k nej. Začneme 30-minútovým hovorom, kde zistíme, či ti viem pomôcť.</p>
             <div class="cta ra" style="--i:4"><a class="btn btn--green btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="hero"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Zadarmo a bez záväzkov. Do 24&nbsp;hodín sa ti ozvem.</small></div>
@@ -1338,6 +1346,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
   <span><i class="l-vklad"></i>Čisté vklady</span>
   <span><i class="l-hodnota"></i>Hodnota účtu</span>
 </div>
+<p class="disclaimv">Príklady skutočných účtov, uvedené sú len krstné mená. Hodnoty k 23.&nbsp;8.&nbsp;2026. Každé portfólio je zostavené individuálne podľa cieľov, horizontu a situácie klienta, vaše výsledky sa budú líšiť. Minulá výkonnosť nie je zárukou budúcich výnosov. Investovanie je spojené s rizikom.</p>
           </div>
           <figure class="voice tile rv" id="klient">
             <div class="voice-side">
@@ -1455,8 +1464,8 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
             <div class="dohoda-p fx">
               <h3 class="dohoda-t">Podmienky</h3>
               <ol class="dohoda-list">
-                <li class="rv" style="--i:0"><span class="dohoda-n dohoda-n--e" aria-hidden="true">⏳</span><div><h4>Myslíš na dlhodobo.</h4><p>Ak chceš zbohatnúť do roka, nie som tu pre teba.</p></div></li>
-                <li class="rv" style="--i:1"><span class="dohoda-n dohoda-n--e" aria-hidden="true">🔍</span><div><h4>Potrebujem poznať pravdu.</h4><p>Ak mám dať 100% výstup, potrebujem 100% vstup. Potrebujem poznať tvoje ciele a priority. Príjem, výdavky, dlhy aj to, čo už máš rozbehnuté inde. ( všetko je medzi nami )</p></div></li>
+                <li class="rv" style="--i:0"><span class="dohoda-n dohoda-n--e" aria-hidden="true">⏳</span><div><h4>Myslíš dlhodobo.</h4><p>Ak chceš zbohatnúť do roka, nie som tu pre teba.</p></div></li>
+                <li class="rv" style="--i:1"><span class="dohoda-n dohoda-n--e" aria-hidden="true">🔍</span><div><h4>Potrebujem poznať pravdu.</h4><p>Ak mám dať 100% výstup, potrebujem 100% vstup. Potrebujem poznať tvoje ciele a priority. Príjem, výdavky, dlhy aj to, čo už máš rozbehnuté inde. (všetko je medzi nami)</p></div></li>
                 <li class="rv" style="--i:2"><span class="dohoda-n dohoda-n--e" aria-hidden="true">💬</span><div><h4>Chceš počuť úprimný názor.</h4><p>Keď mi niektoré tvoje rozhodnutie nebude dávať zmysel, poviem ti to a vysvetlím prečo. Aj keď to nebudeš chcieť počuť.</p></div></li>
                 <li class="rv" style="--i:3"><span class="dohoda-n dohoda-n--e" aria-hidden="true">📉</span><div><h4>Keď trhy padajú, nerozhoduješ sa sám.</h4><p>Kým čokoľvek predáš, zavoláš mi. Krízový plán máš odo mňa vopred.</p></div></li>
                 <li class="rv" style="--i:4"><span class="dohoda-n dohoda-n--e" aria-hidden="true">💡</span><div><h4>Musíš tomu rozumieť.</h4><p>Keď niečo nechápeš, pýtaj sa. Radšej aj päťkrát to isté. Chcem, aby si rozumel tomu, kam dávaš peniaze.</p></div></li>
