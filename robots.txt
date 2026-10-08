@@ -4,7 +4,5 @@ Disallow: /komunita-klient.html
 Disallow: /komunita-klienti
 Disallow: /konzultacia-clen
 Disallow: /konzultacia-clen.html
-Disallow: /nova
-Disallow: /nova.html
 Disallow: /nova-cennik
 Disallow: /nova-cennik.html

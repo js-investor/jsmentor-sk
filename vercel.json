@@ -6,6 +6,10 @@
   ],
   "redirects": [
     { "source": "/konzultacia", "destination": "/", "permanent": false },
+    { "source": "/konzultacia-clen", "destination": "/", "permanent": false },
+    { "source": "/konzultacia-clen.html", "destination": "/", "permanent": false },
+    { "source": "/nova", "destination": "/", "permanent": true },
+    { "source": "/nova.html", "destination": "/", "permanent": true },
     { "source": "/komunita-klienti", "destination": "/komunita-klient", "permanent": false },
     { "source": "/bonusy/hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
     { "source": "/bonusy-hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
@@ -49,14 +53,6 @@
     },
     {
       "source": "/konzultacia-clen.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
-    },
-    {
-      "source": "/nova",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
-    },
-    {
-      "source": "/nova.html",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
     },
     {
