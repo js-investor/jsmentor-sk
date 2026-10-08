@@ -6,8 +6,6 @@
   ],
   "redirects": [
     { "source": "/konzultacia", "destination": "/", "permanent": false },
-    { "source": "/konzultacia-clen", "destination": "/", "permanent": false },
-    { "source": "/konzultacia-clen.html", "destination": "/", "permanent": false },
     { "source": "/nova", "destination": "/", "permanent": true },
     { "source": "/nova.html", "destination": "/", "permanent": true },
     { "source": "/komunita-klienti", "destination": "/komunita-klient", "permanent": false },
