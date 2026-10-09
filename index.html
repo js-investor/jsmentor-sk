@@ -80,7 +80,6 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 
 /* ---------- plátno: krémové svetlo, jemná mriežka, biele svetlo za kurzorom, zrno ---------- */
 .bg { position: fixed; inset: 0; z-index: -2; background: radial-gradient(90% 55% at 50% 0%, #251e1a 0%, #1b1613 58%, #18130f 100%); }
-.glow { position: fixed; z-index: -1; left: var(--gx, 50%); top: var(--gy, 30%); width: 70vmax; height: 70vmax; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(217, 177, 92, 0.07) 0%, rgba(217, 177, 92, 0.025) 40%, rgba(217, 177, 92, 0) 72%); pointer-events: none; transition: left 1.4s var(--ease), top 1.4s var(--ease); }
 .grain { position: fixed; inset: 0; z-index: 80; pointer-events: none; opacity: 0.05; mix-blend-mode: normal; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0.9 0.9 0.9 0 -0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 240px 240px; }
 
 /* ---------- hlavička (svetlá) ---------- */
@@ -130,10 +129,10 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .lede { font-size: 1.0625rem; line-height: 1.6; color: var(--mut); text-wrap: pretty; }
 @media (min-width: 768px) { .lede { font-size: 1.1875rem; } }
 .sec--dark .lede { color: var(--d-mut); }
-.head { max-width: 48rem; margin: 0 auto 3rem; text-align: center; }
+.head { max-width: 48rem; margin: 0 auto 2.25rem; text-align: center; }
 .head .kick { margin-bottom: 1.25rem; }
 .head .lede { margin: 1rem auto 0; }
-@media (min-width: 768px) { .head { margin-bottom: 3.5rem; } }
+@media (min-width: 768px) { .head { margin-bottom: 2.75rem; } }
 .w-wrap { display: inline; }
 .w { display: inline-block; animation: w-in 0.8s var(--ease) both; animation-delay: calc(var(--i, 0) * 60ms + 100ms); }
 @keyframes w-in { from { opacity: 0; transform: translateY(0.35em); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
@@ -165,12 +164,12 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .actions { margin-top: 2.5rem; display: flex; justify-content: center; }
 
 /* ---------- sekcie, hárky, dlaždice, pásy ---------- */
-.sec { position: relative; padding: 5rem 0; }
-@media (min-width: 768px) { .sec { padding: 7rem 0; } }
+.sec { position: relative; padding: 4rem 0; }
+@media (min-width: 768px) { .sec { padding: 5.5rem 0; } }
 /* tmavá sekcia hneď za tmavou: polovičná medzera (Ivan 2026-10-08: „tu sú moc veľké medzery“) */
-.sec:not(.sec--light):not(.sec--sand) + .sec:not(.sec--light):not(.sec--sand) { padding-top: 3.5rem; }
-.sec:not(.sec--light):not(.sec--sand):has(+ .sec:not(.sec--light):not(.sec--sand)) { padding-bottom: 3.5rem; }
-@media (min-width: 768px) { .sec:not(.sec--light):not(.sec--sand) + .sec:not(.sec--light):not(.sec--sand) { padding-top: 4rem; } .sec:not(.sec--light):not(.sec--sand):has(+ .sec:not(.sec--light):not(.sec--sand)) { padding-bottom: 4rem; } }
+.sec:not(.sec--light):not(.sec--sand) + .sec:not(.sec--light):not(.sec--sand) { padding-top: 3rem; }
+.sec:not(.sec--light):not(.sec--sand):has(+ .sec:not(.sec--light):not(.sec--sand)) { padding-bottom: 3rem; }
+@media (min-width: 768px) { .sec:not(.sec--light):not(.sec--sand) + .sec:not(.sec--light):not(.sec--sand) { padding-top: 3.5rem; } .sec:not(.sec--light):not(.sec--sand):has(+ .sec:not(.sec--light):not(.sec--sand)) { padding-bottom: 3.5rem; } }
 .sec--sand { background: var(--bg-2); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
 .sec--sand > .wrap { position: relative; }
 .sec--dark { background: var(--bg-2); color: var(--paper); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
@@ -215,11 +214,10 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .trust .stars { width: auto; gap: 0.125rem; color: var(--gold); }
 .trust .cap { color: var(--gold); }
 @media (max-width: 699px) { .trust { flex-direction: column; align-items: center; gap: 0.625rem; } }
-.hero-media { position: relative; z-index: 2; width: 100%; max-width: 64rem; margin: 2.75rem auto 0; perspective: 1400px; transform: translateY(var(--py, 0px)); }
+.hero-media { position: relative; z-index: 2; width: 100%; max-width: 64rem; margin: 2.75rem auto 0; }
 @media (min-width: 768px) { .hero-media { margin: 3.5rem auto 0; } }
-.screen { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #241f1b; isolation: isolate; box-shadow: inset 0 0 0 1.5px rgba(217, 177, 92, 0.55), 0 34px 70px -40px rgba(0, 0, 0, 0.85); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.6s var(--ease), box-shadow 0.35s; }
-.screen-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 1.4s var(--ease); }
-.screen:hover .screen-poster { transform: scale(1.06); }
+.screen { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #241f1b; isolation: isolate; box-shadow: inset 0 0 0 1.5px rgba(217, 177, 92, 0.55), 0 34px 70px -40px rgba(0, 0, 0, 0.85); transition: box-shadow 0.35s; }
+.screen-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .screen::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27, 23, 20, 0.12) 0%, rgba(27, 23, 20, 0) 35%, rgba(27, 23, 20, 0.62) 100%); pointer-events: none; }
 .screen-play { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 0.875rem; margin: 0; padding: 0; border: 0; background: transparent; color: var(--paper); cursor: pointer; }
 .screen-play-ic { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 5.25rem; height: 5.25rem; border-radius: 50%; background: var(--gold); color: var(--ink); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(217, 177, 92, 0.22); transition: transform 0.35s var(--ease), box-shadow 0.35s; }
@@ -254,9 +252,9 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 
 /* ---------- 2 · problémy: päť hárkov, ktoré sa vrstvia ---------- */
 .stack { position: relative; list-style: none; margin: 0; padding: 0; }
-.stack-card { position: sticky; top: calc(var(--hdr) + 0.75rem + var(--n, 0) * 0.75rem); padding-bottom: 1.25rem; }
-.sc { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 1.625rem 1.375rem; border-radius: 1.75rem; color: var(--paper); background: var(--sur-1); box-shadow: inset 0 0 0 1px var(--hair), 0 26px 50px -34px rgba(0, 0, 0, 0.7); transform-origin: 50% 0; transform: scale(calc(1 - var(--p, 0) * 0.05)); overflow: hidden; isolation: isolate; }
-.sc::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--bg-1); opacity: calc(var(--p, 0) * 0.6); pointer-events: none; }
+.stack-card { padding-bottom: 1.25rem; }
+.stack-card:last-child { padding-bottom: 0; }
+.sc { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 1.625rem 1.375rem; border-radius: 1.75rem; color: var(--paper); background: var(--sur-1); box-shadow: inset 0 0 0 1px var(--hair), 0 26px 50px -34px rgba(0, 0, 0, 0.7); overflow: hidden; isolation: isolate; }
 @media (min-width: 900px) { .sc { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3rem; align-items: center; padding: 2.5rem 2.75rem 2.5rem 3rem; } }
 .sc-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
 .sc-emoji { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--sur-3); box-shadow: inset 0 0 0 1px var(--hair-2); font-size: 1.25rem; line-height: 1; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
@@ -629,7 +627,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
   .sc { transform: none !important; background: var(--sur-1); box-shadow: inset 0 0 0 1px var(--hair), 0 26px 50px -34px rgba(0, 0, 0, 0.7); }
   .sc::after { display: none; background: var(--bg-1); }
   .hero-media, .screen, .wall-col { transform: none !important; }
-  .vi-bar i, .vf-fee, .vy-fill, .glow { transition: none; }
+  .vi-bar i, .vf-fee, .vy-fill { transition: none; }
   .vy-chain li { animation: none; opacity: 1; transform: none; }
   .vp-card { animation: none; opacity: 1; transform: rotate(var(--r, 0deg)); }
   .pay-h em { animation: none; background-position: 0 0; }
@@ -690,7 +688,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 
 /* ===== Výsledky klientov: svetlý zaoblený blok v tmavej stránke ===== */
 #vysledky { --paper: #3f2e24; --mut: #5c4838; --mut-2: #7c675a; --hair: rgba(63, 46, 36, 0.1); --hair-2: rgba(63, 46, 36, 0.18); --sur-1: #fffcf7; --sur-2: #f7f1e7; --sur-3: #ece3d6; --gold: #3f2e24; --green-l: #2b6b4a; --d-mut: var(--mut); --d-mut-2: var(--mut-2); --d-hair: var(--hair); --d-hair-2: var(--hair-2); position: relative; z-index: 2; margin: 1.25rem 0.75rem; padding: 4.5rem 0 4.25rem; border: 0; border-radius: 2.25rem; color: var(--paper); background: radial-gradient(90% 70% at 50% 0%, #f3ebdf 0%, #ece2d2 55%, #e5d9c6 100%); box-shadow: 0 0 0 1px rgba(243, 233, 221, 0.07), 0 50px 100px -60px rgba(0, 0, 0, 0.9), 0 0 200px 30px rgba(229, 217, 198, 0.07); transform: scale(var(--vs, 1)); transform-origin: 50% 0; opacity: var(--vo, 1); will-change: transform, opacity; }
-@media (min-width: 900px) { #vysledky { margin: 2.5rem 1.25rem; padding: 6rem 0 5.5rem; border-radius: 3rem; } }
+@media (min-width: 900px) { #vysledky { margin: 2.5rem 1.25rem; padding: 5rem 0 4.5rem; border-radius: 3rem; } }
 #vysledky .kick { border-color: rgba(63, 46, 36, 0.22); background: rgba(63, 46, 36, 0.04); color: var(--mut); }
 #vysledky .kick::before { background: var(--paper); box-shadow: 0 0 0 3px rgba(63, 46, 36, 0.12); }
 /* zelená kurzíva v nadpise svetlého bloku */
@@ -1025,7 +1023,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
 .fx { position: relative; isolation: isolate; }
 .fx::after, .sc.fx::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; background: radial-gradient(560px circle at var(--sx, 50%) var(--sy, 50%), rgba(217, 177, 92, var(--spot, 0)) 0%, rgba(217, 177, 92, 0) 42%), linear-gradient(115deg, rgba(243, 233, 221, 0) 38%, rgba(243, 233, 221, var(--glint, 0)) 50%, rgba(243, 233, 221, 0) 62%); background-size: 100% 100%, 260% 100%; background-position: 0 0, 130% 0; background-repeat: no-repeat; transition: --spot 0.5s var(--ease); }
 .sc.fx::after { z-index: auto; }
-@media (hover: hover) and (pointer: fine) { .fx:hover { --spot: 0.11; } }
 .rv.in.fx, .rv.in .fx { --glint: 0.07; }
 .rv.in.fx::after, .rv.in .fx::after { animation: glint 1.7s var(--ease) 0.35s both; }
 @keyframes glint { from { background-position: 0 0, 130% 0; } to { background-position: 0 0, -130% 0; } }
@@ -1143,7 +1140,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
   <body>
   <div class="page">
     <div class="bg" aria-hidden="true"></div>
-    <div class="glow" id="glow" aria-hidden="true"></div>
     <header class="hdr" id="hdr">
       <div class="wrap hdr-in">
         <a class="hdr-logo" href="/" aria-label="JS Mentor – domov"><img class="l-light" src="/assets/images/js-mentor-logo-hneda-v2.png" alt="JS Mentor" width="879" height="310" /><img class="l-dark" src="/assets/images/js-mentor-logo-biele.png" alt="" width="879" height="310" aria-hidden="true" /></a>
@@ -1189,7 +1185,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec" id="dostanes">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Čo dostaneš</span>
             <h2 class="h2">Koniec chaosu. So mnou dostávaš <em>mapu s presnými krokmi.</em></h2>
           </div>
           <div class="map rv fx" data-enter>
@@ -1212,7 +1207,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec" id="problemy">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Nájdeš sa v tom?</span>
             <h2 class="h2">V čom majú ľudia <em>reálny problém.</em></h2>
           </div>
           <ol class="stack" id="stack">
@@ -1335,7 +1329,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec sec--sand" id="vysledky">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Výsledky klientov</span>
             <h2 class="h2">Reálne čísla <em class="hb">mojich klientov.</em></h2>
             <p class="lede">Šesť skutočných účtov. Koľko vložili a akú hodnotu majú dnes. Aj s poklesmi po ceste, lebo tie k investovaniu patria.</p>
           </div>
@@ -1469,7 +1462,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec" id="proces">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Ako to prebieha</span>
             <h2 class="h2">Tri kroky. <em>Prvé dva zadarmo.</em></h2>
           </div>
           <ol class="steps" id="steps">
@@ -1486,7 +1478,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec sec--light sec--light-first sec--light-last" id="podmienky">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Podmienky spolupráce</span>
             <h2 class="h2">Na spoluprácu so mnou <em>nestačí mať peniaze.</em></h2>
             <p class="lede">Záleží mi na tom, čo chceš dosiahnuť a ako k tomu pristúpiš. Je jedno, či začínaš s 200&nbsp;€ mesačne alebo máš 100&nbsp;000&nbsp;€.</p>
           </div>
@@ -1520,7 +1511,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         <div class="wrap">
           <div class="pay rv fx" data-enter>
             <div class="pay-copy rv">
-              <span class="kick">Ako som platený</span>
               <h2 class="h2 h2--left pay-h">Hovor aj celá stratégia sú <em>zadarmo.</em></h2>
               <p class="lede lede--left">Platíš až vtedy, keď začneš investovať. A určite menej ako v banke, u bežných poradcov alebo v iných investičných spoločnostiach. Poplatky ti vysvetlím ľudskou rečou a môžeš si ich sám porovnať.</p>
             </div>
@@ -1556,7 +1546,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
               <span class="bio-tags"><span class="pill">8&nbsp;rokov praxe</span><span class="pill">Dohľad NBS</span><span class="pill">ETF</span><span class="pill">Nehnuteľnosti</span></span>
             </div>
             <div class="rv" style="--i:1">
-              <span class="kick">O mne</span>
               <h2 class="h2">Nie som teoretik, <em>ale praktik.</em></h2>
               <p class="bio-text">Investíciám sa venujem 8&nbsp;rokov. Pomohol som viac ako 200 ľuďom a starám sa o 3,5 milióna eur. Moje vlastné portfólio má hodnotu 70&nbsp;000&nbsp;€ a vlastním investičný byt. Čiže viem, aké to je, keď sú v tom vlastné peniaze.</p>
               <ul class="facts">
@@ -1574,7 +1563,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec sec--light sec--light-first" id="recenzie">
         <div class="wrap">
           <div class="head rv">
-            <span class="kick">Referencie</span>
             <h2 class="h2">Ľudia potrebujú o peniazoch počuť <em>ľudskou rečou.</em></h2>
           </div>
           <div class="revs">
@@ -1607,7 +1595,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         <div class="wrap">
           <div class="faq-grid">
             <div class="faq-side rv">
-              <span class="kick">FAQ</span>
               <h2 class="h2">Časté otázky</h2>
               <p class="lede">Odpovede na to, čo sa ľudia pýtajú najčastejšie. Ak tu tvoja otázka nie je, napíš mi ju do formulára.</p>
               <div class="cta"><a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="faq"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Zadarmo a bez záväzkov. Do 24&nbsp;hodín sa ti ozvem.</small></div>
@@ -1630,7 +1617,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         <div class="wrap">
           <div class="lead-grid">
             <div class="lead-copy rv">
-              <span class="kick">Rezervácia</span>
               <h2 class="h2">Dohodni si <em>úvodný hovor.</em></h2>
               <p class="lede">Vyplnenie ti zaberie minútu. Do 24&nbsp;hodín sa ti ozvem na WhatsApp a dohodneme termín.</p>
               <ol class="lead-steps" aria-label="Čo bude nasledovať">
@@ -1868,9 +1854,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         requestAnimationFrame(function () { pend = false; fn(el.getBoundingClientRect(), ex, ey); });
       }, { passive: true });
     };
-    [].forEach.call(document.querySelectorAll(".fx"), function (el) {
-      track(el, function (r, x, y) { el.style.setProperty("--sx", (x - r.left).toFixed(0) + "px"); el.style.setProperty("--sy", (y - r.top).toFixed(0) + "px"); });
-    });
     [].forEach.call(document.querySelectorAll("[data-tilt3]"), function (el) {
       var max = parseFloat(el.getAttribute("data-tilt3")) || 4;
       track(el, function (r, x, y) {
@@ -1889,51 +1872,10 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
   }
 
   // zlaté svetlo ide jemne za kurzorom (len desktop s myšou)
-  var glow = document.getElementById("glow");
-  if (glow && fine && !reduce) {
-    var gt = false;
-    window.addEventListener("mousemove", function (e) {
-      if (gt) return; gt = true;
-      requestAnimationFrame(function () {
-        gt = false;
-        var x = 50 + (e.clientX / window.innerWidth - 0.5) * 36, y = 42 + (e.clientY / vh - 0.5) * 30;
-        glow.style.setProperty("--gx", x.toFixed(1) + "%"); glow.style.setProperty("--gy", y.toFixed(1) + "%");
-      });
-    }, { passive: true });
-  }
 
-  // úvodné video: jemný posun pri skrolovaní + jemné naklonenie za myšou
-  var heroMedia = document.getElementById("hero-media"), screen = document.getElementById("vid");
-  if (heroMedia && !reduce) {
-    jobs.push(function () {
-      if (window.innerWidth < 1024) { heroMedia.style.removeProperty("--py"); return; }
-      var r = heroMedia.getBoundingClientRect();
-      heroMedia.style.setProperty("--py", (-(r.top - vh * 0.32) * 0.05).toFixed(1) + "px");
-    });
-    if (screen && fine) {
-      heroMedia.addEventListener("mousemove", function (e) {
-        var r = heroMedia.getBoundingClientRect();
-        var dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5;
-        screen.style.setProperty("--ry", (dx * 6).toFixed(2) + "deg"); screen.style.setProperty("--rx", (-dy * 6).toFixed(2) + "deg");
-      });
-      heroMedia.addEventListener("mouseleave", function () { screen.style.removeProperty("--rx"); screen.style.removeProperty("--ry"); });
-    }
-  }
+  // úvodné video: bez posunu pri skrolovaní a bez naklonenia (Ivan 2026-10-09: „video sa tak hýbe, dajme preč“)
+  var screen = document.getElementById("vid");
 
-  // problémy: dlaždice na sebe – spodná sa zmenšuje a tmavne podľa toho, ako ju prekrýva ďalšia
-  var cards = [].slice.call(document.querySelectorAll(".stack-card"));
-  if (cards.length && !reduce) {
-    var step = 12;
-    cards.forEach(function (c, i) {
-      var next = cards[i + 1], art = c.querySelector(".sc");
-      if (!next || !art) return;
-      jobs.push(function () {
-        var r = c.getBoundingClientRect(), nr = next.getBoundingClientRect();
-        var p = clamp(1 - (nr.top - r.top - step) / Math.max(1, r.height - step));
-        art.style.setProperty("--p", p.toFixed(3));
-      });
-    });
-  }
 
   // problémy: ilustrácie sa spustia, keď je dlaždica v zábere
   var vis = [].slice.call(document.querySelectorAll(".sc-vis"));
