@@ -327,31 +327,74 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .is-on .vy-chain li { animation: vis-in 0.5s var(--ease) both; animation-delay: calc(var(--i, 0) * 160ms + 900ms); }
 .vy-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 9999px; background: var(--green); transition: width 1.8s var(--ease); }
 .is-on .vy-fill { width: 13.3%; }
-/* karta 01 Kde začať: rozpracovaný osobný finančný plán, tri mierne prekryté karty, ktoré sa po zobrazení poskladajú (Ivan 2026-10-08) */
-.v-plan { padding-bottom: 1.25rem; }
-.vp-title { font-family: var(--serif); font-size: clamp(1.125rem, 1.7vw, 1.375rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; text-align: center; color: var(--paper); text-wrap: balance; }
-.vp-stack { position: relative; max-width: 23rem; margin: 1.375rem auto 0; padding-top: 4.25rem; }
-.vp-card { border-radius: 1rem; transform: rotate(var(--r, 0deg)); }
-.vp-card--back, .vp-card--mid { position: absolute; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.75rem; padding: 0.6875rem 1.125rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: var(--d-mut); box-shadow: inset 0 0 0 1px rgba(243, 233, 221, 0.14), 0 14px 30px -22px rgba(0, 0, 0, 0.85); }
-.vp-card--back { top: 0; margin: 0 2rem; background: #3a322b; z-index: 0; }
-.vp-card--mid { top: 2.125rem; margin: 0 1rem; background: #473d35; z-index: 1; }
-.vp-card--back .vp-label, .vp-card--mid .vp-label { align-self: flex-start; white-space: nowrap; }
-.vp-val { align-self: flex-start; flex-shrink: 0; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; color: var(--d-mut-2); }
-.vp-val--gold { color: var(--gold); opacity: 0.9; }
-.vp-card--front { position: relative; z-index: 2; padding: 1.125rem 1.25rem 0.75rem; background: var(--paper); color: #3f2e24; box-shadow: inset 0 0 0 1px rgba(63, 46, 36, 0.1), 0 26px 50px -28px rgba(0, 0, 0, 0.9); }
-.vp-head { display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(63, 46, 36, 0.14); font-family: var(--serif); font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.01em; color: #3f2e24; }
-.vp-head i { flex-shrink: 0; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(217, 177, 92, 0.22); }
-.vp-rows { list-style: none; margin: 0; padding: 0; }
-.vp-rows li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(63, 46, 36, 0.09); font-size: 0.875rem; font-weight: 600; color: #5c4838; }
-.vp-rows li:last-child { border-bottom: 0; }
-.vp-dash { display: block; flex: 0 0 34%; height: 0; border-top: 2px dashed rgba(63, 46, 36, 0.32); }
-.js .vp-card { opacity: 0; transform: translateY(16px) rotate(var(--r, 0deg)); }
-.is-on .vp-card { animation: vp-in 0.55s var(--ease) both; animation-delay: calc(var(--i, 0) * 150ms); }
-@keyframes vp-in { to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); } }
-.v-plan small { margin-top: 1.25rem; text-align: center; }
-@media (min-width: 900px) { .vp-stack { max-width: 24rem; } .vp-card--front { padding: 1.25rem 1.5rem 0.875rem; } }
-@media (max-width: 899px) { .v-plan { padding-bottom: 1rem; } .vp-stack { margin-top: 1rem; padding-top: 3.75rem; } .vp-card--mid { top: 1.875rem; } .vp-card--front { padding: 1rem 1.125rem 0.5rem; } .vp-rows li { padding: 0.5625rem 0; } .v-plan small { margin-top: 0.875rem; } }
-@media (max-width: 480px) { .vp-stack { padding-top: 4.5rem; } .vp-card--back, .vp-card--mid { padding: 0.625rem 0.875rem; font-size: 0.6875rem; } .vp-card--back { margin: 0 1.25rem; } .vp-card--mid { margin: 0 0.625rem; top: 1.75rem; } .vp-card--back .vp-label, .vp-card--mid .vp-label { white-space: normal; min-width: 0; line-height: 1.2; } .vp-val { font-size: 0.625rem; letter-spacing: 0.02em; } }
+/* karta 01 Kde začať: panel s možnosťami, všetky štítky rovnaké a v jednej farbe (Ivan 2026-10-10) */
+.vo-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding-bottom: 0.875rem; border-bottom: 1px solid var(--hair-2); }
+.vo-head b { font-family: var(--serif); font-size: 1.375rem; font-weight: 700; color: var(--paper); }
+.vo-chips { list-style: none; margin: 1.125rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.vo-chips li { display: inline-flex; align-items: center; padding: 0.5rem 0.9375rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.08); box-shadow: inset 0 0 0 1px rgba(243, 233, 221, 0.16); font-size: 0.9375rem; font-weight: 600; line-height: 1.2; color: var(--paper); white-space: nowrap; }
+.js .vo-chips li { opacity: 0; transform: translateY(6px); }
+.is-on .vo-chips li { animation: vis-in 0.5s var(--ease) both; animation-delay: calc(var(--i, 0) * 80ms); }
+.v-opts small { margin-top: 1.125rem; }
+/* Prečo investovať s mojou pomocou: fotka vedľa textu (na mobile hore), citát, fajky (Ivan 2026-10-10) */
+.why { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+@media (min-width: 900px) { .why { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 4rem; } }
+.why-photo { position: relative; width: 100%; max-width: 26rem; border-radius: var(--r); overflow: hidden; background: var(--sur-3); box-shadow: 0 30px 60px -40px rgba(63, 46, 36, 0.55); }
+@media (max-width: 899px) { .why-photo { max-width: 20rem; margin: 0 auto; } }
+@media (min-width: 900px) { .why-photo { position: sticky; top: calc(var(--hdr) + 1.5rem); } }
+.why-photo picture { display: block; width: 100%; }
+.why-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
+.why-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(63, 46, 36, 0) 75%, rgba(63, 46, 36, 0.18) 100%); }
+.why-body p { margin: 0 0 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--mut); text-wrap: pretty; }
+@media (min-width: 900px) { .why-body p { font-size: 1.125rem; } }
+.why-hi { font-family: var(--serif); font-size: 1.625rem; font-weight: 700; line-height: 1.15; color: var(--paper) !important; }
+.why-quote { margin: 0.25rem 0 1.25rem; padding: 0.125rem 0 0.125rem 1.125rem; border-left: 3px solid var(--green); font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.28; font-weight: 700; letter-spacing: -0.01em; color: var(--paper); text-wrap: balance; }
+.why-h3 { margin: 1.75rem 0 0.875rem; font-family: var(--serif); font-size: 1.25rem; font-weight: 700; color: var(--paper); }
+.why-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; }
+.why-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 1.0625rem; font-weight: 600; line-height: 1.35; color: var(--paper); }
+.why-tick { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--green); color: #fff; }
+.why-tick svg { width: 0.875rem; height: 0.875rem; }
+.why .cta { margin-top: 1.75rem; }
+/* Pred spoluprácou / Po spolupráci: dva stĺpce pod textom, na mobile pod sebou (Ivan 2026-10-11) */
+.pp { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.875rem; margin-top: 1.75rem; }
+@media (min-width: 600px) { .pp { grid-template-columns: 1fr 1fr; gap: 1rem; } }
+.pp-col { padding: 1.25rem 1.25rem 1.375rem; border-radius: 1.25rem; }
+.pp-col--pred { background: rgba(63, 46, 36, 0.05); box-shadow: inset 0 0 0 1px rgba(63, 46, 36, 0.12); color: var(--mut-2); }
+.pp-col--po { background: #fffcf7; box-shadow: inset 0 0 0 1.5px rgba(42, 102, 71, 0.55), 0 24px 50px -36px rgba(63, 46, 36, 0.45); color: var(--paper); }
+.pp-h { margin: 0 0 0.875rem; font-family: var(--serif); font-size: 1.1875rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--mut); }
+.pp-col--po .pp-h { color: var(--green); }
+.pp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; }
+.pp-list li { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.9375rem; line-height: 1.4; font-weight: 600; color: var(--mut-2); }
+.pp-col--po .pp-list li { color: var(--paper); }
+.pp-x, .pp-ok { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.375rem; height: 1.375rem; margin-top: 0.0625rem; border-radius: 50%; }
+.pp-x { background: rgba(63, 46, 36, 0.09); color: var(--mut-2); }
+.pp-ok { background: var(--green); color: #fff; }
+.pp-x svg, .pp-ok svg { width: 0.75rem; height: 0.75rem; }
+.pp--wide { margin-top: 0; }
+@media (min-width: 700px) { .pp--wide { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
+.pp--wide .pp-col { padding: 1.75rem 1.75rem 1.875rem; border-radius: 1.5rem; }
+.pp--wide .pp-h { margin-bottom: 1.125rem; font-size: clamp(1.375rem, 2.2vw, 1.625rem); }
+.pp--wide .pp-list { gap: 0.875rem; }
+.pp--wide .pp-list li { font-size: 1.0625rem; line-height: 1.45; }
+.pp--wide .pp-x, .pp--wide .pp-ok { width: 1.625rem; height: 1.625rem; margin-top: 0.125rem; }
+.pp--wide .pp-x svg, .pp--wide .pp-ok svg { width: 0.875rem; height: 0.875rem; }
+#podmienky .actions { margin-top: 2rem; }
+/* Ako to prebieha vo svetlom hárku (Ivan 2026-10-11: „toto dajme do svetlej“): hárok ide súvisle Prečo investovať → výsledky → kroky → podmienky */
+.sec--light .step-n { box-shadow: inset 0 0 0 1.5px rgba(63, 46, 36, 0.22); }
+.sec--light .step.is-on .step-n { background: var(--green); box-shadow: inset 0 0 0 1.5px var(--green), 0 0 0 6px rgba(42, 102, 71, 0.14), 0 12px 30px -10px rgba(42, 102, 71, 0.45); color: #fff; }
+.sec--light .step-tag { color: var(--green); }
+.sec--light .steps-line { background: rgba(63, 46, 36, 0.16); }
+.sec--light .steps-line b { background: var(--green); }
+.sec--light .after em { color: var(--green); }
+.sec--light-first + #vysledky:has(+ .sec--light) { margin-bottom: 0; padding-bottom: 3.5rem; border-bottom-left-radius: 0; border-bottom-right-radius: 0; box-shadow: none; clip-path: none; will-change: auto !important; }
+#vysledky + .sec--light { margin-top: -1px; padding-top: 3.5rem; background: #e5d9c6; }
+#proces.sec--light { padding-bottom: 3.5rem; }
+#proces + .sec--light-last { margin-top: -1px; padding-top: 3.5rem; background: linear-gradient(180deg, #e5d9c6 0%, #e9dfd0 100%); clip-path: inset(0 -20vw -40rem -20vw); }
+@media (min-width: 768px) { .sec--light-first + #vysledky:has(+ .sec--light) { padding-bottom: 4rem; } #vysledky + .sec--light { padding-top: 4rem; } #proces.sec--light { padding-bottom: 4rem; } #proces + .sec--light-last { padding-top: 4rem; } }
+/* svetlý hárok Prečo investovať plynulo pokračuje blokom výsledkov */
+#preco { padding-bottom: 3.5rem; }
+@media (min-width: 900px) { #preco { padding-bottom: 4rem; } }
+.sec--light-first + #vysledky { margin-top: 0; padding-top: 3rem; border: 0; border-top-left-radius: 0; border-top-right-radius: 0; background: linear-gradient(180deg, #e9dfd0 0%, #e5d9c6 100%); box-shadow: 0 50px 100px -60px rgba(0, 0, 0, 0.9), 0 0 200px 30px rgba(229, 217, 198, 0.07); clip-path: inset(0 -20vw -40rem -20vw); transform: none !important; opacity: 1 !important; }
+@media (min-width: 900px) { .sec--light-first + #vysledky { padding-top: 3.5rem; } }
 .stack-after { max-width: 38rem; margin: 2.25rem auto 0; font-family: var(--serif); font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; text-align: center; color: var(--paper); text-wrap: balance; }
 .stack-after em { font-style: italic; color: var(--gold); }
 .foot-note { max-width: 44rem; margin: 1.25rem auto 0; font-size: 0.78125rem; line-height: 1.5; text-align: center; color: var(--mut-2); }
@@ -630,7 +673,8 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
   .hero-media, .screen, .wall-col { transform: none !important; }
   .vi-bar i, .vf-fee, .vy-fill { transition: none; }
   .vy-chain li { animation: none; opacity: 1; transform: none; }
-  .vp-card { animation: none; opacity: 1; transform: rotate(var(--r, 0deg)); }
+  .vo-chips li { animation: none; opacity: 1; transform: none; }
+  .safe-rows li { animation: none; opacity: 1; transform: none; }
   .pay-h em { animation: none; background-position: 0 0; }
   .screen-poster { transition: none; transform: none; }
   .bar, .btn, .tile, .sheet { transition: none; }
@@ -961,6 +1005,14 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
 @media (max-width: 420px) { .pay-rows li em.pay-free--sm { font-size: 1.0625rem; } }
 .js .pay-rows li { opacity: 0; transform: translateY(6px); }
 .rv.in .pay-rows li { animation: vis-in 0.55s var(--ease) both; animation-delay: calc(var(--i, 0) * 140ms + 200ms); }
+/* Bezpečnosť: panel Kde sú tvoje peniaze, päť riadkov s tučným názvom a vetou (Ivan 2026-10-11) */
+.safe-rows { list-style: none; margin: 0; padding: 0; }
+.safe-rows li { padding: 0.875rem 0; border-bottom: 1px solid var(--hair); }
+.safe-rows li:last-child { border-bottom: 0; padding-bottom: 0.25rem; }
+.safe-rows b { display: block; font-size: 1rem; font-weight: 600; line-height: 1.3; color: var(--paper); }
+.safe-rows span { display: block; margin-top: 0.1875rem; font-size: 0.875rem; line-height: 1.5; color: var(--mut); text-wrap: pretty; }
+.js .safe-rows li { opacity: 0; transform: translateY(6px); }
+.rv.in .safe-rows li { animation: vis-in 0.5s var(--ease) both; animation-delay: calc(var(--i, 0) * 90ms + 150ms); }
 .pay-foot { display: flex; align-items: flex-start; gap: 0.625rem; margin-top: 1rem; font-size: 0.875rem; line-height: 1.45; color: var(--mut); }
 .pay-check { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.375rem; height: 1.375rem; border-radius: 50%; background: var(--green-2); color: #fff; }
 .pay-check svg { width: 0.75rem; height: 0.75rem; }
@@ -1144,12 +1196,12 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     <header class="hdr" id="hdr">
       <div class="wrap hdr-in">
         <a class="hdr-logo" href="/" aria-label="JS Mentor – domov"><img class="l-light" src="/assets/images/js-mentor-logo-hneda-v2.png" alt="JS Mentor" width="879" height="310" /><img class="l-dark" src="/assets/images/js-mentor-logo-biele.png" alt="" width="879" height="310" aria-hidden="true" /></a>
-        <nav class="hdr-nav" aria-label="Hlavná navigácia"><a href="#problemy">Problémy</a><a href="#vysledky">Výsledky</a><a href="#proces">Ako to prebieha</a><a href="#platba">Poplatky</a><a href="#omne">O mne</a><a href="#faq">FAQ</a></nav>
+        <nav class="hdr-nav" aria-label="Hlavná navigácia"><a href="#problemy">Problémy</a><a href="#vysledky">Výsledky</a><a href="#proces">Ako to prebieha</a><a href="#platba">Bezpečnosť</a><a href="#omne">O mne</a><a href="#faq">FAQ</a></nav>
         <a class="btn btn--green btn--sm" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="header"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
       <i class="hdr-progress" aria-hidden="true"></i>
     </header>
-    <nav class="dots" id="dots" aria-label="Sekcie stránky"><a href="#hero" data-label="Úvod"></a><a href="#problemy" data-label="Problémy"></a><a href="#vysledky" data-label="Výsledky"></a><a href="#proces" data-label="Ako to prebieha"></a><a href="#podmienky" data-label="Podmienky"></a><a href="#platba" data-label="Poplatky"></a><a href="#omne" data-label="O mne"></a><a href="#recenzie" data-label="Recenzie"></a><a href="#faq" data-label="Otázky"></a><a href="#formular" data-label="Hovor"></a></nav>
+    <nav class="dots" id="dots" aria-label="Sekcie stránky"><a href="#hero" data-label="Úvod"></a><a href="#problemy" data-label="Problémy"></a><a href="#vysledky" data-label="Výsledky"></a><a href="#proces" data-label="Ako to prebieha"></a><a href="#podmienky" data-label="Podmienky"></a><a href="#platba" data-label="Bezpečnosť"></a><a href="#omne" data-label="O mne"></a><a href="#recenzie" data-label="Recenzie"></a><a href="#faq" data-label="Otázky"></a><a href="#formular" data-label="Hovor"></a></nav>
 
     <main>
       <!-- 1. Úvod (svetlý): centrovaný titulok, široká video karta (Vimeo 1233672095, hash b5f32071e6), tmavá dlaždica s číslami ako na živej stránke -->
@@ -1186,28 +1238,25 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
           <ol class="stack" id="stack">
             <li class="stack-card" style="--n:0">
               <article class="sc fx">
-                <div class="sc-copy"><div class="sc-head"><span class="sc-emoji" aria-hidden="true">🧭</span><span class="kick kick--sm">01 · Kde začať</span></div><h3>Chceš investovať, ale nevieš, kde začať.</h3><p>Niečo máš odložené alebo ti každý mesiac ostávajú peniaze. Len nevieš, koľko si nechať ako rezervu a koľko investovať. ETF, fondy, byt. Každý ti radí niečo iné. A tak rozhodnutie odkladáš, lebo nechceš urobiť chybu.</p></div>
-                <div class="sc-vis v-plan" aria-hidden="true">
-                  <div class="vp-title">Peniaze máš. Chýba ti stratégia.</div>
-                  <div class="vp-stack">
-                    <div class="vp-card vp-card--back" style="--i:0;--r:-1.2deg"><span class="vp-label">Tvoj cieľ</span><span class="vp-val vp-val--gold">Renta</span></div>
-                    <div class="vp-card vp-card--mid" style="--i:1;--r:0.8deg"><span class="vp-label">Tvoj investičný horizont</span><span class="vp-val">Podľa tvojho cieľa</span></div>
-                    <div class="vp-card vp-card--front" style="--i:2">
-                      <div class="vp-head"><i></i><span class="vp-label">Tvoja investičná stratégia</span></div>
-                      <ul class="vp-rows">
-                        <li><span>Zloženie portfólia</span><i class="vp-dash"></i></li>
-                        <li><span>Plán pri poklesoch</span><i class="vp-dash"></i></li>
-                        <li><span>Cesta k rente</span><i class="vp-dash"></i></li>
-                      </ul>
-                    </div>
-                  </div>
+                <div class="sc-copy"><div class="sc-head"><span class="kick kick--sm">01</span></div><h3>Chceš investovať, ale nevieš kde začať.</h3><p>Možností máme milión, ale ako zistiť, ktorá je najlepšia pre teba? Každý ti radí niečo iné a tak to odkladáš, lebo nechceš urobiť chybu.</p></div>
+                <div class="sc-vis v-opts" aria-hidden="true">
+                  <div class="vo-head"><b>Čo z toho je pre teba?</b></div>
+                  <ul class="vo-chips">
+                    <li style="--i:0">ETF</li>
+                    <li style="--i:1">podielové fondy</li>
+                    <li style="--i:2">akcie</li>
+                    <li style="--i:3">byt</li>
+                    <li style="--i:4">zlato</li>
+                    <li style="--i:5">krypto</li>
+                    <li style="--i:6">sporenie v banke</li>
+                  </ul>
                   <small>Na úvodnom hovore nájdeme tvoj prvý investičný krok.</small>
                 </div>
               </article>
             </li>
             <li class="stack-card" style="--n:1">
               <article class="sc fx">
-                <div class="sc-copy"><div class="sc-head"><span class="sc-emoji" aria-hidden="true">🧾</span><span class="kick kick--sm">02 · Už investuješ</span></div><h3>Už investuješ, ale nevieš či dobre.</h3><p>Väčšina ľudí, ktorí ku mne prídu s hotovým portfóliom, investuje neefektívne. Majú zle rozložené ETF fondy, nemajú systém a stratégiu, alebo platia zbytočné poplatky.</p></div>
+                <div class="sc-copy"><div class="sc-head"><span class="kick kick--sm">02</span></div><h3>Už investuješ, ale nevieš či dobre.</h3><p>Väčšina ľudí čo ku mne príde investuje neefektívne. Ich portfólio nemá logiku alebo platia zbytočné poplatky.</p></div>
                 <div class="sc-vis v-inv" data-vis="inv" aria-hidden="true">
                   <div class="vn-head"><b>Tvoje investovanie</b></div>
                   <ul class="vn-rows">
@@ -1221,7 +1270,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
             </li>
             <li class="stack-card" style="--n:2">
               <article class="sc fx">
-                <div class="sc-copy"><div class="sc-head"><span class="sc-emoji" aria-hidden="true">⏳</span><span class="kick kick--sm">03 · Vydržať</span></div><h3>Začať je ľahké, ťažké je vydržať.</h3><p>Účet si otvoríš za večer. Potom príde svadba, bývanie, auto alebo trhy spadnú o 20&nbsp;percent a človek to celé zruší. Priemerný investor vydrží v akciovom fonde okolo štyroch rokov. Nie tridsať.</p></div>
+                <div class="sc-copy"><div class="sc-head"><span class="kick kick--sm">03</span></div><h3>Začať nie je problém. Problém je vydržať.</h3><p>Priemerný investor vydrží v akciovom fonde okolo 4&nbsp;rokov (štúdia Dalbar, USA). Chybu ľudia urobia pri dôležitých rozhodnutiach ako vlastné bývanie, deti alebo prepad trhov a investovanie zrušia.</p></div>
                 <div class="sc-vis v-stay" aria-hidden="true">
                   <div class="vy-stats">
                     <div class="vy-stat vy-stat--avg"><b>4&nbsp;roky</b><span>vydrží priemerný investor</span></div>
@@ -1230,7 +1279,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
                   <div class="vy-track"><i class="vy-fill"></i></div>
                   <div class="vy-scale"><span>0</span><span>10&nbsp;r.</span><span>20&nbsp;r.</span><span>30&nbsp;r.</span></div>
                   <div class="vy-cap">Čo ich po ceste zastaví</div>
-                  <ul class="vy-chain"><li style="--i:0"><i>💍</i>svadba</li><li style="--i:1"><i>🏠</i>bývanie</li><li style="--i:2"><i>🚗</i>auto</li><li class="bad" style="--i:3"><i>📉</i>trhy −20&nbsp;%</li><li class="end" style="--i:4"><i>✕</i>„radšej to zruším“</li></ul>
+                  <ul class="vy-chain"><li style="--i:0">bývanie</li><li style="--i:1">deti</li><li class="bad" style="--i:2">prepad trhov</li><li class="end" style="--i:3">„radšej to zruším“</li></ul>
                 </div>
               </article>
             </li>
@@ -1240,63 +1289,36 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
           <p class="foot-note rv">Údaj o štyroch rokoch: Dalbar, štúdia QAIB, USA.</p>
         </div>
       </section>
-      <!-- 2b. Budeš presne vedieť, čo máš robiť: štyri karty (pôvodne v sekcii Čo dostaneš; Ivan 2026-10-08: „tieto 4 dajme ale pod problémy“) -->
-      <section class="sec" id="vediet">
+      <!-- 2b. Prečo investovať s mojou pomocou (svetlý hárok, ktorý pokračuje výsledkami): text v odsekoch vedľa fotky (na mobile fotka hore), citát väčším písmom, päť fajok, tlačidlo (Ivan 2026-10-10; nahradilo štyri karty Budeš presne vedieť) -->
+      <section class="sec sec--light sec--light-first" id="preco">
         <div class="wrap">
           <div class="head rv">
-            <h2 class="h2">Budeš presne vedieť, <em>čo máš robiť.</em></h2>
+            <h2 class="h2">Prečo investovať <em>s mojou pomocou</em></h2>
           </div>
-    <div class="get-grid get-grid--2">
-                <article class="get get--vis rv fx" data-tilt3="3" style="--i:0">
-                  <div class="get-vis get-vis--sand" aria-hidden="true">
-                    <div class="mock">
-                      <div class="mock-head"><span>Ukážka · príjem</span><b>1&nbsp;800&nbsp;€</b></div>
-                      <div class="mock-row"><span>Výdavky</span><i style="--w:100%"></i><b>1&nbsp;300&nbsp;€</b></div>
-                      <div class="mock-row is-green mock-row--strong"><span>Ostane ti</span><i style="--w:38%"></i><b>500&nbsp;€</b></div>
-                      <div class="mock-split">
-                        <div class="mock-line"><span>ETF mesačne</span><b>300&nbsp;€</b></div>
-                        <div class="mock-line"><span>Rezerva</span><b>200&nbsp;€</b></div>
-                        <p class="mock-note">na nečakané výdavky + príležitosti na trhu</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="get-body"><span class="get-tag">💶 Rezerva a cashflow</span><h3>Ako tvoriť rezervu a čo robiť s tým, čo ti po výplate ostane</h3><p><span class="hl">Koľko odkladať, kde rezervu držať</span> a čo robiť s každým eurom, ktoré ti po výplate ostane. Bez tabuliek, ktoré nikdy nevyplníš.</p></div>
-                </article>
-                <article class="get get--vis rv fx" data-tilt3="3" style="--i:1">
-                  <div class="get-vis get-vis--stone" aria-hidden="true">
-                    <div class="mock">
-                      <div class="mock-head"><span>Ukážka · investičný byt</span><b>mesačne</b></div>
-                      <div class="mock-line"><span>Nájom</span><b>+ 650&nbsp;€</b></div>
-                      <div class="mock-line"><span>Splátka hypotéky</span><b>− 540&nbsp;€</b></div>
-                      <div class="mock-line"><span>Fond opráv, poistenie, dane</span><b>− 70&nbsp;€</b></div>
-                      <div class="mock-sum"><span>Príjem z investičného bytu</span><b>+ 40&nbsp;€</b></div>
-                    </div>
-                  </div>
-                  <div class="get-body"><span class="get-tag">🏠 Investičný byt</span><h3>Či má v tvojom prípade zmysel investičný byt</h3><p>Žiadne „byty sú istota“. <span class="hl">Prepočítame výnos, financovanie a riziká na tvojich číslach.</span> Ak áno, dostaneš presné kroky. Ak nie, ušetríš si roky a desaťtisíce eur.</p></div>
-                </article>
-                <article class="get get--vis rv fx" data-tilt3="3" style="--i:2">
-                  <div class="get-vis get-vis--green" aria-hidden="true">
-                    <div class="etf">
-                      <div class="etf-donut">
-                        <svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.915" stroke="rgba(243,233,221,0.16)"></circle><circle class="seg" cx="21" cy="21" r="15.915" stroke="#fffcf7" style="--d:52"></circle><circle class="seg" cx="21" cy="21" r="15.915" stroke="#e7d5b9" stroke-dashoffset="-54" style="--d:22"></circle><circle class="seg" cx="21" cy="21" r="15.915" stroke="#9fbfac" stroke-dashoffset="-78" style="--d:13"></circle><circle class="seg" cx="21" cy="21" r="15.915" stroke="#0b3d2e" stroke-dashoffset="-93" style="--d:5"></circle></svg>
-                        <div class="etf-mid"><b>3–6</b>ETF fondov</div>
-                      </div>
-                      <div class="etf-leg"><strong>Skladané na mieru</strong><small>od správcov ako</small><span>BlackRock</span><span>Vanguard</span><span>Amundi</span></div>
-                    </div>
-                  </div>
-                  <div class="get-body"><span class="get-tag">📈 ETF portfólio na mieru</span><h3>Overenú ETF stratégiu na mieru</h3><p>Rovnaký prístup, aký používam pre <span class="hl">200+ klientov a 3,5 mil. €</span> pod dohľadom NBS. Nastavená na tvoj horizont, bez zbytočných poplatkov a bez rozprávok.</p></div>
-                </article>
-                <article class="get get--dark get--vis rv fx" data-tilt3="3" style="--i:3">
-                  <div class="get-vis get-vis--ink" aria-hidden="true">
-                    <div class="road">
-                      <svg viewBox="0 0 320 124"><defs><linearGradient id="roadFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9b15c" stop-opacity="0.3"></stop><stop offset="1" stop-color="#d9b15c" stop-opacity="0"></stop></linearGradient></defs><path class="road-area" d="M6 108 C70 104 110 96 150 78 S250 30 314 12 L314 122 L6 122 Z"></path><path class="road-line" pathLength="1" d="M6 108 C70 104 110 96 150 78 S250 30 314 12"></path><circle class="road-dot" cx="6" cy="108" r="4.5"></circle><circle class="road-dot" cx="108.7" cy="93.0" r="4.5"></circle><circle class="road-dot" cx="211.3" cy="50.1" r="4.5"></circle><circle class="road-dot road-dot--end" cx="314" cy="12" r="5.5"></circle></svg>
-                      <div class="road-labels"><span>Tento mesiac</span><span>O rok</span><span>O 5&nbsp;rokov</span><span>Renta</span></div>
-                    </div>
-                  </div>
-                  <div class="get-body"><span class="get-tag">🎯 Plán k rente</span><h3>Presný plán k rente</h3><p>Krok za krokom: <span class="hl">čo urobiť tento mesiac, čo o rok a čo o päť rokov.</span> Aby majetok raz posielal výplatu tebe, nie ty jemu.</p></div>
-                </article>
-              </div>
-          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="vediet"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Odpisujem do 24&nbsp;hodín · zadarmo · bez viazanosti</small></div></div>
+          <div class="why">
+            <div class="why-photo rv curtain">
+              <picture><img src="/assets/images/home/ivan-kreslo-2.jpg" alt="Ivan Jašík" width="1289" height="1600" loading="lazy" decoding="async" /></picture>
+            </div>
+            <div class="why-body rv" style="--i:1">
+              <p class="why-hi">Ahoj, som Ivan.</p>
+              <p>Začínal som od absolútnej nuly bez bohatých rodičov. Moja motivácia neboli peniaze na lepšie auto a väčší dom. Moja motivácia bola vytvoriť majetok, ktorý sa o mňa postará.</p>
+              <p>Výrok, ktorý mi zmenil život znel:</p>
+              <blockquote class="why-quote">„Ak tvoje peniaze nebudú pracovať pre teba, tak ty budeš pre ne pracovať celý život.“</blockquote>
+              <p>Dnes mám 27&nbsp;rokov. 8&nbsp;rokov investujem a sprevádzam viac ako 200 ľudí rovnakou cestou.</p>
+              <p>Najväčšiu radosť mám, keď vidím ľudí, ako majú v peniazoch systém. Ich majetok rastie a hlavne si plnia finančné ciele.</p>
+              <p>Mám za sebou viac ako 900 konzultácií a presne viem prečo niektorí uspejú v budovaní majetku a niektorí nie.</p>
+              <h3 class="why-h3">Čo so mnou získaš</h3>
+              <ul class="why-list">
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Naučíš sa investovať od základov</li>
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>ETF portfólio na mieru a plán k rente</li>
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Budem tu pri každom tvojom dôležitom finančnom rozhodnutí</li>
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Keď trhy poklesnú som tu pre teba</li>
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Budeš mať reporty o trhu</li>
+                <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Vybavím ti lepšie podmienky v investičných spoločnostiach</li>
+              </ul>
+              <div class="cta"><a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="preco"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a></div>
+            </div>
+          </div>
         </div>
       </section>
       <!-- 3. Výsledky: šesť účtov, rámček NBS, právny text a citát klienta – prevzaté bez zmeny obsahu -->
@@ -1433,80 +1455,66 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         </div>
       </section>
       <!-- 4. Ako to prebieha: tri kruhy s číslami spojené čiarou, ktorá sa pri skrolovaní vypĺňa zlatou; pod každým krokom emoji kartičky, ktoré sa objavia, keď k nemu čiara dôjde -->
-      <section class="sec" id="proces">
+      <section class="sec sec--light" id="proces">
         <div class="wrap">
           <div class="head rv">
             <h2 class="h2">Tri kroky. <em>Prvé dva zadarmo.</em></h2>
           </div>
           <ol class="steps" id="steps">
             <i class="steps-line" aria-hidden="true"><b></b></i>
-            <li class="step rv" style="--i:0"><span class="step-n" aria-hidden="true"><b>1</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Úvodný hovor</h3><p><b>30&nbsp;minút online.</b> Zistím kde si, čo chceš a <b>či ti viem pomôcť</b>. Ak nie, <b>poviem ti to narovinu</b>. A aj keby sme nepokračovali, odídeš s tým, čo by som na tvojom mieste spravil ako prvé.</p><ul class="step-meta"><li style="--i:0"><i>🕒</i>30&nbsp;minút online</li><li style="--i:1"><i>💬</i>Zistím, kde si a čo chceš</li><li style="--i:2"><i>🧭</i>Odídeš s prvým krokom</li></ul></div></li>
-            <li class="step rv" style="--i:1"><span class="step-n" aria-hidden="true"><b>2</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Stratégia do 7&nbsp;dní</h3><p>Pripravím ti ju <b>na tvoje čísla</b>. Prejdeme ju spolu a <b>ostáva tvoja</b>, aj keď sa rozhodneš nepokračovať.</p><ul class="step-meta"><li style="--i:0"><i>📊</i>Ako si rozdeliť príjem</li><li style="--i:1"><i>🧺</i>Do ktorých ETF a prečo</li><li style="--i:2"><i>🏠</i>Či má zmysel investičný byt</li></ul></div></li>
-            <li class="step rv" style="--i:2"><span class="step-n" aria-hidden="true"><b>3</b></span><div class="step-body"><span class="step-tag">dlhodobo</span><h3>Ostávam pri tebe</h3><p>Dostávaš odo mňa <b>pravidelné reporty</b> a plán budeme <b>vždy aktualizovať</b>, ak bude treba, ak sa zmení situácia u teba alebo vo svete. A máš vopred pripravený <b>krízový plán</b>. Teda čo robiť, keď trhy klesnú o <b>20, 35 alebo 50 percent</b>, aby si sa vtedy <b>nerozhodoval v panike</b>.</p><ul class="step-meta"><li style="--i:0"><i>📬</i>Pravidelné reporty</li><li style="--i:1"><i>🔄</i>Plán aktualizujeme, keď treba</li><li style="--i:2"><i>🛟</i>Krízový plán na −20, −35 a −50&nbsp;%</li></ul></div></li>
+            <li class="step rv" style="--i:0"><span class="step-n" aria-hidden="true"><b>1</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Úvodný hovor</h3><p>Max 30&nbsp;minút online. Potrebujem ťa spoznať. Ako o peniazoch uvažuješ. Čo je tvoj cieľ a aké máš priority. Podľa toho ti poviem, akým smerom máš ísť. Ak ti to bude dávať zmysel, môžeme pokračovať k presnému plánu. Ak nie, nič sa nedeje, máš cenné informácie.</p></div></li>
+            <li class="step rv" style="--i:1"><span class="step-n" aria-hidden="true"><b>2</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Stratégia do 7&nbsp;dní</h3><p>Dostaneš odo mňa plán. Presné kroky k tvojim cieľom. Cashflow, investičné portfólio, čerpanie renty a ďalšie finančné rozhodnutia. Ostáva tvoj, aj keď nebudeš pokračovať.</p></div></li>
+            <li class="step rv" style="--i:2"><span class="step-n" aria-hidden="true"><b>3</b></span><div class="step-body"><span class="step-tag">dlhodobo</span><h3>Ostávam pri tebe</h3><p>Posielam ti pravidelné reporty a plán upravíme vždy keď sa zmení tvoja situácia. Vopred máš pripravený krízový plán, čo robiť keď trhy klesnú o 20, 35 alebo 50&nbsp;percent.</p></div></li>
           </ol>
-          <p class="after rv">Keď budeš riešiť hypotéku, byt alebo dieťa, <em>napíšeš mne</em> a prejdeme si to na číslach.</p>
-          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="proces"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Zadarmo a bez záväzkov. Do 24&nbsp;hodín sa ti ozvem.</small></div></div>
+          <p class="after rv">Hovor aj stratégia sú zadarmo. <em>Platíš až vtedy, keď začneš investovať.</em></p>
+          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="proces"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Zadarmo a bez záväzkov. Do 24&nbsp;hodín sa ti ozvem.</small></div></div>
         </div>
       </section>
-      <!-- 5. Podmienky spolupráce: svetlý zaoblený hárok v tmavej stránke; obojstranná dohoda, „Spolupráca dáva zmysel, ak…“ na hnedej, „Čo môžeš čakať odo mňa“ na béžovej (bez bielej, aby to nesvietilo), spoločný záver s tlačidlom -->
-      <section class="sec sec--light sec--light-first sec--light-last" id="podmienky">
+      <!-- 5. Podmienky spolupráce: svetlý zaoblený hárok; od 2026-10-11 namiesto obojstrannej dohody dva stĺpce Pred spoluprácou / Po spolupráci + tlačidlo (Ivan: „PRED A PO má byť namiesto tohoto“) -->
+      <section class="sec sec--light sec--light-last" id="podmienky">
         <div class="wrap">
           <div class="head rv">
             <h2 class="h2">Na spoluprácu so mnou <em>nestačí mať peniaze.</em></h2>
             <p class="lede">Záleží mi na tom, čo chceš dosiahnuť a ako k tomu pristúpiš. Je jedno, či začínaš s 200&nbsp;€ mesačne alebo máš 100&nbsp;000&nbsp;€.</p>
           </div>
-          <div class="dohoda rv" data-enter>
-            <div class="dohoda-p fx">
-              <h3 class="dohoda-t">Spolupráca dáva zmysel, ak…</h3>
-              <ol class="dohoda-list">
-                <li class="rv" style="--i:0"><span class="dohoda-n dohoda-n--e" aria-hidden="true">⏳</span><div><h4>Myslíš dlhodobo.</h4><p>Ak chceš zbohatnúť do roka, nie som tu pre teba.</p></div></li>
-                <li class="rv" style="--i:1"><span class="dohoda-n dohoda-n--e" aria-hidden="true">💬</span><div><h4>Chceš počuť úprimný názor.</h4><p>Keď mi tvoje rozhodnutie nebude dávať zmysel, poviem ti to a vysvetlím prečo. Aj keď to nebudeš chcieť počuť.</p></div></li>
-                <li class="rv" style="--i:2"><span class="dohoda-n dohoda-n--e" aria-hidden="true">📉</span><div><h4>Si pripravený držať sa stratégie.</h4><p>Plán si nastavíme vopred. Aj pre obdobia, keď trhy padajú a emócie hovoria niečo iné.</p></div></li>
-              </ol>
-              <p class="dohoda-note">Nemusíš byť skúsený investor ani mať všetko vyriešené.</p>
+          <div class="pp pp--wide rv">
+            <div class="pp-col pp-col--pred">
+              <h3 class="pp-h">Pred spoluprácou</h3>
+              <ul class="pp-list">
+                <li><i class="pp-x" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></i>Nevieš kde začať a odkladáš to</li>
+                <li><i class="pp-x" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></i>Investuješ, ale nevieš či dobre</li>
+                <li><i class="pp-x" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></i>Pri prvom prepade trhov to chceš zrušiť</li>
+              </ul>
             </div>
-            <div class="dohoda-z">
-              <h3 class="dohoda-t">Čo môžeš čakať odo mňa</h3>
-              <ol class="dohoda-list">
-                <li class="rv" style="--i:0"><span class="dohoda-n dohoda-n--e" aria-hidden="true">💡</span><div><h4>Všetko ti vysvetlím.</h4><p>Pýtaj sa pokojne aj päťkrát to isté. Chcem, aby si rozumel tomu, kam dávaš peniaze.</p></div></li>
-                <li class="rv" style="--i:1"><span class="dohoda-n dohoda-n--e" aria-hidden="true">🧾</span><div><h4>Poplatky poznáš vopred.</h4><p>Ešte pred rozhodnutím uvidíš, koľko zaplatíš a za čo.</p></div></li>
-                <li class="rv" style="--i:2"><span class="dohoda-n dohoda-n--e" aria-hidden="true">🔒</span><div><h4>Peniaze mi nikdy neposielaš.</h4><p>Účet je vždy na tvoje meno a do ničoho ťa netlačím.</p></div></li>
-              </ol>
-            </div>
-            <div class="dohoda-end">
-              <p>Na úvodnom hovore si prejdeme tvoju situáciu. Ty spoznáš môj prístup a ja posúdim, či ti viem pomôcť. O spolupráci sa rozhodneme obaja.</p>
-              <a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="podmienky"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a>
+            <div class="pp-col pp-col--po">
+              <h3 class="pp-h">Po spolupráci</h3>
+              <ul class="pp-list">
+                <li><i class="pp-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Máš plán a vieš čo robiť každý mesiac</li>
+                <li><i class="pp-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Tvoje portfólio má logiku a poplatky poznáš vopred</li>
+                <li><i class="pp-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Keď trhy poklesnú alebo riešiš bývanie zavoláš mne</li>
+              </ul>
             </div>
           </div>
+          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="podmienky"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a></div></div>
         </div>
       </section>
-      <!-- 6. Ako som platený: samostatný tmavý obdĺžnik na hnedom plátne, slovo „zadarmo“ dominuje; prehľad „Čo platíš“ ako vnútorný panel; zlatý rámček dole; pod ním Moja záruka (tabuľka poplatkov odstránená na Ivanov pokyn 2026-10-08) -->
+      <!-- 6. Bezpečnosť (Ivan 2026-10-11, nahradilo Ako som platený, zlatý pás aj Moja záruka): tmavý obdĺžnik, vľavo nadpis a text, vpravo panel Kde sú tvoje peniaze s piatimi riadkami -->
       <section class="sec" id="platba">
         <div class="wrap">
           <div class="pay rv fx" data-enter>
             <div class="pay-copy rv">
-              <h2 class="h2 h2--left pay-h">Hovor aj celá stratégia sú <em>zadarmo.</em></h2>
-              <p class="lede lede--left">Platíš až vtedy, keď začneš investovať. A určite menej ako v banke, u bežných poradcov alebo v iných investičných spoločnostiach. Poplatky ti vysvetlím ľudskou rečou a môžeš si ich sám porovnať.</p>
+              <h2 class="h2 h2--left pay-h">Peniaze mi <em>nikdy neposielaš.</em></h2>
+              <p class="lede lede--left">Ja ti radím a tvoje peniaze sú celý čas na tvojom účte. Na tvoje meno.</p>
             </div>
-            <div class="pay-card rv" style="--i:1" aria-label="Čo platíš" data-tilt3="3">
-              <div class="pay-head"><span>Čo platíš</span><b>prehľad</b></div>
-              <ul class="pay-rows">
-                <li style="--i:0"><div><b>Úvodný hovor</b><small>30&nbsp;minút, bez záväzkov</small></div><em class="pay-free">0&nbsp;€</em></li>
-                <li style="--i:1"><div><b>Celá stratégia</b><small>do 7&nbsp;dní, na tvoje čísla</small></div><em class="pay-free">0&nbsp;€</em></li>
-                <li style="--i:2"><div><b>Keď začneš investovať</b><small>menej ako v banke, u bežných poradcov alebo v iných investičných spoločnostiach</small></div><em class="pay-free pay-free--sm">menej ako inde</em></li>
+            <div class="pay-card rv" style="--i:1" aria-label="Kde sú tvoje peniaze" data-tilt3="3">
+              <div class="pay-head"><span>Kde sú tvoje peniaze</span></div>
+              <ul class="safe-rows">
+                <li style="--i:0"><b>Účet na tvoje meno</b><span>Otvoríš si ho priamo v investičnej spoločnosti, nie u mňa.</span></li>
+                <li style="--i:1"><b>Licencia a dohľad NBS</b><span>Spolupracujem len s licencovanými spoločnosťami, ktoré kontroluje Národná banka Slovenska.</span></li>
+                <li style="--i:2"><b>Garančný fond investícií</b><span>Chráni tvoj majetok do 50&nbsp;000&nbsp;€, keby spoločnosť skrachovala. Nechráni pred poklesom trhov.</span></li>
+                <li style="--i:3"><b>Svetové fondy</b><span>Investuješ do ETF fondov od správcov ako BlackRock, Vanguard a Amundi.</span></li>
+                <li style="--i:4"><b>Poplatky vidíš vopred</b><span>Platíš až keď začneš investovať. A určite menej ako v banke, u bežných poradcov alebo v iných investičných spoločnostiach.</span></li>
               </ul>
-              <div class="pay-foot"><i class="pay-check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><span>Poplatky ti vysvetlím ľudskou rečou. Všetko vidíš vopred a môžeš si to sám porovnať.</span></div>
-            </div>
-            <div class="band band-note pay-note rv" style="--i:2"><span class="em" aria-hidden="true">🛡️</span><p><b>Peniaze mi nikdy neposielaš.</b> Účet aj poplatky máš priamo v licencovanej investičnej spoločnosti pod dohľadom Národnej banky Slovenska, vedené na tvoje meno.</p></div>
-          </div>
-          <!-- Moja záruka: rozloženie z /konzultacia-clen (fotka vľavo, karta, štítok, podpis), texty podľa Ivana 2026-10-08; farby tmavej dlaždice ako zvyšok sekcie (Ivan: „skús inou farbou, aby to viac sedelo“) -->
-          <div class="guar rv fx" data-tilt3="2">
-            <div class="guar-photo curtain"><img src="/assets/images/jsmentor-biznis-portret-ivan-interier-svetlo.jpg" alt="Ivan Jašík" width="980" height="654" decoding="async" /></div>
-            <div class="guar-body">
-              <span class="guar-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.6v5.4c0 4.8-3 7.6-7 9.5-4-1.9-7-4.7-7-9.5V5.6z"/><path d="m8.8 12 2.3 2.3 4.4-4.6"/></svg>Moja záruka</span>
-              <h3>Hovorom neriskuješ nič. <em>Riziko beriem na seba.</em></h3>
-              <p>Nič nepodpisuješ a nič neplatíš. Stratégiu ti pripravím, aj keby si potom nepokračoval, a ostáva tvoja.</p>
-              <span class="guar-sign">Ivan Jašík</span>
             </div>
           </div>
         </div>
