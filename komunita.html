@@ -120,6 +120,7 @@
     </style>
     <!-- Najnovšie video v komunite: doplnok v obale (prefix kmnv-), úzky pásik pod tromi ukážkami (pred tlačidlom). Zrkadlo v React zdroji: DARK_GRADIENT.latest v src/pages/komunita2. -->
     <style id="kmnv-css">
+      .km-bio-photo picture { display: block; width: 100%; }
       .kmnv { display: flex; align-items: center; gap: 1rem; width: 100%; max-width: 46rem; margin: 2.25rem auto 0; padding: 0.75rem; border: 0; border-radius: 1.25rem; background: rgba(243, 233, 221, 0.05); box-shadow: inset 0 0 0 1px rgba(243, 233, 221, 0.14); color: #f3e9dd; font-family: var(--font-sans, inherit); text-align: left; cursor: pointer; opacity: 0; transform: translateY(14px); transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s, box-shadow 0.3s; }
       .kmnv.kmnv-in { opacity: 1; transform: none; }
       .kmnv:hover { background: rgba(243, 233, 221, 0.08); box-shadow: inset 0 0 0 1px rgba(243, 233, 221, 0.26); }
@@ -233,6 +234,30 @@
           var mo = new MutationObserver(function () { if (build()) mo.disconnect(); });
           if (root) mo.observe(root, { childList: true, subtree: true });
           setTimeout(function () { mo.disconnect(); build(); }, 15000);
+        }
+      })();
+    </script>
+
+    <script>
+      // Fotka v bloku „Kto za tým stojí": po vykreslení React aplikácie vymení pôvodnú fotku v kresle za novú (assets/images/komunita/ivan-kreslo-2), bundle bez zmeny.
+      (function () {
+        var SRC = "/assets/images/komunita/ivan-kreslo-2.jpg", WEBP = "/assets/images/komunita/ivan-kreslo-2.webp";
+        var done = false;
+        function swap() {
+          if (done) return true;
+          var img = document.querySelector(".km-bio-photo img"); if (!img) return false;
+          done = true;
+          var pic = document.createElement("picture");
+          var src = document.createElement("source"); src.srcset = WEBP; src.type = "image/webp";
+          img.src = SRC; img.removeAttribute("srcset"); img.width = 1289; img.height = 1600;
+          img.parentNode.insertBefore(pic, img); pic.appendChild(src); pic.appendChild(img);
+          return true;
+        }
+        if (!swap()) {
+          var root = document.getElementById("root");
+          var mo = new MutationObserver(function () { if (swap()) mo.disconnect(); });
+          if (root) mo.observe(root, { childList: true, subtree: true });
+          setTimeout(function () { mo.disconnect(); swap(); }, 15000);
         }
       })();
     </script>
