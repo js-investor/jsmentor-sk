@@ -346,6 +346,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .why-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
 .why-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(63, 46, 36, 0) 75%, rgba(63, 46, 36, 0.18) 100%); }
 .why-body p { margin: 0 0 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--mut); text-wrap: pretty; }
+.why-body p b { font-weight: 600; color: var(--paper); }
 @media (min-width: 900px) { .why-body p { font-size: 1.125rem; } }
 .why-hi { font-family: var(--serif); font-size: 1.625rem; font-weight: 700; line-height: 1.15; color: var(--paper) !important; }
 .why-quote { margin: 0.25rem 0 1.25rem; padding: 0.125rem 0 0.125rem 1.125rem; border-left: 3px solid var(--green); font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.28; font-weight: 700; letter-spacing: -0.01em; color: var(--paper); text-wrap: balance; }
@@ -443,7 +444,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 .step-n { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--sur-2); box-shadow: inset 0 0 0 1.5px rgba(243, 233, 221, 0.32); color: var(--paper); font-family: var(--serif); font-size: 1.375rem; font-weight: 700; transition: background 0.45s var(--ease), box-shadow 0.45s var(--ease), color 0.3s, transform 0.45s var(--ease); }
 .step-n b { font-weight: 700; }
 .step.is-on .step-n { background: var(--gold); box-shadow: inset 0 0 0 1.5px var(--gold), 0 0 0 6px rgba(217, 177, 92, 0.14), 0 12px 30px -10px rgba(217, 177, 92, 0.55); color: var(--ink); transform: scale(1.08); }
-.step h3 { margin: 0.25rem 0 0; font-family: var(--serif); font-size: clamp(1.375rem, 2.2vw, 1.625rem); line-height: 1.15; font-weight: 700; color: var(--paper); text-wrap: balance; }
+.step h3 { margin: 0.375rem 0 0; font-family: var(--serif); font-size: clamp(1.375rem, 2.2vw, 1.625rem); line-height: 1.15; font-weight: 700; color: var(--paper); text-wrap: balance; }
 .step p { margin: 0.75rem 0 0; font-size: 1rem; line-height: 1.6; color: var(--mut); text-wrap: pretty; }
 .step-tag { display: block; margin-top: 0.625rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
 .step-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.125rem 0 0; padding: 0; list-style: none; }
@@ -458,7 +459,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
   .step { display: block; padding: 0 1.625rem; text-align: center; }
   .step-n { width: 4.25rem; height: 4.25rem; font-size: 1.875rem; }
   .step-tag { margin-top: 1.375rem; }
-  .step h3 { margin-top: 0.375rem; }
+  .step h3 { margin-top: 1.375rem; }
   .step-meta { justify-content: center; }
   .step p { max-width: 24em; margin-left: auto; margin-right: auto; }
   .steps-line { left: 16.7%; right: 16.7%; top: calc(2.125rem - 0.75px); height: 1.5px; width: auto; }
@@ -1381,12 +1382,12 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
             </div>
             <div class="why-body rv" style="--i:1">
               <p class="why-hi">Ahoj, som Ivan.</p>
-              <p>Začínal som od absolútnej nuly bez bohatých rodičov. Moja motivácia neboli peniaze na lepšie auto a väčší dom. Moja motivácia bola vytvoriť majetok, ktorý sa o mňa postará.</p>
+              <p>Začínal som od absolútnej nuly bez bohatých rodičov. <b>Moja motivácia neboli peniaze na lepšie auto</b> a väčší dom. Moja motivácia bola vytvoriť majetok, ktorý sa o mňa postará.</p>
               <p>Výrok, ktorý mi zmenil život znel:</p>
               <blockquote class="why-quote">„Ak tvoje peniaze nebudú pracovať pre teba, tak ty budeš pre ne pracovať celý život.“</blockquote>
               <p>8&nbsp;rokov investujem a sprevádzam viac ako 200 ľudí rovnakou cestou.</p>
               <p>Najväčšiu radosť mám, keď vidím ľudí, ako majú v peniazoch systém. Ich majetok rastie a hlavne si plnia finančné ciele.</p>
-              <p>Mám za sebou viac ako 900 konzultácií a presne viem prečo niektorí uspejú v budovaní majetku a niektorí nie.</p>
+              <p>Mám za sebou viac ako 900 konzultácií a presne <b>viem prečo niektorí uspejú</b> v budovaní majetku a niektorí nie.</p>
               <h3 class="why-h3">Čo so mnou získaš</h3>
               <ul class="why-list">
                 <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Naučíš sa investovať od základov</li>
@@ -1559,13 +1560,13 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
       <section class="sec sec--light sec--light-last" id="proces">
         <div class="wrap">
           <div class="head rv">
-            <h2 class="h2">Tri kroky. <em>Prvé dva zadarmo.</em></h2>
+            <h2 class="h2">Tri kroky <em>k úspešnej stratégii</em></h2>
           </div>
           <ol class="steps" id="steps">
             <i class="steps-line" aria-hidden="true"><b></b></i>
-            <li class="step rv" style="--i:0"><span class="step-n" aria-hidden="true"><b>1</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Úvodný hovor</h3><p>Max 30&nbsp;minút online. Potrebujem ťa spoznať. Ako o peniazoch uvažuješ. Čo je tvoj cieľ a aké máš priority. Podľa toho ti poviem, akým smerom máš ísť. Ak ti to bude dávať zmysel, môžeme pokračovať k presnému plánu. Ak nie, nič sa nedeje, máš cenné informácie.</p></div></li>
-            <li class="step rv" style="--i:1"><span class="step-n" aria-hidden="true"><b>2</b></span><div class="step-body"><span class="step-tag">zadarmo</span><h3>Stratégia do 7&nbsp;dní</h3><p>Dostaneš odo mňa plán. Presné kroky k tvojim cieľom. Cashflow, investičné portfólio, čerpanie renty a ďalšie finančné rozhodnutia. Ostáva tvoj, aj keď nebudeš pokračovať.</p></div></li>
-            <li class="step rv" style="--i:2"><span class="step-n" aria-hidden="true"><b>3</b></span><div class="step-body"><span class="step-tag">dlhodobo</span><h3>Ostávam pri tebe</h3><p>Posielam ti pravidelné reporty a plán upravíme vždy keď sa zmení tvoja situácia. Vopred máš pripravený krízový plán, čo robiť keď trhy klesnú o 20, 35 alebo 50&nbsp;percent.</p></div></li>
+            <li class="step rv" style="--i:0"><span class="step-n" aria-hidden="true"><b>1</b></span><div class="step-body"><h3>Úvodný hovor</h3><p>Max 30&nbsp;minút online. Potrebujem ťa spoznať. Ako o peniazoch uvažuješ. Čo je tvoj cieľ a aké máš priority. Podľa toho ti poviem, akým smerom máš ísť. Ak ti to bude dávať zmysel, môžeme pokračovať k presnému plánu. Ak nie, nič sa nedeje, máš cenné informácie.</p></div></li>
+            <li class="step rv" style="--i:1"><span class="step-n" aria-hidden="true"><b>2</b></span><div class="step-body"><h3>Stratégia do 7&nbsp;dní</h3><p>Dostaneš odo mňa plán. Presné kroky k tvojim cieľom. Cashflow, investičné portfólio, čerpanie renty a ďalšie finančné rozhodnutia. Ostáva tvoj, aj keď nebudeš pokračovať.</p></div></li>
+            <li class="step rv" style="--i:2"><span class="step-n" aria-hidden="true"><b>3</b></span><div class="step-body"><h3>Ostávam pri tebe</h3><p>Posielam ti pravidelné reporty a plán upravíme vždy keď sa zmení tvoja situácia. Vopred máš pripravený krízový plán, čo robiť keď trhy klesnú o 20, 35 alebo 50&nbsp;percent.</p></div></li>
           </ol>
           <p class="after rv">Hovor aj stratégia sú zadarmo. <em>Platíš až vtedy, keď začneš investovať.</em></p>
           <div class="actions rv"><div class="cta cta--center"><a class="btn btn--ink btn--lg" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="proces"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Zadarmo a bez záväzkov. Do 24&nbsp;hodín sa ti ozvem.</small></div></div>
