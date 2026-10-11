@@ -342,6 +342,7 @@ main section[id] { scroll-margin-top: calc(var(--hdr) + 0.5rem); }
 @media (max-width: 899px) { .why-photo { max-width: 20rem; margin: 0 auto; } }
 @media (min-width: 900px) { .why-photo { position: sticky; top: calc(var(--hdr) + 1.5rem); } }
 .why-photo picture { display: block; width: 100%; }
+.why-tags { position: absolute; z-index: 1; left: 1rem; right: 1rem; bottom: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .why-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
 .why-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(63, 46, 36, 0) 75%, rgba(63, 46, 36, 0.18) 100%); }
 .why-body p { margin: 0 0 1rem; font-size: 1.0625rem; line-height: 1.65; color: var(--mut); text-wrap: pretty; }
@@ -1196,12 +1197,12 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     <header class="hdr" id="hdr">
       <div class="wrap hdr-in">
         <a class="hdr-logo" href="/" aria-label="JS Mentor – domov"><img class="l-light" src="/assets/images/js-mentor-logo-hneda-v2.png" alt="JS Mentor" width="879" height="310" /><img class="l-dark" src="/assets/images/js-mentor-logo-biele.png" alt="" width="879" height="310" aria-hidden="true" /></a>
-        <nav class="hdr-nav" aria-label="Hlavná navigácia"><a href="#problemy">Problémy</a><a href="#vysledky">Výsledky</a><a href="#proces">Ako to prebieha</a><a href="#platba">Bezpečnosť</a><a href="#omne">O mne</a><a href="#faq">FAQ</a></nav>
+        <nav class="hdr-nav" aria-label="Hlavná navigácia"><a href="#problemy">Problémy</a><a href="#vysledky">Výsledky</a><a href="#proces">Ako to prebieha</a><a href="#platba">Bezpečnosť</a><a href="#preco">O mne</a><a href="#faq">FAQ</a></nav>
         <a class="btn btn--green btn--sm" href="#formular" data-umami-event="click_konzultacia_cta" data-umami-event-section="header"><span>Požiadať o úvodný hovor</span> <span class="arr" aria-hidden="true">→</span></a>
       </div>
       <i class="hdr-progress" aria-hidden="true"></i>
     </header>
-    <nav class="dots" id="dots" aria-label="Sekcie stránky"><a href="#hero" data-label="Úvod"></a><a href="#problemy" data-label="Problémy"></a><a href="#vysledky" data-label="Výsledky"></a><a href="#proces" data-label="Ako to prebieha"></a><a href="#podmienky" data-label="Podmienky"></a><a href="#platba" data-label="Bezpečnosť"></a><a href="#omne" data-label="O mne"></a><a href="#recenzie" data-label="Recenzie"></a><a href="#faq" data-label="Otázky"></a><a href="#formular" data-label="Hovor"></a></nav>
+    <nav class="dots" id="dots" aria-label="Sekcie stránky"><a href="#hero" data-label="Úvod"></a><a href="#problemy" data-label="Problémy"></a><a href="#preco" data-label="O mne"></a><a href="#vysledky" data-label="Výsledky"></a><a href="#proces" data-label="Ako to prebieha"></a><a href="#podmienky" data-label="Podmienky"></a><a href="#platba" data-label="Bezpečnosť"></a><a href="#recenzie" data-label="Recenzie"></a><a href="#faq" data-label="Otázky"></a><a href="#formular" data-label="Hovor"></a></nav>
 
     <main>
       <!-- 1. Úvod (svetlý): centrovaný titulok, široká video karta (Vimeo 1233672095, hash b5f32071e6), tmavá dlaždica s číslami ako na živej stránke -->
@@ -1223,7 +1224,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
           </div>
           <div class="stats rv fx" aria-label="Dôkazy">
             <div><b data-count="8 rokov">8&nbsp;rokov</b><span>praxe vo finančnom svete</span></div>
-            <div><b data-count="3,5 mil. €+" data-plus>3,5 mil. €<i>+</i></b><span>v starostlivosti</span></div>
+            <div><b data-count="3,5 mil. €">3,5 mil. €</b><span>v starostlivosti</span></div>
             <div><b data-count="200+" data-plus>200<i>+</i></b><span>aktívnych klientov</span></div>
             <div><b>NBS</b><span>pod dohľadom<i class="sb-sep"> · </i><br class="sb-br" />reg. č. 282999</span></div>
           </div>
@@ -1298,13 +1299,14 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
           <div class="why">
             <div class="why-photo rv curtain">
               <picture><img src="/assets/images/home/ivan-kreslo-2.jpg" alt="Ivan Jašík" width="1289" height="1600" loading="lazy" decoding="async" /></picture>
+              <span class="why-tags"><span class="pill">EFA vzdelanie</span><span class="pill">licencia NBS</span></span>
             </div>
             <div class="why-body rv" style="--i:1">
               <p class="why-hi">Ahoj, som Ivan.</p>
               <p>Začínal som od absolútnej nuly bez bohatých rodičov. Moja motivácia neboli peniaze na lepšie auto a väčší dom. Moja motivácia bola vytvoriť majetok, ktorý sa o mňa postará.</p>
               <p>Výrok, ktorý mi zmenil život znel:</p>
               <blockquote class="why-quote">„Ak tvoje peniaze nebudú pracovať pre teba, tak ty budeš pre ne pracovať celý život.“</blockquote>
-              <p>Dnes mám 27&nbsp;rokov. 8&nbsp;rokov investujem a sprevádzam viac ako 200 ľudí rovnakou cestou.</p>
+              <p>8&nbsp;rokov investujem a sprevádzam viac ako 200 ľudí rovnakou cestou.</p>
               <p>Najväčšiu radosť mám, keď vidím ľudí, ako majú v peniazoch systém. Ich majetok rastie a hlavne si plnia finančné ciele.</p>
               <p>Mám za sebou viac ako 900 konzultácií a presne viem prečo niektorí uspejú v budovaní majetku a niektorí nie.</p>
               <h3 class="why-h3">Čo so mnou získaš</h3>
@@ -1515,28 +1517,6 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
                 <li style="--i:3"><b>Svetové fondy</b><span>Investuješ do ETF fondov od správcov ako BlackRock, Vanguard a Amundi.</span></li>
                 <li style="--i:4"><b>Poplatky vidíš vopred</b><span>Platíš až keď začneš investovať. A určite menej ako v banke, u bežných poradcov alebo v iných investičných spoločnostiach.</span></li>
               </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- 7. O mne (papier) -->
-      <section class="sec" id="omne">
-        <div class="wrap">
-          <div class="bio">
-            <div class="bio-photo rv curtain">
-              <picture><source srcset="/assets/images/home/ivan-kniha-4x5.webp" type="image/webp" /><img src="/assets/images/home/fe79786e.png" alt="Ivan Jašík" width="900" height="1125" loading="lazy" decoding="async" /></picture>
-              <span class="bio-tags"><span class="pill">8&nbsp;rokov praxe</span><span class="pill">Dohľad NBS</span><span class="pill">ETF</span><span class="pill">Nehnuteľnosti</span></span>
-            </div>
-            <div class="rv" style="--i:1">
-              <h2 class="h2">Nie som teoretik, <em>ale praktik.</em></h2>
-              <p class="bio-text">Investíciám sa venujem 8&nbsp;rokov. Pomohol som viac ako 200 ľuďom a starám sa o 3,5 milióna eur. Moje vlastné portfólio má hodnotu 70&nbsp;000&nbsp;€ a vlastním investičný byt. Čiže viem, aké to je, keď sú v tom vlastné peniaze.</p>
-              <ul class="facts">
-                <li><b>8&nbsp;rokov</b><span>praxe v investičnom svete</span></li>
-                <li><b>900+</b><span>konzultácií</span></li>
-                <li><b>3,5 mil. €</b><span>klientskych aktív</span></li>
-                <li><b>EFA</b><span>vzdelanie · dohľad NBS</span></li>
-              </ul>
-              <div class="partner-note"><b>Výber z viacerých partnerov</b><p>Nie som viazaný na jednu investičnú spoločnosť. Porovnávam dostupné možnosti a hľadám riešenie podľa cieľa a situácie klienta.</p></div>
             </div>
           </div>
         </div>
