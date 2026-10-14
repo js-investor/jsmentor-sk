@@ -45,209 +45,295 @@
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
-/* ===== /renta v4: rozloženie 1:1 podľa jsinvestor.sk/renta (úzky stĺpec na stred), farby a písma ako /komunita ===== */
+/* ===== /renta v5: rozloženie starej stránky, náš bledý dizajn (Komunita), remeselná úroveň: tokeny, rytmus, stavy, prístupnosť ===== */
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: #f3eee8; }
 body { margin: 0; }
 img { max-width: 100%; }
-.km { --km-ink: #292420; --km-ink-2: #3a332d; --km-fg2: #4a4239; --km-fg3: #6b625a; --km-cream: #f3eee8; --km-ivory: #fffcf7; --km-sand: #f0e3cf; --km-stone: #e9e4dc; --km-green: #2a6647; --km-green-dark: #0b3d2e; --km-gold: #d9b15c; --km-paper: #f3e9dd; --km-hair: rgba(41, 36, 32, 0.1); --km-hair-2: rgba(41, 36, 32, 0.18); --km-ease: cubic-bezier(0.22, 1, 0.36, 1); --km-r: 1.25rem; --font-serif: 'Calvino', 'Recoleta', serif; --font-sans: 'Matter', 'Gilroy', sans-serif; position: relative; isolation: isolate; overflow-x: clip; font-family: var(--font-sans); color: var(--km-ink); background: var(--km-cream); -webkit-font-smoothing: antialiased; }
+.km {
+  --km-ink: #292420; --km-ink-2: #3a332d; --km-fg2: #4a4239; --km-fg3: #6b625a; --km-cream: #f3eee8; --km-ivory: #fffcf7; --km-sand: #f0e3cf; --km-stone: #e9e4dc;
+  --km-green: #2a6647; --km-green-dark: #0b3d2e; --km-green-tint: rgba(42, 102, 71, 0.12); --km-gold: #d9b15c; --km-paper: #f3e9dd; --km-hair: rgba(41, 36, 32, 0.1); --km-hair-2: rgba(41, 36, 32, 0.18);
+  --brown: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%);
+  --font-serif: 'Calvino', 'Recoleta', serif; --font-sans: 'Matter', 'Gilroy', sans-serif;
+  /* typografická škála (malá tercia, základ 17 px) */
+  --t-xs: 0.6875rem; --t-sm: 0.8125rem; --t-base: 1.0625rem; --t-lg: 1.1875rem; --t-xl: 1.4375rem; --t-2xl: 1.75rem; --t-3xl: 2.125rem; --t-4xl: 2.5rem;
+  --t-hero: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem); --t-h2: clamp(1.75rem, 1.3rem + 1.9vw, 2.5rem);
+  /* medzery (8 px mriežka) */
+  --s-1: 0.5rem; --s-2: 1rem; --s-3: 1.5rem; --s-4: 2rem; --s-5: 3rem; --s-6: 4rem; --s-7: 6rem;
+  /* pohyb */
+  --d-fast: 120ms; --d: 200ms; --d-slow: 320ms; --ease-out: cubic-bezier(0, 0, 0.2, 1); --ease-emph: cubic-bezier(0.2, 0, 0, 1);
+  --r-sm: 0.75rem; --r: 1rem; --r-lg: 1.5rem;
+  position: relative; isolation: isolate; overflow-x: clip; font-family: var(--font-sans); font-size: var(--t-base); line-height: 1.6; color: var(--km-ink); background: var(--km-cream); -webkit-font-smoothing: antialiased;
+}
 .km *, .km *::before, .km *::after { box-sizing: border-box; }
-.rv { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--km-ease), transform 0.7s var(--km-ease); transition-delay: calc(var(--i, 0) * 70ms); }
+.km :focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; border-radius: 0.25rem; }
+.rv { opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); transition-delay: calc(var(--i, 0) * 60ms); }
 .rv.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
 .f-hp { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; clip: rect(0 0 0 0); clip-path: inset(50%); }
+.rn-skip { position: absolute; left: 1rem; top: -3rem; z-index: 100; padding: 0.625rem 1rem; border-radius: 9999px; background: var(--km-ink); color: var(--km-paper); font-size: var(--t-sm); font-weight: 600; text-decoration: none; transition: top var(--d) var(--ease-out); }
+.rn-skip:focus { top: 1rem; }
 
-/* tlačidlo ako na /komunita (zelená pilulka) */
-.km-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.9375rem 1.75rem; border-radius: 9999px; border: none; background: linear-gradient(180deg, #2f7350 0%, #2a6647 100%); color: var(--km-paper); font-family: var(--font-sans); font-size: 1.0625rem; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.3s var(--km-ease); }
-.km-btn:hover { background: linear-gradient(180deg, #2a6647 0%, #0b3d2e 100%); transform: translateY(-1px); }
+/* ---------- tlačidlá a odkazy ---------- */
+.km-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0.8125rem 1.5rem; border-radius: 9999px; border: 0; background: var(--km-green); color: #fff; font-family: var(--font-sans); font-size: 1rem; font-weight: 600; line-height: 1.2; text-decoration: none; cursor: pointer; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 10px 24px -14px rgba(11, 61, 46, 0.6); transition: background var(--d-fast) var(--ease-out), transform var(--d-fast) var(--ease-out), box-shadow var(--d) var(--ease-out); }
+.km-btn:hover { background: #245a3e; box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 14px 28px -14px rgba(11, 61, 46, 0.7); }
+.km-btn:active { transform: translateY(1px) scale(0.99); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset; }
 .km-btn:focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; }
-.km-btn--lg { padding: 1.0625rem 2rem; font-size: 1.125rem; }
-.km-btn[disabled] { opacity: 0.7; cursor: default; transform: none; }
+.km-btn svg { width: 1.0625rem; height: 1.0625rem; flex-shrink: 0; transition: transform var(--d-fast) var(--ease-out); }
+.km-btn:hover svg { transform: translateX(2px); }
+.km-btn--lg { min-height: 3.5rem; padding: 1rem 1.875rem; font-size: var(--t-base); }
+.km-btn[disabled] { opacity: 0.65; cursor: default; transform: none; }
+.km-btn .rn-emoji { font-size: 1.125em; line-height: 1; }
+.rn-link { display: inline-flex; align-items: center; gap: 0.375rem; min-height: 2.75rem; padding: 0.5rem 0.25rem; font-size: 1rem; font-weight: 600; color: var(--km-green); text-decoration: none; }
+.rn-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.rn-link svg { width: 1rem; height: 1rem; }
+@media (prefers-reduced-motion: no-preference) { .km-btn { will-change: transform; } }
 
-/* stĺpce */
+/* ---------- hlavička (tenká, lepkavá) a mobilná lišta ---------- */
+.rn-hdr { position: sticky; top: 0; z-index: 40; background: rgba(243, 238, 232, 0.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--km-hair); transition: box-shadow var(--d) var(--ease-out); }
+.rn-hdr.is-scrolled { box-shadow: 0 12px 30px -24px rgba(41, 36, 32, 0.4); }
+.rn-hdr-in { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); min-height: 4rem; }
+.rn-hdr-logo { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.rn-hdr-logo img { display: block; height: 1.75rem; width: auto; }
+.rn-hdr .km-btn { min-height: 2.75rem; padding: 0.625rem 1.125rem; font-size: var(--t-sm); white-space: nowrap; }
+@media (max-width: 480px) { .rn-hdr .km-btn svg { display: none; } }
+.rn-bar { position: fixed; left: 0.75rem; right: 0.75rem; bottom: 0.75rem; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.5rem 0.5rem 0.5rem 1rem; border-radius: 9999px; background: var(--km-ink); color: var(--km-paper); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6); transform: translateY(140%); transition: transform var(--d-slow) var(--ease-emph); }
+.rn-bar.is-on { transform: none; }
+.rn-bar-text { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: var(--t-sm); line-height: 1.25; color: rgba(243, 233, 221, 0.75); }
+.rn-bar-text b { display: block; font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--km-paper); }
+.rn-bar .km-btn { flex-shrink: 0; min-height: 2.75rem; padding: 0.625rem 1.125rem; font-size: var(--t-sm); }
+@media (min-width: 900px) { .rn-bar { display: none; } }
+@media (max-width: 374px) { .rn-bar-text { display: none; } .rn-bar { justify-content: center; } }
+
+/* ---------- stĺpce a rytmus sekcií ---------- */
 .rn-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
 @media (min-width: 768px) { .rn-wrap { padding: 0 2rem; } }
-.rn-col { max-width: 36.5rem; margin-left: auto; margin-right: auto; text-align: center; }
-.rn-stage { max-width: 53.5rem; margin: 2rem auto 0; }
-.rn-cards3 { max-width: 62rem; margin: 1.75rem auto 0; }
+.rn-col { max-width: 37rem; margin-left: auto; margin-right: auto; text-align: center; }
+.rn-stage { max-width: 54rem; margin: var(--s-4) auto 0; }
+.rn-cards3 { max-width: 62rem; margin: var(--s-4) auto 0; }
 .rn-wide { max-width: 73rem; }
-.rn-sec { padding: 2.25rem 0; }
-@media (min-width: 768px) { .rn-sec { padding: 3rem 0; } }
-.rn-hero { padding-top: 2.5rem; }
-@media (min-width: 768px) { .rn-hero { padding-top: 3.5rem; } }
+.rn-sec { padding: var(--s-5) 0; }
+@media (min-width: 768px) { .rn-sec { padding: var(--s-6) 0; } }
+.rn-hero { padding-top: var(--s-5); padding-bottom: var(--s-4); }
+@media (min-width: 768px) { .rn-hero { padding-top: var(--s-6); padding-bottom: var(--s-5); } }
+.rn-sec + .rn-sec { padding-top: 0; }
+.rn-sec > .rn-wrap > :first-child, .rn-sec .rn-col > :first-child { margin-top: 0; }
 
-/* typografia podľa starej stránky: H1 48 px, H2 40 px, Calvino; zvýraznenie zelené */
-.rn-h1 { margin: 0.75rem auto 0; max-width: 46rem; font-family: var(--font-serif); font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.18; font-weight: 700; letter-spacing: -0.015em; color: var(--km-ink); text-align: center; text-wrap: balance; }
+/* ---------- typografia ---------- */
+.rn-h1 { margin: var(--s-2) auto 0; max-width: 44rem; font-family: var(--font-serif); font-size: var(--t-hero); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: var(--km-ink); text-align: center; text-wrap: balance; }
 .rn-h1 em, .rn-h2 em, .rn-green { font-style: normal; color: var(--km-green); }
-.rn-h2 { margin: 0 0 1.25rem; font-family: var(--font-serif); font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; color: var(--km-ink); text-wrap: balance; }
-.rn-h2--sans { font-family: var(--font-sans); font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--km-green); }
-.rn-h2--sm { font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.3; }
-.rn-lede { margin: 0 0 1.5rem; font-size: 1.125rem; line-height: 1.55; color: var(--km-ink); text-wrap: pretty; }
-.rn-lede .rn-up { text-transform: uppercase; font-weight: 600; color: var(--km-green); }
-.rn-text { margin: 0 0 1rem; font-size: 1.0625rem; line-height: 1.6; color: var(--km-fg2); text-wrap: pretty; }
+.rn-h2 { margin: 0 0 var(--s-2); font-family: var(--font-serif); font-size: var(--t-h2); line-height: 1.15; font-weight: 700; letter-spacing: -0.015em; color: var(--km-ink); text-wrap: balance; }
+.rn-h2--sm { font-size: var(--t-xl); line-height: 1.3; }
+.rn-eyebrow { margin: 0 0 var(--s-1); font-size: var(--t-xl); font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--km-green); line-height: 1.2; }
+.rn-lede { margin: var(--s-2) auto 0; max-width: 34rem; font-size: var(--t-lg); line-height: 1.5; color: var(--km-fg2); text-wrap: pretty; }
+.rn-lede .rn-up { font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; color: var(--km-green); }
+.rn-text { margin: 0 0 var(--s-2); font-size: var(--t-base); line-height: 1.6; color: var(--km-fg2); text-wrap: pretty; }
 .rn-text strong { font-weight: 600; color: var(--km-ink); }
 .rn-text .rn-green { font-weight: 600; }
-.rn-kicker { margin: 1.5rem 0 1rem; font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--km-green); }
-.rn-actions { margin: 1.5rem 0 0; }
-.rn-rule { width: 100%; max-width: 30rem; height: 1px; margin: 1.75rem auto; border: 0; background: var(--km-ink); opacity: 0.35; }
+.rn-statement { margin: var(--s-3) auto 0; max-width: 32rem; font-family: var(--font-serif); font-size: var(--t-xl); line-height: 1.3; font-weight: 700; color: var(--km-ink); text-wrap: balance; }
+.rn-statement em { font-style: normal; color: var(--km-green); }
+.rn-caption { margin: var(--s-3) 0 0; font-family: var(--font-serif); font-style: italic; font-size: var(--t-lg); color: var(--km-fg2); }
+.rn-kicker { display: inline-flex; align-items: center; gap: 0.625rem; margin: var(--s-3) 0 var(--s-2); font-size: var(--t-sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--km-green); }
+.rn-kicker::before, .rn-kicker::after { content: ""; width: 1.25rem; height: 1px; background: currentColor; opacity: 0.6; }
+.rn-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-2) var(--s-3); margin: var(--s-3) 0 0; }
+.rn-rule { width: 100%; max-width: 28rem; height: 1px; margin: var(--s-4) auto; border: 0; background: var(--km-hair-2); }
+.rn-note { margin: var(--s-2) 0 0; font-size: var(--t-sm); line-height: 1.5; color: var(--km-fg3); }
 
-/* pilulky (stará stránka: tmavá + červená → tmavohnedá + zelená) */
-.rn-pills { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin: 0 0 1rem; }
-.rn-pills--row { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.625rem; }
-.rn-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.9375rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.2; white-space: nowrap; }
+/* ---------- pilulky a čipy ---------- */
+.rn-pills { display: flex; flex-direction: column; align-items: center; gap: var(--s-1); margin: 0 0 var(--s-2); }
+.rn-pills--row { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.rn-pill { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2rem; padding: 0.375rem 0.875rem; border-radius: 9999px; font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
 .rn-pill--ink { background: var(--km-ink); color: var(--km-paper); }
-.rn-pill--green { background: var(--km-green); color: var(--km-paper); }
-.rn-pill--sand { background: var(--km-stone); color: var(--km-ink); }
-@media (max-width: 480px) { .rn-pill { white-space: normal; text-align: center; } }
+.rn-pill--green { background: var(--km-green); color: #fff; }
+.rn-chip { display: inline-flex; align-items: center; gap: 0.4375rem; min-height: 2.25rem; padding: 0.4375rem 0.875rem 0.4375rem 0.75rem; border-radius: 9999px; background: var(--km-ivory); border: 1px solid var(--km-hair-2); font-size: var(--t-sm); font-weight: 600; letter-spacing: 0.01em; color: var(--km-ink); white-space: nowrap; }
+.rn-chip .rn-emoji { font-size: 1rem; line-height: 1; }
+@media (max-width: 420px) { .rn-chip { white-space: normal; } }
 
-/* video hore: hnedá titulná karta bez fotky (po doplnení ID videa tlačidlo + prehrávač) */
-.km-stage-still { position: relative; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; aspect-ratio: 16 / 9; padding: 1.5rem; border-radius: 1.25rem; overflow: hidden; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); color: var(--km-paper); text-align: left; border: 0; font-family: var(--font-sans); }
-.km-stage-still::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 70% 20%, rgba(217, 177, 92, 0.16) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
-.km-stage-video.km-stage-still { cursor: pointer; }
-@media (min-width: 768px) { .km-stage-still { padding: 2.5rem; } }
-.km-stage-kicker { position: relative; display: inline-flex; align-items: center; gap: 0.625rem; margin-bottom: 0.875rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--km-gold); }
+/* ---------- video hore ---------- */
+.km-stage-still { position: relative; display: flex; flex-direction: column; justify-content: flex-end; width: 100%; aspect-ratio: 16 / 9; padding: var(--s-3); border: 2px solid rgba(41, 36, 32, 0.16); outline: 1px solid rgba(41, 36, 32, 0.08); outline-offset: 6px; border-radius: var(--r-lg); overflow: hidden; background: var(--brown); color: var(--km-paper); text-align: left; font-family: var(--font-sans); }
+.km-stage-still::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 60% at 72% 18%, rgba(217, 177, 92, 0.18) 0%, rgba(217, 177, 92, 0) 70%); pointer-events: none; }
+button.km-stage-still { cursor: pointer; transition: border-color var(--d) var(--ease-out), outline-color var(--d) var(--ease-out); }
+button.km-stage-still:hover { border-color: rgba(41, 36, 32, 0.4); outline-color: rgba(41, 36, 32, 0.16); }
+@media (min-width: 768px) { .km-stage-still { padding: var(--s-4); } }
+.km-stage-kicker { position: relative; display: inline-flex; align-items: center; gap: 0.625rem; margin-bottom: 0.75rem; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--km-gold); }
 .km-stage-kicker::before { content: ""; width: 1.5rem; height: 1px; background: currentColor; }
-.km-stage-title { position: relative; max-width: 18ch; font-family: var(--font-serif); font-size: clamp(1.25rem, 2.9vw, 2.25rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: var(--km-paper); text-wrap: balance; }
-.km-stage-meta { position: absolute; right: 1.5rem; top: 1.5rem; display: inline-flex; align-items: center; padding: 0.375rem 0.75rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.12); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; color: rgba(243, 233, 221, 0.85); }
-.km-stage-play { position: absolute; left: 50%; top: 42%; display: inline-flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border-radius: 9999px; background: var(--km-paper); color: var(--km-ink); transform: translate(-50%, -50%); transition: transform 0.3s var(--km-ease); }
+.km-stage-title { position: relative; max-width: 18ch; font-family: var(--font-serif); font-size: clamp(1.25rem, 1rem + 1.6vw, 2.25rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: var(--km-paper); text-wrap: balance; }
+.km-stage-meta { position: absolute; right: var(--s-3); top: var(--s-3); display: inline-flex; align-items: center; min-height: 1.75rem; padding: 0.3125rem 0.75rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.12); font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243, 233, 221, 0.85); }
+.km-stage-play { position: absolute; left: 50%; top: 42%; display: inline-flex; align-items: center; justify-content: center; width: 4.5rem; height: 4.5rem; border-radius: 9999px; background: var(--km-paper); color: var(--km-ink); transform: translate(-50%, -50%); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35); transition: transform var(--d) var(--ease-out); }
 .km-stage-play svg { width: 1.75rem; height: 1.75rem; margin-left: 0.25rem; }
-.km-stage-video:hover .km-stage-play { transform: translate(-50%, -50%) scale(1.06); }
-.km-stage-video:focus-visible { outline: 2px solid var(--km-green); outline-offset: 3px; }
-.km-stage-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 1.25rem; overflow: hidden; background: var(--km-ink); }
+button.km-stage-still:hover .km-stage-play { transform: translate(-50%, -50%) scale(1.06); }
+.km-stage-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: var(--r-lg); overflow: hidden; background: var(--km-ink); }
 .km-stage-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-@media (max-width: 639px) { .km-stage-still { padding: 1.125rem; } .km-stage-title { font-size: 1.25rem; } .km-stage-meta { right: 1rem; top: 1rem; } .km-stage-play { width: 3.5rem; height: 3.5rem; } }
+.rn-stage-cap { margin: var(--s-2) 0 0; text-align: center; font-size: var(--t-sm); color: var(--km-fg3); }
+@media (max-width: 639px) { .km-stage-still { padding: var(--s-2); outline-offset: 4px; } .km-stage-title { font-size: 1.25rem; } .km-stage-meta { right: var(--s-2); top: var(--s-2); } .km-stage-play { width: 3.5rem; height: 3.5rem; } }
 
-/* formulár ako na starej stránke: priamo v stĺpci, štítky Calvino, biele polia */
+/* ---------- formulár (karta, inline validácia, dotykové polia) ---------- */
+.rn-form-card { margin: var(--s-4) auto 0; padding: var(--s-3) var(--s-3) var(--s-3); border-radius: var(--r-lg); background: var(--km-ivory); border: 1px solid var(--km-hair-2); box-shadow: 0 30px 60px -48px rgba(41, 36, 32, 0.45); text-align: left; scroll-margin-top: 5rem; }
+@media (min-width: 640px) { .rn-form-card { padding: var(--s-4); } }
 .rn-form { text-align: left; }
-.rn-field { display: block; margin-top: 0.875rem; }
-.rn-field span { display: block; margin-bottom: 0.375rem; font-family: var(--font-serif); font-size: 0.9375rem; font-weight: 700; color: var(--km-ink); }
-.rn-field input { display: block; width: 100%; padding: 0.8125rem 1rem; border-radius: 0.5rem; border: 1px solid var(--km-hair-2); background: #fff; font-family: var(--font-sans); font-size: 1rem; line-height: 1.3; color: var(--km-ink); outline: none; -webkit-appearance: none; appearance: none; transition: border-color 0.15s, box-shadow 0.15s; }
+.rn-field { display: block; margin-top: var(--s-2); }
+.rn-field > span { display: block; margin-bottom: 0.4375rem; font-size: var(--t-sm); font-weight: 600; letter-spacing: 0.02em; color: var(--km-ink); }
+.rn-field input { display: block; width: 100%; min-height: 3rem; padding: 0.75rem 1rem; border-radius: var(--r-sm); border: 1px solid var(--km-hair-2); background: #fff; font-family: var(--font-sans); font-size: 1rem; line-height: 1.3; color: var(--km-ink); outline: none; -webkit-appearance: none; appearance: none; transition: border-color var(--d-fast) var(--ease-out), box-shadow var(--d-fast) var(--ease-out); }
 .rn-field input::placeholder { color: var(--km-fg3); }
-.rn-field input:focus { border-color: var(--km-green); box-shadow: 0 0 0 3px rgba(42, 102, 71, 0.15); }
-.rn-form-note { margin: 0.625rem 0 0; font-size: 0.75rem; line-height: 1.5; color: var(--km-fg3); }
-.rn-form-note a { color: var(--km-green); text-decoration: underline; text-underline-offset: 2px; }
-.rn-form-error { margin: 0.75rem 0 0; font-size: 0.875rem; line-height: 1.45; font-weight: 500; color: #ab4132; }
+.rn-field input:hover { border-color: rgba(41, 36, 32, 0.32); }
+.rn-field input:focus { border-color: var(--km-green); box-shadow: 0 0 0 3px var(--km-green-tint); }
+.rn-field input[aria-invalid="true"] { border-color: #ab4132; box-shadow: 0 0 0 3px rgba(171, 65, 50, 0.14); }
+.rn-field-error { display: block; margin: 0.375rem 0 0; font-size: var(--t-sm); line-height: 1.4; font-weight: 500; color: #ab4132; }
+.rn-field-error:empty { display: none; }
+.rn-form-error { margin: var(--s-2) 0 0; font-size: var(--t-sm); line-height: 1.45; font-weight: 500; color: #ab4132; }
 .rn-form-error[hidden] { display: none; }
-.rn-form .rn-actions { text-align: center; }
-.rn-form .km-btn { white-space: normal; }
+.rn-form .rn-actions { margin-top: var(--s-3); }
+.rn-form .km-btn { width: 100%; white-space: normal; }
+.rn-form-help { margin: var(--s-2) 0 0; text-align: center; font-size: var(--t-sm); line-height: 1.5; color: var(--km-fg2); }
+.rn-form-note { margin: 0.5rem 0 0; text-align: center; font-size: var(--t-xs); line-height: 1.5; color: var(--km-fg3); }
+.rn-form-note a { color: var(--km-green); text-decoration: underline; text-underline-offset: 2px; }
 
-/* dva boxy Pre koho (stará: zelené → hnedé) */
-.rn-box { margin: 0 0 1rem; padding: 1rem 1.5rem; border-radius: 0.875rem; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); color: var(--km-paper); font-size: 1.0625rem; line-height: 1.5; text-align: center; text-wrap: pretty; }
+/* ---------- Pre koho: dva hnedé boxy ---------- */
+.rn-box { display: flex; align-items: flex-start; gap: 0.875rem; margin: 0 0 var(--s-2); padding: var(--s-2) var(--s-3); border-radius: var(--r); background: var(--brown); color: var(--km-paper); font-size: var(--t-base); line-height: 1.5; text-align: left; text-wrap: pretty; }
 .rn-box strong { font-weight: 700; color: #fff; }
+.rn-box-ic { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.5rem; height: 1.5rem; margin-top: 0.125rem; border-radius: 9999px; background: var(--km-gold); color: var(--km-ink); }
+.rn-box-ic svg { width: 0.875rem; height: 0.875rem; }
 
-/* hnedá karta s ikonou (stará: zelená karta) */
-.rn-card-brown { margin: 0 0 0.5rem; padding: 1.75rem 1.5rem; border-radius: 1.5rem; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); color: var(--km-paper); text-align: left; }
-@media (min-width: 640px) { .rn-card-brown { padding: 2.25rem 2.25rem 2rem; } }
-.rn-card-ic { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; border-radius: 9999px; background: rgba(243, 233, 221, 0.1); font-size: 1.75rem; line-height: 1; }
-.rn-card-brown h3 { margin: 0 0 1rem; font-family: var(--font-serif); font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; font-weight: 800; letter-spacing: -0.015em; color: #fff; text-wrap: balance; }
-.rn-card-brown p { margin: 0; font-size: 1.0625rem; line-height: 1.6; color: rgba(243, 233, 221, 0.9); text-wrap: pretty; }
-.rn-card-brown hr { width: 15rem; max-width: 100%; height: 1px; margin: 1.5rem 0; border: 0; background: rgba(243, 233, 221, 0.35); }
-.rn-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; }
-.rn-checks li { display: flex; align-items: center; gap: 0.625rem; font-size: 1rem; font-weight: 500; color: #fff; }
-.rn-checks svg { flex-shrink: 0; width: 1rem; height: 1rem; color: var(--km-gold); }
+/* ---------- hnedá karta s ikonou ---------- */
+.rn-card-brown { margin: 0; padding: var(--s-3); border-radius: var(--r-lg); background: var(--brown); color: var(--km-paper); text-align: left; box-shadow: 0 30px 60px -48px rgba(41, 36, 32, 0.6); }
+@media (min-width: 640px) { .rn-card-brown { padding: var(--s-4) var(--s-4) var(--s-4); } }
+.rn-card-ic { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; margin-bottom: var(--s-2); border-radius: 9999px; background: rgba(243, 233, 221, 0.1); box-shadow: inset 0 0 0 1px rgba(243, 233, 221, 0.14); font-size: 1.625rem; line-height: 1; }
+.rn-card-brown h3 { margin: 0 0 var(--s-2); font-family: var(--font-serif); font-size: var(--t-2xl); line-height: 1.2; font-weight: 700; letter-spacing: -0.015em; color: #fff; text-wrap: balance; }
+.rn-card-brown p { margin: 0; font-size: var(--t-base); line-height: 1.6; color: rgba(243, 233, 221, 0.88); text-wrap: pretty; }
+.rn-card-brown hr { width: 100%; height: 1px; margin: var(--s-3) 0; border: 0; background: rgba(243, 233, 221, 0.18); }
+.rn-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.rn-checks li { display: flex; align-items: center; gap: 0.75rem; font-size: var(--t-base); font-weight: 500; color: #fff; }
+.rn-checks i { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 1.375rem; height: 1.375rem; border-radius: 9999px; background: var(--km-gold); color: var(--km-ink); }
+.rn-checks svg { width: 0.75rem; height: 0.75rem; }
 
-/* tri karty kurzu (stará: béžové boxy s rámom) */
-.rn-cards3 { display: grid; gap: 1rem; }
-@media (min-width: 768px) { .rn-cards3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; } }
-.rn-card { padding: 1.5rem 1.375rem; border-radius: 1rem; background: var(--km-ivory); border: 1px solid var(--km-hair-2); text-align: left; }
-.rn-card h3 { margin: 0 0 0.5rem; font-family: var(--font-serif); font-size: 1.125rem; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--km-ink); }
-.rn-card p { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--km-fg2); text-wrap: pretty; }
-.rn-rating { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 0.75rem; margin-top: 1.25rem; padding: 0.875rem 1.25rem; border-radius: 1rem; background: var(--km-ivory); border: 1px solid var(--km-hair); font-size: 0.9375rem; color: var(--km-fg2); }
-.rn-rating b { color: var(--km-ink); }
+/* ---------- tri karty kurzu ---------- */
+.rn-cards3 { display: grid; gap: var(--s-2); }
+@media (min-width: 768px) { .rn-cards3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); } }
+.rn-card { display: flex; flex-direction: column; padding: var(--s-3); border-radius: var(--r-lg); background: var(--km-ivory); border: 1px solid var(--km-hair-2); text-align: left; transition: transform var(--d) var(--ease-out), box-shadow var(--d) var(--ease-out), border-color var(--d) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .rn-card:hover { transform: translateY(-3px); border-color: rgba(41, 36, 32, 0.28); box-shadow: 0 24px 40px -32px rgba(41, 36, 32, 0.45); } }
+.rn-card-emoji { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; margin-bottom: var(--s-2); border-radius: 0.875rem; background: var(--km-sand); font-size: 1.375rem; line-height: 1; }
+.rn-card h3 { margin: 0 0 0.5rem; font-family: var(--font-serif); font-size: var(--t-xl); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: var(--km-ink); }
+.rn-card p { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--km-fg2); text-wrap: pretty; }
+.rn-rating { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 0.875rem; margin-top: var(--s-3); padding: 0.75rem 1.25rem; border-radius: 9999px; background: var(--km-ivory); border: 1px solid var(--km-hair); font-size: var(--t-sm); color: var(--km-fg2); }
+.rn-rating b { font-weight: 700; color: var(--km-ink); }
 .rn-stars { display: inline-flex; gap: 0.125rem; color: var(--km-gold); }
-.rn-stars svg { width: 1.125rem; height: 1.125rem; }
+.rn-stars svg { width: 1rem; height: 1rem; }
 
-/* štatistiky ako pilulky pod sebou (stará: sivé pilulky) */
-.rn-stats { list-style: none; margin: 0 0 0.5rem; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
-.rn-stats li { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.5rem; border-radius: 9999px; background: var(--km-stone); font-family: var(--font-serif); font-size: clamp(1.125rem, 2vw, 1.375rem); font-weight: 700; color: var(--km-ink); }
-.rn-stats li::before { content: "+"; font-weight: 400; color: var(--km-green); }
+/* ---------- čísla ---------- */
+.rn-stats { list-style: none; margin: var(--s-3) auto 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); max-width: 34rem; }
+.rn-stats li { padding: var(--s-2) var(--s-2) var(--s-2); border-radius: var(--r); background: var(--km-ivory); border: 1px solid var(--km-hair); text-align: center; }
+.rn-stats b { display: block; font-family: var(--font-serif); font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.25rem); line-height: 1; font-weight: 700; letter-spacing: -0.02em; color: var(--km-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rn-stats b i { font-style: normal; color: var(--km-green); }
+.rn-stats span { display: block; margin-top: 0.5rem; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--km-fg3); }
+@media (max-width: 380px) { .rn-stats { grid-template-columns: 1fr; } }
 
-/* referencie 3×2 + screenshoty správ */
-.rn-quotes { display: grid; gap: 1.25rem; }
-@media (min-width: 640px) { .rn-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* ---------- recenzie a správy ---------- */
+.rn-quotes { display: grid; gap: var(--s-2); }
+@media (min-width: 640px) { .rn-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); } }
 @media (min-width: 1024px) { .rn-quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-.rn-quote { display: flex; flex-direction: column; margin: 0; padding: 1.5rem 1.375rem 1.25rem; border-radius: 1rem; background: var(--km-ivory); border: 1px solid var(--km-hair-2); text-align: left; }
-.rn-quote blockquote { flex: 1 1 auto; margin: 0; font-size: 0.9375rem; line-height: 1.6; color: var(--km-fg2); text-wrap: pretty; }
+.rn-quote { display: flex; flex-direction: column; margin: 0; padding: var(--s-3) var(--s-3) var(--s-2); border-radius: var(--r-lg); background: var(--km-ivory); border: 1px solid var(--km-hair-2); text-align: left; }
+.rn-quote-mark { display: block; height: 1.5rem; font-family: var(--font-serif); font-size: 3rem; line-height: 1; font-weight: 700; color: var(--km-green); opacity: 0.6; }
+.rn-quote blockquote { flex: 1 1 auto; margin: var(--s-1) 0 0; font-size: 1rem; line-height: 1.6; color: var(--km-fg2); text-wrap: pretty; }
 .rn-quote blockquote strong { font-weight: 600; color: var(--km-ink); }
-.rn-quote figcaption { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8125rem; line-height: 1.35; color: var(--km-fg3); }
-.rn-quote figcaption img, .rn-mono { flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; background: var(--km-sand); }
+.rn-quote figcaption { display: flex; align-items: center; gap: 0.75rem; margin-top: var(--s-2); padding-top: var(--s-2); border-top: 1px solid var(--km-hair); font-size: var(--t-sm); line-height: 1.35; color: var(--km-fg3); }
+.rn-quote figcaption img, .rn-mono { flex-shrink: 0; width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; background: var(--km-sand); box-shadow: 0 0 0 2px var(--km-ivory), 0 0 0 3px rgba(42, 102, 71, 0.4); }
 .rn-mono { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 0.875rem; font-weight: 700; color: var(--km-ink); }
 .rn-quote figcaption b { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--km-ink); }
-.rn-shots { margin-top: 1.25rem; column-count: 1; column-gap: 1.25rem; }
+.rn-shots { margin-top: var(--s-3); column-count: 1; column-gap: var(--s-3); }
 @media (min-width: 640px) { .rn-shots { column-count: 2; } }
 @media (min-width: 1024px) { .rn-shots { column-count: 3; } }
-.rn-shots img { display: block; width: 100%; height: auto; margin: 0 0 1.25rem; break-inside: avoid; border-radius: 1rem; border: 1px solid var(--km-hair); background: var(--km-ivory); }
+.rn-shots img { display: block; width: 100%; height: auto; margin: 0 0 var(--s-3); break-inside: avoid; border-radius: var(--r); border: 1px solid var(--km-hair); background: var(--km-ivory); box-shadow: 0 16px 30px -28px rgba(41, 36, 32, 0.5); }
+.rn-shots-cap { margin: 0 0 var(--s-2); text-align: center; font-size: var(--t-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--km-fg3); }
 
-/* výhovorky: karty s emoji vľavo (stará stránka) */
-.rn-qa { display: flex; align-items: flex-start; gap: 1rem; margin: 0 0 1rem; padding: 1.25rem 1.375rem; border-radius: 1rem; background: var(--km-ivory); border: 1px solid var(--km-hair); text-align: left; }
-.rn-qa-ic { flex-shrink: 0; width: 3rem; font-size: 2.25rem; line-height: 1; text-align: center; }
-.rn-qa h3 { margin: 0 0 0.375rem; font-family: var(--font-serif); font-size: 1.125rem; line-height: 1.3; font-weight: 700; color: var(--km-green); }
-.rn-qa p { margin: 0; font-size: 0.9375rem; line-height: 1.55; color: var(--km-fg2); text-wrap: pretty; }
-#vyhovorky .rn-h2--sm { margin-top: 2rem; }
+/* ---------- výhovorky ---------- */
+.rn-qa { display: flex; align-items: flex-start; gap: var(--s-2); margin: 0 0 var(--s-2); padding: var(--s-3); border-radius: var(--r-lg); background: var(--km-ivory); border: 1px solid var(--km-hair-2); text-align: left; }
+.rn-qa-ic { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 2.75rem; height: 2.75rem; border-radius: 0.875rem; background: var(--km-sand); font-size: 1.375rem; line-height: 1; }
+.rn-qa h3 { margin: 0.125rem 0 0.375rem; font-family: var(--font-serif); font-size: var(--t-lg); line-height: 1.3; font-weight: 700; color: var(--km-green); }
+.rn-qa p { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--km-fg2); text-wrap: pretty; }
+#vyhovorky .rn-statement { margin-top: var(--s-4); }
 
-/* záver: hnedý pás (stará: zelený) s krémovou kartou a formulárom */
-.rn-final { padding: 3.5rem 0; background: radial-gradient(120% 90% at 50% 0%, #4a3c31 0%, #322b26 48%, #241f1b 100%); }
-@media (min-width: 768px) { .rn-final { padding: 4.5rem 0; } }
-.rn-final-card { max-width: 41.5rem; margin: 0 auto; padding: 2rem 1.5rem; border-radius: 1.5rem; background: var(--km-ivory); text-align: center; }
-@media (min-width: 640px) { .rn-final-card { padding: 2.75rem 3rem 2.5rem; } }
-.rn-final-card .rn-h2 { margin-bottom: 1rem; }
+/* ---------- záver ---------- */
+.rn-final { padding: var(--s-6) 0; background: var(--brown); }
+@media (min-width: 768px) { .rn-final { padding: var(--s-7) 0; } }
+.rn-final-card { max-width: 42rem; margin: 0 auto; padding: var(--s-4) var(--s-3); border-radius: var(--r-lg); background: var(--km-ivory); text-align: center; box-shadow: 0 40px 80px -50px rgba(0, 0, 0, 0.6); }
+@media (min-width: 640px) { .rn-final-card { padding: var(--s-5) var(--s-5) var(--s-4); } }
+.rn-final-card .rn-h2 { margin-bottom: var(--s-1); }
+.rn-final-card .rn-lede { margin-top: 0; font-size: var(--t-base); }
+.rn-final-card .rn-form { margin-top: var(--s-2); }
 
-/* pätička v troch stĺpcoch ako na starej stránke */
-.rn-footer { padding: 2.5rem 0 3rem; background: var(--km-ivory); border-top: 1px solid var(--km-hair); }
-.rn-footer-in { display: grid; gap: 1.75rem; text-align: center; }
-@media (min-width: 768px) { .rn-footer-in { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 2rem; } }
-.rn-footer img { display: block; height: 1.75rem; width: auto; margin: 0 auto 0.875rem; }
-.rn-footer p { margin: 0.375rem 0; font-size: 0.875rem; line-height: 1.5; color: var(--km-fg2); }
+/* ---------- pätička ---------- */
+.rn-footer { padding: var(--s-5) 0 7rem; background: var(--km-ivory); border-top: 1px solid var(--km-hair); }
+@media (min-width: 900px) { .rn-footer { padding-bottom: var(--s-5); } }
+.rn-footer-in { display: grid; gap: var(--s-4); text-align: center; }
+@media (min-width: 768px) { .rn-footer-in { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: var(--s-4); } }
+.rn-footer img { display: block; height: 1.75rem; width: auto; margin: 0 auto var(--s-2); }
+.rn-footer p { margin: 0.375rem 0; font-size: var(--t-sm); line-height: 1.5; color: var(--km-fg2); }
 .rn-footer a { color: var(--km-ink); text-decoration: underline; text-underline-offset: 3px; }
-.rn-footer-social { display: flex; justify-content: center; gap: 0.75rem; margin-top: 0.75rem; }
-.rn-footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 9999px; background: var(--km-ink); color: var(--km-paper); text-decoration: none; }
-.rn-footer-social svg { width: 1rem; height: 1rem; }
-.rn-footer-legal { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--km-hair); font-size: 0.75rem; line-height: 1.5; color: var(--km-fg3); text-align: center; }
+.rn-footer-social { display: flex; justify-content: center; gap: 0.625rem; margin-top: var(--s-2); }
+.rn-footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border-radius: 9999px; background: var(--km-ink); color: var(--km-paper); text-decoration: none; transition: background var(--d-fast) var(--ease-out), transform var(--d-fast) var(--ease-out); }
+.rn-footer-social a:hover { background: var(--km-green); transform: translateY(-1px); }
+.rn-footer-social svg { width: 1.0625rem; height: 1.0625rem; }
+.rn-footer-legal { max-width: 60rem; margin: var(--s-4) auto 0; padding-top: var(--s-3); border-top: 1px solid var(--km-hair); font-size: var(--t-xs); line-height: 1.5; color: var(--km-fg3); text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .km-btn, .rn-card, .rn-bar, .rn-footer-social a, .km-stage-play, button.km-stage-still { transition: none; }
+  .rn-card:hover { transform: none; }
+}
 
     </style>
   </head>
   <body>
   <div class="km rn-page" id="renta">
-    <main class="rn">
-      <!-- 1. Úvod 1:1 podľa starej stránky: dve pilulky nad sebou, nadpis v troch riadkoch, video (zatiaľ titulná karta bez fotky), tlačidlo, čiara, dve pilulky -->
+    <a class="rn-skip" href="#kurz">Preskočiť na formulár</a>
+    <header class="rn-hdr" id="hdr">
+      <div class="rn-wrap rn-hdr-in">
+        <a class="rn-hdr-logo" href="/" aria-label="JS Mentor – domov"><img src="/assets/images/js-mentor-logo-hneda-v2.png" alt="JS Mentor" width="879" height="310" /></a>
+        <a class="km-btn" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="header">Chcem bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+    </header>
+    <main class="rn" id="obsah-stranky">
+      <!-- 1. Úvod (rozloženie starej stránky): pilulky, nadpis, podtitul, video (titulná karta, kým nie je ID), tlačidlo + odkaz, čiara, čipy -->
       <section class="rn-sec rn-hero" id="hero">
         <div class="rn-wrap">
-          <p class="rn-pills rv"><span class="rn-pill rn-pill--ink">🔥 Budeš rozmýšľať inak</span><span class="rn-pill rn-pill--green">🤔 Toto nie sú dristy</span></p>
-          <h1 class="rn-h1 rv" style="--i:1">Zisti, ako môžeš získať<br /><em>doživotnú rentu 2&nbsp;000&nbsp;€</em><br />vďaka pasívnemu investovaniu</h1>
-          <div class="rn-stage rv" style="--i:2"><div class="km-stage-still" aria-label="Po tomto videu budeš o peniazoch rozmýšľať inak."><span class="km-stage-meta">Promo video</span><span class="km-stage-kicker">Hodinové praktické video</span><span class="km-stage-title">Po tomto videu budeš o peniazoch rozmýšľať inak.</span></div></div>
-          <div class="rn-col rv" style="--i:3">
-            <p class="rn-actions"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="hero">🚀 Stiahnuť bezplatný kurz</a></p>
+          <p class="rn-pills rv"><span class="rn-pill rn-pill--ink"><span class="rn-emoji" aria-hidden="true">🔥</span>Budeš rozmýšľať inak</span><span class="rn-pill rn-pill--green"><span class="rn-emoji" aria-hidden="true">🤔</span>Toto nie sú dristy</span></p>
+          <h1 class="rn-h1 rv" style="--i:1">Zisti, ako môžeš získať <em>doživotnú rentu 2&nbsp;000&nbsp;€</em> vďaka pasívnemu investovaniu</h1>
+          <p class="rn-lede rn-col rv" style="--i:2">Hodinové praktické video zadarmo. Pošlem ti ho na e-mail.</p>
+          <div class="rn-stage rv" style="--i:3"><div class="km-stage-still" aria-label="Po tomto videu budeš o peniazoch rozmýšľať inak."><span class="km-stage-meta">Promo video</span><span class="km-stage-kicker">Hodinové praktické video</span><span class="km-stage-title">Po tomto videu budeš o peniazoch rozmýšľať inak.</span></div></div>
+          <div class="rn-col rv" style="--i:4">
+            <div class="rn-actions"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="hero"><span class="rn-emoji" aria-hidden="true">🚀</span>Stiahnuť bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a class="rn-link" href="#obsah">Čo je v kurze <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
             <hr class="rn-rule" />
-            <p class="rn-pills"><span class="rn-pill rn-pill--ink">✅ 100&nbsp;% zadarmo</span><span class="rn-pill rn-pill--green">🎁 Bonus: rentová kalkulačka</span></p>
+            <p class="rn-pills rn-pills--row"><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">✅</span>100&nbsp;% zadarmo</span><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">🎁</span>Bonus: rentová kalkulačka</span></p>
           </div>
         </div>
       </section>
 
-      <!-- 2. Hodinové praktické video + formulár priamo v stĺpci -->
+      <!-- 2. Hodinové praktické video + formulár v karte -->
       <section class="rn-sec" id="kurz" data-bar-hide>
         <div class="rn-wrap rn-col">
-          <h2 class="rn-h2 rn-h2--sans rv">Hodinové praktické video:</h2>
-          <p class="rn-lede rv">Vytvor si <span class="rn-up">doživotnú rentu</span> = pravidelný príjem, ktorý ti umožní žiť <span class="rn-up">slobodne</span>.</p>
-          <form class="kurz-form rn-form rv" id="kurz-form" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" novalidate style="--i:1">
+          <h2 class="rn-eyebrow rv">Hodinové praktické video:</h2>
+          <p class="rn-lede rv" style="margin-top:0">Vytvor si <span class="rn-up">doživotnú rentu</span> = pravidelný príjem, ktorý ti umožní žiť <span class="rn-up">slobodne</span>.</p>
+          <div class="rn-form-card rv" style="--i:1">
+            <form class="kurz-form rn-form" id="kurz-form" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" data-inline-errors novalidate>
                 <p class="f-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="website" tabindex="-1" autocomplete="off" /></label></p>
                 <input type="hidden" name="stranka" value="/renta" />
-                <label class="rn-field"><span>Meno</span><input name="meno" type="text" placeholder="Meno" autocomplete="given-name" /></label>
-                <label class="rn-field"><span>Kam ti pošlem kurz?</span><input name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" /></label>
-                <p class="rn-form-note">Tvoje osobné údaje sú spracovávané v súlade so <a href="/gdpr" target="_blank" rel="noopener">Zásadami ochrany osobných údajov</a>.</p>
+                <label class="rn-field" for="kurz-form-meno"><span>Meno</span><input id="kurz-form-meno" name="meno" type="text" placeholder="Tvoje meno…" autocomplete="given-name" autocapitalize="words" aria-describedby="kurz-form-meno-err" /><small class="rn-field-error" id="kurz-form-meno-err" data-error-for="meno" role="alert"></small></label>
+                <label class="rn-field" for="kurz-form-email"><span>Kam ti pošlem kurz?</span><input id="kurz-form-email" name="email" type="email" placeholder="tvoj@email.sk…" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" aria-describedby="kurz-form-email-err" /><small class="rn-field-error" id="kurz-form-email-err" data-error-for="email" role="alert"></small></label>
                 <p class="f-error rn-form-error" role="alert" hidden></p>
-                <p class="rn-actions"><button type="submit" class="km-btn"><span data-label>Chcem bezplatný kurz</span></button></p>
+                <p class="rn-actions"><button type="submit" class="km-btn km-btn--lg"><span data-label>Chcem bezplatný kurz</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></p>
+                <p class="rn-form-help">Odkaz na kurz ti príde na e-mail hneď po odoslaní.</p>
+                <p class="rn-form-note">Tvoje osobné údaje sú spracovávané v súlade so <a href="/gdpr" target="_blank" rel="noopener">Zásadami ochrany osobných údajov</a>.</p>
               </form>
+          </div>
         </div>
       </section>
 
-      <!-- 3. Pre koho je tento kurz: dva boxy pod sebou, veta, caption, kicker, karta s ikonou -->
+      <!-- 3. Pre koho je tento kurz -->
       <section class="rn-sec" id="prekoho">
         <div class="rn-wrap rn-col">
           <h2 class="rn-h2 rv">Pre koho je tento kurz?</h2>
-          <div class="rn-box rv">Pre človeka, ktorý <strong>chce vybudovať majetok</strong> a následne čerpať doživotnú rentu.</div>
-          <div class="rn-box rv" style="--i:1">Pre človeka, ktorý <strong>už má majetok</strong> a teraz chce efektívne z neho čerpať doživotnú rentu.</div>
-          <p class="rn-text rv">Ak túžiš po tom, aby tvoje peniaze pracovali pre teba, nie naopak…</p>
-          <p class="rn-text rv"><strong class="rn-green">tak si na správnom mieste!</strong></p>
-          <p class="rn-text rv">Informácie škodia len tomu, kto ich nemá.</p>
+          <div class="rn-box rv"><i class="rn-box-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><p style="margin:0">Pre človeka, ktorý <strong>chce vybudovať majetok</strong> a následne čerpať doživotnú rentu.</p></div>
+          <div class="rn-box rv" style="--i:1"><i class="rn-box-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><p style="margin:0">Pre človeka, ktorý <strong>už má majetok</strong> a teraz chce efektívne z neho čerpať doživotnú rentu.</p></div>
+          <p class="rn-statement rv">Ak túžiš po tom, aby tvoje peniaze pracovali pre teba, nie naopak… <em>tak si na správnom mieste!</em></p>
+          <p class="rn-caption rv">Informácie škodia len tomu, kto ich nemá.</p>
           <p class="rn-kicker rv">Nové informácie = nové možnosti</p>
           <div class="rn-card-brown rv">
             <span class="rn-card-ic" aria-hidden="true">💰</span>
@@ -255,10 +341,10 @@ img { max-width: 100%; }
             <p>Vysvetlím ti princíp, ktorý používajú profesionálni investori, nie špekulanti. Zistíš, ako funguje výplatné pravidlo 4 až 5&nbsp;%, prečo väčšina ľudí prichádza o výnosy, a ako si vytvoriť systém, ktorý ti môže dlhodobo vyplácať rentu.</p>
             <hr />
             <ul class="rn-checks">
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Čo robia bohatí INAK</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Ako fungujú ETF</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Pravidlo 4&nbsp;% pre bohatých</li>
-              <li><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Dividendové akcie = totálna sloboda</li>
+              <li><i aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Čo robia bohatí inak</li>
+              <li><i aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Ako fungujú ETF</li>
+              <li><i aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Pravidlo 4&nbsp;% pre bohatých</li>
+              <li><i aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Dividendové akcie = totálna sloboda</li>
             </ul>
           </div>
         </div>
@@ -267,60 +353,64 @@ img { max-width: 100%; }
       <!-- 4. Tlačidlo, dlhodobý proces, veta o praxi -->
       <section class="rn-sec" id="proces">
         <div class="rn-wrap rn-col">
-          <p class="rn-actions rv" style="margin-top:0"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="proces">🚀 Stiahnuť bezplatný kurz</a></p>
-          <h2 class="rn-h2 rv" style="margin-top:2rem">Nejedná sa o <em>žiadne rýchle zbohatnutie.</em> Jedná sa o dlhodobý proces, ktorého výsledkom je <em>nekonečná renta.</em></h2>
+          <div class="rn-actions rv" style="margin-top:0"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="proces"><span class="rn-emoji" aria-hidden="true">🚀</span>Stiahnuť bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+          <h2 class="rn-h2 rv" style="margin-top:2.5rem">Nejedná sa o <em>žiadne rýchle zbohatnutie.</em> Jedná sa o dlhodobý proces, ktorého výsledkom je <em>nekonečná renta.</em></h2>
           <p class="rn-text rv">Nie je to obyčajný kurz, je to <strong class="rn-green">8&nbsp;rokov praxe</strong>, viac ako <strong class="rn-green">3&nbsp;000 hodín vzdelávania</strong>, viac ako <strong class="rn-green">100 finančných kníh</strong> a <strong class="rn-green">8&nbsp;certifikácií</strong>.</p>
         </div>
       </section>
 
-      <!-- 5. Stiahni si bezplatný kurz teraz: pilulka, nadpis, tri karty, tlačidlo, pilulky, hodnotenie -->
+      <!-- 5. Stiahni si bezplatný kurz teraz -->
       <section class="rn-sec" id="obsah">
         <div class="rn-wrap rn-col">
-          <p class="rn-pills rv"><span class="rn-pill rn-pill--ink">🎁 Bezplatný kurz</span></p>
+          <p class="rn-pills rv"><span class="rn-pill rn-pill--ink"><span class="rn-emoji" aria-hidden="true">🎁</span>Bezplatný kurz</span></p>
           <h2 class="rn-h2 rv">Stiahni si <em>bezplatný kurz</em> teraz</h2>
         </div>
         <div class="rn-wrap"><div class="rn-cards3 rv">
-          <div class="rn-card"><h3>📊 ETF stratégie</h3><p>Najjednoduchší spôsob, ako investovať efektívne, rozumne a bezpečne.</p></div>
-          <div class="rn-card"><h3>💰 Dividendy</h3><p>Ako vyberať akcie, ktoré ti budú posielať peniaze každý mesiac.</p></div>
-          <div class="rn-card"><h3>🧭 Presný plán</h3><p>Kam a koľko investovať, aby si dosiahol finančnú slobodu.</p></div>
+          <div class="rn-card"><span class="rn-card-emoji" aria-hidden="true">📊</span><h3>ETF stratégie</h3><p>Najjednoduchší spôsob, ako investovať efektívne, rozumne a bezpečne.</p></div>
+          <div class="rn-card"><span class="rn-card-emoji" aria-hidden="true">💰</span><h3>Dividendy</h3><p>Ako vyberať akcie, ktoré ti budú posielať peniaze každý mesiac.</p></div>
+          <div class="rn-card"><span class="rn-card-emoji" aria-hidden="true">🧭</span><h3>Presný plán</h3><p>Kam a koľko investovať, aby si dosiahol finančnú slobodu.</p></div>
         </div></div>
         <div class="rn-wrap rn-col">
-          <p class="rn-actions rv"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="obsah">🚀 Stiahnuť bezplatný kurz</a></p>
-          <p class="rn-pills rn-pills--row rv" style="margin-top:1.25rem"><span class="rn-pill rn-pill--sand">✅ 100&nbsp;% zadarmo</span><span class="rn-pill rn-pill--sand">✅ Krok za krokom</span><span class="rn-pill rn-pill--sand">✅ Aj s malým kapitálom</span><span class="rn-pill rn-pill--sand">✅ + bonus kalkulačka</span></p>
+          <div class="rn-actions rv"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="obsah"><span class="rn-emoji" aria-hidden="true">🚀</span>Stiahnuť bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+          <p class="rn-pills rn-pills--row rv" style="margin-top:1.5rem"><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">✅</span>100&nbsp;% zadarmo</span><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">✅</span>Krok za krokom</span><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">✅</span>Aj s malým kapitálom</span><span class="rn-chip"><span class="rn-emoji" aria-hidden="true">✅</span>+ bonus kalkulačka</span></p>
           <div class="rn-rating rv"><span class="rn-stars" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg></span><span><b>4,9/5</b> hodnotenie</span><span><b>200+</b> klientov</span></div>
         </div>
       </section>
 
-      <!-- 6. Informácie škodia…: nadpis, štatistiky ako pilulky pod sebou, tlačidlo -->
+      <!-- 6. Informácie škodia…: nadpis, čísla, tlačidlo -->
       <section class="rn-sec" id="cisla">
         <div class="rn-wrap rn-col">
           <h2 class="rn-h2 rv">Informácie škodia len tomu, kto ich nemá. Ak nemáš nové informácie, tak sa nedostaneš k novým príležitostiam.</h2>
-          <ul class="rn-stats rv" style="--i:1">
-            <li>8 rokov skúseností</li>
-            <li>123&nbsp;000 sledovateľov</li>
-            <li>200 spokojných klientov</li>
-            <li>3&nbsp;500&nbsp;000&nbsp;€ v investíciách</li>
+          <ul class="rn-stats rv" style="--i:1" aria-label="Čísla">
+            <li><b data-count="8 rokov">8&nbsp;rokov</b><span>skúseností</span></li>
+            <li><b data-count="123 000">123&nbsp;000</b><span>sledovateľov</span></li>
+            <li><b data-count="200+" data-plus>200<i>+</i></b><span>spokojných klientov</span></li>
+            <li><b data-count="3 500 000 €">3&nbsp;500&nbsp;000&nbsp;€</b><span>v investíciách</span></li>
           </ul>
-          <p class="rn-actions rv"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="cisla">🚀 Stiahnuť bezplatný kurz</a></p>
+          <div class="rn-actions rv"><a class="km-btn km-btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="cisla"><span class="rn-emoji" aria-hidden="true">🚀</span>Stiahnuť bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
         </div>
       </section>
 
-      <!-- 7. Referencie 3×2 + screenshoty správ -->
+      <!-- 7. Referencie 3×2 + správy z WhatsAppu -->
       <section class="rn-sec" id="recenzie">
+        <div class="rn-wrap rn-col">
+          <p class="rn-kicker rv" style="margin-top:0">Referencie</p>
+          <h2 class="rn-h2 rv">Skúsenosti ľudí, ktorí so mnou <em>spolupracujú</em></h2>
+        </div>
         <div class="rn-wrap rn-wide">
-          <div class="rn-quotes rv">
-            <figure class="rn-quote"><blockquote>Ivan je skutočný profesionál. Jeho tvorba je jedinečná a ponúka vedomosti, ktoré sú vzácne na Slovensku. Jeho rýchly a ústretový prístup ma očaril. <strong>Spolupracujeme už štyri roky</strong> a vždy mi pomáha včas a úplne. Poučil ma nielen o financiách a investovaní, ale aj o osobnom rozvoji. Je úžasné vidieť, ako ľudia, ktorých poznáte, dosahujú úspechy a plnia si svoje sny.</blockquote><figcaption><img src="/assets/images/home/latkoczy-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Šimon Latkoczy</b>Slovenský hokejový reprezentant</span></figcaption></figure>
-            <figure class="rn-quote"><blockquote>S Ivanom spolupracujem už skoro 5&nbsp;rokov. Oslovil som ho na Instagrame a už vtedy robil zaujímavý a inšpiratívny obsah. <strong>Stratégia, ktorú sme nastavili, mi dáva veľký zmysel</strong> a snažím sa mesačné investície navyšovať. Keď niečo potrebujem, Ivan mi vždy pomôže a vždy nájde to najlepšie riešenie pre moju spokojnosť. Investovanie nie je jadrová fyzika, stačí mať dobrý plán, chápať veciam, mať podporu a nechať to pracovať.</blockquote><figcaption><span class="rn-mono" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b>Investor</span></figcaption></figure>
-            <figure class="rn-quote"><blockquote>Som rád, že som na Ivana natrafil a že sa venuje tomu, čomu sa venuje. Otvoril mi v nejakých veciach oči a <strong>ukázal nové veci, ktoré mi pomohli zmeniť myslenie</strong> a rozvinúť sa na osobu, akou som dnes. Prajem mu, nech robí to, čo robí, ide mu to veľmi dobre. Som veľmi spokojný, pretože stále keď som sa ho na niečo opýtal, veľmi rýchlo mi odpovedal.</blockquote><figcaption><span class="rn-mono" aria-hidden="true">M</span><span><b>Marián</b>Podnikateľ</span></figcaption></figure>
-            <figure class="rn-quote"><blockquote>Ivan je vynikajúci odborník na investovanie. Pomohol mi správne zhodnotiť moje peniaze, keď som začínal pracovať ako lekár vo Švajčiarsku. Jeho vedomosti a rady sú hodnotné a vždy mi rýchlo odpovie na otázky. <strong>Vďaka nemu som schopný dlhodobo budovať svoj majetok.</strong></blockquote><figcaption><img src="/assets/images/home/vanecko-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>MUDr. Martin Vanečko</b>Doktor pôsobiaci vo Švajčiarsku</span></figcaption></figure>
-            <figure class="rn-quote"><blockquote>Ivan je skvelým spoločníkom pre podnikateľov. <strong>Jeho rady o investovaní mi pomáhajú zhodnocovať peniaze zo svojho biznisu.</strong> Je skúsený a veľmi znalý. Navyše, našiel som s ním aj spoločnú reč a podobné záujmy.</blockquote><figcaption><img src="/assets/images/home/papik-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Ladislav Papík</b>Konateľ firmy PAPIK ENTERPRISE s.r.o.</span></figcaption></figure>
-            <figure class="rn-quote"><blockquote>Som rád, že som Ivana spoznal. Má kamarátsky prístup a rozhovor s ním ma nútil rozmýšľať hlbšie nad riešením problematiky. Veľmi veľa ma naučil ohľadom podnikania a investovania. A hlavne <strong>zmenil moje myslenie nad svojou finančnou budúcnosťou.</strong></blockquote><figcaption><span class="rn-mono" aria-hidden="true">J</span><span><b>Juraj</b>Profesionálny plavec</span></figcaption></figure>
+          <div class="rn-quotes rv" style="margin-top:1rem">
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>Ivan je skutočný profesionál. Jeho tvorba je jedinečná a ponúka vedomosti, ktoré sú vzácne na Slovensku. Jeho rýchly a ústretový prístup ma očaril. <strong>Spolupracujeme už štyri roky</strong> a vždy mi pomáha včas a úplne. Poučil ma nielen o financiách a investovaní, ale aj o osobnom rozvoji. Je úžasné vidieť, ako ľudia, ktorých poznáte, dosahujú úspechy a plnia si svoje sny.</blockquote><figcaption><img src="/assets/images/home/latkoczy-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Šimon Latkoczy</b>Slovenský hokejový reprezentant</span></figcaption></figure>
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>S Ivanom spolupracujem už skoro 5&nbsp;rokov. Oslovil som ho na Instagrame a už vtedy robil zaujímavý a inšpiratívny obsah. <strong>Stratégia, ktorú sme nastavili, mi dáva veľký zmysel</strong> a snažím sa mesačné investície navyšovať. Keď niečo potrebujem, Ivan mi vždy pomôže a vždy nájde to najlepšie riešenie pre moju spokojnosť. Investovanie nie je jadrová fyzika, stačí mať dobrý plán, chápať veciam, mať podporu a nechať to pracovať.</blockquote><figcaption><span class="rn-mono" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b>Investor</span></figcaption></figure>
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>Som rád, že som na Ivana natrafil a že sa venuje tomu, čomu sa venuje. Otvoril mi v nejakých veciach oči a <strong>ukázal nové veci, ktoré mi pomohli zmeniť myslenie</strong> a rozvinúť sa na osobu, akou som dnes. Prajem mu, nech robí to, čo robí, ide mu to veľmi dobre. Som veľmi spokojný, pretože stále keď som sa ho na niečo opýtal, veľmi rýchlo mi odpovedal.</blockquote><figcaption><span class="rn-mono" aria-hidden="true">M</span><span><b>Marián</b>Podnikateľ</span></figcaption></figure>
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>Ivan je vynikajúci odborník na investovanie. Pomohol mi správne zhodnotiť moje peniaze, keď som začínal pracovať ako lekár vo Švajčiarsku. Jeho vedomosti a rady sú hodnotné a vždy mi rýchlo odpovie na otázky. <strong>Vďaka nemu som schopný dlhodobo budovať svoj majetok.</strong></blockquote><figcaption><img src="/assets/images/home/vanecko-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>MUDr. Martin Vanečko</b>Doktor pôsobiaci vo Švajčiarsku</span></figcaption></figure>
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>Ivan je skvelým spoločníkom pre podnikateľov. <strong>Jeho rady o investovaní mi pomáhajú zhodnocovať peniaze zo svojho biznisu.</strong> Je skúsený a veľmi znalý. Navyše, našiel som s ním aj spoločnú reč a podobné záujmy.</blockquote><figcaption><img src="/assets/images/home/papik-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Ladislav Papík</b>Konateľ firmy PAPIK ENTERPRISE s.r.o.</span></figcaption></figure>
+            <figure class="rn-quote"><span class="rn-quote-mark" aria-hidden="true">“</span><blockquote>Som rád, že som Ivana spoznal. Má kamarátsky prístup a rozhovor s ním ma nútil rozmýšľať hlbšie nad riešením problematiky. Veľmi veľa ma naučil ohľadom podnikania a investovania. A hlavne <strong>zmenil moje myslenie nad svojou finančnou budúcnosťou.</strong></blockquote><figcaption><span class="rn-mono" aria-hidden="true">J</span><span><b>Juraj</b>Profesionálny plavec</span></figcaption></figure>
           </div>
-          <div class="rn-shots rv"><img src="/assets/images/recenzia-1.png" alt="Správa od klienta na WhatsAppe" width="510" height="330" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-6.png" alt="Správa od klienta na WhatsAppe" width="500" height="404" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-4.png" alt="Správa od klienta na WhatsAppe" width="518" height="716" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-2.png" alt="Správa od klienta na WhatsAppe" width="532" height="322" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-3.png" alt="Správa od klienta na WhatsAppe" width="476" height="374" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-5.png" alt="Správa od klienta na WhatsAppe" width="508" height="700" loading="lazy" decoding="async" /></div>
+          <div class="rv" style="margin-top:2.5rem"><p class="rn-shots-cap">Reálne správy od mojich klientov</p><div class="rn-shots"><img src="/assets/images/recenzia-1.png" alt="Správa od klienta na WhatsAppe" width="510" height="330" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-6.png" alt="Správa od klienta na WhatsAppe" width="500" height="404" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-4.png" alt="Správa od klienta na WhatsAppe" width="518" height="716" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-2.png" alt="Správa od klienta na WhatsAppe" width="532" height="322" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-3.png" alt="Správa od klienta na WhatsAppe" width="476" height="374" loading="lazy" decoding="async" /><img src="/assets/images/recenzia-5.png" alt="Správa od klienta na WhatsAppe" width="508" height="700" loading="lazy" decoding="async" /></div><p class="rn-note" style="text-align:center">Správy od klientov, zverejnené s ich súhlasom.</p></div>
         </div>
       </section>
 
-      <!-- 8. Časté výhovorky: pilulka, nadpis, text, tri karty s emoji, otázka, tlačidlo -->
+      <!-- 8. Časté výhovorky -->
       <section class="rn-sec" id="vyhovorky">
         <div class="rn-wrap rn-col">
           <p class="rn-pills rv"><span class="rn-pill rn-pill--ink">Časté výhovorky</span></p>
@@ -329,24 +419,26 @@ img { max-width: 100%; }
           <div class="rn-qa rv"><span class="rn-qa-ic" aria-hidden="true">💰</span><div><h3>„Nemám dostatok peňazí na investovanie“</h3><p>Tento systém funguje aj s malými sumami. Človek môže hneď čerpať rentu, ak má majetok. Ak nemá, môže postupne navyšovať investície, ako rastie jeho príjem, a potom čerpať rentu.</p></div></div>
           <div class="rn-qa rv"><span class="rn-qa-ic" aria-hidden="true">⏳</span><div><h3>„Nemám čas sa to učiť“</h3><p>Je to praktický minikurz. Celý kurz trvá hodinu. Uviedol som v kurze praktické postupy, ako to robiť časovo efektívne.</p></div></div>
           <div class="rn-qa rv"><span class="rn-qa-ic" aria-hidden="true">📉</span><div><h3>„Čo ak sa trh zrúti a renta nebude?“</h3><p>Systém renty funguje v každom trhovom prostredí. Jedna zo stratégií je podložená aj Trinity Study, ktorá hovorí o funkčnosti v každom momente. Niektoré stratégie vnímajú pokles trhu ako super príležitosť.</p></div></div>
-          <h2 class="rn-h2 rn-h2--sm rv">Otázka nie je<br />„Čo ak to nepôjde?“<br />ale „Čo ak to pôjde<br />a ja som to nevyskúšal?“</h2>
-          <p class="rn-actions rv"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_renta_cta" data-umami-event-section="vyhovorky">🚀 Stiahnuť bezplatný kurz</a></p>
+          <p class="rn-statement rv">Otázka nie je „Čo ak to nepôjde?“, ale <em>„Čo ak to pôjde a ja som to nevyskúšal?“</em></p>
+          <div class="rn-actions rv"><a class="km-btn km-btn--lg" href="#formular" data-umami-event="click_renta_cta" data-umami-event-section="vyhovorky"><span class="rn-emoji" aria-hidden="true">🚀</span>Stiahnuť bezplatný kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
         </div>
       </section>
 
-      <!-- 9. Záver: hnedý pás s krémovou kartou a formulárom (stará: zelený pás) -->
+      <!-- 9. Záver -->
       <section class="rn-final" id="formular" data-bar-hide>
         <div class="rn-wrap">
           <div class="rn-final-card rv">
-            <h2 class="rn-h2"><em>Využi poslednú šancu</em> a získaj kurz o rente ZADARMO</h2>
-            <form class="kurz-form rn-form rv" id="kurz-form-2" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" novalidate style="--i:1">
+            <h2 class="rn-h2"><em>Využi poslednú šancu</em> a získaj kurz o rente zadarmo</h2>
+            <p class="rn-lede">Hodinové praktické video ti pošlem na e-mail hneď po odoslaní.</p>
+            <form class="kurz-form rn-form" id="kurz-form-2" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" data-inline-errors novalidate>
                 <p class="f-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="website" tabindex="-1" autocomplete="off" /></label></p>
                 <input type="hidden" name="stranka" value="/renta" />
-                <label class="rn-field"><span>Meno</span><input name="meno" type="text" placeholder="Meno" autocomplete="given-name" /></label>
-                <label class="rn-field"><span>Kam ti pošlem kurz?</span><input name="email" type="email" placeholder="Email" autocomplete="email" inputmode="email" /></label>
-                <p class="rn-form-note">Tvoje osobné údaje sú spracovávané v súlade so <a href="/gdpr" target="_blank" rel="noopener">Zásadami ochrany osobných údajov</a>.</p>
+                <label class="rn-field" for="kurz-form-2-meno"><span>Meno</span><input id="kurz-form-2-meno" name="meno" type="text" placeholder="Tvoje meno…" autocomplete="given-name" autocapitalize="words" aria-describedby="kurz-form-2-meno-err" /><small class="rn-field-error" id="kurz-form-2-meno-err" data-error-for="meno" role="alert"></small></label>
+                <label class="rn-field" for="kurz-form-2-email"><span>Kam ti pošlem kurz?</span><input id="kurz-form-2-email" name="email" type="email" placeholder="tvoj@email.sk…" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" aria-describedby="kurz-form-2-email-err" /><small class="rn-field-error" id="kurz-form-2-email-err" data-error-for="email" role="alert"></small></label>
                 <p class="f-error rn-form-error" role="alert" hidden></p>
-                <p class="rn-actions"><button type="submit" class="km-btn"><span data-label>Stiahnuť bezplatný kurz</span></button></p>
+                <p class="rn-actions"><button type="submit" class="km-btn km-btn--lg"><span data-label>Stiahnuť bezplatný kurz</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></p>
+                <p class="rn-form-help">Odkaz na kurz ti príde na e-mail hneď po odoslaní.</p>
+                <p class="rn-form-note">Tvoje osobné údaje sú spracovávané v súlade so <a href="/gdpr" target="_blank" rel="noopener">Zásadami ochrany osobných údajov</a>.</p>
               </form>
           </div>
         </div>
@@ -380,6 +472,8 @@ img { max-width: 100%; }
         <p class="rn-footer-legal">Ivan Jašík je finančný poradca registrovaný v NBS. Obsah na tejto stránke má informačný charakter a nepredstavuje individuálne investičné odporúčanie. Investovanie je spojené s rizikom a historická výkonnosť nie je zárukou budúcich výnosov.</p>
       </div>
     </footer>
+
+    <div class="rn-bar" id="bar" aria-hidden="true"><span class="rn-bar-text"><b>Bezplatný kurz</b>hodinové video · zadarmo</span><a class="km-btn" href="#kurz" tabindex="-1" data-umami-event="click_renta_cta" data-umami-event-section="sticky-bar">Chcem kurz <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
   </div>
 
     <script>
@@ -589,12 +683,29 @@ img { max-width: 100%; }
     var err = form.querySelector(".f-error"), btn = form.querySelector('button[type="submit"]'), label = btn.querySelector("[data-label]"), text = label.textContent, sending = false;
     var done = form.getAttribute("data-done") || "/renta/dakujem";
     if (form.elements.stranka) form.elements.stranka.value = window.location.pathname;
-    var fail = function (msg, field) { err.textContent = msg; err.hidden = false; if (field && field.focus) field.focus(); };
+    var inline = form.hasAttribute("data-inline-errors");
+    var clearInline = function () {
+      [].forEach.call(form.querySelectorAll("[data-error-for]"), function (e) { e.textContent = ""; });
+      [].forEach.call(form.querySelectorAll("[aria-invalid]"), function (i) { i.removeAttribute("aria-invalid"); });
+    };
+    var fail = function (msg, field) {
+      var slot = inline && field && form.querySelector('[data-error-for="' + field.name + '"]');
+      if (slot) { slot.textContent = msg; field.setAttribute("aria-invalid", "true"); }
+      else { err.textContent = msg; err.hidden = false; }
+      if (field && field.focus) field.focus();
+    };
+    if (inline) {
+      form.addEventListener("input", function (e) {
+        var f = e.target, slot = f && f.name && form.querySelector('[data-error-for="' + f.name + '"]');
+        if (slot && slot.textContent) { slot.textContent = ""; f.removeAttribute("aria-invalid"); }
+      });
+    }
     var busy = function (on) { sending = on; btn.disabled = on; label.textContent = on ? "Odosielam…" : text; };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (sending) return;
       var meno = form.elements.meno.value.trim(), email = form.elements.email.value.trim();
+      clearInline();
       if (!meno) { fail("Prosím, vyplň svoje meno.", form.elements.meno); return; }
       if (!emailOk(email)) { fail("Prosím, zadaj platný e-mail, na ktorý ti kurz pošlem.", form.elements.email); return; }
       err.hidden = true;

@@ -1746,12 +1746,29 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     var err = form.querySelector(".f-error"), btn = form.querySelector('button[type="submit"]'), label = btn.querySelector("[data-label]"), text = label.textContent, sending = false;
     var done = form.getAttribute("data-done") || "/renta/dakujem";
     if (form.elements.stranka) form.elements.stranka.value = window.location.pathname;
-    var fail = function (msg, field) { err.textContent = msg; err.hidden = false; if (field && field.focus) field.focus(); };
+    var inline = form.hasAttribute("data-inline-errors");
+    var clearInline = function () {
+      [].forEach.call(form.querySelectorAll("[data-error-for]"), function (e) { e.textContent = ""; });
+      [].forEach.call(form.querySelectorAll("[aria-invalid]"), function (i) { i.removeAttribute("aria-invalid"); });
+    };
+    var fail = function (msg, field) {
+      var slot = inline && field && form.querySelector('[data-error-for="' + field.name + '"]');
+      if (slot) { slot.textContent = msg; field.setAttribute("aria-invalid", "true"); }
+      else { err.textContent = msg; err.hidden = false; }
+      if (field && field.focus) field.focus();
+    };
+    if (inline) {
+      form.addEventListener("input", function (e) {
+        var f = e.target, slot = f && f.name && form.querySelector('[data-error-for="' + f.name + '"]');
+        if (slot && slot.textContent) { slot.textContent = ""; f.removeAttribute("aria-invalid"); }
+      });
+    }
     var busy = function (on) { sending = on; btn.disabled = on; label.textContent = on ? "Odosielam…" : text; };
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (sending) return;
       var meno = form.elements.meno.value.trim(), email = form.elements.email.value.trim();
+      clearInline();
       if (!meno) { fail("Prosím, vyplň svoje meno.", form.elements.meno); return; }
       if (!emailOk(email)) { fail("Prosím, zadaj platný e-mail, na ktorý ti kurz pošlem.", form.elements.email); return; }
       err.hidden = true;
