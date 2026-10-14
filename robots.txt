@@ -6,5 +6,7 @@ Disallow: /konzultacia-clen
 Disallow: /konzultacia-clen.html
 Disallow: /nova-cennik
 Disallow: /nova-cennik.html
+Disallow: /renta/kurz
+Disallow: /renta/kurz.html
 
 Sitemap: https://www.jsmentor.sk/sitemap.xml
