@@ -1876,6 +1876,19 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     document.addEventListener("keydown", function (e) { if (!vm.hidden && e.key === "Escape") vmClose(); });
   }
 
+  // /renta (svetlá): video v hero – titulná karta je tlačidlo s data-vimeo/data-youtube, po kliknutí sa nahradí prehrávačom
+  var stageBtn = document.querySelector(".km-stage-video[data-vimeo], .km-stage-video[data-youtube]");
+  if (stageBtn) {
+    stageBtn.addEventListener("click", function () {
+      var vimeo = stageBtn.getAttribute("data-vimeo"), hash = stageBtn.getAttribute("data-hash"), yt = stageBtn.getAttribute("data-youtube");
+      var wrap = document.createElement("div"); wrap.className = "km-stage-frame";
+      var f = document.createElement("iframe");
+      f.src = vimeo ? "https://player.vimeo.com/video/" + vimeo + "?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479&dnt=1" + (hash ? "&h=" + hash : "") : "https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0&modestbranding=1";
+      f.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write"); f.setAttribute("allowfullscreen", ""); f.setAttribute("title", stageBtn.getAttribute("data-title") || "Video");
+      wrap.appendChild(f); stageBtn.replaceWith(wrap);
+    });
+  }
+
   frame();
 })();
 
