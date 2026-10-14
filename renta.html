@@ -1288,9 +1288,136 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
 /* kurz: zlatý pás hneď za tmavým formulárom */
 .zaver--kurz p { max-width: 44rem; margin: 0 auto; }
 
+/* ===== /renta v2 (Refero: MasterClass plagátový hero, Sequel vlasové linky, Skillshare svetlý panel + pás čísel) ===== */
+#renta .sec:not(.hero):not(.sec--dark) { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+#renta .sec--dark { padding-top: 4rem; padding-bottom: 4rem; }
+@media (min-width: 768px) { #renta .sec:not(.hero):not(.sec--dark) { padding-top: 6rem; padding-bottom: 6rem; } #renta .sec--dark { padding-top: 5rem; padding-bottom: 5rem; } }
+
+/* plagátový hero */
+.poster { position: relative; display: flex; align-items: flex-end; min-height: min(90vh, 58rem); padding: 0; overflow: hidden; isolation: isolate; }
+.poster::before { display: none; }
+.poster-media { position: absolute; inset: 0 0 0 18%; z-index: -1; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%); mask-image: linear-gradient(90deg, transparent 0, #000 32%); }
+.poster-media picture, .poster-media img { display: block; width: 100%; height: 100%; }
+.poster-media img { object-fit: cover; object-position: 50% 28%; }
+.poster-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27, 22, 19, 0.96) 0%, rgba(27, 22, 19, 0.8) 30%, rgba(27, 22, 19, 0.24) 58%, rgba(27, 22, 19, 0.04) 100%), linear-gradient(180deg, rgba(27, 22, 19, 0.45) 0%, rgba(27, 22, 19, 0) 28%, rgba(27, 22, 19, 0.1) 62%, #1b1613 100%); }
+.poster-wrap { position: relative; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 2rem; align-items: end; padding-top: 5rem; padding-bottom: 2.75rem; }
+.poster-copy { max-width: 42rem; }
+.poster-h1 { margin: 0 0 1.25rem; font-size: clamp(2.625rem, 6.3vw, 5.75rem); line-height: 0.98; letter-spacing: -0.035em; }
+.poster-copy .lede { max-width: 36rem; color: var(--paper); }
+.poster-cta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin-top: 1.75rem; }
+.poster .kicks { justify-content: flex-start; }
+.trailer { position: relative; width: 19rem; max-width: 100%; }
+.trailer-btn { display: block; position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; border: 0; border-radius: 1rem; overflow: hidden; background: #241f1b; color: var(--paper); cursor: pointer; box-shadow: inset 0 0 0 1.5px rgba(217, 177, 92, 0.55), 0 30px 60px -36px rgba(0, 0, 0, 0.9); isolation: isolate; }
+.trailer-btn img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+.trailer-btn:hover img { transform: scale(1.04); }
+.trailer-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(27, 23, 20, 0) 40%, rgba(27, 23, 20, 0.7) 100%); }
+.trailer-ic { position: absolute; z-index: 1; left: 50%; top: 50%; display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; transform: translate(-50%, -50%); border-radius: 50%; background: var(--gold); color: var(--ink); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5), 0 0 0 8px rgba(217, 177, 92, 0.22); transition: transform 0.35s var(--ease); }
+.trailer-ic svg { width: 1.25rem; height: 1.25rem; margin-left: 0.125rem; }
+.trailer-btn:hover .trailer-ic { transform: translate(-50%, -50%) scale(1.06); }
+.trailer-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.trailer-cap { position: absolute; z-index: 1; left: 0.875rem; right: 0.875rem; bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; font-size: 0.8125rem; font-weight: 600; text-align: left; }
+.trailer-cap small { font-weight: 500; color: var(--mut); }
+.facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.5rem; margin: 3rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--hair-2); }
+@media (min-width: 768px) { .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 2rem; margin-top: 3.5rem; padding-top: 1.75rem; } }
+.facts div { min-width: 0; }
+.facts dt { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mut-2); }
+.facts dd { margin: 0.375rem 0 0; font-family: var(--serif); font-size: clamp(1.125rem, 1.6vw, 1.375rem); font-weight: 700; line-height: 1.15; color: var(--paper); }
+@media (max-width: 899px) {
+  .poster { display: block; min-height: 0; }
+  .poster-media { position: relative; inset: auto; z-index: 0; aspect-ratio: 4 / 5; max-height: 34rem; margin: 0 0 -7rem; -webkit-mask-image: none; mask-image: none; }
+  .poster-media img { object-position: 50% 0%; }
+  .poster-media::after { background: linear-gradient(180deg, rgba(27, 22, 19, 0.2) 0%, rgba(27, 22, 19, 0) 30%, rgba(27, 22, 19, 0.55) 68%, #1b1613 100%); }
+  .poster-wrap { display: block; padding-top: 0; padding-bottom: 2.25rem; }
+  .poster-h1 { font-size: clamp(2.375rem, 11.5vw, 3.375rem); }
+  .poster .kicks { gap: 0.375rem; }
+  .trailer { width: 100%; margin-top: 1.75rem; }
+  .facts { margin-top: 2rem; }
+}
+
+/* svetlý registračný panel (jediný svetlý prvok) */
+.sheet--cream { --paper: #3f2e24; --mut: #5c4838; --mut-2: #7c675a; --hair: rgba(63, 46, 36, 0.12); --hair-2: rgba(63, 46, 36, 0.22); --sur-1: #f3ebdf; --sur-2: #faf5ec; --sur-3: #fffcf7; --gold: #3f2e24; --red-l: #ab4132; color: var(--paper); background: linear-gradient(180deg, #f6efe3 0%, #efe5d5 100%); border-color: rgba(63, 46, 36, 0.14); box-shadow: 0 50px 100px -60px rgba(0, 0, 0, 0.95), 0 0 160px 10px rgba(243, 233, 221, 0.05); }
+.sheet--cream .f-title span { color: var(--green); }
+.sheet--cream .btn--green { background: linear-gradient(180deg, #3a2f27 0%, #292420 100%); color: #f3e9dd; box-shadow: 0 14px 30px -18px rgba(41, 36, 32, 0.6); }
+.sheet--cream .btn--green:hover { background: linear-gradient(180deg, #2f2621 0%, #1f1b17 100%); }
+.sheet--cream .btn--green::after { background: linear-gradient(100deg, rgba(243, 233, 221, 0) 0%, rgba(243, 233, 221, 0.26) 50%, rgba(243, 233, 221, 0) 100%); }
+.sheet--cream .f-input { background: #fffcf7; }
+.sheet--cream .f-input:focus { background: #fff; }
+.sheet--cream .f-foot a { color: var(--green); }
+.sheet--cream .f-foot a:hover { color: var(--paper); }
+#kurz .lead-steps, #formular .lead-steps { margin-top: 1.5rem; }
+
+/* delené sekcie: nadpis vľavo, obsah vpravo */
+.split { display: grid; gap: 2rem; }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 4.5rem; align-items: start; } }
+.split-head .kick { margin-bottom: 1.25rem; }
+.split-head .lede { margin: 1rem 0 0; }
+.split-head .why-list { margin-top: 1.5rem; }
+.why-list--dark .why-tick { background: var(--gold); color: var(--ink); }
+.who-list { list-style: none; margin: 0; padding: 0; }
+.who-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.375rem 0; border-top: 1px solid var(--hair-2); }
+.who-list li:last-child { border-bottom: 1px solid var(--hair-2); }
+.who-list .safe-ok { margin-top: 0.25rem; }
+.who-list p { margin: 0; font-family: var(--serif); font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 600; line-height: 1.3; color: var(--paper); text-wrap: pretty; }
+#prekoho .stack-after { margin-top: 3rem; }
+.lessons { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.lessons li { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1rem; padding: 1.75rem 0; border-top: 1px solid var(--hair-2); }
+.lessons li:last-child { border-bottom: 1px solid var(--hair-2); }
+@media (min-width: 600px) { .lessons li { grid-template-columns: 5rem minmax(0, 1fr); gap: 1.5rem; padding: 2rem 0; } }
+.lesson-n { font-family: var(--serif); font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--gold); font-variant-numeric: tabular-nums; }
+.lessons h3 { margin: 0.25rem 0 0.5rem; font-family: var(--serif); font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.015em; color: var(--paper); }
+.lessons p { margin: 0; font-size: 1.0625rem; line-height: 1.6; color: var(--mut); text-wrap: pretty; }
+#obsah .actions { margin-top: 3rem; }
+
+/* kto ťa učí */
+.split--ivan { align-items: center; }
+.ivan-photo { position: relative; width: 100%; max-width: 26rem; margin: 0 auto; border-radius: var(--r); overflow: hidden; background: var(--sur-3); box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.9); }
+@media (min-width: 900px) { .ivan-photo { max-width: none; margin: 0; } }
+.ivan-photo picture, .ivan-photo img { display: block; width: 100%; height: auto; }
+.ivan-photo img { aspect-ratio: 4 / 5; object-fit: cover; }
+.ivan-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(27, 22, 19, 0) 70%, rgba(27, 22, 19, 0.35) 100%); }
+.ivan-body .kick { margin-bottom: 1.25rem; }
+.ivan-p { margin: 1.25rem 0 0; font-size: 1.0625rem; line-height: 1.65; color: var(--mut); text-wrap: pretty; }
+@media (min-width: 900px) { .ivan-p { font-size: 1.125rem; } }
+.ivan-body .cta { margin-top: 1.75rem; }
+.proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 1.75rem 0 0; padding: 1.375rem 0; border-top: 1px solid var(--hair-2); border-bottom: 1px solid var(--hair-2); }
+@media (min-width: 600px) { .proof { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.proof div { min-width: 0; }
+.proof dd { margin: 0; font-family: var(--serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--paper); white-space: nowrap; }
+.proof dt { margin-top: 0.375rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mut-2); }
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 3rem; }
+.strip picture, .strip img { display: block; width: 100%; }
+.strip img { aspect-ratio: 4 / 5; height: auto; object-fit: cover; border-radius: 1rem; box-shadow: inset 0 0 0 1px var(--hair); }
+@media (max-width: 599px) { .strip { display: flex; gap: 0.75rem; margin: 2.5rem -1.25rem 0; padding: 0 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; } .strip::-webkit-scrollbar { display: none; } .strip picture { flex: 0 0 68%; scroll-snap-align: start; } }
+#cisla .head { margin-bottom: 2rem; }
+
+/* citáty: mriežka s vlasovými linkami, zlatý výťah + zvyšok */
+.quotes { display: grid; border-top: 1px solid var(--hair-2); border-left: 1px solid var(--hair-2); }
+@media (min-width: 700px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .quotes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.quote { display: flex; flex-direction: column; margin: 0; padding: 1.75rem 1.5rem; border-right: 1px solid var(--hair-2); border-bottom: 1px solid var(--hair-2); }
+@media (min-width: 768px) { .quote { padding: 2.25rem 2rem; } }
+.quote blockquote { flex: 1 1 auto; margin: 0; }
+.quote-big { margin: 0; font-family: var(--serif); font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--gold); text-wrap: pretty; }
+.quote-rest { margin: 1rem 0 0; font-size: 0.9375rem; line-height: 1.55; color: var(--mut); text-wrap: pretty; }
+.quote figcaption { display: flex; align-items: center; gap: 0.875rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hair); font-size: 0.875rem; line-height: 1.35; color: var(--mut-2); }
+.quote figcaption img { flex-shrink: 0; width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover; background: var(--sur-3); box-shadow: 0 0 0 2px var(--bg-1), 0 0 0 3.5px rgba(217, 177, 92, 0.5); }
+.quote figcaption .rev-mono { width: 3rem; height: 3rem; font-size: 1rem; box-shadow: 0 0 0 2px var(--bg-1), 0 0 0 3.5px rgba(217, 177, 92, 0.5); }
+.quote figcaption b { display: block; font-size: 0.9375rem; font-weight: 600; color: var(--paper); }
+.quotes + .wall-cap { margin-top: 3.5rem; }
+
+/* video modal (ukážka) */
+.vm { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1.25rem; background: rgba(20, 15, 10, 0.92); }
+.vm[hidden] { display: none; }
+.vm-box { position: relative; width: min(100%, 72rem); }
+.vm-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 1rem; overflow: hidden; background: #000; box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9); }
+.vm-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vm-close { position: absolute; right: 0; top: -3.25rem; display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; border: 0; border-radius: 50%; background: var(--sur-2); color: var(--paper); cursor: pointer; box-shadow: inset 0 0 0 1px var(--hair-2); }
+.vm-close svg { width: 1.25rem; height: 1.25rem; }
+.vm-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
     </style>
   </head>
-  <body>
+  <body id="renta">
   <div class="page">
     <div class="bg" aria-hidden="true"></div>
     <header class="hdr" id="hdr">
@@ -1302,33 +1429,47 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     </header>
     <nav class="dots" id="dots" aria-label="Sekcie stránky"><a href="#hero" data-label="Úvod"></a><a href="#kurz" data-label="Kurz"></a><a href="#prekoho" data-label="Pre koho"></a><a href="#info" data-label="Čo získaš"></a><a href="#obsah" data-label="Obsah"></a><a href="#cisla" data-label="Čísla"></a><a href="#recenzie" data-label="Referencie"></a><a href="#vyhovorky" data-label="Výhovorky"></a><a href="#formular" data-label="Formulár"></a></nav>
     <main>
-      <!-- 1. Úvod: dva štítky, nadpis v presnom znení, video (zatiaľ fotka), tlačidlo + dve pilulky -->
-      <section class="sec hero hero--renta" id="hero">
-        <div class="wrap">
-          <div class="hero-head">
+      <!-- 1. Úvod: plagátový hero (MasterClass) – fotka cez celú šírku, nadpis a fakty vľavo; ukážka videa ako plávajúca karta, len keď existuje ID videa -->
+      <section class="sec hero poster" id="hero">
+        <div class="poster-media" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 899px)" srcset="/assets/images/renta/hero-renta-m.webp" type="image/webp" />
+            <source media="(max-width: 899px)" srcset="/assets/images/renta/hero-renta-m.jpg" />
+            <source srcset="/assets/images/renta/hero-renta.webp" type="image/webp" />
+            <img src="/assets/images/renta/hero-renta.jpg" alt="" width="2000" height="1125" fetchpriority="high" decoding="async" />
+          </picture>
+        </div>
+        <div class="wrap poster-wrap">
+          <div class="poster-copy">
             <p class="kicks ra" style="--i:0"><span class="kick">Budeš rozmýšľať inak</span><span class="kick kick--fill">Toto nie sú dristy</span></p>
-            <h1 class="h1 ra" style="--i:1">Zisti, ako môžeš získať <em>doživotnú rentu 2&nbsp;000&nbsp;€</em> vďaka pasívnemu investovaniu</h1>
+            <h1 class="h1 poster-h1 ra" style="--i:1">Zisti, ako môžeš získať <em>doživotnú rentu 2&nbsp;000&nbsp;€</em> vďaka pasívnemu investovaniu</h1>
+            <p class="lede ra" style="--i:2">Hodinové praktické video zadarmo. Pošlem ti ho na e-mail.</p>
+            <div class="cta poster-cta ra" style="--i:3"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="hero"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div>
           </div>
-          <div class="hero-media ra" style="--i:5" id="hero-media">
-            <div class="screen tile--gold" id="vid" data-title="Ivan Jašík: Doživotná renta 2 000 € vďaka pasívnemu investovaniu">
-              <picture><source srcset="/assets/images/renta/poster-renta.webp" type="image/webp" /><img class="screen-poster" src="/assets/images/renta/poster-renta.jpg" alt="Ivan Jašík" width="1280" height="720" fetchpriority="high" decoding="async" /></picture>
-              <span class="screen-tags"><span class="pill">Ivan Jašík</span><span class="pill">Pod dohľadom NBS</span></span>
-            </div>
-          </div>
-          <div class="cta hero-cta ra" style="--i:6"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="hero"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a><ul class="cond-list" aria-label="Čo dostaneš"><li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>100&nbsp;% zadarmo</li><li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Bonus: rentová kalkulačka</li></ul></div>
+          
+          <dl class="facts ra" style="--i:4">
+            <div><dt>Dĺžka</dt><dd>Hodinové video</dd></div>
+            <div><dt>Cena</dt><dd>100&nbsp;% zadarmo</dd></div>
+            <div><dt>Kapitál</dt><dd>Aj s malým</dd></div>
+            <div><dt>Bonus</dt><dd>Rentová kalkulačka</dd></div>
+          </dl>
         </div>
       </section>
 
-      <!-- 2. Kurz: hodinové praktické video, formulár meno + e-mail → /api/renta (Ecomail, štítok renta-kurz) → /renta/dakujem -->
+      <!-- 2. Kurz: formulár (meno + e-mail) ako jediný svetlý panel na stránke → /api/renta (Ecomail) → /renta/dakujem -->
       <section class="sec sec--dark" id="kurz" data-bar-hide>
         <div class="wrap">
           <div class="lead-grid">
             <div class="lead-copy rv">
               <p class="kick">Hodinové praktické video</p>
               <h2 class="h2 h2--md">Vytvor si doživotnú rentu = pravidelný príjem, ktorý ti umožní <em>žiť slobodne.</em></h2>
-              <p class="lede">Odkaz na kurz ti príde na e-mail hneď po odoslaní.</p>
+              <ol class="lead-steps" aria-label="Ako to prebieha">
+                <li><span>1</span>Napíšeš meno a e-mail</li>
+                <li><span>2</span>Odkaz na kurz ti príde hneď</li>
+                <li><span>3</span>Pozrieš si ho, keď máš hodinu času</li>
+              </ol>
             </div>
-            <div class="lead-card sheet rv fx" id="kurz-form-card" style="--i:1">
+            <div class="lead-card sheet sheet--cream rv fx" id="kurz-form-card" style="--i:1">
               <p class="f-title"><b>Bezplatný kurz</b><span>hodinové video</span></p>
               <form class="kurz-form" id="kurz-form" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" novalidate>
                 <p class="f-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="website" tabindex="-1" autocomplete="off" /></label></p>
@@ -1344,92 +1485,80 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         </div>
       </section>
 
-      <!-- 3. Pre koho je tento kurz: dve dlaždice + záverečná veta -->
+      <!-- 3. Pre koho je tento kurz: nadpis vľavo, dva riadky so zlatou fajkou vpravo -->
       <section class="sec" id="prekoho">
         <div class="wrap">
-          <div class="head rv">
-            <h2 class="h2">Pre koho je <em>tento kurz?</em></h2>
-          </div>
-          <div class="who">
-            <article class="tile tile--hover fx rv" data-tilt3="3" style="--i:0"><span class="kick kick--sm">01</span><p>Pre človeka, ktorý chce vybudovať majetok a následne čerpať doživotnú rentu.</p></article>
-            <article class="tile tile--gold tile--hover fx rv" data-tilt3="3" style="--i:1"><span class="kick kick--sm">02</span><p>Pre človeka, ktorý už má majetok a teraz chce efektívne z neho čerpať doživotnú rentu.</p></article>
+          <div class="split">
+            <div class="split-head rv"><h2 class="h2 h2--left">Pre koho je <em>tento kurz?</em></h2></div>
+            <ul class="who-list rv" style="--i:1">
+              <li><i class="safe-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><p>Pre človeka, ktorý chce vybudovať majetok a následne čerpať doživotnú rentu.</p></li>
+              <li><i class="safe-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><p>Pre človeka, ktorý už má majetok a teraz chce efektívne z neho čerpať doživotnú rentu.</p></li>
+            </ul>
           </div>
           <p class="stack-after rv">Ak túžiš po tom, aby tvoje peniaze pracovali pre teba, nie naopak… <em>tak si na správnom mieste!</em></p>
         </div>
       </section>
 
-      <!-- 4. Svetlý hárok: fotka + Informácie škodia len tomu, kto ich nemá + Nové informácie = nové možnosti + štyri body -->
-      <section class="sec sec--light sec--light-first" id="info">
+      <!-- 4. Obsah kurzu: popis + štyri body vľavo, číslované lekcie vpravo -->
+      <section class="sec" id="obsah">
         <div class="wrap">
-          <div class="why">
-            <div class="why-side">
-              <div class="why-photo rv curtain">
-                <picture><source srcset="/assets/images/renta/ivan-portret-4x5.webp" type="image/webp" /><img src="/assets/images/renta/ivan-portret-4x5.jpg" alt="Ivan Jašík" width="654" height="817" loading="lazy" decoding="async" /></picture>
-                <span class="why-tags"><span class="pill">8 rokov praxe</span><span class="pill">licencia NBS</span></span>
-              </div>
-              <p class="photo-cap rv" style="--i:1">Informácie škodia len tomu, kto ich nemá.</p>
-            </div>
-            <div class="why-body rv" style="--i:1">
-              <p class="kick">Nové informácie = nové možnosti</p>
-              <h2 class="h2 h2--left h2--md">Vybuduj si rentu 2&nbsp;000&nbsp;€ mesačne <em>z rozumného investovania</em></h2>
-              <p>Vysvetlím ti princíp, ktorý používajú profesionálni investori, nie špekulanti. Zistíš, ako funguje výplatné pravidlo 4 až 5&nbsp;%, prečo väčšina ľudí prichádza o výnosy, a ako si vytvoriť systém, ktorý ti môže dlhodobo vyplácať rentu.</p>
-              <ul class="why-list">
+          <div class="split">
+            <div class="split-head rv">
+              <p class="kick">Čo sa naučíš</p>
+              <h2 class="h2 h2--left">Vybuduj si rentu 2&nbsp;000&nbsp;€ mesačne <em>z rozumného investovania</em></h2>
+              <p class="lede">Vysvetlím ti princíp, ktorý používajú profesionálni investori, nie špekulanti. Zistíš, ako funguje výplatné pravidlo 4 až 5&nbsp;%, prečo väčšina ľudí prichádza o výnosy, a ako si vytvoriť systém, ktorý ti môže dlhodobo vyplácať rentu.</p>
+              <ul class="why-list why-list--dark">
                 <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Čo robia bohatí inak</li>
                 <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Ako fungujú ETF</li>
                 <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Pravidlo 4&nbsp;% pre bohatých</li>
                 <li><i class="why-tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Dividendové akcie = totálna sloboda</li>
               </ul>
-              <div class="cta"><a class="btn btn--ink btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="info"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div>
             </div>
+            <ol class="lessons rv" style="--i:1">
+              <li><span class="lesson-n" aria-hidden="true">01</span><div><h3>ETF stratégie</h3><p>Najjednoduchší spôsob, ako investovať efektívne, rozumne a bezpečne.</p></div></li>
+              <li><span class="lesson-n" aria-hidden="true">02</span><div><h3>Dividendy</h3><p>Ako vyberať akcie, ktoré ti budú posielať peniaze každý mesiac.</p></div></li>
+              <li><span class="lesson-n" aria-hidden="true">03</span><div><h3>Presný plán</h3><p>Kam a koľko investovať, aby si dosiahol finančnú slobodu.</p></div></li>
+            </ol>
           </div>
+          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="obsah"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a><small class="note">Krok za krokom · Hodnotenie 4,9/5 · 200+ klientov</small></div></div>
         </div>
       </section>
 
-      <!-- 5. Svetlý hárok pokračuje: dlhodobý proces + fotka s tabuľou „Po tomto videu budeš o peniazoch rozmýšľať INAK“ -->
-      <section class="sec sec--light sec--light-last" id="proces">
+      <!-- 5. Kto ťa učí: fotka v kresle + texty, pás čísel z praxe, fotopás s tabuľou „Po tomto videu…“ -->
+      <section class="sec" id="ivan">
         <div class="wrap">
-          <div class="sign">
-            <div class="sign-body rv">
-              <p class="after after--left">Nejedná sa o žiadne rýchle zbohatnutie. <em>Jedná sa o dlhodobý proces, ktorého výsledkom je nekonečná renta.</em></p>
-              <p class="lede">Nie je to obyčajný kurz, je to 8&nbsp;rokov praxe, viac ako 3&nbsp;000 hodín vzdelávania, viac ako 100 finančných kníh a 8&nbsp;certifikácií.</p>
-              <div class="cta"><a class="btn btn--ink btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="proces"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div>
+          <div class="split split--ivan">
+            <div class="ivan-photo rv curtain">
+              <picture><source srcset="/assets/images/renta/ivan-kreslo-4x5.webp" type="image/webp" /><img src="/assets/images/renta/ivan-kreslo-4x5.jpg" alt="Ivan Jašík" width="1000" height="1250" loading="lazy" decoding="async" /></picture>
+              <span class="why-tags"><span class="pill">EFA vzdelanie</span><span class="pill">licencia NBS</span></span>
             </div>
-            <div class="sign-photo rv curtain" style="--i:1">
-              <picture><source srcset="/assets/images/renta/ivan-tabula-inak.webp" type="image/webp" /><img src="/assets/images/renta/ivan-tabula-inak.jpg" alt="Ivan Jašík drží tabuľu s nápisom: Po tomto videu budeš o peniazoch rozmýšľať inak." width="654" height="980" loading="lazy" decoding="async" /></picture>
+            <div class="ivan-body rv" style="--i:1">
+              <p class="kick">Nové informácie = nové možnosti</p>
+              <h2 class="h2 h2--left">Informácie škodia len tomu, <em>kto ich nemá.</em></h2>
+              <p class="ivan-p">Som Ivan Jašík, finančný poradca pod dohľadom NBS. Nejedná sa o žiadne rýchle zbohatnutie. Jedná sa o dlhodobý proces, ktorého výsledkom je nekonečná renta.</p>
+              <p class="ivan-p">Nie je to obyčajný kurz. Je to 8&nbsp;rokov praxe, viac ako 3&nbsp;000 hodín vzdelávania, viac ako 100 finančných kníh a 8&nbsp;certifikácií.</p>
+              <dl class="proof">
+                <div><dd>8</dd><dt>rokov praxe</dt></div>
+                <div><dd>3&nbsp;000+</dd><dt>hodín vzdelávania</dt></div>
+                <div><dd>100+</dd><dt>finančných kníh</dt></div>
+                <div><dd>8</dd><dt>certifikácií</dt></div>
+              </dl>
+              <div class="cta"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="ivan"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div>
             </div>
+          </div>
+          <div class="strip rv" style="--i:2" aria-label="Fotky">
+            <picture><source srcset="/assets/images/home/ivan-kniha-4x5.webp" type="image/webp" /><img src="/assets/images/home/ivan-kniha-4x5.jpg" alt="Ivan Jašík s otvorenou knihou" width="900" height="1125" loading="lazy" decoding="async" /></picture>
+            <picture><source srcset="/assets/images/renta/ivan-tabula-inak.webp" type="image/webp" /><img src="/assets/images/renta/ivan-tabula-inak.jpg" alt="Ivan Jašík drží tabuľu s nápisom: Po tomto videu budeš o peniazoch rozmýšľať inak." width="654" height="980" loading="lazy" decoding="async" /></picture>
+            <picture><source srcset="/assets/images/renta/ivan-gesto-4x5.webp" type="image/webp" /><img src="/assets/images/renta/ivan-gesto-4x5.jpg" alt="Ivan Jašík vysvetľuje" width="733" height="916" loading="lazy" decoding="async" /></picture>
           </div>
         </div>
       </section>
 
-      <!-- 6. Obsah kurzu: tri dlaždice, tlačidlo, pilulky -->
-      <section class="sec" id="obsah">
-        <div class="wrap">
-          <div class="head rv">
-            <p class="kick">Bezplatný kurz</p>
-            <h2 class="h2">Stiahni si bezplatný <em>kurz teraz</em></h2>
-          </div>
-          <div class="topics">
-            <article class="tile tile--hover fx rv" data-tilt3="3" style="--i:0"><span class="kick kick--sm">01</span><h3>ETF stratégie</h3><p>Najjednoduchší spôsob, ako investovať efektívne, rozumne a bezpečne.</p></article>
-            <article class="tile tile--gold tile--hover fx rv" data-tilt3="3" style="--i:1"><span class="kick kick--sm">02</span><h3>Dividendy</h3><p>Ako vyberať akcie, ktoré ti budú posielať peniaze každý mesiac.</p></article>
-            <article class="tile tile--hover fx rv" data-tilt3="3" style="--i:2"><span class="kick kick--sm">03</span><h3>Presný plán</h3><p>Kam a koľko investovať, aby si dosiahol finančnú slobodu.</p></article>
-          </div>
-          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="obsah"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div></div>
-          <ul class="cond-list cond-list--after rv" style="--i:1" aria-label="Čo platí o kurze">
-            <li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>100&nbsp;% zadarmo</li>
-            <li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Krok za krokom</li>
-            <li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Aj s malým kapitálom</li>
-            <li><i class="cond-ok" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>+ bonus kalkulačka</li>
-          </ul>
-          <p class="foot-note rv">Hodnotenie 4,9/5 · 200+ klientov</p>
-        </div>
-      </section>
-
-      <!-- 7. Čísla: veta + pás s číslami (aktualizované: 8 rokov, 123 000, 200+, 3 500 000 €) -->
+      <!-- 6. Čísla -->
       <section class="sec" id="cisla">
         <div class="wrap">
           <div class="head rv">
-            <h2 class="h2">Informácie škodia len tomu, <em>kto ich nemá.</em></h2>
-            <p class="lede">Ak nemáš nové informácie, tak sa nedostaneš k novým príležitostiam.</p>
+            <h2 class="h2">Ak nemáš nové informácie, nedostaneš sa <em>k novým príležitostiam.</em></h2>
           </div>
           <div class="stats stats--wide rv fx" aria-label="Čísla">
             <div><b data-count="8 rokov">8&nbsp;rokov</b><span>skúseností</span></div>
@@ -1437,23 +1566,22 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
             <div><b data-count="200+" data-plus>200<i>+</i></b><span>spokojných klientov</span></div>
             <div><b data-count="3 500 000 €">3&nbsp;500&nbsp;000&nbsp;€</b><span>v investíciách</span></div>
           </div>
-          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#kurz" data-umami-event="click_renta_cta" data-umami-event-section="cisla"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div></div>
         </div>
       </section>
 
-      <!-- 8. Referencie: svetlý hárok, šesť citátov zo starej stránky + správy z WhatsAppu -->
-      <section class="sec sec--light sec--light-first sec--light-last" id="recenzie">
+      <!-- 7. Referencie: mriežka citátov s vlasovými linkami (zlatý výťah + zvyšok), potom správy z WhatsAppu -->
+      <section class="sec" id="recenzie">
         <div class="wrap">
           <div class="head rv">
             <h2 class="h2">Skúsenosti ľudí, ktorí so mnou <em>spolupracujú.</em></h2>
           </div>
-          <div class="revs revs--long">
-            <figure class="rev sheet sheet--hover rv" data-tilt3="4" style="--i:0"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„Ivan je skutočný profesionál. Jeho tvorba je jedinečná a ponúka vedomosti, ktoré sú vzácne na Slovensku. Jeho rýchly a ústretový prístup ma očaril. <span class="hl">Spolupracujeme už štyri roky</span> a vždy mi pomáha včas a úplne. Poučil ma nielen o financiách a investovaní, ale aj o osobnom rozvoji. Je úžasné vidieť, ako ľudia, ktorých poznáte, dosahujú úspechy a plnia si svoje sny.“</blockquote><figcaption><img src="/assets/images/home/latkoczy-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Šimon Latkoczy</b>Slovenský hokejový reprezentant</span></figcaption></figure>
-            <figure class="rev tile tile--gold tile--hover rv fx" data-tilt3="4" style="--i:1"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„S Ivanom spolupracujem už skoro 5&nbsp;rokov. Oslovil som ho na Instagrame a už vtedy robil zaujímavý a inšpiratívny obsah. <span class="hl">Stratégia, ktorú sme nastavili, mi dáva veľký zmysel</span> a snažím sa mesačné investície navyšovať. Keď niečo potrebujem, Ivan mi vždy pomôže a vždy nájde to najlepšie riešenie pre moju spokojnosť. Investovanie nie je jadrová fyzika, stačí mať dobrý plán, chápať veciam, mať podporu a nechať to pracovať.“</blockquote><figcaption><span class="rev-mono" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b>Investor</span></figcaption></figure>
-            <figure class="rev sheet sheet--hover rv" data-tilt3="4" style="--i:2"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„Som rád, že som na Ivana natrafil a že sa venuje tomu, čomu sa venuje. Otvoril mi v nejakých veciach oči a <span class="hl">ukázal nové veci, ktoré mi pomohli zmeniť myslenie</span> a rozvinúť sa na osobu, akou som dnes. Prajem mu, nech robí to, čo robí, ide mu to veľmi dobre. Som veľmi spokojný, pretože stále keď som sa ho na niečo opýtal, veľmi rýchlo mi odpovedal.“</blockquote><figcaption><span class="rev-mono" aria-hidden="true">M</span><span><b>Marián</b>Podnikateľ</span></figcaption></figure>
-            <figure class="rev sheet sheet--hover rv" data-tilt3="4" style="--i:0"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„Ivan je vynikajúci odborník na investovanie. Pomohol mi správne zhodnotiť moje peniaze, keď som začínal pracovať ako lekár vo Švajčiarsku. Jeho vedomosti a rady sú hodnotné a vždy mi rýchlo odpovie na otázky. <span class="hl">Vďaka nemu som schopný dlhodobo budovať svoj majetok.</span>“</blockquote><figcaption><img src="/assets/images/home/vanecko-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>MUDr. Martin Vanečko</b>Doktor pôsobiaci vo Švajčiarsku</span></figcaption></figure>
-            <figure class="rev tile tile--gold tile--hover rv fx" data-tilt3="4" style="--i:1"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„Ivan je skvelým spoločníkom pre podnikateľov. <span class="hl">Jeho rady o investovaní mi pomáhajú zhodnocovať peniaze zo svojho biznisu.</span> Je skúsený a veľmi znalý. Navyše, našiel som s ním aj spoločnú reč a podobné záujmy.“</blockquote><figcaption><img src="/assets/images/home/papik-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Ladislav Papík</b>Konateľ PAPIK ENTERPRISE s.r.o.</span></figcaption></figure>
-            <figure class="rev sheet sheet--hover rv" data-tilt3="4" style="--i:2"><span class="rev-mark" aria-hidden="true">“</span><blockquote>„Som rád, že som Ivana spoznal. Má kamarátsky prístup a rozhovor s ním ma nútil rozmýšľať hlbšie nad riešením problematiky. Veľmi veľa ma naučil ohľadom podnikania a investovania. A hlavne <span class="hl">zmenil moje myslenie nad svojou finančnou budúcnosťou.</span>“</blockquote><figcaption><span class="rev-mono" aria-hidden="true">J</span><span><b>Juraj</b>Profesionálny plavec</span></figcaption></figure>
+          <div class="quotes rv">
+            <figure class="quote"><blockquote><p class="quote-big">„Spolupracujeme už štyri roky a vždy mi pomáha včas a úplne.“</p><p class="quote-rest">Ivan je skutočný profesionál. Jeho tvorba je jedinečná a ponúka vedomosti, ktoré sú vzácne na Slovensku. Jeho rýchly a ústretový prístup ma očaril. Poučil ma nielen o financiách a investovaní, ale aj o osobnom rozvoji. Je úžasné vidieť, ako ľudia, ktorých poznáte, dosahujú úspechy a plnia si svoje sny.</p></blockquote><figcaption><img src="/assets/images/home/latkoczy-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Šimon Latkoczy</b>Slovenský hokejový reprezentant</span></figcaption></figure>
+            <figure class="quote"><blockquote><p class="quote-big">„Stratégia, ktorú sme nastavili, mi dáva veľký zmysel.“</p><p class="quote-rest">S Ivanom spolupracujem už skoro 5&nbsp;rokov. Oslovil som ho na Instagrame a už vtedy robil zaujímavý a inšpiratívny obsah. Snažím sa mesačné investície navyšovať. Keď niečo potrebujem, Ivan mi vždy pomôže a vždy nájde to najlepšie riešenie pre moju spokojnosť. Investovanie nie je jadrová fyzika, stačí mať dobrý plán, chápať veciam, mať podporu a nechať to pracovať.</p></blockquote><figcaption><span class="rev-mono" aria-hidden="true">RT</span><span><b>Roman Tkáčik</b>Investor</span></figcaption></figure>
+            <figure class="quote"><blockquote><p class="quote-big">„Ukázal mi nové veci, ktoré mi pomohli zmeniť myslenie.“</p><p class="quote-rest">Som rád, že som na Ivana natrafil a že sa venuje tomu, čomu sa venuje. Otvoril mi v nejakých veciach oči a pomohol mi rozvinúť sa na osobu, akou som dnes. Prajem mu, nech robí to, čo robí, ide mu to veľmi dobre. Som veľmi spokojný, pretože stále keď som sa ho na niečo opýtal, veľmi rýchlo mi odpovedal.</p></blockquote><figcaption><span class="rev-mono" aria-hidden="true">M</span><span><b>Marián</b>Podnikateľ</span></figcaption></figure>
+            <figure class="quote"><blockquote><p class="quote-big">„Vďaka nemu som schopný dlhodobo budovať svoj majetok.“</p><p class="quote-rest">Ivan je vynikajúci odborník na investovanie. Pomohol mi správne zhodnotiť moje peniaze, keď som začínal pracovať ako lekár vo Švajčiarsku. Jeho vedomosti a rady sú hodnotné a vždy mi rýchlo odpovie na otázky.</p></blockquote><figcaption><img src="/assets/images/home/vanecko-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>MUDr. Martin Vanečko</b>Doktor pôsobiaci vo Švajčiarsku</span></figcaption></figure>
+            <figure class="quote"><blockquote><p class="quote-big">„Jeho rady mi pomáhajú zhodnocovať peniaze zo svojho biznisu.“</p><p class="quote-rest">Ivan je skvelým spoločníkom pre podnikateľov. Je skúsený a veľmi znalý. Navyše, našiel som s ním aj spoločnú reč a podobné záujmy.</p></blockquote><figcaption><img src="/assets/images/home/papik-160.webp" alt="" width="160" height="160" loading="lazy" decoding="async" /><span><b>Ladislav Papík</b>Konateľ PAPIK ENTERPRISE s.r.o.</span></figcaption></figure>
+            <figure class="quote"><blockquote><p class="quote-big">„Zmenil moje myslenie nad svojou finančnou budúcnosťou.“</p><p class="quote-rest">Som rád, že som Ivana spoznal. Má kamarátsky prístup a rozhovor s ním ma nútil rozmýšľať hlbšie nad riešením problematiky. Veľmi veľa ma naučil ohľadom podnikania a investovania.</p></blockquote><figcaption><span class="rev-mono" aria-hidden="true">J</span><span><b>Juraj</b>Profesionálny plavec</span></figcaption></figure>
           </div>
           <p class="wall-cap rv">Reálne správy od mojich klientov</p>
           <div class="wall rv" id="wall" role="group" aria-label="Správy od klientov">
@@ -1466,7 +1594,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         </div>
       </section>
 
-      <!-- 9. Časté výhovorky: Ale čo ak..? -->
+      <!-- 8. Časté výhovorky -->
       <section class="sec" id="vyhovorky">
         <div class="wrap">
           <div class="faq-grid">
@@ -1484,11 +1612,10 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
             </div>
           </div>
           <p class="stack-after rv">Otázka nie je „Čo ak to nepôjde?“, ale <em>„Čo ak to pôjde a ja som to nevyskúšal?“</em></p>
-          <div class="actions rv"><div class="cta cta--center"><a class="btn btn--green btn--lg" href="#formular" data-umami-event="click_renta_cta" data-umami-event-section="vyhovorky"><span>Stiahnuť bezplatný kurz</span> <span class="arr" aria-hidden="true">→</span></a></div></div>
         </div>
       </section>
 
-      <!-- 10. Záverečný formulár -->
+      <!-- 9. Záverečný formulár -->
       <section class="sec sec--dark" id="formular" data-bar-hide>
         <div class="wrap">
           <div class="lead-grid">
@@ -1496,7 +1623,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
               <h2 class="h2 h2--md">Využi poslednú šancu a získaj kurz o rente <em>zadarmo.</em></h2>
               <p class="lede">Hodinové praktické video ti pošlem na e-mail hneď po odoslaní.</p>
             </div>
-            <div class="lead-card sheet rv fx" id="kurz-form-2-card" style="--i:1">
+            <div class="lead-card sheet sheet--cream rv fx" id="kurz-form-2-card" style="--i:1">
               <p class="f-title"><b>Bezplatný kurz</b><span>hodinové video</span></p>
               <form class="kurz-form" id="kurz-form-2" method="POST" action="/api/renta" data-umami-form="renta-kurz" data-done="/renta/dakujem" novalidate>
                 <p class="f-hp" aria-hidden="true"><label>Nevypĺňaj toto pole: <input name="website" tabindex="-1" autocomplete="off" /></label></p>
@@ -1511,6 +1638,7 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
           </div>
         </div>
       </section>
+      
 
     </main>
 
@@ -1845,6 +1973,34 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
         })
         .catch(function () { leadBusy(false); leadFail("Odoslanie sa nepodarilo. Skontroluj pripojenie a skús to prosím znova."); });
     });
+  }
+
+  // ukážka videa v modálnom okne: tlačidlo [data-video-open] nesie data-vimeo / data-youtube
+  var vm = document.getElementById("vm"), vmFrame = document.getElementById("vm-frame");
+  if (vm && vmFrame) {
+    var vmLast = null;
+    var vmClose = function () {
+      vm.hidden = true; vmFrame.innerHTML = ""; document.documentElement.style.overflow = "";
+      if (vmLast && vmLast.focus) vmLast.focus();
+    };
+    var vmOpen = function (src, title) {
+      vmLast = document.activeElement;
+      var f = document.createElement("iframe");
+      f.src = src; f.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; clipboard-write"); f.setAttribute("allowfullscreen", ""); f.setAttribute("title", title || "Video");
+      vmFrame.innerHTML = ""; vmFrame.appendChild(f);
+      vm.hidden = false; document.documentElement.style.overflow = "hidden";
+      var c = vm.querySelector("[data-video-close]"); if (c) c.focus();
+    };
+    [].forEach.call(document.querySelectorAll("[data-video-open]"), function (b) {
+      b.addEventListener("click", function () {
+        var vimeo = b.getAttribute("data-vimeo"), hash = b.getAttribute("data-hash"), yt = b.getAttribute("data-youtube");
+        if (vimeo) vmOpen("https://player.vimeo.com/video/" + vimeo + "?autoplay=1&badge=0&autopause=0&player_id=0&app_id=58479&dnt=1" + (hash ? "&h=" + hash : ""), b.getAttribute("data-title"));
+        else if (yt) vmOpen("https://www.youtube-nocookie.com/embed/" + yt + "?autoplay=1&rel=0&modestbranding=1", b.getAttribute("data-title"));
+      });
+    });
+    [].forEach.call(vm.querySelectorAll("[data-video-close]"), function (c) { c.addEventListener("click", vmClose); });
+    vm.addEventListener("click", function (e) { if (e.target === vm) vmClose(); });
+    document.addEventListener("keydown", function (e) { if (!vm.hidden && e.key === "Escape") vmClose(); });
   }
 
   frame();
