@@ -8,6 +8,6 @@ Disallow: /nova-cennik
 Disallow: /nova-cennik.html
 Disallow: /renta/kurz
 Disallow: /renta/kurz.html
+Disallow: /nova-renta-7d2a
 
 Sitemap: https://www.jsmentor.sk/sitemap.xml
-Disallow: /nova-renta-7d2a
