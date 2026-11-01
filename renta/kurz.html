@@ -2,7 +2,7 @@
 <html lang="sk" class="no-js">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta name="googlebot" content="noindex, nofollow, noarchive" />
     <link rel="canonical" href="https://www.jsmentor.sk/renta/kurz" />
@@ -1542,6 +1542,8 @@ html.on-light .dots a:hover, html.on-light .dots a.is-on { background: #3f2e24; 
     <script>
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // iOS Safari: stavy :active (odozva na dotyk hneď pri stlačení) fungujú len s poslucháčom dotyku na dokumente
+  document.addEventListener("touchstart", function () {}, { passive: true });
   var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
   var vh = window.innerHeight;
