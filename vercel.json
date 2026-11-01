@@ -2,73 +2,214 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/bonusy/(.*)", "destination": "/bonusy" }
+    {
+      "source": "/bonusy/(.*)",
+      "destination": "/bonusy"
+    }
   ],
   "redirects": [
-    { "source": "/konzultacia", "destination": "/", "permanent": false },
-    { "source": "/nova", "destination": "/", "permanent": true },
-    { "source": "/nova.html", "destination": "/", "permanent": true },
-    { "source": "/komunita;&;&;", "destination": "/komunita", "permanent": true },
-    { "source": "/komunita-klienti", "destination": "/komunita-klient", "permanent": false },
-    { "source": "/bonusy/hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
-    { "source": "/bonusy-hypo-kalkulacka", "destination": "/bonusy/inteligentna-hypoteka", "permanent": true },
-    { "source": "/bonusy-investicna-kalkulacka", "destination": "/bonusy/investicna-kalkulacka", "permanent": true },
-    { "source": "/bonusy-mzdova-kalkulacka", "destination": "/bonusy/mzdova-kalkulacka", "permanent": true },
-    { "source": "/bonusy-uverova-kalkulacka", "destination": "/bonusy/uverova-kalkulacka", "permanent": true },
-    { "source": "/bonusy-rentova-kalkulacka", "destination": "/bonusy/rentova-kalkulacka", "permanent": true },
-    { "source": "/bonusy-investicny-byt", "destination": "/bonusy/investicny-byt", "permanent": true },
-    { "source": "/bonusy-etf-semafor", "destination": "/bonusy/etf-semafor", "permanent": true },
-    { "source": "/bonusy-poplatkovy-rontgen", "destination": "/bonusy/poplatkovy-rontgen", "permanent": true },
-    { "source": "/bonusy-bytovy-semafor", "destination": "/bonusy/bytovy-semafor", "permanent": true }
+    {
+      "source": "/konzultacia",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/nova",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/nova.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/komunita;&;&;",
+      "destination": "/komunita",
+      "permanent": true
+    },
+    {
+      "source": "/komunita-klienti",
+      "destination": "/komunita-klient",
+      "permanent": false
+    },
+    {
+      "source": "/bonusy/hypo-kalkulacka",
+      "destination": "/bonusy/inteligentna-hypoteka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-hypo-kalkulacka",
+      "destination": "/bonusy/inteligentna-hypoteka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-investicna-kalkulacka",
+      "destination": "/bonusy/investicna-kalkulacka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-mzdova-kalkulacka",
+      "destination": "/bonusy/mzdova-kalkulacka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-uverova-kalkulacka",
+      "destination": "/bonusy/uverova-kalkulacka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-rentova-kalkulacka",
+      "destination": "/bonusy/rentova-kalkulacka",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-investicny-byt",
+      "destination": "/bonusy/investicny-byt",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-etf-semafor",
+      "destination": "/bonusy/etf-semafor",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-poplatkovy-rontgen",
+      "destination": "/bonusy/poplatkovy-rontgen",
+      "permanent": true
+    },
+    {
+      "source": "/bonusy-bytovy-semafor",
+      "destination": "/bonusy/bytovy-semafor",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/images/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/app/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/komunita-klient",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/komunita-klient.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/komunita-klienti",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/konzultacia-clen",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/konzultacia-clen.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/renta/kurz",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/renta/kurz.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/nova-cennik",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     },
     {
       "source": "/nova-cennik.html",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/nova-renta-7d2a",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/nova-renta-7d2a.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
     }
   ]
 }

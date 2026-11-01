@@ -10,3 +10,4 @@ Disallow: /renta/kurz
 Disallow: /renta/kurz.html
 
 Sitemap: https://www.jsmentor.sk/sitemap.xml
+Disallow: /nova-renta-7d2a
