@@ -139,6 +139,36 @@
       @media (min-width: 768px) { .kmnv { gap: 1.25rem; padding: 0.875rem; } .kmnv-thumb { flex-basis: 11rem; } .kmnv-title { font-size: 1.1875rem; } }
       @media (prefers-reduced-motion: reduce) { .kmnv { opacity: 1; transform: none; transition: none; } }
     </style>
+    <!-- Zjednodušená CTA sekcia (2026-11-03): #CTA1 = len nadpis, krátky text a formulár (meno + e-mail → /api/join → HeroHero).
+         Cena, garancia, výhody a „Čo je v členstve“ sú v samostatnej sekcii #zhrnutie-clenstva tesne pred CTA (klony uzlov z React aplikácie,
+         bundle bez zmeny). Zrkadlo v React zdroji treba doplniť: src/pages/komunita2 (HODNOTA → nová sekcia Summary pred CTA1). -->
+    <style id="kmcta-css">
+      #CTA1 .km-offer { grid-template-columns: minmax(0, 1fr); max-width: 34rem; margin: 0 auto; text-align: center; }
+      #CTA1 .km-offer-price, #CTA1 .km-offer-line, #CTA1 .km-guarantee, #CTA1 .km-checks, #CTA1 .km-offer-note, #CTA1 .km-offer-side { display: none !important; }
+      #CTA1 .km-kicker { justify-content: center; }
+      #CTA1 .kmcta-lede { margin: 0.25rem auto 0; max-width: 30rem; font-size: 1.0625rem; line-height: 1.6; color: rgba(243, 233, 221, 0.82); text-wrap: pretty; }
+      #CTA1 .km-offer-form { justify-content: center; margin-top: 1.75rem; }
+      #CTA1 .km-join { margin: 0 auto; }
+      #CTA1 .km-join-submit { justify-content: center; width: 100%; }
+      @media (min-width: 768px) { #CTA1 .kmcta-lede { font-size: 1.1875rem; } }
+
+      #zhrnutie-clenstva { color: var(--km-ink); }
+      #zhrnutie-clenstva .kmsum { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+      @media (min-width: 1024px) { #zhrnutie-clenstva .kmsum { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 4rem; } }
+      #zhrnutie-clenstva .km-offer-price b { color: var(--km-ink); }
+      #zhrnutie-clenstva .km-offer-price span { color: var(--km-green); }
+      #zhrnutie-clenstva .km-offer-line { color: var(--km-fg2); }
+      #zhrnutie-clenstva .km-offer-line + .km-offer-line { color: var(--km-fg3); }
+      #zhrnutie-clenstva .km-checks li { color: var(--km-ink); border-top-color: var(--km-hair-2); }
+      #zhrnutie-clenstva .km-checks li:last-child { border-bottom-color: var(--km-hair-2); }
+      #zhrnutie-clenstva .km-checks svg { color: var(--km-green); }
+      #zhrnutie-clenstva .km-guarantee { background: var(--km-ivory); }
+      #zhrnutie-clenstva .km-offer-note { color: var(--km-fg3); }
+      #zhrnutie-clenstva .km-offer-side { background: var(--km-ivory); box-shadow: inset 0 0 0 1px var(--km-hair); }
+      #zhrnutie-clenstva .km-offer-side .km-guarantee { background: var(--km-sand); }
+      #zhrnutie-clenstva .km-actions { margin-top: 2rem; }
+      @media (max-width: 767px) { #zhrnutie-clenstva .km-actions .km-btn { width: 100%; justify-content: center; } }
+    </style>
   </head>
 
   <body>
@@ -249,6 +279,57 @@
           if (root) mo.observe(root, { childList: true, subtree: true });
           setTimeout(function () { mo.disconnect(); build(); }, 15000);
         }
+      })();
+    </script>
+
+    <script>
+      // Zjednodušená CTA sekcia: do #CTA1 vloží krátky text pod nadpis a pred CTA postaví sekciu #zhrnutie-clenstva z klonov
+      // (cena, výhody, garancia, „Čo je v členstve“). Formulár ostáva pôvodný React (meno + e-mail → /api/join → HeroHero).
+      (function () {
+        var LEDE = "Napíš mi meno a e-mail a hneď ťa pošlem do komunity na HeroHero. Prvých 14 dní neplatíš nič a zrušiť môžeš jedným klikom.";
+        function build() {
+          var cta = document.getElementById("CTA1"); if (!cta) return false;
+          var offer = cta.querySelector(".km-offer"), h2 = offer && offer.querySelector(".km-h2"), side = offer && offer.querySelector(".km-offer-side");
+          if (!offer || !h2 || !side || !cta.querySelector("#komunita-join-form")) return false;
+
+          if (!cta.querySelector(".kmcta-lede")) {
+            var p = document.createElement("p"); p.className = "kmcta-lede"; p.textContent = LEDE;
+            h2.insertAdjacentElement("afterend", p);
+          }
+
+          if (!document.getElementById("zhrnutie-clenstva")) {
+            var sec = document.createElement("section");
+            sec.className = "km-band km-band--stone"; sec.id = "zhrnutie-clenstva"; sec.setAttribute("aria-labelledby", "zhrnutie-clenstva-h");
+            var wrap = document.createElement("div"); wrap.className = "km-wrap";
+            var grid = document.createElement("div"); grid.className = "kmsum";
+            var left = document.createElement("div");
+            left.innerHTML = '<span class="km-kicker">Čo dostaneš za členstvo</span><h2 class="km-h2" id="zhrnutie-clenstva-h">Celá komunita <em>za cenu drobných</em></h2>';
+            [".km-offer-price", ".km-offer-line", ".km-checks", ".km-guarantee", ".km-offer-note"].forEach(function (sel) {
+              [].forEach.call(offer.querySelectorAll(sel), function (el) {
+                if (side.contains(el)) return;
+                var c = el.cloneNode(true); c.removeAttribute("id"); left.appendChild(c);
+              });
+            });
+            var act = document.createElement("div"); act.className = "km-actions";
+            act.innerHTML = '<a class="km-btn km-btn--lg" href="#CTA1" data-umami-event="click_cennik" data-umami-event-section="zhrnutie">Chcem vstúpiť do komunity <span aria-hidden="true">→</span></a>';
+            act.querySelector("a").addEventListener("click", function (e) {
+              e.preventDefault(); cta.scrollIntoView({ behavior: "smooth", block: "start" });
+              setTimeout(function () { var f = document.getElementById("join-firstName"); if (f) try { f.focus({ preventScroll: true }); } catch (err) {} }, 600);
+            });
+            left.appendChild(act);
+            var right = side.cloneNode(true);
+            [].forEach.call(right.querySelectorAll("[style]"), function (el) { if (el.style.opacity === "0") el.style.opacity = ""; });
+            grid.appendChild(left); grid.appendChild(right); wrap.appendChild(grid); sec.appendChild(wrap);
+            cta.insertAdjacentElement("beforebegin", sec);
+          }
+          return true;
+        }
+        // React môže sekciu prekresliť: kontrolujeme aj po prvom vykreslení a doplníme, čo chýba
+        var root = document.getElementById("root");
+        var mo = new MutationObserver(function () { build(); });
+        if (!build() && root) mo.observe(root, { childList: true, subtree: true });
+        else if (root) mo.observe(root, { childList: true, subtree: true });
+        setTimeout(function () { build(); }, 15000);
       })();
     </script>
 

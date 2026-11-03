@@ -1,6 +1,7 @@
 /**
  * POST /api/join — pridá lead z komunitného formulára do Ecomail zoznamu.
- * Env vo Verceli: ECOMAIL_API_KEY, ECOMAIL_LIST_ID
+ * Env vo Verceli: ECOMAIL_API_KEY, ECOMAIL_LIST_ID,
+ * voliteľne ECOMAIL_KOMUNITA_TAG (predvolené „komunita-formular“) a ECOMAIL_KOMUNITA_KLIENT_TAG („komunita-klient“).
  */
 const ECOMAIL_BASE = "https://api2.ecomailapp.cz";
 
@@ -53,10 +54,18 @@ module.exports = async function handler(req, res) {
     return;
   }
 
+  // štítok pre automatizáciu v Ecomaile (spustenie flow + pripomienky, kým nie je člen); názov sa dá prepísať vo Verceli
+  const source = String(body?.source || "").trim();
+  const tag =
+    source === "komunita-klient"
+      ? process.env.ECOMAIL_KOMUNITA_KLIENT_TAG || "komunita-klient"
+      : process.env.ECOMAIL_KOMUNITA_TAG || "komunita-formular";
+
   const payload = {
     subscriber_data: {
       name: firstName,
       email,
+      tags: [tag],
     },
     trigger_autoresponders: true,
     update_existing: true,
