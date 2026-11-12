@@ -10,5 +10,6 @@ Disallow: /renta/kurz
 Disallow: /renta/kurz.html
 Disallow: /nova-renta-7d2a
 Disallow: /tyzden-v-grafoch-8c3f
+Disallow: /nove-9k4t
 
 Sitemap: https://www.jsmentor.sk/sitemap.xml
