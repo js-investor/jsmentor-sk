@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Príspevky · JS Mentor</title>
+<meta name="theme-color" content="#1c1714">
+<style>
+@font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+:root { --bg: #1c1714; --panel: #26201c; --line: rgba(243,233,221,.12); --cream: #f3e9dd; --mute: rgba(243,233,221,.58); --gold: #e8c271; --ink: #292420; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--cream); font-family: "Matter", system-ui, -apple-system, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-variant-ligatures: none; font-feature-settings: "liga" 0, "dlig" 0, "calt" 0; min-height: 100vh; min-height: 100dvh; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 16px 80px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+header h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+header h1 em { font-style: normal; color: var(--gold); }
+header p { margin-top: 8px; color: var(--mute); font-size: 17px; line-height: 1.45; max-width: 46ch; }
+.bar { position: sticky; top: 0; z-index: 5; background: linear-gradient(var(--bg) 78%, rgba(28,23,20,0)); padding: 18px 0 16px; margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.chip { height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); font-size: 16px; font-weight: 600; white-space: nowrap; }
+.chip[aria-pressed="true"] { background: var(--cream); color: var(--ink); border-color: var(--cream); }
+.chip b { font-weight: 600; opacity: .6; margin-left: 6px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 14px; }
+@media (min-width: 720px) { .grid { grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 20px; } }
+.card { text-align: left; display: block; width: 100%; }
+.card .pic { display: block; position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--panel); outline: 1px solid var(--line); outline-offset: -1px; }
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .n { position: absolute; right: 8px; top: 8px; background: rgba(28,23,20,.78); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
+.card .done { position: absolute; left: 8px; top: 8px; background: var(--gold); color: var(--ink); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700; }
+.card.pub .pic img { opacity: .45; }
+.card h2 { margin-top: 10px; font-size: 16px; font-weight: 600; line-height: 1.3; }
+.card small { display: block; margin-top: 3px; color: var(--mute); font-size: 14px; }
+@media (hover: hover) { .card:hover .pic { outline-color: rgba(232,194,113,.7); } .chip:hover { color: var(--cream); } .chip[aria-pressed="true"]:hover { color: var(--ink); } }
+.card:focus-visible .pic, .chip:focus-visible, .btn:focus-visible, .x:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.empty { color: var(--mute); padding: 40px 0; font-size: 17px; }
+
+dialog { border: 0; padding: 0; margin: 0; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; background: var(--bg); color: var(--cream); }
+dialog::backdrop { background: var(--bg); }
+.dh { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); background: rgba(28,23,20,.94); border-bottom: 1px solid var(--line); }
+.dh h3 { flex: 1; min-width: 0; font-size: 18px; font-weight: 700; line-height: 1.25; }
+.dh h3 small { display: block; font-size: 14px; font-weight: 500; color: var(--mute); margin-top: 2px; }
+.x { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); font-size: 22px; line-height: 1; flex: none; }
+.acts { display: flex; gap: 10px; flex-wrap: wrap; padding: 14px 16px 4px; max-width: 1240px; margin: 0 auto; }
+.btn { height: 48px; padding: 0 20px; border-radius: 999px; font-size: 16px; font-weight: 700; border: 1px solid var(--line); white-space: nowrap; }
+.btn.gold { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.btn[disabled] { opacity: .5; }
+.slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 14px 16px 60px; max-width: 1240px; margin: 0 auto; }
+.sl { position: relative; }
+.sl img { width: 100%; height: auto; display: block; border-radius: 12px; background: var(--panel); }
+.sl a { position: absolute; right: 10px; bottom: 10px; height: 40px; padding: 0 14px; display: flex; align-items: center; border-radius: 999px; background: rgba(28,23,20,.82); color: var(--cream); font-size: 14px; font-weight: 600; text-decoration: none; }
+.sl i { position: absolute; left: 10px; top: 10px; font-style: normal; background: rgba(28,23,20,.78); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
+.hint { color: var(--mute); font-size: 14px; padding: 0 16px; max-width: 1240px; margin: 6px auto 0; line-height: 1.45; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Príspevky <em>JS Mentor</em></h1>
+    <p id="sum"></p>
+  </header>
+  <div class="bar" id="bar"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<dialog id="dlg" aria-labelledby="dt">
+  <div class="dh"><h3 id="dt"></h3><button class="x" id="close" aria-label="Zavrieť">×</button></div>
+  <div class="acts"><button class="btn gold" id="all"></button><button class="btn" id="pub"></button></div>
+  <p class="hint" id="hint"></p>
+  <div class="slides" id="slides"></div>
+</dialog>
+<script>
+const POSTS = [{"id": "brian-tracy", "name": "Brian Tracy: citáty (6)", "typ": "Príspevok", "n": 6, "d": "2026-11-15", "r": 1.25}, {"id": "verstappen", "name": "Max Verstappen", "typ": "Carousel", "n": 12, "d": "2026-11-14", "r": 1.25}, {"id": "muz-chlapec", "name": "Za každým mužom… je chlapec", "typ": "Príspevok", "n": 1, "d": "2026-11-14", "r": 1.25}, {"id": "citaty-klasicke", "name": "Klasické citáty (4)", "typ": "Príspevok", "n": 4, "d": "2026-11-13", "r": 1.25}, {"id": "kurca", "name": "Kurčatá: čas a trpezlivosť", "typ": "Príspevok", "n": 1, "d": "2026-11-12", "r": 1.25}, {"id": "nehnutelnost-300000", "name": "Nehnuteľnosť za 300 000 €", "typ": "Carousel", "n": 7, "d": "2026-11-11", "r": 1.25}, {"id": "veci-luxus", "name": "Veci, ktoré sú vlastne luxus", "typ": "Carousel", "n": 10, "d": "2026-11-10", "r": 1.25}, {"id": "v-renta", "name": "Renta 1 000 € mesačne", "typ": "Carousel", "n": 6, "d": "2026-11-09", "r": 1.25}, {"id": "v-poplatky", "name": "Poplatky 2,5 %", "typ": "Carousel", "n": 7, "d": "2026-11-09", "r": 1.25}, {"id": "v-tri-ucty", "name": "Tri účty", "typ": "Carousel", "n": 6, "d": "2026-11-09", "r": 1.25}, {"id": "v-prerobil", "name": "Ako často si prerobil", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "v-tweet-dochodok", "name": "Tweet: dôchodok", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "zamestnanec-investor", "name": "Zamestnanec vs. investor (Coca-Cola)", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "mlady-starsi", "name": "Mladý vs. starší investor", "typ": "Carousel", "n": 5, "d": "2026-11-08", "r": 1.25}, {"id": "byvanie-investovanie", "name": "Vlastné bývanie vs. investovanie", "typ": "Carousel", "n": 8, "d": "2026-11-08", "r": 1.25}, {"id": "miliardari", "name": "Miliardári a ich problémy", "typ": "Carousel", "n": 17, "d": "2026-11-07", "r": 1.25}, {"id": "kamarati-firmy", "name": "Kamaráti a firmy", "typ": "Carousel", "n": 6, "d": "2026-11-07", "r": 1.25}, {"id": "citaty-10", "name": "Citáty (12 slidov)", "typ": "Carousel", "n": 12, "d": "2026-11-07", "r": 1.25}, {"id": "alexander", "name": "Alexander Veľký", "typ": "Carousel", "n": 8, "d": "2026-11-07", "r": 1.25}, {"id": "deti-peniaze", "name": "Deti a peniaze", "typ": "Carousel", "n": 5, "d": "2026-11-06", "r": 1.25}, {"id": "trump", "name": "Trump 1 vs. 2", "typ": "Carousel", "n": 4, "d": "2026-11-06", "r": 1.25}, {"id": "einstein", "name": "Einstein: citáty", "typ": "Carousel", "n": 16, "d": "2026-11-05", "r": 1.25}, {"id": "inflacia-kosik", "name": "Inflácia ťa potichu okráda", "typ": "Príspevok", "n": 1, "d": "2026-11-04", "r": 1.25}, {"id": "milionar-50", "name": "Milionár pred 50-tkou?", "typ": "Carousel", "n": 6, "d": "2026-11-04", "r": 1.25}, {"id": "svetovy-majetok", "name": "Svetový majetok a 1 %", "typ": "Carousel", "n": 6, "d": "2026-11-04", "r": 1.25}, {"id": "sp500-1-dolar", "name": "S&P 500: 1 $ každý deň", "typ": "Video", "n": 1, "d": "2026-11-04", "r": 1.778}, {"id": "keanu", "name": "Keanu Reeves", "typ": "Carousel", "n": 10, "d": "2026-11-03", "r": 1.25}, {"id": "kriza-2008", "name": "Finančná kríza 2008", "typ": "Carousel", "n": 10, "d": "2026-11-03", "r": 1.25}, {"id": "prve-kroky", "name": "Prvé kroky (8 krokov)", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "r": 1.25}, {"id": "zaciname-mladi", "name": "Začíname mladí!", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "r": 1.25}, {"id": "tiger", "name": "Prestaň sa hádať s bláznami (tiger)", "typ": "Carousel", "n": 10, "d": "2026-10-28", "r": 1.25}, {"id": "myslienky", "name": "Myšlienky (5 textových)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "r": 1.25}, {"id": "tweety", "name": "Tweety (5)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "r": 1.25}, {"id": "balony", "name": "Balóny", "typ": "Carousel", "n": 5, "d": "2026-10-27", "r": 1.25}, {"id": "dotcom", "name": "Dotcom bublina", "typ": "Carousel", "n": 11, "d": "2026-10-27", "r": 1.25}, {"id": "jordan", "name": "Michael Jordan", "typ": "Carousel", "n": 7, "d": "2026-10-27", "r": 1.25}, {"id": "komunizmus", "name": "Komunizmus (8 príspevkov)", "typ": "Carousel", "n": 8, "d": "2026-10-20", "r": 1.25}], BASE = '/assets/prispevky-7k2m/';
+const $ = id => document.getElementById(id);
+let pub = {}; try { pub = JSON.parse(localStorage.getItem('pp-pub') || '{}'); } catch (e) {}
+const save = () => { try { localStorage.setItem('pp-pub', JSON.stringify(pub)); } catch (e) {} };
+let filter = 'all', cur = null;
+const dt = d => { const [y, m, dd] = d.split('-'); return +dd + '. ' + +m + '. ' + y; };
+const kusy = n => n === 1 ? '1 obrázok' : n < 5 ? n + ' obrázky' : n + ' obrázkov';
+const file = (p, i) => BASE + p.id + '/' + String(i).padStart(2, '0') + '.jpg';
+function bar() {
+  const c = { all: POSTS.length, todo: POSTS.filter(p => !pub[p.id]).length, done: POSTS.filter(p => pub[p.id]).length };
+  const defs = [['all', 'Všetky'], ['todo', 'Nezverejnené'], ['done', 'Zverejnené']];
+  $('bar').innerHTML = defs.map(([k, t]) => `<button class="chip" data-k="${k}" aria-pressed="${filter === k}">${t}<b>${c[k]}</b></button>`).join('');
+  $('sum').textContent = POSTS.length + ' príspevkov, ' + POSTS.reduce((s, p) => s + p.n, 0) + ' obrázkov. Ťukni na príspevok a ulož si ho do mobilu.';
+}
+function grid() {
+  const list = POSTS.filter(p => filter === 'all' || (filter === 'done') === !!pub[p.id]);
+  $('grid').innerHTML = list.length ? list.map(p => `<button class="card${pub[p.id] ? ' pub' : ''}" data-id="${p.id}">
+    <span class="pic"><img loading="lazy" decoding="async" src="${BASE + p.id}/t.jpg" alt="">${p.n > 1 ? `<span class="n">${p.n}</span>` : ''}${pub[p.id] ? '<span class="done">Zverejnené</span>' : ''}</span>
+    <h2>${p.name}</h2><small>${p.typ} · ${dt(p.d)}</small></button>`).join('') : '<p class="empty">Tu zatiaľ nič nie je.</p>';
+}
+function open(p) {
+  cur = p;
+  $('dt').innerHTML = p.name + `<small>${p.typ} · ${kusy(p.n)} · ${dt(p.d)}</small>`;
+  $('slides').innerHTML = Array.from({ length: p.n }, (_, i) => `<div class="sl"><img loading="lazy" decoding="async" src="${file(p, i + 1)}" alt="${p.name}, obrázok ${i + 1}">${p.n > 1 ? `<i>${i + 1}</i>` : ''}<a href="${file(p, i + 1)}" download="${p.id}-${String(i + 1).padStart(2, '0')}.jpg">Stiahnuť</a></div>`).join('');
+  acts(); $('dlg').showModal(); $('dlg').scrollTop = 0;
+}
+function acts() {
+  $('all').textContent = cur.n > 1 ? 'Uložiť všetkých ' + cur.n : 'Uložiť obrázok'; $('all').disabled = false;
+  $('pub').textContent = pub[cur.id] ? 'Zrušiť „zverejnené“' : 'Označiť ako zverejnené';
+  $('hint').textContent = 'Na iPhone: Uložiť → „Uložiť obrázky“. Značka „zverejnené“ sa pamätá len v tomto zariadení.';
+}
+async function saveAll() {
+  const b = $('all'); b.disabled = true; b.textContent = 'Pripravujem…';
+  try {
+    const files = [];
+    for (let i = 1; i <= cur.n; i++) { const r = await fetch(file(cur, i)); files.push(new File([await r.blob()], cur.id + '-' + String(i).padStart(2, '0') + '.jpg', { type: 'image/jpeg' })); }
+    if (navigator.canShare && navigator.canShare({ files })) { await navigator.share({ files }); }
+    else for (const f of files) { const a = document.createElement('a'); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); await new Promise(r => setTimeout(r, 250)); }
+  } catch (e) {}
+  acts();
+}
+$('bar').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; filter = b.dataset.k; bar(); grid(); });
+$('grid').addEventListener('click', e => { const c = e.target.closest('.card'); if (c) open(POSTS.find(p => p.id === c.dataset.id)); });
+$('close').addEventListener('click', () => $('dlg').close());
+$('all').addEventListener('click', saveAll);
+$('pub').addEventListener('click', () => { if (pub[cur.id]) delete pub[cur.id]; else pub[cur.id] = 1; save(); acts(); bar(); grid(); });
+bar(); grid();
+const h0 = POSTS.find(p => p.id === location.hash.slice(1)); if (h0) open(h0);
+</script>
+</body>
+</html>
