@@ -1769,7 +1769,8 @@ svg text { font-family: var(--sans); }
       <ul class="aha rv" role="list">
         <li><b class="num">{{byvSplatka}}</b><span>mesačne bude splátka banke, pri úroku {{byvUrok}} na {{byvRoky}}</span></li>
         <li data-if="byvNajom"><b class="num">{{byvNajomDnes}}</b><span>{vy:platíte|ty:platíš} za bývanie dnes. Splátka ho nahradí.</span></li>
-        <li data-if="byvZoSporenia"><b class="num">{{byvRozdiel}}</b><span>mesačne navyše pokryje to, čo dnes ide na sporiaci účet</span></li>
+        <li data-if="byvZoSporenia&byvNajom"><b class="num">{{byvRozdiel}}</b><span>mesačne navyše pokryje to, čo dnes ide na sporiaci účet</span></li>
+        <li data-if="byvZoSporenia&!byvNajom"><b class="num">{{sporiaci}}</b><span>ide dnes mesačne na sporiaci účet. Po kúpe z toho pôjde splátka.</span></li>
       </ul>
       <p class="take rv"><b>Jednoducho</b><span>Na vlastné bývanie {vy:máte|ty:máš} nasporené skôr, ako príde hypotéka.</span></p>
       <p class="note">Modelový výpočet. Úrok určí banka pri kúpe a platí len počas fixácie. Banka môže žiadať iný podiel vlastných zdrojov, preverím to pred kúpou.</p>
@@ -2354,7 +2355,7 @@ svg text { font-family: var(--sans); }
     // deti: vlastný účet pre každé dieťa, rovnaký výnos ako v pláne, pred cieľom pokojnejšie
     var deti = G.deti.on ? G.deti.zoznam.filter(function (x) { return x.mesacne > 0; }).map(function (x, i) {
       var Y = Math.max(1, G.deti.doVeku - x.vek), kk = Math.min(K5, Math.max(0, Y - 5)), v = fv(fv(0, r, Y - kk, x.mesacne), r2, kk, x.mesacne);
-      return { meno: x.meno || ["Prvé dieťa", "Druhé dieťa", "Tretie dieťa"][i], vek: x.vek, c: x.mesacne, Y: Y, mes: Y * 12, vklady: x.mesacne * 12 * Y, hodnota: zk(v) };
+      return { meno: x.meno || ["Prvé dieťa", "Druhé dieťa", "Tretie dieťa"][i], vVete: x.meno || ["prvé dieťa", "druhé dieťa", "tretie dieťa"][i], vek: x.vek, c: x.mesacne, Y: Y, mes: Y * 12, vklady: x.mesacne * 12 * Y, hodnota: zk(v) };
     }) : [];
     var detiM = deti.reduce(function (a, x) { return a + x.c; }, 0);
     // hypotéka, ktorú klient už má: splácať skôr alebo investovať
@@ -2480,7 +2481,7 @@ svg text { font-family: var(--sans); }
     if (byt) mile.push({ typ: "byt", y: byt.y, art: "byt", emo: "🔑", nazov: "Byt na prenájom", kratko: "byt na prenájom", cislo: eur(byt.cena), pod: byt.y <= 0 ? "kúpa hneď" : "kúpa " + oKedy(byt.y), hero: "kúpa bytu na prenájom", prio: 2 });
     if (byv) mile.push({ typ: "byvanie", y: byv.y, art: "dom", emo: "🏠", nazov: "Vlastné bývanie", kratko: "vlastné bývanie", cislo: eur(byv.cena), pod: byv.y <= 0 ? "kúpa hneď" : "kúpa " + oKedy(byv.y), hero: "vlastné bývanie", prio: 1 });
     ine.forEach(function (x) { mile.push({ typ: x.kto, y: x.y, art: "vlajka", emo: "📌", nazov: x.nazov, kratko: x.nazov.charAt(0).toLowerCase() + x.nazov.slice(1), cislo: eur(x.suma), pod: oKedy(x.y), hero: x.nazov.charAt(0).toLowerCase() + x.nazov.slice(1), prio: 4 }); });
-    if (deti.length) mile.push({ typ: "deti", y: Math.min.apply(null, deti.map(function (x) { return x.Y; })), art: "deti", emo: "👶", nazov: deti.length > 1 ? "Štart pre deti" : "Štart pre dieťa", kratko: deti.length > 1 ? "deti" : "dieťa", cislo: eur(deti.reduce(function (a, x) { return a + x.hodnota; }, 0)), pod: zoznamSlov(deti.map(function (x) { return x.meno; })), hero: deti[0].meno + " má " + G.deti.doVeku, prio: 3 });
+    if (deti.length) mile.push({ typ: "deti", y: Math.min.apply(null, deti.map(function (x) { return x.Y; })), art: "deti", emo: "👶", nazov: deti.length > 1 ? "Štart pre deti" : "Štart pre dieťa", kratko: deti.length > 1 ? "deti" : "dieťa", cislo: eur(deti.reduce(function (a, x) { return a + x.hodnota; }, 0)), pod: zoznamSlov(deti.map(function (x) { return x.vVete; })), hero: (function () { var prve = deti.slice().sort(function (a, b) { return a.Y - b.Y; })[0]; return prve.vVete + " má " + G.deti.doVeku; })(), prio: 3 });
     if (hyp) mile.push({ typ: "hypoteka", y: hyp.koniec / 12, art: "hypoteka", emo: "🏦", nazov: "Hypotéka splatená", kratko: "hypotéka", cislo: eur(hyp.Z), pod: "o " + trvanie(hyp.koniec), hero: "hypotéka splatená", prio: 3 });
     mile.forEach(function (x) { x.poradie = x.y == null ? N - 0.5 : x.y; x.rok = x.y == null || x.y < 1 ? "" : String(rokU(x.y)); });
     mile.sort(function (a, b) { return a.poradie - b.poradie; });
@@ -2620,7 +2621,7 @@ svg text { font-family: var(--sans); }
       if (byt.predaj) { D.bytPredajPo = roky(byt.predajPo); D.bytPredajCena = eur(byt.predaj.cena); D.bytPredajDlh = eur(byt.predaj.dlh); D.bytPredajNaklady = eur(byt.predaj.naklady); D.bytPredajOstane = eur(byt.predaj.ostane);
         D.bytPredajWd = (byt.predaj.dlh / byt.predaj.cena * 100).toFixed(1); D.bytPredajWn = (byt.predaj.naklady / byt.predaj.cena * 100).toFixed(1); D.bytPredajKam = sOn ? "na sporiaci účet" : "na bežný účet"; }
       else { var tN = Math.max(0, (N - byt.y)) * 12, nN = Math.round(byt.najomV(Math.max(0, tN - 1))), splN = tN >= byt.roky * 12 ? 0 : byt.A;
-        D.bytRentaNajom = eur(nN - splN); D.bytRentaVeta = splN === 0 ? "O " + roky(N) + " je byt bez hypotéky a nájom okolo " + eur(nN) + " mesačne môže ísť celý k rente." : "O " + roky(N) + " môže byť nájom okolo " + eur(nN) + " mesačne. Po splátke z neho {vy:vám|ty:ti} ostane asi " + eur(nN - splN) + "."; }
+        D.bytRentaNajom = eur(nN - splN); D.bytRentaVeta = splN === 0 ? "V roku " + (Y0 + N) + " je byt bez hypotéky a nájom okolo " + eur(nN) + " mesačne môže ísť celý k rente." : "V roku " + (Y0 + N) + ", keď sa začína renta, môže byť nájom okolo " + eur(nN) + " mesačne. Po splátke {vy:vám|ty:ti} z neho ostane asi " + eur(nN - splN) + "."; }
     }
     // vlastné bývanie
     if (byv) {
@@ -2664,7 +2665,7 @@ svg text { font-family: var(--sans); }
       if (i === 0) { art = K.osoba + "-start"; veta = I0 > 0 ? "účty a investície dnes" : zNuly ? "{vy:začínate|ty:začínaš}" : "všetko na bežnom účte"; }
       else if (i === 4) { art = K.osoba + "-ciel"; veta = Fl.totNeInv ? "z toho investície " + eur(a.inv) : "na investičnom účte"; }
       else if (b.ciel) { art = b.ciel.art; mi = MIERKA_C[art] || mi; veta = b.ciel.hero; }
-      else { art = ARTY[i - 1]; veta = i === 1 ? "v investíciách už " + eur(a.inv) : i === 2 ? "investície " + eur(a.inv) : "renta by bola " + eur(rentaZ(INV(yy))) + " mesačne"; }
+      else { art = ARTY[i - 1]; veta = yy >= N * 0.6 && jadro !== "majetok" ? "renta by bola " + eur(rentaZ(INV(yy))) + " mesačne" : yy <= N * 0.25 && I0 <= 0 ? "prvých " + eur(a.inv) + " v investíciách" : "investície " + eur(a.inv); }
       return { trieda: (i === 4 ? "isl--goal " : "") + (i === 0 || i === 4 ? "isl--ja" : b.ciel ? "isl--ciel" : ""), s: mi[0], sm: mi[1], i: 3 + i, art: art, kedy: (yy === 0 ? "dnes" : "o " + roky(yy)) + " · " + (Y0 + yy), spolu: eur(a.spolu), veta: veta, renta: i === 4 && jadro !== "majetok" ? eur(renta) : "" };
     });
     var kartyCielov = mile.map(function (x) { return { art: x.art, nazov: x.nazov, cislo: x.cislo, pod: x.pod, rok: x.rok, trieda: "", za: "" }; });
@@ -2681,7 +2682,7 @@ svg text { font-family: var(--sans); }
       ine: ine.map(function (x) { var q = info[x.kto]; return { nazov: x.nazov, suma: eur(x.suma), kedy: oKedy(x.y), rok: x.y < 1 ? "" : String(rokU(x.y)), zdroj: (q && q.zoCur > 0.5 ? "zo sporiaceho a bežného účtu" : sOn ? "zo sporiaceho účtu" : "z bežného účtu"), pred: eur(zk(q ? q.pred : 0)) }; }),
       bytCas: byt && !byt.predaj ? [0, 10, 20, 30].filter(function (tt) { return tt === 0 || tt <= byt.roky; }).map(function (tt) {
         var h = byt.hodnota(tt * 12), dl = byt.dlh(tt * 12), max = byt.hodnota(Math.min(30, byt.roky) * 12);
-        return { kedy: tt === 0 ? "pri kúpe" : "o " + roky(tt), cast: eur(tt === 0 ? byt.V0 : r1k(h - dl)), najom: eur(Math.round(byt.najomV(tt * 12))), hc: ((h - dl) / max * 100).toFixed(1), hd: (dl / max * 100).toFixed(1) };
+        return { kedy: tt === 0 ? "pri kúpe" : "rok " + (rokU(byt.y) + tt), cast: eur(tt === 0 ? byt.V0 : r1k(h - dl)), najom: eur(Math.round(byt.najomV(tt * 12))), hc: ((h - dl) / max * 100).toFixed(1), hd: (dl / max * 100).toFixed(1) };
       }) : [],
       zastavky: (function () {
         var pos = 0, pos2 = 0;
