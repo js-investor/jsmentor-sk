@@ -13,5 +13,6 @@ Disallow: /tyzden-v-grafoch-8c3f
 Disallow: /prispevky-7k2m
 Disallow: /assets/prispevky-7k2m/
 Disallow: /nove-9k4t
+Disallow: /plany-4h7q
 
 Sitemap: https://www.jsmentor.sk/sitemap.xml
