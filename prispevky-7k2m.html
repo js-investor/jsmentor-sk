@@ -4,121 +4,482 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Príspevky · JS Mentor</title>
-<meta name="theme-color" content="#1c1714">
+<meta name="theme-color" content="#1a1512">
+<title>Štúdio obsahu</title>
 <style>
+@font-face { font-family: "Calvino"; src: url("/assets/fonts/calvino/Calvino-Bold.otf") format("opentype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Calvino"; src: url("/assets/fonts/calvino/Calvino-Bold-Italic.otf") format("opentype"); font-weight: 700; font-style: italic; font-display: swap; }
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
 @font-face { font-family: "Matter"; src: url("/assets/fonts/matter/Matter-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
-:root { --bg: #1c1714; --panel: #26201c; --line: rgba(243,233,221,.12); --cream: #f3e9dd; --mute: rgba(243,233,221,.58); --gold: #e8c271; --ink: #292420; }
+:root { --bg:#1a1512; --side:#15110f; --sf:rgba(243,233,221,.045); --sf2:rgba(243,233,221,.075); --bd:rgba(243,233,221,.10); --tx:#f3e9dd; --mu:rgba(243,233,221,.56); --fa:rgba(243,233,221,.34); --gold:#e8c271; --goldbg:rgba(232,194,113,.13); --ok:#9cc7a4; --okbg:rgba(156,199,164,.14); --am:#e3a45a; --ambg:rgba(227,164,90,.13); --red:#e58a70; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
-body { background: var(--bg); color: var(--cream); font-family: "Matter", system-ui, -apple-system, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; font-variant-ligatures: none; font-feature-settings: "liga" 0, "dlig" 0, "calt" 0; min-height: 100vh; min-height: 100dvh; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 28px 16px 80px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
-header h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
-header h1 em { font-style: normal; color: var(--gold); }
-header p { margin-top: 8px; color: var(--mute); font-size: 17px; line-height: 1.45; max-width: 46ch; }
-.bar { position: sticky; top: 0; z-index: 5; background: linear-gradient(var(--bg) 78%, rgba(28,23,20,0)); padding: 18px 0 16px; margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.chip { height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); color: var(--mute); font-size: 16px; font-weight: 600; white-space: nowrap; }
-.chip[aria-pressed="true"] { background: var(--cream); color: var(--ink); border-color: var(--cream); }
-.chip b { font-weight: 600; opacity: .6; margin-left: 6px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px, 1fr)); gap: 14px; }
-@media (min-width: 720px) { .grid { grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 20px; } }
-.card { text-align: left; display: block; width: 100%; }
-.card .pic { display: block; position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--panel); outline: 1px solid var(--line); outline-offset: -1px; }
-.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card .n { position: absolute; right: 8px; top: 8px; background: rgba(28,23,20,.78); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
-.card .done { position: absolute; left: 8px; top: 8px; background: var(--gold); color: var(--ink); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 700; }
-.card.pub .pic img { opacity: .45; }
-.card h2 { margin-top: 10px; font-size: 16px; font-weight: 600; line-height: 1.3; }
-.card small { display: block; margin-top: 3px; color: var(--mute); font-size: 14px; }
-@media (hover: hover) { .card:hover .pic { outline-color: rgba(232,194,113,.7); } .chip:hover { color: var(--cream); } .chip[aria-pressed="true"]:hover { color: var(--ink); } }
-.card:focus-visible .pic, .chip:focus-visible, .btn:focus-visible, .x:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-.empty { color: var(--mute); padding: 40px 0; font-size: 17px; }
-
-dialog { border: 0; padding: 0; margin: 0; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; background: var(--bg); color: var(--cream); }
-dialog::backdrop { background: var(--bg); }
-.dh { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); background: rgba(28,23,20,.94); border-bottom: 1px solid var(--line); }
-.dh h3 { flex: 1; min-width: 0; font-size: 18px; font-weight: 700; line-height: 1.25; }
-.dh h3 small { display: block; font-size: 14px; font-weight: 500; color: var(--mute); margin-top: 2px; }
-.x { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); font-size: 22px; line-height: 1; flex: none; }
-.acts { display: flex; gap: 10px; flex-wrap: wrap; padding: 14px 16px 4px; max-width: 1240px; margin: 0 auto; }
-.btn { height: 48px; padding: 0 20px; border-radius: 999px; font-size: 16px; font-weight: 700; border: 1px solid var(--line); white-space: nowrap; }
-.btn.gold { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-.btn[disabled] { opacity: .5; }
-.slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 14px 16px 60px; max-width: 1240px; margin: 0 auto; }
-.sl { position: relative; }
-.sl img { width: 100%; height: auto; display: block; border-radius: 12px; background: var(--panel); }
-.sl a { position: absolute; right: 10px; bottom: 10px; height: 40px; padding: 0 14px; display: flex; align-items: center; border-radius: 999px; background: rgba(28,23,20,.82); color: var(--cream); font-size: 14px; font-weight: 600; text-decoration: none; }
-.sl i { position: absolute; left: 10px; top: 10px; font-style: normal; background: rgba(28,23,20,.78); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 600; }
-.hint { color: var(--mute); font-size: 14px; padding: 0 16px; max-width: 1240px; margin: 6px auto 0; line-height: 1.45; }
+body { font-family: "Matter", system-ui, sans-serif; font-weight: 500; font-size: 15px; color: var(--tx); background: var(--bg); -webkit-font-smoothing: antialiased; min-height: 100vh; min-height: 100dvh; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: radial-gradient(50% 40% at 78% 0%, rgba(232,194,113,.10), transparent 70%), radial-gradient(40% 40% at 100% 100%, rgba(120,78,30,.20), transparent 70%); }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; text-align: left; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 8px; }
+.app { display: flex; min-height: 100vh; min-height: 100dvh; position: relative; }
+.side { width: 236px; flex: none; background: var(--side); border-right: 1px solid var(--bd); padding: 26px 16px 20px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; height: 100dvh; }
+.brand { display: flex; align-items: center; gap: 11px; padding: 0 8px 22px; }
+.brand i { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(160deg, #f1d28c, #c99a45); display: grid; place-items: center; color: #1a1512; font: 700 15px "Matter"; }
+.brand b { font-weight: 700; font-size: 15.5px; display: block; } .brand span { font-size: 12px; color: var(--mu); }
+.nav a { display: flex; align-items: center; gap: 11px; padding: 9px 10px; border-radius: 10px; color: var(--mu); font-weight: 600; font-size: 14.5px; margin-bottom: 2px; }
+.nav a:hover { color: var(--tx); }
+.nav svg, .tab svg { width: 17px; height: 17px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.nav a em { margin-left: auto; font-style: normal; font-size: 12px; color: var(--fa); }
+.nav a.on { background: var(--sf2); color: var(--tx); box-shadow: inset 0 0 0 1px var(--bd); } .nav a.on svg { color: var(--gold); }
+.nav h6 { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--fa); padding: 18px 10px 8px; font-weight: 600; }
+.week { margin-top: auto; border: 1px solid var(--bd); background: var(--sf); border-radius: 14px; padding: 14px; }
+.week p { font-size: 12px; color: var(--mu); } .week b { display: block; font-size: 20px; font-weight: 700; margin: 3px 0 4px; letter-spacing: -.02em; } .week small { font-size: 11.5px; color: var(--fa); }
+.main { flex: 1; min-width: 0; padding: 30px 34px 60px; position: relative; }
+.top { display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; }
+h1 { font-family: "Calvino"; font-weight: 700; font-size: 38px; line-height: 1.06; letter-spacing: -.01em; } h1 i { color: var(--gold); }
+.sub { margin-top: 8px; color: var(--mu); font-size: 15px; line-height: 1.4; } .sub b { color: var(--tx); font-weight: 600; }
+.btns { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { font-weight: 600; font-size: 14px; padding: 11px 16px 9px; border-radius: 11px; border: 1px solid var(--bd); background: var(--sf2); color: var(--tx); white-space: nowrap; display: inline-block; text-align: center; }
+.btn:hover { border-color: rgba(243,233,221,.25); }
+.btn.p { background: linear-gradient(180deg, #f1d28c, #d6aa55); border-color: transparent; color: #1a1512; box-shadow: 0 8px 20px rgba(201,154,69,.22); }
+.btn.sm { padding: 7px 12px 5px; font-size: 12.5px; border-radius: 9px; } .btn.ok { background: var(--okbg); border-color: transparent; color: var(--ok); } .btn.dng { color: var(--red); }
+.crumb { font-size: 13px; color: var(--mu); display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-weight: 600; } .crumb em { margin-left: auto; font-style: normal; color: var(--ok); font-weight: 500; }
+.kb { display: inline-grid; place-items: center; min-width: 26px; height: 20px; padding: 1px 6px 0; border-radius: 6px; font: 700 10.5px "Matter"; letter-spacing: .04em; border: 1.4px solid var(--bd); color: var(--fa); flex: none; }
+.kb.on { background: var(--gold); border-color: var(--gold); color: #1a1512; } .kb.pl { border-color: var(--gold); color: var(--gold); } .kb.ok { background: var(--okbg); border-color: transparent; color: var(--ok); }
+.t { font-weight: 600; font-size: 11.5px; padding: 3px 8px 2px; border-radius: 6px; background: var(--bd); color: var(--mu); white-space: nowrap; display: inline-block; }
+.t.g { background: var(--goldbg); color: var(--gold); } .t.o { background: var(--okbg); color: var(--ok); } .t.a { background: var(--ambg); color: var(--am); }
+.cap { display: flex; align-items: center; gap: 12px; margin-top: 20px; border: 1px solid rgba(232,194,113,.32); background: linear-gradient(90deg, var(--goldbg), transparent 60%), var(--sf); border-radius: 14px; padding: 4px 8px 4px 16px; }
+.cap svg { width: 19px; height: 19px; stroke: var(--gold); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.cap input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; padding: 12px 0 10px; font-size: 16px; } .cap input::placeholder { color: var(--fa); }
+.ch4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.kt { border: 1px solid var(--bd); background: var(--sf); border-radius: 16px; padding: 16px 18px 15px; box-shadow: inset 0 1px 0 rgba(255,255,255,.05); display: block; }
+.kt:hover { border-color: rgba(243,233,221,.22); }
+.kt .h { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 14.5px; }
+.kt b { display: block; font-size: 28px; font-weight: 700; letter-spacing: -.03em; margin-top: 10px; } .kt b small { font-size: 13px; font-weight: 600; color: var(--mu); letter-spacing: 0; margin-left: 6px; }
+.kt p { font-size: 12.5px; color: var(--mu); margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .kt p b { display: inline; font-size: 12.5px; color: var(--tx); font-weight: 600; letter-spacing: 0; margin: 0; }
+.gaps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 14px; }
+.gap { display: flex; align-items: center; gap: 12px; border: 1px dashed rgba(227,164,90,.5); background: var(--ambg); border-radius: 14px; padding: 12px 14px; min-width: 0; }
+.gap u { text-decoration: none; width: 34px; height: 34px; border-radius: 10px; background: rgba(227,164,90,.22); display: grid; place-items: center; color: var(--am); font-weight: 700; flex: none; }
+.gap div { min-width: 0; flex: 1; } .gap b { display: block; font-weight: 600; font-size: 14px; } .gap p { font-size: 12.5px; color: var(--mu); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 18px; margin-top: 14px; align-items: start; }
+.pan { border: 1px solid var(--bd); background: var(--sf); border-radius: 18px; padding: 18px 18px 10px; min-width: 0; }
+.pan h3 { font-family: "Calvino"; font-size: 22px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; } .pan h3 span { font: 500 12.5px "Matter"; color: var(--mu); }
+.empty { color: var(--mu); font-size: 14px; line-height: 1.5; padding: 14px 0 12px; }
+.br { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 13px 0; border-top: 1px solid var(--bd); } .br:first-of-type { border-top: 0; margin-top: 6px; }
+.br h4 { font-weight: 600; font-size: 14.5px; line-height: 1.25; } .br h4 + p { font-size: 12px; color: var(--mu); margin-top: 5px; }
+.ex p { font-size: 12px; color: var(--mu); display: flex; justify-content: space-between; gap: 8px; } .ex p b { color: var(--tx); font-weight: 600; }
+.pg { height: 6px; border-radius: 6px; background: var(--bd); margin-top: 7px; overflow: hidden; } .pg i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #c99a45, #f1d28c); }
+.day { display: flex; gap: 12px; align-items: flex-start; padding: 11px 0; border-top: 1px solid var(--bd); } .day:first-of-type { border-top: 0; margin-top: 6px; }
+.day > u { text-decoration: none; width: 38px; flex: none; font-size: 11px; color: var(--mu); text-transform: uppercase; letter-spacing: .08em; line-height: 1.2; } .day > u b { display: block; font-size: 19px; color: var(--tx); letter-spacing: -.02em; }
+.day.td > u b { color: var(--gold); } .day > div { flex: 1; min-width: 0; }
+.ev { font-size: 13.5px; font-weight: 600; line-height: 1.3; display: flex; gap: 8px; align-items: center; margin-bottom: 6px; min-width: 0; } .ev span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ev.dn { color: var(--mu); } .no { color: var(--fa); font-size: 13.5px; }
+.bar { display: flex; align-items: center; gap: 8px; margin: 22px 0 14px; flex-wrap: wrap; }
+.seg { display: flex; background: var(--sf); border: 1px solid var(--bd); border-radius: 11px; padding: 3px; }
+.seg button { padding: 7px 13px 5px; border-radius: 8px; font-weight: 600; font-size: 13px; color: var(--mu); } .seg button.on { background: var(--sf2); color: var(--tx); box-shadow: inset 0 0 0 1px var(--bd); }
+.srch { margin-left: auto; width: 230px; border: 1px solid var(--bd); background: var(--sf); border-radius: 11px; padding: 9px 13px 7px; font-size: 14px; outline: 0; } .srch::placeholder { color: var(--fa); }
+.igw { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 22px; align-items: start; }
+.ig { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.ig a { position: relative; aspect-ratio: 4/5; border-radius: 10px; overflow: hidden; background: var(--sf2); display: block; } .ig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ig .pl { box-shadow: inset 0 0 0 2px var(--gold); } .ig .pl img { opacity: .6; } .ig .rd img { opacity: .35; }
+.ig span { position: absolute; left: 7px; top: 7px; font: 700 10.5px "Matter"; padding: 4px 8px 3px; border-radius: 6px; background: rgba(21,17,15,.82); color: var(--tx); } .ig .pl span { background: var(--gold); color: #1a1512; }
+.ig em { position: absolute; right: 7px; top: 7px; font-style: normal; font-size: 11px; background: rgba(21,17,15,.7); border-radius: 6px; padding: 3px 6px 2px; }
+.row { display: flex; gap: 12px; align-items: center; border: 1px solid var(--bd); background: var(--sf); border-radius: 14px; padding: 10px; margin-top: 8px; min-width: 0; }
+.row:hover { border-color: rgba(243,233,221,.22); }
+.row img { width: 48px; height: 60px; border-radius: 8px; object-fit: cover; flex: none; background: var(--sf2); } .row > div { min-width: 0; flex: 1; }
+.row b { font-weight: 600; font-size: 14px; line-height: 1.25; display: block; } .row p { font-size: 12px; color: var(--mu); margin-top: 6px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.grp { margin-top: 26px; } .grp > h3 { font-weight: 700; font-size: 13.5px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; } .grp > h3 u { width: 9px; height: 9px; border-radius: 50%; } .grp > h3 em { font-style: normal; color: var(--fa); font-weight: 600; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 10px; }
+.vc { border: 1px solid var(--bd); background: var(--sf); border-radius: 16px; padding: 14px; display: block; box-shadow: inset 0 1px 0 rgba(255,255,255,.05); min-width: 0; } .vc:hover { border-color: rgba(243,233,221,.22); }
+.vc .h { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--mu); font-weight: 600; margin-bottom: 9px; } .vc .h em { margin-left: auto; font-style: normal; }
+.vc h4 { font-weight: 600; font-size: 15px; line-height: 1.28; } .vc p { font-size: 12.5px; color: var(--mu); margin-top: 7px; line-height: 1.4; }
+.route { display: flex; align-items: center; gap: 5px; margin-top: 10px; } .route s { text-decoration: none; color: var(--fa); font-size: 11px; } .route i { margin-left: auto; font-style: normal; font-size: 12px; color: var(--mu); }
+.vc.add { border-style: dashed; background: transparent; display: grid; place-items: center; text-align: center; color: var(--mu); font-weight: 600; min-height: 120px; } .vc.add b { display: block; font-size: 24px; color: var(--gold); font-weight: 500; }
+/* detail */
+.det { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 30px; align-items: start; }
+.rp { border: 1px solid var(--bd); background: var(--sf); border-radius: 18px; padding: 20px; min-width: 0; }
+.rp h6, .lbl { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--fa); font-weight: 600; margin: 0 0 10px; display: block; }
+.rp h6:not(:first-child) { margin-top: 22px; }
+.tin { width: 100%; background: none; border: 0; outline: 0; font-family: "Calvino"; font-weight: 700; font-size: 36px; line-height: 1.1; resize: none; overflow: hidden; display: block; } .tin::placeholder { color: var(--fa); }
+.meta { display: flex; gap: 8px; margin-top: 14px; align-items: center; flex-wrap: wrap; } .meta .n { font-size: 12.5px; color: var(--mu); }
+.in { background: var(--sf2); border: 1px solid var(--bd); border-radius: 10px; padding: 9px 12px 7px; outline: 0; font-size: 14px; min-width: 0; } .in:focus { border-color: rgba(232,194,113,.5); } .in::placeholder { color: var(--fa); }
+input[type=date].in { color-scheme: dark; }
+.sec { margin-top: 26px; max-width: 720px; }
+.sec h5 { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 700; display: flex; gap: 10px; align-items: center; } .sec h5 em { font-style: normal; color: var(--fa); letter-spacing: 0; text-transform: none; font-weight: 500; }
+.sec textarea { width: 100%; margin-top: 8px; background: none; border: 0; outline: 0; resize: none; overflow: hidden; font-size: 18px; line-height: 1.55; display: block; min-height: 30px; } .sec textarea::placeholder { color: var(--fa); }
+.mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mini button { text-align: center; font-size: 11.5px; font-weight: 600; padding: 9px 2px 7px; border-radius: 9px; background: var(--sf2); color: var(--mu); box-shadow: inset 0 0 0 1px var(--bd); } .mini button.on { background: var(--okbg); color: var(--ok); box-shadow: none; }
+.stop { position: relative; padding: 0 0 18px 34px; } .stop::before { content: ""; position: absolute; left: 10px; top: 24px; bottom: 0; width: 2px; background: var(--bd); } .stop:last-of-type::before { display: none; }
+.stop > u { position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%; border: 1.7px solid var(--fa); text-decoration: none; display: grid; place-items: center; font-size: 12px; color: #1a1512; }
+.stop.d > u { background: var(--ok); border-color: var(--ok); } .stop.n > u { border-color: var(--gold); box-shadow: 0 0 0 4px var(--goldbg); } .stop.d::before { background: var(--ok); opacity: .5; } .stop.x { opacity: .55; }
+.stop h4 { font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; min-height: 22px; } .stop h4 em { margin-left: auto; font: 500 12px "Matter"; color: var(--mu); }
+.cd { margin-top: 9px; border: 1px solid var(--bd); background: var(--sf2); border-radius: 12px; padding: 11px 12px; }
+.cd p { font-size: 12.5px; color: var(--mu); line-height: 1.45; } .cd p b { color: var(--tx); font-weight: 600; }
+.cd .ln { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 9px; } .cd .ln label { font-size: 12.5px; color: var(--mu); }
+.chk { display: flex; gap: 8px; align-items: center; font-size: 12.5px; color: var(--mu); margin-top: 9px; cursor: pointer; } .chk input { accent-color: #e8c271; width: 15px; height: 15px; }
+.clip { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 9px; font-size: 13px; font-weight: 600; padding: 7px 0; min-width: 0; border-top: 1px solid var(--bd); } .clip:first-child { border-top: 0; } .clip > span { flex: 1 1 60%; min-width: 0; line-height: 1.3; } .clip > input, .clip > i { margin-left: 27px; }
+.clip button.c { width: 18px; height: 18px; border-radius: 50%; border: 1.6px solid var(--fa); flex: none; } .clip.d button.c { background: var(--ok); border-color: var(--ok); } .clip.d > span { color: var(--mu); }
+.clip .x { color: var(--fa); font-size: 16px; padding: 0 4px; }
+.note { width: 100%; resize: vertical; min-height: 70px; line-height: 1.45; }
+/* príspevok */
+.view { position: relative; background: #0f0c0a; border-radius: 16px; overflow: hidden; border: 1px solid var(--bd); max-width: 520px; touch-action: pan-y; }
+.view img { width: 100%; display: block; aspect-ratio: 4/5; object-fit: contain; }
+.view .cnt { position: absolute; right: 12px; top: 12px; font: 600 12px "Matter"; background: rgba(21,17,15,.75); padding: 5px 10px 3px; border-radius: 999px; }
+.view button { position: absolute; top: 50%; transform: translateY(-50%); width: 38px; height: 38px; border-radius: 50%; background: rgba(21,17,15,.7); text-align: center; font-size: 18px; } .view .pv { left: 10px; } .view .nx { right: 10px; }
+.ths { display: flex; gap: 6px; margin-top: 8px; overflow-x: auto; max-width: 520px; padding-bottom: 4px; } .ths button { flex: none; width: 46px; border-radius: 6px; overflow: hidden; opacity: .5; } .ths button.on { opacity: 1; box-shadow: 0 0 0 2px var(--gold); } .ths img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+.cpt { border: 1px solid var(--bd); background: var(--sf2); border-radius: 14px; padding: 13px 14px; }
+.cpt h6 { display: flex; align-items: center; margin: 0 0 6px; color: var(--gold); font-weight: 700; } .cpt h6 button { margin-left: auto; font: 600 12.5px "Matter"; letter-spacing: 0; text-transform: none; color: #1a1512; background: var(--gold); padding: 5px 11px 3px; border-radius: 8px; }
+.cpt textarea { width: 100%; background: none; border: 0; outline: 0; resize: none; overflow: hidden; font-size: 15px; line-height: 1.45; min-height: 66px; display: block; } .cpt textarea::placeholder { color: var(--fa); }
+.fld { display: grid; gap: 6px; margin-top: 16px; } .fld > span { font-size: 12.5px; color: var(--mu); }
+.path { font-size: 12px; color: var(--fa); line-height: 1.4; margin-top: 16px; word-break: break-word; }
+/* nápady */
+.idea { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--bd); background: var(--sf); border-radius: 14px; padding: 13px 14px; margin-top: 8px; }
+.idea p { flex: 1; min-width: 0; font-size: 15px; line-height: 1.4; white-space: pre-wrap; word-break: break-word; } .idea small { display: block; color: var(--fa); font-size: 12px; margin-top: 5px; }
+.idea .acts { display: flex; gap: 6px; flex: none; flex-wrap: wrap; justify-content: flex-end; }
+.toast { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 20px); background: #2c241e; border: 1px solid var(--bd); border-radius: 12px; padding: 11px 14px 9px; font-size: 14px; font-weight: 600; display: flex; gap: 14px; align-items: center; opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s; z-index: 50; box-shadow: 0 16px 40px rgba(0,0,0,.5); max-width: calc(100vw - 32px); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; } .toast button { color: var(--gold); font-weight: 700; }
+.tab { display: none; }
+@media (max-width: 1100px) { .ch4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two, .igw, .det { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 820px) {
+  .side { display: none; } .main { padding: 20px 16px 110px; } h1 { font-size: 29px; } .tin { font-size: 28px; }
+  .btns { margin-left: 0; width: 100%; } .btns .btn { flex: 1; }
+  .srch { width: 100%; margin-left: 0; } .br { grid-template-columns: minmax(0, 1fr); gap: 9px; } .br .btn { justify-self: start; }
+  .ig { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } .kt { padding: 13px 14px 12px; } .kt b { font-size: 24px; }
+  .tab { display: flex; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); justify-content: space-around; background: rgba(21,17,15,.9); border: 1px solid var(--bd); border-radius: 22px; padding: 10px 4px 8px; font-size: 10.5px; font-weight: 600; color: var(--mu); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); z-index: 40; }
+  .tab a { display: grid; justify-items: center; gap: 4px; padding: 2px 8px; } .tab svg { width: 21px; height: 21px; } .tab a.on { color: var(--gold); }
+  .toast { bottom: calc(92px + env(safe-area-inset-bottom)); }
+  .idea { flex-direction: column; } .idea .acts { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Príspevky <em>JS Mentor</em></h1>
-    <p id="sum"></p>
-  </header>
-  <div class="bar" id="bar"></div>
-  <div class="grid" id="grid"></div>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><i>JS</i><div><b>Štúdio obsahu</b><span id="sync">súkromné · len cez odkaz</span></div></div>
+    <nav class="nav" id="nav"></nav>
+    <div class="week" id="week"></div>
+  </aside>
+  <main class="main" id="main"></main>
 </div>
-<dialog id="dlg" aria-labelledby="dt">
-  <div class="dh"><h3 id="dt"></h3><button class="x" id="close" aria-label="Zavrieť">×</button></div>
-  <div class="acts"><button class="btn gold" id="all"></button><button class="btn" id="pub"></button></div>
-  <p class="hint" id="hint"></p>
-  <div class="slides" id="slides"></div>
-</dialog>
+<nav class="tab" id="tab"></nav>
+<div class="toast" id="toast" role="status"><span id="toastT"></span><button id="toastB" type="button">Vrátiť späť</button></div>
 <script>
-const POSTS = [{"id": "brian-tracy", "name": "Brian Tracy: citáty (6)", "typ": "Príspevok", "n": 6, "d": "2026-11-15", "r": 1.25}, {"id": "verstappen", "name": "Max Verstappen", "typ": "Carousel", "n": 12, "d": "2026-11-14", "r": 1.25}, {"id": "muz-chlapec", "name": "Za každým mužom… je chlapec", "typ": "Príspevok", "n": 1, "d": "2026-11-14", "r": 1.25}, {"id": "citaty-klasicke", "name": "Klasické citáty (4)", "typ": "Príspevok", "n": 4, "d": "2026-11-13", "r": 1.25}, {"id": "kurca", "name": "Kurčatá: čas a trpezlivosť", "typ": "Príspevok", "n": 1, "d": "2026-11-12", "r": 1.25}, {"id": "nehnutelnost-300000", "name": "Nehnuteľnosť za 300 000 €", "typ": "Carousel", "n": 7, "d": "2026-11-11", "r": 1.25}, {"id": "veci-luxus", "name": "Veci, ktoré sú vlastne luxus", "typ": "Carousel", "n": 10, "d": "2026-11-10", "r": 1.25}, {"id": "v-renta", "name": "Renta 1 000 € mesačne", "typ": "Carousel", "n": 6, "d": "2026-11-09", "r": 1.25}, {"id": "v-poplatky", "name": "Poplatky 2,5 %", "typ": "Carousel", "n": 7, "d": "2026-11-09", "r": 1.25}, {"id": "v-tri-ucty", "name": "Tri účty", "typ": "Carousel", "n": 6, "d": "2026-11-09", "r": 1.25}, {"id": "v-prerobil", "name": "Ako často si prerobil", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "v-tweet-dochodok", "name": "Tweet: dôchodok", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "zamestnanec-investor", "name": "Zamestnanec vs. investor (Coca-Cola)", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "r": 1.25}, {"id": "mlady-starsi", "name": "Mladý vs. starší investor", "typ": "Carousel", "n": 5, "d": "2026-11-08", "r": 1.25}, {"id": "byvanie-investovanie", "name": "Vlastné bývanie vs. investovanie", "typ": "Carousel", "n": 8, "d": "2026-11-08", "r": 1.25}, {"id": "miliardari", "name": "Miliardári a ich problémy", "typ": "Carousel", "n": 17, "d": "2026-11-07", "r": 1.25}, {"id": "kamarati-firmy", "name": "Kamaráti a firmy", "typ": "Carousel", "n": 6, "d": "2026-11-07", "r": 1.25}, {"id": "citaty-10", "name": "Citáty (12 slidov)", "typ": "Carousel", "n": 12, "d": "2026-11-07", "r": 1.25}, {"id": "alexander", "name": "Alexander Veľký", "typ": "Carousel", "n": 8, "d": "2026-11-07", "r": 1.25}, {"id": "deti-peniaze", "name": "Deti a peniaze", "typ": "Carousel", "n": 5, "d": "2026-11-06", "r": 1.25}, {"id": "trump", "name": "Trump 1 vs. 2", "typ": "Carousel", "n": 4, "d": "2026-11-06", "r": 1.25}, {"id": "einstein", "name": "Einstein: citáty", "typ": "Carousel", "n": 16, "d": "2026-11-05", "r": 1.25}, {"id": "inflacia-kosik", "name": "Inflácia ťa potichu okráda", "typ": "Príspevok", "n": 1, "d": "2026-11-04", "r": 1.25}, {"id": "milionar-50", "name": "Milionár pred 50-tkou?", "typ": "Carousel", "n": 6, "d": "2026-11-04", "r": 1.25}, {"id": "svetovy-majetok", "name": "Svetový majetok a 1 %", "typ": "Carousel", "n": 6, "d": "2026-11-04", "r": 1.25}, {"id": "sp500-1-dolar", "name": "S&P 500: 1 $ každý deň", "typ": "Video", "n": 1, "d": "2026-11-04", "r": 1.778}, {"id": "keanu", "name": "Keanu Reeves", "typ": "Carousel", "n": 10, "d": "2026-11-03", "r": 1.25}, {"id": "kriza-2008", "name": "Finančná kríza 2008", "typ": "Carousel", "n": 10, "d": "2026-11-03", "r": 1.25}, {"id": "prve-kroky", "name": "Prvé kroky (8 krokov)", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "r": 1.25}, {"id": "zaciname-mladi", "name": "Začíname mladí!", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "r": 1.25}, {"id": "tiger", "name": "Prestaň sa hádať s bláznami (tiger)", "typ": "Carousel", "n": 10, "d": "2026-10-28", "r": 1.25}, {"id": "myslienky", "name": "Myšlienky (5 textových)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "r": 1.25}, {"id": "tweety", "name": "Tweety (5)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "r": 1.25}, {"id": "balony", "name": "Balóny", "typ": "Carousel", "n": 5, "d": "2026-10-27", "r": 1.25}, {"id": "dotcom", "name": "Dotcom bublina", "typ": "Carousel", "n": 11, "d": "2026-10-27", "r": 1.25}, {"id": "jordan", "name": "Michael Jordan", "typ": "Carousel", "n": 7, "d": "2026-10-27", "r": 1.25}, {"id": "komunizmus", "name": "Komunizmus (8 príspevkov)", "typ": "Carousel", "n": 8, "d": "2026-10-20", "r": 1.25}], BASE = '/assets/prispevky-7k2m/';
+const POSTS = [{"id": "gta-2013-2026", "name": "GTA 5 vs GTA 6: čo spravili tvoje peniaze", "typ": "Carousel", "n": 11, "d": "2026-11-18", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › gta-2013-2026 › 1080"}, {"id": "pojmy-7", "name": "7 pojmov pred podnikaním", "typ": "Carousel", "n": 9, "d": "2026-11-18", "tema": "Peniaze a život", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › money-focus-4 › 1080"}, {"id": "dobre-spravy-2", "name": "Dobré správy, o ktorých ti titulky nepovedia", "typ": "Carousel", "n": 20, "d": "2026-11-17", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › money-focus-3"}, {"id": "dobre-spravy", "name": "Dobré správy zo sveta", "typ": "Carousel", "n": 14, "d": "2026-11-17", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › money-focus-2"}, {"id": "nechaj-si-to", "name": "Nechaj si to pre seba", "typ": "Carousel", "n": 6, "d": "2026-11-17", "tema": "Peniaze a život", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › money-focus-ja-animovany"}, {"id": "somar", "name": "Somár v studni", "typ": "Carousel", "n": 8, "d": "2026-11-16", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › somar-studna"}, {"id": "brian-tracy", "name": "Brian Tracy: citáty (6)", "typ": "Príspevok", "n": 6, "d": "2026-11-15", "tema": "Citáty", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › brian-tracy"}, {"id": "verstappen", "name": "Max Verstappen", "typ": "Carousel", "n": 12, "d": "2026-11-14", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › verstappen"}, {"id": "muz-chlapec", "name": "Za každým mužom… je chlapec", "typ": "Príspevok", "n": 1, "d": "2026-11-14", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › muz-chlapec-detstvo"}, {"id": "reel-opcie", "name": "Opcie za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 6 Opcie za 90 sekund.mp4"}, {"id": "reel-inflacia", "name": "Inflácia za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 7 Inflacia za 90 sekund.mp4"}, {"id": "reel-anthropic", "name": "Anthropic ide na burzu", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 8 Anthropic ide na burzu.mp4"}, {"id": "reel-diverzifikacia", "name": "Diverzifikácia za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 9 Diverzifikacia za 90 sekund.mp4"}, {"id": "reel-zlozene-urocenie", "name": "Zložené úročenie za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › zlozene-urocenie-za-90-sekund-1440x2560.mp4"}, {"id": "reel-druhy-pilier", "name": "Druhý pilier za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › druhy-pilier-za-90-sekund-1440x2560.mp4"}, {"id": "reel-dlhopisy", "name": "Dlhopisy za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › dlhopisy-za-90-sekund-1440x2560.mp4"}, {"id": "reel-kreditka", "name": "Kreditka za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › kreditka-za-90-sekund-1440x2560.mp4"}, {"id": "reel-zlato", "name": "Zlato za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › zlato-za-90-sekund-1440x2560.mp4"}, {"id": "reel-uver", "name": "Úver za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › uver-za-90-sekund-1440x2560.mp4"}, {"id": "reel-poplatky", "name": "Poplatky za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › poplatky-za-90-sekund-1440x2560.mp4"}, {"id": "reel-ipo", "name": "IPO za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › ipo-za-90-sekund-1440x2560.mp4"}, {"id": "reel-urokove-sadzby", "name": "Úrokové sadzby za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-14", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-90s-3 › 9-reelov-2K › urokove-sadzby-za-90-sekund-1440x2560.mp4"}, {"id": "citaty-klasicke", "name": "Klasické citáty (4)", "typ": "Príspevok", "n": 4, "d": "2026-11-13", "tema": "Citáty", "styl": "Len text", "kde": "Stiahnuté › jsmentor-instagram › citaty-klasicke › 4K"}, {"id": "reel-nvidia", "name": "Nvidia za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-13", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 1 Nvidia za 90 sekund.mp4"}, {"id": "reel-etf", "name": "ETF za 90 sekúnd", "typ": "Reel", "n": 1, "d": "2026-11-13", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 2 ETF za 90 sekund.mp4"}, {"id": "reel-investovanie-1", "name": "Investovanie za 90 sekúnd, 1. diel", "typ": "Reel", "n": 1, "d": "2026-11-13", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 3 Investovanie za 90 sekund - 1. diel.mp4"}, {"id": "reel-investovanie-2", "name": "Investovanie za 90 sekúnd, 2. diel", "typ": "Reel", "n": 1, "d": "2026-11-13", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 4 Investovanie za 90 sekund - 2. diel.mp4"}, {"id": "reel-investovanie-3", "name": "Investovanie za 90 sekúnd, 3. diel", "typ": "Reel", "n": 1, "d": "2026-11-13", "tema": "Investovanie", "styl": "Kreslené video", "kde": "Stiahnuté › ludske-peniaze-reels › 5 Investovanie za 90 sekund - 3. diel.mp4"}, {"id": "kurca", "name": "Kurčatá: čas a trpezlivosť", "typ": "Príspevok", "n": 1, "d": "2026-11-12", "tema": "Peniaze a život", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › kurca-cas-trpezlivost"}, {"id": "nehnutelnost-300000", "name": "Nehnuteľnosť za 300 000 €", "typ": "Carousel", "n": 7, "d": "2026-11-11", "tema": "Investovanie", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › nehnutelnost-300000"}, {"id": "veci-luxus", "name": "Veci, ktoré sú vlastne luxus", "typ": "Carousel", "n": 10, "d": "2026-11-10", "tema": "Peniaze a život", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › veci-luxus"}, {"id": "v-renta", "name": "Renta 1 000 € mesačne", "typ": "Carousel", "n": 6, "d": "2026-11-09", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › viralnych-5 › 1-renta-1000-mesacne", "cap": "Koľko peňazí musíš mať, aby ti každý mesiac chodilo 1 000 € a nemusel si na to robiť? 🤔\n\nTipni si skôr, ako potiahneš: A, B alebo C? Napíš to do komentára. 👇\n\nVeľa ľudí si myslí, že na rentu treba milióny. Netreba. Pri pravidle 4 % ti stačí okolo 300 000 €. Každý rok si z majetku vyberieš 4 % a zvyšok výnosu kryje infláciu.\n\nA teraz to najdôležitejšie. Keď začneš v 25, v modelovom príklade ti stačí okolo 132 € mesačne. Keď začneš v 45, je to už okolo 1 450 € mesačne. Rovnaká renta, len o 20 rokov neskôr. Čiže najdrahšia vec v investovaní nie je poplatok ani prepad. Je to čakanie.\n\nJa osobne nechcem čakať na dôchodok v 65. Chcem mať v 50 toľko, že adios amigos. 😄\n\nAk chceš vedieť, ako si postaviť vlastnú rentu, napíš mi. A pošli to niekomu, kto stále hovorí, že má čas.\n\nModelový príklad: výnos 10 % ročne, bez poplatkov, daní a inflácie. Minulé výnosy nie sú zárukou budúcich. Nie je to investičné odporúčanie, každý je v inej situácii."}, {"id": "v-poplatky", "name": "Poplatky 2,5 %", "typ": "Carousel", "n": 7, "d": "2026-11-09", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › viralnych-5 › 2-poplatky-2-5-percenta", "cap": "Príde za mnou klient: „Ivan, mne v banke dali nulový vstupák.“ Super. Otvoríme spolu PDF s kľúčovými informáciami a ročný poplatok? 2,5 %. 😬\n\n2,5 % znie ako nič. Lenže ten poplatok nezaplatíš raz. Platíš ho každý rok z celého majetku. Pri 300 € mesačne na 30 rokov to v modelovom príklade robí rozdiel okolo 248 000 €. To je viac ako dvojnásobok toho, čo tam vôbec vložíš.\n\nInvestícia bez poplatkov neexistuje. Platíš peniazmi alebo časom. Ja sám beriem 1 % vstupný poplatok a hovorím to otvorene. Problém nie je poplatok. Problém je, keď o ňom nevieš.\n\nNevieš, koľko platíš ty? Napíš mi a pozrieme sa na to spolu. A pošli to kamošovi, ktorý má „výhodný“ fond z banky.\n\nModelový príklad: výnos trhu 10 % ročne pred poplatkami, bez daní. Minulé výnosy nie sú zárukou budúcich."}, {"id": "v-tri-ucty", "name": "Tri účty", "typ": "Carousel", "n": 6, "d": "2026-11-09", "tema": "Peniaze a život", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › viralnych-5 › 3-tri-ucty", "cap": "Máš všetky peniaze na jednom účte? Tak sa nečuduj, že na konci mesiaca nič nezostane. 🙈\n\nKoľko účtov máš ty? Napíš to do komentára. 👇\n\nNie preto, že by si bol zlý človek. Proste to vidíš a máš pocit, že to môžeš minúť. Ja preto odporúčam 3 účty:\n\n💳 Bežný účet: zhruba 1 mesačný príjem na bežné výdavky. Viac nie, lebo bežný účet nám garantuje stratu.\n💡 Účet na príležitosti: 6 mesačných výdavkov. Ja to nevolám rezervný účet, ja to volám účet na príležitosti. Pokazí sa auto alebo príde prepad na trhu? Máš z čoho.\n💰 Majetkový účet: pevná suma hneď po výplate, investovaná dlhodobo. Tie peniaze sú ten najlepší zamestnanec. Nechodia na PN-ku ani na materskú.\n\nToľko zarobí, toľko minie: mizina. Toľko zarobí, toľko investuje, toľko utratí: bohatý.\n\nUlož si to a ešte dnes si otvor druhý účet. S tým tretím ti pomôžem, stačí napísať."}, {"id": "v-prerobil", "name": "Ako často si prerobil", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › viralnych-5 › 4-ako-casto-si-prerobil", "cap": "Keby si kúpil americké akcie v ľubovoľný deň od roku 1962, ako často by si bol v mínuse? 📉\n\nNa jeden deň skoro každý druhý deň. Na jeden rok zhruba v každom piatom prípade. Ale keď si vydržal 15 rokov a viac, tak historicky ani raz. Ani raz.\n\nPreto hovorím, že investovanie je síce jednoduché, ale nie ľahké. Prepady prídu, to je normálne. Otázka nie je, či prídu. Otázka je, či vydržíš.\n\nUlož si to a vytiahni to pri najbližšom prepade. A pošli to tomu, kto chce všetko predať vždy, keď trh padne.\n\nCelý americký akciový trh vrátane dividend, v dolároch, od januára 1962 do augusta 2026. Zdroj: Kenneth R. French Data Library. Minulé výnosy nie sú zárukou budúcich."}, {"id": "v-tweet-dochodok", "name": "Tweet: dôchodok", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "tema": "Investovanie", "styl": "Tweet", "kde": "Stiahnuté › jsmentor-instagram › viralnych-5 › 5-tweet-dochodok", "cap": "Dokonca dneska stretávam ľudí, ktorí mi povedia: „Ja mám deti, tie sa o mňa postarajú.“ Alebo: „Však štát mi dá dôchodok.“\n\nNespoliehaj sa na štát, na rodičov ani na deti. Za svoj život si zodpovedný sám, zodpovedná sama.\n\nNiekto môže skončiť s prácou v 50. Niekto nemôže ani v 70. Rozdiel nie je vo veku. Rozdiel je v tom, kedy začal.\n\nOznač niekoho, kto to potrebuje počuť. 👇"}, {"id": "zamestnanec-investor", "name": "Zamestnanec vs. investor (Coca-Cola)", "typ": "Príspevok", "n": 1, "d": "2026-11-08", "tema": "Investovanie", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › zamestnanec-vs-investor"}, {"id": "mlady-starsi", "name": "Mladý vs. starší investor", "typ": "Carousel", "n": 5, "d": "2026-11-08", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › mlady-vs-starsi"}, {"id": "byvanie-investovanie", "name": "Vlastné bývanie vs. investovanie", "typ": "Carousel", "n": 8, "d": "2026-11-08", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › byvanie-vs-investovanie"}, {"id": "miliardari", "name": "Miliardári a ich problémy", "typ": "Carousel", "n": 17, "d": "2026-11-07", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › miliardari-problemy"}, {"id": "kamarati-firmy", "name": "Kamaráti a firmy", "typ": "Carousel", "n": 6, "d": "2026-11-07", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › kamarati-firmy"}, {"id": "citaty-10", "name": "Citáty (12 slidov)", "typ": "Carousel", "n": 12, "d": "2026-11-07", "tema": "Citáty", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › citaty-10"}, {"id": "alexander", "name": "Alexander Veľký", "typ": "Carousel", "n": 8, "d": "2026-11-07", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › alexander-velky"}, {"id": "deti-peniaze", "name": "Deti a peniaze", "typ": "Carousel", "n": 5, "d": "2026-11-06", "tema": "Peniaze a život", "styl": "Tweet", "kde": "Stiahnuté › jsmentor-instagram › tweet › deti-5-slidov"}, {"id": "trump", "name": "Trump 1 vs. 2", "typ": "Carousel", "n": 4, "d": "2026-11-06", "tema": "História a trhy", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › trump-1-vs-2"}, {"id": "einstein", "name": "Einstein: citáty", "typ": "Carousel", "n": 16, "d": "2026-11-05", "tema": "Citáty", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › einstein"}, {"id": "inflacia-kosik", "name": "Inflácia ťa potichu okráda", "typ": "Príspevok", "n": 1, "d": "2026-11-04", "tema": "Peniaze a život", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › inflacia-kosik"}, {"id": "milionar-50", "name": "Milionár pred 50-tkou?", "typ": "Carousel", "n": 6, "d": "2026-11-04", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › milionar-pred-50"}, {"id": "svetovy-majetok", "name": "Svetový majetok a 1 %", "typ": "Carousel", "n": 6, "d": "2026-11-04", "tema": "História a trhy", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › svetovy-majetok-1-percento"}, {"id": "sp500-1-dolar", "name": "S&P 500: 1 $ každý deň", "typ": "Reel", "n": 1, "d": "2026-11-04", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › sp500-1-dolar-denne"}, {"id": "keanu", "name": "Keanu Reeves", "typ": "Carousel", "n": 10, "d": "2026-11-03", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › keanu"}, {"id": "kriza-2008", "name": "Finančná kríza 2008", "typ": "Carousel", "n": 10, "d": "2026-11-03", "tema": "História a trhy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › kriza-2008"}, {"id": "prve-kroky", "name": "Prvé kroky (8 krokov)", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "tema": "Investovanie", "styl": "Len text", "kde": "Stiahnuté › jsmentor-instagram › prve-kroky"}, {"id": "zaciname-mladi", "name": "Začíname mladí!", "typ": "Príspevok", "n": 1, "d": "2026-11-01", "tema": "Investovanie", "styl": "Graf a čísla", "kde": "Stiahnuté › jsmentor-instagram › zaciname-mladi"}, {"id": "tiger", "name": "Prestaň sa hádať s bláznami (tiger)", "typ": "Carousel", "n": 10, "d": "2026-10-28", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › tiger"}, {"id": "myslienky", "name": "Myšlienky (5 textových)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "tema": "Citáty", "styl": "Len text", "kde": "Stiahnuté › jsmentor-instagram › myslienky"}, {"id": "tweety", "name": "Tweety (5)", "typ": "Príspevok", "n": 5, "d": "2026-10-28", "tema": "Citáty", "styl": "Tweet", "kde": "Stiahnuté › jsmentor-instagram › tweet"}, {"id": "balony", "name": "Balóny", "typ": "Carousel", "n": 5, "d": "2026-10-27", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › balony"}, {"id": "dotcom", "name": "Dotcom bublina", "typ": "Carousel", "n": 11, "d": "2026-10-27", "tema": "História a trhy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › dotcom"}, {"id": "jordan", "name": "Michael Jordan", "typ": "Carousel", "n": 7, "d": "2026-10-27", "tema": "Príbehy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › jordan"}, {"id": "komunizmus", "name": "Komunizmus (8 príspevkov)", "typ": "Carousel", "n": 8, "d": "2026-10-20", "tema": "História a trhy", "styl": "Fotka a text", "kde": "Stiahnuté › jsmentor-instagram › komunizmus-carousel-8-prispevkov"}], BASE = '/assets/prispevky-7k2m/', API = '/api/prispevky?k=7k2m';
 const $ = id => document.getElementById(id);
-let pub = {}; try { pub = JSON.parse(localStorage.getItem('pp-pub') || '{}'); } catch (e) {}
-const save = () => { try { localStorage.setItem('pp-pub', JSON.stringify(pub)); } catch (e) {} };
-let filter = 'all', cur = null;
-const dt = d => { const [y, m, dd] = d.split('-'); return +dd + '. ' + +m + '. ' + y; };
-const kusy = n => n === 1 ? '1 obrázok' : n < 5 ? n + ' obrázky' : n + ' obrázkov';
-const file = (p, i) => BASE + p.id + '/' + String(i).padStart(2, '0') + '.jpg';
-function bar() {
-  const c = { all: POSTS.length, todo: POSTS.filter(p => !pub[p.id]).length, done: POSTS.filter(p => pub[p.id]).length };
-  const defs = [['all', 'Všetky'], ['todo', 'Nezverejnené'], ['done', 'Zverejnené']];
-  $('bar').innerHTML = defs.map(([k, t]) => `<button class="chip" data-k="${k}" aria-pressed="${filter === k}">${t}<b>${c[k]}</b></button>`).join('');
-  $('sum').textContent = POSTS.length + ' príspevkov, ' + POSTS.reduce((s, p) => s + p.n, 0) + ' obrázkov. Ťukni na príspevok a ulož si ho do mobilu.';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const byId = Object.fromEntries(POSTS.map(p => [p.id, p]));
+
+/* ---- stav: spoločný cez /api/prispevky, inak len v tomto prehliadači ---- */
+const KIND = { post: 'posts', idea: 'ideas', video: 'videos', meta: 'meta' };
+let S = { posts: {}, ideas: {}, videos: {}, meta: {} }, cloud = false;
+const lsGet = () => { try { return JSON.parse(localStorage.getItem('pp-state') || 'null'); } catch (e) { return null; } };
+const lsSet = () => { try { localStorage.setItem('pp-state', JSON.stringify(S)); } catch (e) {} };
+const timers = {};
+function push(kind, id) {
+  lsSet(); if (!cloud) return;
+  clearTimeout(timers[kind + id]);
+  timers[kind + id] = setTimeout(() => { const data = S[KIND[kind]][id] ?? null;
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ kind, id, data }) }).catch(() => {}); }, 600);
 }
-function grid() {
-  const list = POSTS.filter(p => filter === 'all' || (filter === 'done') === !!pub[p.id]);
-  $('grid').innerHTML = list.length ? list.map(p => `<button class="card${pub[p.id] ? ' pub' : ''}" data-id="${p.id}">
-    <span class="pic"><img loading="lazy" decoding="async" src="${BASE + p.id}/t.jpg" alt="">${p.n > 1 ? `<span class="n">${p.n}</span>` : ''}${pub[p.id] ? '<span class="done">Zverejnené</span>' : ''}</span>
-    <h2>${p.name}</h2><small>${p.typ} · ${dt(p.d)}</small></button>`).join('') : '<p class="empty">Tu zatiaľ nič nie je.</p>';
-}
-function open(p) {
-  cur = p;
-  $('dt').innerHTML = p.name + `<small>${p.typ} · ${kusy(p.n)} · ${dt(p.d)}</small>`;
-  $('slides').innerHTML = Array.from({ length: p.n }, (_, i) => `<div class="sl"><img loading="lazy" decoding="async" src="${file(p, i + 1)}" alt="${p.name}, obrázok ${i + 1}">${p.n > 1 ? `<i>${i + 1}</i>` : ''}<a href="${file(p, i + 1)}" download="${p.id}-${String(i + 1).padStart(2, '0')}.jpg">Stiahnuť</a></div>`).join('');
-  acts(); $('dlg').showModal(); $('dlg').scrollTop = 0;
-}
-function acts() {
-  $('all').textContent = cur.n > 1 ? 'Uložiť všetkých ' + cur.n : 'Uložiť obrázok'; $('all').disabled = false;
-  $('pub').textContent = pub[cur.id] ? 'Zrušiť „zverejnené“' : 'Označiť ako zverejnené';
-  $('hint').textContent = 'Na iPhone: Uložiť → „Uložiť obrázky“. Značka „zverejnené“ sa pamätá len v tomto zariadení.';
-}
-async function saveAll() {
-  const b = $('all'); b.disabled = true; b.textContent = 'Pripravujem…';
+function set(kind, id, patch) { const k = KIND[kind]; S[k][id] = Object.assign({}, S[k][id], patch, { t: Date.now() }); push(kind, id); return S[k][id]; }
+function del(kind, id) { const k = KIND[kind], old = S[k][id]; delete S[k][id]; push(kind, id); return old; }
+const st = id => S.posts[id] || {};
+async function load() {
+  const local = lsGet() || {};
+  for (const k of Object.values(KIND)) S[k] = local[k] || {};
   try {
-    const files = [];
-    for (let i = 1; i <= cur.n; i++) { const r = await fetch(file(cur, i)); files.push(new File([await r.blob()], cur.id + '-' + String(i).padStart(2, '0') + '.jpg', { type: 'image/jpeg' })); }
-    if (navigator.canShare && navigator.canShare({ files })) { await navigator.share({ files }); }
-    else for (const f of files) { const a = document.createElement('a'); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); await new Promise(r => setTimeout(r, 250)); }
+    const r = await fetch(API, { cache: 'no-store' });
+    if (r.ok) { const d = await r.json(); cloud = true;
+      for (const [kind, k] of Object.entries(KIND)) { const srv = d[k] || {}, loc = S[k]; S[k] = srv;
+        for (const id in loc) if (!srv[id] || (loc[id].t || 0) > (srv[id].t || 0)) { srv[id] = loc[id]; push(kind, id); } }
+      lsSet(); }
   } catch (e) {}
-  acts();
+  $('sync').textContent = cloud ? 'uložené pre všetky zariadenia' : 'uložené len v tomto zariadení';
 }
-$('bar').addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return; filter = b.dataset.k; bar(); grid(); });
-$('grid').addEventListener('click', e => { const c = e.target.closest('.card'); if (c) open(POSTS.find(p => p.id === c.dataset.id)); });
-$('close').addEventListener('click', () => $('dlg').close());
-$('all').addEventListener('click', saveAll);
-$('pub').addEventListener('click', () => { if (pub[cur.id]) delete pub[cur.id]; else pub[cur.id] = 1; save(); acts(); bar(); grid(); });
-bar(); grid();
-const h0 = POSTS.find(p => p.id === location.hash.slice(1)); if (h0) open(h0);
+
+/* ---- pomocné ---- */
+const iso = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+const today = () => iso(new Date());
+const pd = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
+const addDays = (s, n) => { const d = pd(s); d.setDate(d.getDate() + n); return iso(d); };
+const diff = (a, b) => Math.round((pd(a) - pd(b)) / 864e5);
+const dshort = d => { const [, m, dd] = d.split('-'); return +dd + '. ' + +m + '.'; };
+const DNI = ['ne', 'po', 'ut', 'st', 'št', 'pi', 'so'], DNIL = ['nedeľa', 'pondelok', 'utorok', 'streda', 'štvrtok', 'piatok', 'sobota'];
+const nice = d => d === today() ? 'dnes' : d === addDays(today(), 1) ? 'zajtra' : d === addDays(today(), -1) ? 'včera' : dshort(d);
+const file = (p, i) => BASE + p.id + '/' + String(i).padStart(2, '0') + '.jpg';
+const thumb = p => BASE + p.id + '/t.jpg';
+const isReel = p => p.typ === 'Reel';
+const kusy = p => isReel(p) ? 'Reel' : p.n === 1 ? 'Príspevok' : 'Príspevok · ' + p.n;
+const pl = (n, a, b, c) => n === 1 ? a : n >= 2 && n <= 4 ? b : c;
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const KB = (t, c) => `<span class="kb ${c || ''}">${t}</span>`;
+const IC = { home: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>', grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  vid: '<rect x="3" y="5" width="13" height="14" rx="2.5"/><path d="m16 10 5-3v10l-5-3z"/>', cal: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>', bulb: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.3 1 2.1h5c0-.8.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>' };
+const sv = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
+let toastT, toastUndo;
+function toast(text, undo) { $('toastT').textContent = text; toastUndo = undo; $('toastB').hidden = !undo; $('toast').classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => $('toast').classList.remove('on'), undo ? 6000 : 2400); }
+$('toastB').onclick = () => { if (toastUndo) toastUndo(); toastUndo = null; $('toast').classList.remove('on'); render(); };
+function grow(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
+
+/* ---- videá ---- */
+const exDays = v => Number.isFinite(+v.ex) && v.ex !== '' && v.ex != null ? +v.ex : (Number.isFinite(+(S.meta.set || {}).ex) ? +S.meta.set.ex : 14);
+const vch = (v, k) => (v.ch || {})[k] || {};
+const vids = () => Object.entries(S.videos).map(([id, v]) => Object.assign({ id }, v)).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+const words = v => [v.hook, v.body, v.cta].join(' ').trim().split(/\s+/).filter(Boolean).length;
+const secs = n => n < 150 ? 'asi ' + Math.max(1, Math.round(n / 2.4)) + ' sekúnd' : 'asi ' + Math.round(n / 144) + ' min';
+function setCh(id, k, patch) { const v = S.videos[id]; const ch = Object.assign({}, v.ch); ch[k] = Object.assign({}, ch[k], patch); set('video', id, { ch }); }
+function vOut(v) { return v.kind === 'reel' ? !!vch(v, 're').pub : !!(vch(v, 'hh').pub || vch(v, 'yt').pub); }
+function stage(v) { if (vOut(v)) return 2; return (v.prod || {}).s ? 1 : 0; }
+function freeDate(v) { const hh = vch(v, 'hh'); return hh.pub ? addDays(hh.pub, exDays(v)) : null; }
+function routeChips(v) {
+  if (v.kind === 'reel') { const r = vch(v, 're'); return KB('R', r.pub ? 'ok' : r.plan ? 'pl' : ''); }
+  const hh = vch(v, 'hh'), yt = vch(v, 'yt'), cl = v.clips || [], out = [];
+  if (hh.on !== false) out.push(KB('HH', hh.pub ? 'ok' : hh.plan ? 'pl' : ''));
+  if (!yt.never) out.push(KB('YT', yt.pub ? 'ok' : yt.plan ? 'pl' : ''));
+  if (cl.length) out.push(KB('R', cl.every(c => c.pub) ? 'ok' : cl.some(c => c.pub || c.plan) ? 'pl' : ''));
+  return out.join('<s>→</s>');
+}
+function nextStep(v) {
+  const p = v.prod || {};
+  if (!p.s) return words(v) ? 'Scenár rozpísaný' : 'Treba napísať scenár';
+  if (!p.n) return 'Ďalší krok: natočiť'; if (!p.st) return 'Ďalší krok: strih'; if (!p.ti) return 'Ďalší krok: titulky';
+  if (v.kind === 'reel') { const r = vch(v, 're'); return r.pub ? 'Vonku od ' + dshort(r.pub) : r.plan ? 'Naplánované na ' + nice(r.plan) : 'Hotové, bez termínu'; }
+  const hh = vch(v, 'hh'), yt = vch(v, 'yt');
+  if (yt.pub) return 'Na YouTube od ' + dshort(yt.pub);
+  if (hh.pub) { if (yt.never) return 'Len pre členov'; if (yt.plan) return 'YouTube ' + nice(yt.plan); const f = freeDate(v), n = diff(f, today()); return n <= 0 ? 'Voľné na YouTube' : 'Exkluzívne ešte ' + n + ' ' + pl(n, 'deň', 'dni', 'dní'); }
+  return hh.plan ? 'HeroHero ' + nice(hh.plan) : 'Hotové, bez termínu';
+}
+
+/* ---- udalosti v pláne ---- */
+function events() {
+  const ev = [];
+  for (const p of POSTS) { const s = st(p.id); if (s.pub) ev.push({ d: s.pub, k: isReel(p) ? 'R' : 'IG', t: p.name, h: '#post/' + p.id, done: 1 }); else if (s.plan) ev.push({ d: s.plan, k: isReel(p) ? 'R' : 'IG', t: p.name, h: '#post/' + p.id }); }
+  for (const v of vids()) { const h = '#video/' + v.id, t = v.title || 'Bez názvu';
+    for (const [k, lab] of v.kind === 'reel' ? [['re', 'R']] : [['hh', 'HH'], ['yt', 'YT']]) { const c = vch(v, k); if (c.pub) ev.push({ d: c.pub, k: lab, t, h, done: 1 }); else if (c.plan && !(k === 'yt' && c.never)) ev.push({ d: c.plan, k: lab, t, h }); }
+    for (const c of v.clips || []) { if (c.pub) ev.push({ d: c.pub, k: 'R', t: c.t, h, done: 1 }); else if (c.plan) ev.push({ d: c.plan, k: 'R', t: c.t, h }); } }
+  return ev;
+}
+const evOn = (ev, d) => ev.filter(e => e.d === d);
+const ready = () => POSTS.filter(p => !st(p.id).pub && !st(p.id).plan);
+function nextFree(ev, kinds) { let d = today(); for (let i = 0; i < 60; i++, d = addDays(d, 1)) if (!ev.some(e => e.d === d && kinds.includes(e.k))) return d; return d; }
+
+/* ---- smerovanie ---- */
+const NAV = [['prehlad', 'Prehľad', 'home'], ['instagram', 'Instagram', 'grid'], ['videa', 'Videá', 'vid'], ['plan', 'Plán', 'cal'], ['napady', 'Nápady', 'bulb']];
+let R = { v: 'prehlad', a: '' }, igF = 'all', q = '', slide = 1;
+function route() { const h = decodeURIComponent(location.hash.slice(1)); const i = h.indexOf('/'); R = { v: (i < 0 ? h : h.slice(0, i)) || 'prehlad', a: i < 0 ? '' : h.slice(i + 1) }; slide = 1; render(); window.scrollTo(0, 0); }
+window.addEventListener('hashchange', route);
+function chrome() {
+  const sec = { post: 'instagram', video: 'videa', tema: 'napady' }[R.v] || R.v;
+  const cnt = { instagram: POSTS.length, videa: Object.keys(S.videos).length, napady: Object.values(S.ideas).filter(i => !i.done).length };
+  $('nav').innerHTML = NAV.map(([k, n, i]) => `<a href="#${k}" class="${k === sec ? 'on' : ''}">${sv(i)}${n}<em>${cnt[k] || ''}</em></a>`).join('');
+  $('tab').innerHTML = NAV.map(([k, n, i]) => `<a href="#${k}" class="${k === sec ? 'on' : ''}">${sv(i)}${n}</a>`).join('');
+  const ev = events(), t = today(), dow = (pd(t).getDay() + 6) % 7, mon = addDays(t, -dow);
+  const wk = ev.filter(e => e.d >= mon && e.d <= addDays(mon, 6)), out = wk.filter(e => e.done).length;
+  $('week').innerHTML = `<p>Tento týždeň vonku</p><b>${out} z ${wk.length}</b><small>${wk.length ? 'naplánovaných vecí' : 'zatiaľ nič v pláne'}</small>`;
+}
+function render() { chrome(); const f = { prehlad: vPrehlad, instagram: vInstagram, post: vPost, videa: vVidea, video: vVideo, plan: vPlan, napady: vNapady, tema: vTema }[R.v] || vPrehlad; $('main').innerHTML = f(); document.querySelectorAll('textarea[data-grow]').forEach(grow); }
+
+/* ---- Prehľad ---- */
+function bridgeRow(v) {
+  const hh = vch(v, 'hh'), yt = vch(v, 'yt'), ex = exDays(v), f = freeDate(v), gone = Math.max(0, diff(today(), hh.pub)), left = diff(f, today());
+  let mid, btn;
+  if (yt.never) { mid = `<p><b>Len pre členov</b><span>nejde von</span></p><div class="pg"><i style="width:0"></i></div>`; btn = `<button class="btn sm ok" data-a="yt-never" data-id="${v.id}">Ostáva na HeroHero</button>`; }
+  else { mid = `<p><b>${left <= 0 ? 'Voľné od ' + nice(f) : 'Exkluzívne ešte ' + left + ' ' + pl(left, 'deň', 'dni', 'dní')}</b><span>${Math.min(gone, ex)} z ${ex} dní</span></p><div class="pg"><i style="width:${ex ? Math.min(100, Math.round(gone / ex * 100)) : 100}%"></i></div>`;
+    btn = yt.plan ? `<a class="btn sm" href="#video/${v.id}">YouTube ${nice(yt.plan)}</a>` : `<button class="btn sm ${left <= 0 ? 'p' : ''}" data-a="yt-plan" data-id="${v.id}">Naplánovať na ${left <= 0 ? 'YouTube' : dshort(f)}</button>`; }
+  return `<div class="br"><a href="#video/${v.id}"><h4>${esc(v.title || 'Bez názvu')}</h4><p>na HeroHero od ${dshort(hh.pub)}</p></a><div class="ex">${mid}</div>${btn}</div>`;
+}
+function weekHtml(ev, n) {
+  let h = ''; for (let i = 0, d = today(); i < n; i++, d = addDays(d, 1)) { const e = evOn(ev, d), dt = pd(d);
+    h += `<div class="day ${i ? '' : 'td'}"><u>${DNI[dt.getDay()]}<b>${dt.getDate()}</b></u><div>${e.map(x => `<a class="ev ${x.done ? 'dn' : ''}" href="${x.h}">${KB(x.k, x.done ? 'ok' : i ? 'pl' : 'on')}<span>${esc(x.t)}</span></a>`).join('') || '<p class="no">nič naplánované</p>'}</div></div>`; }
+  return h;
+}
+function vPrehlad() {
+  const ev = events(), t = today(), hr = new Date().getHours(), V = vids();
+  const td = evOn(ev, t).filter(e => !e.done), rdy = ready(), rdyP = rdy.filter(p => !isReel(p)), rdyR = rdy.filter(isReel);
+  const next = ks => ev.filter(e => !e.done && e.d >= t && ks.includes(e.k)).sort((a, b) => a.d < b.d ? -1 : 1)[0];
+  const nx = e => e ? `${nice(e.d).replace(/^./, c => c.toUpperCase())}: <b>${esc(e.t)}</b>` : 'Nič naplánované';
+  const br = V.filter(v => v.kind !== 'reel' && vch(v, 'hh').pub && !vch(v, 'yt').pub);
+  const brFree = br.filter(v => !vch(v, 'yt').never && !vch(v, 'yt').plan && diff(freeDate(v), t) <= 0);
+  const ytWait = V.filter(v => v.kind !== 'reel' && !vch(v, 'yt').pub && !vch(v, 'yt').never && (v.prod || {}).ti);
+  const reelV = V.filter(v => v.kind === 'reel' && !vch(v, 're').pub && (v.prod || {}).ti);
+  const sum = td.length ? `Dnes ${pl(td.length, 'ide von', 'idú von', 'ide von')} <b>${td.length} ${pl(td.length, 'vec', 'veci', 'vecí')}</b>.` : `Na dnes nemáš nič naplánované.`;
+  const tile = (k, n, num, sm, p, h) => `<a class="kt" href="${h}"><div class="h">${KB(k, 'on')}${n}</div><b>${num}<small>${sm}</small></b><p>${p}</p></a>`;
+  // diery v pláne
+  const gaps = [];
+  let empty = null; for (let i = 0, d = t; i < 7; i++, d = addDays(d, 1)) if (!evOn(ev, d).length) { empty = d; break; }
+  if (empty && rdy[0]) gaps.push(`<div class="gap"><u>!</u><div><b>${empty === t ? 'Dnes' : DNIL[pd(empty).getDay()].replace(/^./, c => c.toUpperCase()) + ' ' + dshort(empty)} nemáš nič</b><p>Čaká hotový: ${esc(rdy[0].name)}</p></div><button class="btn sm" data-a="gap-fill" data-id="${rdy[0].id}" data-d="${empty}">Zaradiť</button></div>`);
+  const lastYt = V.map(v => vch(v, 'yt').pub).filter(Boolean).sort().pop();
+  if (brFree[0] && (!lastYt || diff(t, lastYt) >= 7)) gaps.push(`<div class="gap"><u>${lastYt ? diff(t, lastYt) : '▶'}</u><div><b>${lastYt ? 'Na YouTube ' + diff(t, lastYt) + ' dní nič' : 'Na YouTube zatiaľ nič'}</b><p>Voľné z HeroHero: ${esc(brFree[0].title || 'Bez názvu')}</p></div><button class="btn sm" data-a="yt-plan" data-id="${brFree[0].id}">Naplánovať</button></div>`);
+  const old = Object.values(S.ideas).filter(i => !i.done && i.ts && Date.now() - i.ts > 30 * 864e5);
+  if (old.length) gaps.push(`<div class="gap"><u>${old.length}</u><div><b>${old.length} ${pl(old.length, 'nápad starší', 'nápady staršie', 'nápadov starších')} ako mesiac</b><p>${esc(old.sort((a, b) => a.ts - b.ts)[0].text)}</p></div><a class="btn sm" href="#napady">Pozrieť</a></div>`);
+  return `<div class="top"><div><h1>${hr < 10 ? 'Dobré ráno' : hr < 18 ? 'Dobrý deň' : 'Dobrý večer'}. <i>Čo dnes vydáš?</i></h1><p class="sub">${sum}${brFree.length ? ` ${brFree.length === 1 ? 'Jedno video' : brFree.length + ' videá'} z HeroHero ${brFree.length === 1 ? 'je voľné' : 'sú voľné'} <b>na YouTube</b>.` : ''}</p></div>
+    <div class="btns"><a class="btn" href="#instagram">Príspevky</a><button class="btn p" data-a="video-new" data-k="long">+ Nové video</button></div></div>
+  <form class="cap" data-f="idea">${sv('bulb')}<input name="t" autocomplete="off" maxlength="4000" placeholder="Zapíš nápad jednou vetou a stlač Enter…" aria-label="Nový nápad"><button class="btn sm" type="submit">Uložiť</button></form>
+  <div class="ch4">${tile('IG', 'Príspevky', rdyP.length, pl(rdyP.length, 'pripravený', 'pripravené', 'pripravených'), nx(next(['IG'])), '#instagram')}
+    ${tile('R', 'Reels', rdyR.length + reelV.length, pl(rdyR.length + reelV.length, 'pripravený', 'pripravené', 'pripravených'), nx(next(['R'])), '#videa')}
+    ${tile('YT', 'YouTube', ytWait.length, pl(ytWait.length, 'čaká', 'čakajú', 'čaká'), nx(next(['YT'])), '#videa')}
+    ${tile('HH', 'HeroHero', br.length, 'len u členov', nx(next(['HH'])), '#videa')}</div>
+  ${gaps.length ? `<div class="gaps">${gaps.join('')}</div>` : ''}
+  <div class="two"><div class="pan"><h3>Z HeroHero na YouTube <span>členovia to majú prví, potom to môže ísť von</span></h3>
+    ${br.length ? br.map(bridgeRow).join('') : `<p class="empty">Zatiaľ tu nič nie je. Keď pri dlhom videu označíš, že je vonku na HeroHero, objaví sa tu a začne sa mu počítať lehota, po ktorej môže ísť na YouTube.</p>`}
+    <div class="cd" style="margin:6px 0 10px"><div class="ln" style="margin:0"><label for="exd">Bežná lehota len pre členov</label><input class="in" id="exd" type="number" min="0" max="365" style="width:78px" data-i="meta-ex" value="${exDays({})}"><label>dní</label></div></div></div>
+  <div class="pan"><h3>Najbližších 7 dní</h3>${weekHtml(ev, 7)}<a class="btn sm" href="#plan" style="margin:6px 0 10px">Celý plán</a></div></div>`;
+}
+
+/* ---- Instagram ---- */
+function vInstagram() {
+  const ev = events(), f = p => (igF === 'all' || (igF === 'reel') === isReel(p)) && (!q || p.name.toLowerCase().includes(q));
+  const P = POSTS.filter(f), plan = P.filter(p => !st(p.id).pub && st(p.id).plan).sort((a, b) => st(a.id).plan < st(b.id).plan ? 1 : -1), pub = P.filter(p => st(p.id).pub).sort((a, b) => st(a.id).pub < st(b.id).pub ? 1 : -1), rd = P.filter(p => !st(p.id).pub && !st(p.id).plan);
+  const cell = (p, c, lab) => `<a class="${c}" href="#post/${p.id}" title="${esc(p.name)}"><img src="${thumb(p)}" alt="${esc(p.name)}" loading="lazy"><span>${lab}</span>${isReel(p) ? '<em>▶</em>' : ''}</a>`;
+  const grid = plan.map(p => cell(p, 'pl', nice(st(p.id).plan))).join('') + pub.map(p => cell(p, '', dshort(st(p.id).pub))).join('');
+  const seg = [['all', 'Všetko ' + POSTS.length], ['post', 'Príspevky ' + POSTS.filter(p => !isReel(p)).length], ['reel', 'Reels ' + POSTS.filter(isReel).length]];
+  return `<div class="top"><div><h1>Instagram. <i>Takto bude vyzerať profil.</i></h1><p class="sub">Zlatý rámik je naplánované, ostatné je už vonku. <b>▶</b> je Reel.</p></div></div>
+  <div class="bar"><div class="seg">${seg.map(([k, n]) => `<button class="${igF === k ? 'on' : ''}" data-a="ig-f" data-k="${k}">${n}</button>`).join('')}</div><input class="srch" type="search" placeholder="Hľadať…" aria-label="Hľadať" data-i="q" value="${esc(q)}"></div>
+  <div class="igw"><div>${grid ? `<div class="ig">${grid}</div>` : `<div class="pan"><p class="empty">Zatiaľ nič naplánované ani zverejnené. Vyber si z pripravených a stlač Zaradiť, alebo otvor príspevok a nastav mu dátum.</p></div>`}</div>
+  <div class="pan"><h3>Pripravené <span>${rd.length} bez termínu</span></h3>${rd.map(p => `<div class="row"><a href="#post/${p.id}"><img src="${thumb(p)}" alt="" loading="lazy"></a><div><a href="#post/${p.id}"><b>${esc(p.name)}</b></a><p><span class="t o">${kusy(p)}</span><span>${esc(p.tema)}</span></p></div><button class="btn sm" data-a="gap-fill" data-id="${p.id}" data-d="${nextFree(ev, ['IG', 'R'])}">Zaradiť</button></div>`).join('') || '<p class="empty">Všetko má termín alebo je vonku.</p>'}</div></div>`;
+}
+function vPost() {
+  const p = byId[R.a]; if (!p) return `<p class="empty">Tento príspevok tu nie je. <a class="btn sm" href="#instagram">Späť</a></p>`;
+  const s = st(p.id); slide = Math.min(Math.max(1, slide), p.n);
+  const ths = p.n > 1 ? `<div class="ths">${Array.from({ length: p.n }, (_, i) => `<button class="${i + 1 === slide ? 'on' : ''}" data-a="slide" data-n="${i + 1}" aria-label="Obrázok ${i + 1}"><img src="${file(p, i + 1)}" alt="" loading="lazy"></button>`).join('')}</div>` : '';
+  return `<a class="crumb" href="#instagram">‹ Instagram</a>
+  <div class="det"><div><div class="view" id="view"><img id="vimg" src="${file(p, slide)}" alt="${esc(p.name)}">${p.n > 1 ? `<span class="cnt" id="vcnt">${slide} / ${p.n}</span><button class="pv" data-a="slide" data-n="prev" aria-label="Predošlý">‹</button><button class="nx" data-a="slide" data-n="next" aria-label="Ďalší">›</button>` : ''}</div>${ths}</div>
+  <div class="rp"><h1 style="font-size:28px">${esc(p.name)}</h1><div class="meta"><span class="t ${s.pub ? 'o' : s.plan ? 'g' : ''}">${s.pub ? 'Zverejnené ' + dshort(s.pub) : s.plan ? 'Naplánované ' + nice(s.plan) : 'Bez termínu'}</span><span class="t">${kusy(p)}</span><span class="t">${esc(p.tema)}</span></div>
+    <div class="btns" style="margin:16px 0 0;width:100%"><button class="btn ${s.pub ? 'ok' : 'p'}" style="flex:1" data-a="post-pub" data-id="${p.id}">${s.pub ? '✓ Zverejnené, zrušiť' : 'Označiť ako zverejnené'}</button></div>
+    <label class="fld"><span>Plán zverejnenia</span><input class="in" type="date" data-i="post-plan" data-id="${p.id}" value="${esc(s.plan || '')}"></label>
+    <div class="cpt" style="margin-top:16px"><h6 class="lbl">Popisok<button type="button" data-a="post-copy" data-id="${p.id}">Kopírovať</button></h6><textarea data-grow data-i="post-cap" data-id="${p.id}" placeholder="Sem napíš popisok…">${esc(s.cap ?? p.cap ?? '')}</textarea></div>
+    <div class="btns" style="margin:12px 0 0;width:100%">${isReel(p) ? '' : `<button class="btn" style="flex:1" data-a="post-dl" data-id="${p.id}">Stiahnuť ${p.n === 1 ? 'obrázok' : 'všetkých ' + p.n}</button>`}</div>
+    <label class="fld"><span>Poznámka</span><textarea class="in note" data-i="post-note" data-id="${p.id}" placeholder="Čokoľvek k tomuto príspevku">${esc(s.note || '')}</textarea></label>
+    <p class="path">${isReel(p) ? 'Video je v počítači: ' : 'Plná kvalita je v počítači: '}${esc(p.kde || '')}</p></div></div>`;
+}
+
+/* ---- Videá ---- */
+function vcard(v) { return `<a class="vc" href="#video/${v.id}"><div class="h"><span class="t ${v.kind === 'reel' ? '' : 'g'}">${v.kind === 'reel' ? 'Reel' : 'Dlhé video'}</span>${v.topic ? `<span>${esc(v.topic)}</span>` : ''}<em>${words(v) ? words(v) + ' slov' : ''}</em></div><h4>${esc(v.title || 'Bez názvu')}</h4><div class="route">${routeChips(v)}<i>${nextStep(v)}</i></div></a>`; }
+function vVidea() {
+  const V = vids(), G = [['Scenár', 'var(--gold)', 0], ['Výroba', 'var(--am)', 1], ['Vonku', 'var(--ok)', 2]];
+  const reels = POSTS.filter(isReel);
+  return `<div class="top"><div><h1>Videá. <i>Jeden scenár, jedna cesta.</i></h1><p class="sub">Dlhé video ide najprv na HeroHero, potom na YouTube a dajú sa z neho strihať Reels. Reel má vlastný krátky scenár.</p></div>
+    <div class="btns"><button class="btn" data-a="video-new" data-k="reel">+ Nový Reel</button><button class="btn p" data-a="video-new" data-k="long">+ Nové dlhé video</button></div></div>
+  ${V.length ? G.map(([n, c, k]) => { const L = V.filter(v => stage(v) === k); return `<div class="grp"><h3><u style="background:${c}"></u>${n}<em>${L.length}</em></h3>${L.length ? `<div class="cards">${L.map(vcard).join('')}</div>` : `<p class="empty" style="padding:6px 0 0">${['Žiadny rozpísaný scenár.', 'Nič vo výrobe.', 'Zatiaľ nič vonku.'][k]}</p>`}</div>`; }).join('')
+    : `<div class="pan" style="margin-top:22px"><p class="empty">Zatiaľ tu nemáš žiadne video. Stlač „+ Nové dlhé video“ alebo „+ Nový Reel“, napíš scenár a odškrtávaj, čo je hotové.</p></div>`}
+  ${reels.length ? `<div class="grp"><h3><u style="background:var(--fa)"></u>Hotové Reels z počítača<em>${reels.length}</em></h3><div class="ig" style="margin-top:10px">${reels.map(p => `<a class="${st(p.id).pub ? '' : st(p.id).plan ? 'pl' : 'rd'}" href="#post/${p.id}" title="${esc(p.name)}"><img src="${thumb(p)}" alt="${esc(p.name)}" loading="lazy"><span>${st(p.id).pub ? dshort(st(p.id).pub) : st(p.id).plan ? nice(st(p.id).plan) : 'bez termínu'}</span><em>▶</em></a>`).join('')}</div></div>` : ''}`;
+}
+function chBlock(v, k, lab, name, body, cls, right) { return `<div class="stop ${cls}"><u>${cls === 'd' ? '✓' : ''}</u><h4>${KB(lab, cls === 'd' ? 'ok' : cls === 'n' ? 'pl' : '')}${name}<em>${right || ''}</em></h4><div class="cd">${body}</div></div>`; }
+function pubLine(v, k, c) { return `<div class="ln">${c.pub ? `<button class="btn sm ok" data-a="ch-pub" data-id="${v.id}" data-k="${k}">✓ Vonku od ${dshort(c.pub)}, zrušiť</button>` : `<label>Plán</label><input class="in" type="date" data-i="ch-plan" data-id="${v.id}" data-k="${k}" value="${esc(c.plan || '')}"><button class="btn sm" data-a="ch-pub" data-id="${v.id}" data-k="${k}">Označiť ako vonku</button>`}</div>`; }
+function vVideo() {
+  const v0 = S.videos[R.a]; if (!v0) return `<p class="empty">Toto video tu nie je. <a class="btn sm" href="#videa">Späť na videá</a></p>`;
+  const v = Object.assign({ id: R.a }, v0), p = v.prod || {}, n = words(v);
+  const PR = [['s', 'Scenár'], ['n', 'Natočené'], ['st', 'Strih'], ['ti', 'Titulky']];
+  let routeH;
+  if (v.kind === 'reel') { const r = vch(v, 're'); routeH = chBlock(v, 're', 'R', 'Instagram Reel', `<p>${r.pub ? 'Reel je vonku.' : r.plan ? 'Naplánované na <b>' + nice(r.plan) + '</b>.' : 'Zatiaľ bez termínu.'}</p>${pubLine(v, 're', r)}`, r.pub ? 'd' : 'n', r.pub ? '' : 'ďalší krok'); }
+  else { const hh = vch(v, 'hh'), yt = vch(v, 'yt'), f = freeDate(v), left = f ? diff(f, today()) : null, cl = v.clips || [];
+    const hhB = `<p>${hh.pub ? 'Členovia to majú od <b>' + dshort(hh.pub) + '</b>.' : 'Členovia to uvidia prví.'}</p>${pubLine(v, 'hh', hh)}`;
+    let ytB; if (yt.never) ytB = `<p><b>Len pre členov.</b> Toto video na YouTube nepôjde.</p>`;
+    else if (yt.pub) ytB = `<p>Na YouTube je to vonku.</p>${pubLine(v, 'yt', yt)}`;
+    else ytB = `<p>${!hh.pub ? 'Lehota sa začne počítať, keď video vyjde na HeroHero.' : left <= 0 ? '<b>Voľné na YouTube</b> od ' + nice(f) + '.' : 'Exkluzívne ešte <b>' + left + ' ' + pl(left, 'deň', 'dni', 'dní') + '</b>, voľné od ' + dshort(f) + '.'}</p>${hh.pub ? `<div class="pg"><i style="width:${exDays(v) ? Math.min(100, Math.round(Math.max(0, diff(today(), hh.pub)) / exDays(v) * 100)) : 100}%"></i></div>` : ''}
+      <div class="ln"><label>Len pre členov</label><input class="in" type="number" min="0" max="365" style="width:74px" data-i="v-ex" data-id="${v.id}" value="${exDays(v)}"><label>dní</label></div>${pubLine(v, 'yt', yt)}`;
+    ytB += `<label class="chk"><input type="checkbox" data-i="yt-never" data-id="${v.id}" ${yt.never ? 'checked' : ''}>Nechať len na HeroHero</label>`;
+    const clB = cl.map((c, i) => `<div class="clip ${c.pub ? 'd' : ''}"><button class="c" data-a="clip-pub" data-id="${v.id}" data-n="${i}" aria-label="${c.pub ? 'Zrušiť zverejnenie' : 'Označiť ako vonku'}"></button><span>${esc(c.t)}</span><button class="x" data-a="clip-del" data-id="${v.id}" data-n="${i}" aria-label="Zmazať">×</button>${c.pub ? `<i style="font-style:normal;font-size:12px;color:var(--mu);flex-basis:100%">vonku ${dshort(c.pub)}</i>` : `<input class="in" type="date" style="padding:5px 8px 3px;font-size:12.5px" data-i="clip-plan" data-id="${v.id}" data-n="${i}" value="${esc(c.plan || '')}" aria-label="Plán">`}</div>`).join('')
+      + `<form class="ln" data-f="clip" data-id="${v.id}"><input class="in" name="t" style="flex:1" maxlength="200" placeholder="Názov Reelu z videa" aria-label="Nový Reel z videa"><button class="btn sm" type="submit">Pridať</button></form>`;
+    routeH = chBlock(v, 'hh', 'HH', 'HeroHero', hhB, hh.pub ? 'd' : 'n', hh.pub ? '' : 'prvý krok')
+      + chBlock(v, 'yt', 'YT', 'YouTube', ytB, yt.never ? 'x' : yt.pub ? 'd' : hh.pub ? 'n' : '', yt.pub || yt.never ? '' : hh.pub ? 'ďalší krok' : '')
+      + chBlock(v, 're', 'R', 'Reels z videa', clB, cl.length && cl.every(c => c.pub) ? 'd' : '', cl.length ? cl.filter(c => c.pub).length + ' z ' + cl.length + ' vonku' : ''); }
+  const ta = (k, lab, hint, ph) => `<div class="sec"><h5>${lab} <em>${hint}</em></h5><textarea data-grow data-i="v-f" data-k="${k}" data-id="${v.id}" placeholder="${ph}">${esc(v[k] || '')}</textarea></div>`;
+  return `<div class="crumb"><a href="#videa">‹ Videá</a><em id="saved">● Uložené</em></div>
+  <div class="det"><div><textarea class="tin" rows="1" data-grow data-i="v-f" data-k="title" data-id="${v.id}" placeholder="Názov videa" aria-label="Názov videa">${esc(v.title || '')}</textarea>
+    <div class="meta"><div class="seg"><button class="${v.kind !== 'reel' ? 'on' : ''}" data-a="v-kind" data-id="${v.id}" data-k="long">Dlhé video</button><button class="${v.kind === 'reel' ? 'on' : ''}" data-a="v-kind" data-id="${v.id}" data-k="reel">Reel</button></div>
+      <input class="in" style="width:190px" data-i="v-f" data-k="topic" data-id="${v.id}" placeholder="Téma (nepovinné)" aria-label="Téma" value="${esc(v.topic || '')}">${v.topic ? `<a class="btn sm" href="#tema/${encodeURIComponent(v.topic)}">Otvoriť tému</a>` : ''}<span class="n" id="wc">${n ? n + ' slov · nahlas ' + secs(n) : 'zatiaľ bez textu'}</span></div>
+    ${ta('hook', 'Hook', v.kind === 'reel' ? 'prvé 3 sekundy' : 'prvých 10 sekúnd', 'Prvá veta, ktorá zastaví palec…')}${ta('body', v.kind === 'reel' ? 'Telo' : 'Scenár', '', 'Píš tak, ako to povieš nahlas…')}${ta('cta', 'Výzva na konci', '', 'Čo má divák spraviť…')}</div>
+  <div class="rp"><h6>Výroba</h6><div class="mini">${PR.map(([k, lab]) => `<button class="${p[k] ? 'on' : ''}" data-a="v-prod" data-id="${v.id}" data-k="${k}" aria-pressed="${!!p[k]}">${p[k] ? '✓ ' : ''}${lab}</button>`).join('')}</div>
+    <h6>Cesta videa</h6>${routeH}
+    <h6>Poznámka</h6><textarea class="in note" data-i="v-f" data-k="note" data-id="${v.id}" placeholder="Kde točiť, čo nezabudnúť…">${esc(v.note || '')}</textarea>
+    <div class="btns" style="margin:16px 0 0"><button class="btn sm dng" data-a="video-del" data-id="${v.id}">Zmazať video</button></div></div></div>`;
+}
+
+/* ---- Plán, Nápady, Téma ---- */
+function vPlan() { const ev = events(), nd = ready().length;
+  return `<div class="top"><div><h1>Plán. <i>Najbližších 14 dní.</i></h1><p class="sub">Všetky kanály na jednom mieste. Bez termínu ${pl(nd, 'čaká', 'čakajú', 'čaká')} <b>${nd} ${pl(nd, 'hotová vec', 'hotové veci', 'hotových vecí')}</b>.</p></div><div class="btns"><a class="btn" href="#instagram">Zaradiť príspevky</a></div></div>
+  <div class="pan" style="margin-top:22px;max-width:760px">${weekHtml(ev, 14)}</div>`; }
+function vNapady() {
+  const L = Object.entries(S.ideas).map(([id, i]) => Object.assign({ id }, i)).filter(i => !i.done).sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  const topics = [...new Set(vids().map(v => (v.topic || '').trim()).filter(Boolean))];
+  return `<div class="top"><div><h1>Nápady. <i>Nič sa nestratí.</i></h1><p class="sub">Zapíš vetu, neskôr z nej jedným ťahom spravíš video alebo Reel.</p></div></div>
+  <form class="cap" data-f="idea">${sv('bulb')}<input name="t" autocomplete="off" maxlength="4000" placeholder="Zapíš nápad jednou vetou a stlač Enter…" aria-label="Nový nápad"><button class="btn sm" type="submit">Uložiť</button></form>
+  ${topics.length ? `<div class="bar" style="margin-bottom:6px"><span class="lbl" style="margin:0">Témy</span>${topics.map(t => `<a class="btn sm" href="#tema/${encodeURIComponent(t)}">${esc(t)}</a>`).join('')}</div>` : ''}
+  <div style="margin-top:14px;max-width:860px">${L.map(i => `<div class="idea"><p>${esc(i.text)}<small>${i.ts ? nice(iso(new Date(i.ts))) : ''}</small></p><div class="acts"><button class="btn sm" data-a="idea-video" data-id="${i.id}" data-k="long">Dlhé video</button><button class="btn sm" data-a="idea-video" data-id="${i.id}" data-k="reel">Reel</button><button class="btn sm dng" data-a="idea-del" data-id="${i.id}">Zmazať</button></div></div>`).join('') || '<p class="empty">Zatiaľ žiadny nápad. Napíš prvý hore.</p>'}</div>`;
+}
+function vTema() { const name = R.a, L = vids().filter(v => (v.topic || '').trim() === name), out = L.filter(vOut).length;
+  return `<a class="crumb" href="#napady">‹ Nápady</a><div class="top"><div><h1>${esc(name)}. <i>${L.length} ${pl(L.length, 'výstup', 'výstupy', 'výstupov')}.</i></h1><p class="sub">Všetko, čo vzniklo z jednej témy. Vonku ${pl(out, 'je', 'sú', 'je')} <b>${out} z ${L.length}</b>.</p></div>
+    <div class="btns"><button class="btn" data-a="video-new" data-k="reel" data-topic="${esc(name)}">+ Reel k téme</button><button class="btn p" data-a="video-new" data-k="long" data-topic="${esc(name)}">+ Video k téme</button></div></div>
+  <div class="cards" style="margin-top:22px">${L.map(vcard).join('')}<button class="vc add" data-a="video-new" data-k="reel" data-topic="${esc(name)}"><div><b>+</b>Pridať výstup</div></button></div>`; }
+
+/* ---- akcie ---- */
+function newVideo(kind, extra) { const id = uid(); set('video', id, Object.assign({ title: '', kind, ts: Date.now(), prod: {}, ch: {} }, extra)); location.hash = '#video/' + id; }
+function showSlide(p) { const im = $('vimg'); if (!im) return; im.src = file(p, slide); const c = $('vcnt'); if (c) c.textContent = slide + ' / ' + p.n; document.querySelectorAll('.ths button').forEach((b, i) => b.classList.toggle('on', i + 1 === slide)); }
+async function downloadAll(p) {
+  const names = Array.from({ length: p.n }, (_, i) => p.id + '-' + String(i + 1).padStart(2, '0') + '.jpg');
+  try { if (navigator.canShare && matchMedia('(pointer: coarse)').matches) { const files = await Promise.all(names.map(async (n, i) => new File([await (await fetch(file(p, i + 1))).blob()], n, { type: 'image/jpeg' })));
+      if (navigator.canShare({ files })) { await navigator.share({ files }); return; } } } catch (e) { if (e && e.name === 'AbortError') return; }
+  names.forEach((n, i) => setTimeout(() => { const a = document.createElement('a'); a.href = file(p, i + 1); a.download = n; document.body.appendChild(a); a.click(); a.remove(); }, i * 350));
+  toast(p.n === 1 ? 'Sťahujem obrázok' : 'Sťahujem ' + p.n + ' obrázkov');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, id = b.dataset.id;
+  if (a === 'video-new') return newVideo(b.dataset.k, b.dataset.topic ? { topic: b.dataset.topic } : {});
+  if (a === 'ig-f') igF = b.dataset.k;
+  else if (a === 'gap-fill') { const old = st(id).plan || ''; set('post', id, { plan: b.dataset.d }); toast('Zaradené na ' + nice(b.dataset.d), () => set('post', id, { plan: old })); }
+  else if (a === 'yt-plan') { const v = S.videos[id], f = freeDate(v), d = f && f > today() ? f : today(), old = vch(v, 'yt').plan || ''; setCh(id, 'yt', { plan: d }); toast('YouTube naplánované na ' + nice(d), () => setCh(id, 'yt', { plan: old })); }
+  else if (a === 'yt-never') { setCh(id, 'yt', { never: false }); toast('Video môže ísť na YouTube', () => setCh(id, 'yt', { never: true })); }
+  else if (a === 'post-pub') { const s = st(id), old = s.pub || 0; set('post', id, { pub: old ? 0 : today() }); toast(old ? 'Zverejnenie zrušené' : 'Označené ako zverejnené', () => set('post', id, { pub: old })); }
+  else if (a === 'post-copy') { const t = st(id).cap ?? byId[id].cap ?? ''; if (!t.trim()) return toast('Popisok je prázdny'); (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast('Popisok skopírovaný'), () => toast('Kopírovanie sa nepodarilo')); return; }
+  else if (a === 'post-dl') return void downloadAll(byId[id]);
+  else if (a === 'slide') { const p = byId[R.a], n = b.dataset.n; slide = n === 'prev' ? (slide > 1 ? slide - 1 : p.n) : n === 'next' ? (slide < p.n ? slide + 1 : 1) : +n; return showSlide(p); }
+  else if (a === 'v-kind') set('video', id, { kind: b.dataset.k });
+  else if (a === 'v-prod') { const v = S.videos[id]; set('video', id, { prod: Object.assign({}, v.prod, { [b.dataset.k]: !(v.prod || {})[b.dataset.k] }) }); }
+  else if (a === 'ch-pub') { const k = b.dataset.k, old = vch(S.videos[id], k).pub || ''; setCh(id, k, { pub: old ? '' : today() }); toast(old ? 'Zrušené' : 'Označené ako vonku', () => setCh(id, k, { pub: old })); }
+  else if (a === 'clip-pub' || a === 'clip-del') { const v = S.videos[id], cl = (v.clips || []).slice(), n = +b.dataset.n, old = (v.clips || []).slice(); if (a === 'clip-del') cl.splice(n, 1); else cl[n] = Object.assign({}, cl[n], { pub: cl[n].pub ? '' : today() }); set('video', id, { clips: cl }); if (a === 'clip-del') toast('Reel zmazaný', () => set('video', id, { clips: old })); }
+  else if (a === 'video-del') { const old = del('video', id); toast('Video zmazané', () => { S.videos[id] = old; push('video', id); location.hash = '#video/' + id; }); location.hash = '#videa'; return; }
+  else if (a === 'idea-del') { const old = del('idea', id); toast('Nápad zmazaný', () => { S.ideas[id] = old; push('idea', id); }); }
+  else if (a === 'idea-video') { const i = S.ideas[id]; set('idea', id, { done: true }); return newVideo(b.dataset.k, { title: (i.text || '').split('\n')[0].slice(0, 120), note: i.text.length > 120 ? i.text : '' }); }
+  else return;
+  render();
+});
+document.addEventListener('submit', e => {
+  const f = e.target.closest('[data-f]'); if (!f) return; e.preventDefault(); const inp = f.elements.t, v = inp.value.trim(); if (!v) return inp.focus();
+  if (f.dataset.f === 'idea') { set('idea', uid(), { text: v.slice(0, 4000), ts: Date.now() }); toast('Nápad uložený'); }
+  else if (f.dataset.f === 'clip') { const id = f.dataset.id, cl = (S.videos[id].clips || []).concat({ t: v.slice(0, 200) }); set('video', id, { clips: cl }); }
+  render(); const again = document.querySelector(`[data-f="${f.dataset.f}"] input[name=t]`); if (again && f.dataset.f === 'clip') again.focus();
+});
+let savT;
+function flash() { const s = $('saved'); if (!s) return; s.textContent = '● Ukladám…'; clearTimeout(savT); savT = setTimeout(() => { const x = $('saved'); if (x) x.textContent = '● Uložené'; }, 700); }
+document.addEventListener('input', e => {
+  const el = e.target, i = el.dataset.i; if (!i) return; const id = el.dataset.id;
+  if (el.hasAttribute('data-grow')) grow(el);
+  if (i === 'v-f') { set('video', id, { [el.dataset.k]: el.value }); flash(); const w = $('wc'), n = words(S.videos[id]); if (w) w.textContent = n ? n + ' slov · nahlas ' + secs(n) : 'zatiaľ bez textu'; }
+  else if (i === 'post-cap') set('post', id, { cap: el.value });
+  else if (i === 'post-note') set('post', id, { note: el.value });
+  else if (i === 'q') { q = el.value.trim().toLowerCase(); const pos = el.selectionStart; render(); const n = document.querySelector('[data-i=q]'); if (n) { n.focus(); try { n.setSelectionRange(pos, pos); } catch (x) {} } }
+});
+document.addEventListener('change', e => {
+  const el = e.target, i = el.dataset.i; if (!i) return; const id = el.dataset.id;
+  if (i === 'post-plan') set('post', id, { plan: el.value });
+  else if (i === 'ch-plan') setCh(id, el.dataset.k, { plan: el.value });
+  else if (i === 'clip-plan') { const cl = (S.videos[id].clips || []).slice(); cl[+el.dataset.n] = Object.assign({}, cl[+el.dataset.n], { plan: el.value }); set('video', id, { clips: cl }); }
+  else if (i === 'v-ex') set('video', id, { ex: el.value === '' ? null : Math.max(0, Math.min(365, Math.round(+el.value) || 0)) });
+  else if (i === 'yt-never') setCh(id, 'yt', { never: el.checked });
+  else if (i === 'meta-ex') set('meta', 'set', { ex: Math.max(0, Math.min(365, Math.round(+el.value) || 0)) });
+  else if (i === 'v-f' && el.dataset.k === 'topic') { /* odkaz na tému sa ukáže po prekreslení */ }
+  else return;
+  render();
+});
+/* potiahnutie prstom v prehliadači obrázkov */
+let tx = null;
+document.addEventListener('touchstart', e => { tx = e.target.closest('#view') ? e.touches[0].clientX : null; }, { passive: true });
+document.addEventListener('touchend', e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; tx = null; const p = byId[R.a]; if (!p || p.n < 2 || Math.abs(dx) < 40) return; slide = dx < 0 ? (slide < p.n ? slide + 1 : 1) : (slide > 1 ? slide - 1 : p.n); showSlide(p); }, { passive: true });
+document.addEventListener('keydown', e => { if (R.v !== 'post' || /INPUT|TEXTAREA/.test(e.target.tagName)) return; const p = byId[R.a]; if (!p || p.n < 2) return; if (e.key === 'ArrowRight') { slide = slide < p.n ? slide + 1 : 1; showSlide(p); } else if (e.key === 'ArrowLeft') { slide = slide > 1 ? slide - 1 : p.n; showSlide(p); } });
+window.addEventListener('pagehide', lsSet);
+route(); load().then(render);
 </script>
 </body>
 </html>
